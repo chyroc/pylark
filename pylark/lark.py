@@ -3,4 +3,4 @@ class Lark(object):
         pass
 
     def test(self):
-        return 'test'
+        return "test"
