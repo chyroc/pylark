@@ -1,0 +1,2 @@
+def newMethodOption(*options):
+    pass

@@ -1,0 +1,65 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Python package
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install flake8 pytest dacite requests
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Test with pytest
+      run: |
+        pytest
+      env:
+        LARK_APP_NO_PERMISSION_APP_ID: ${{ secrets.LARK_APP_NO_PERMISSION_APP_ID }}
+        LARK_APP_NO_PERMISSION_APP_SECRET: ${{ secrets.LARK_APP_NO_PERMISSION_APP_SECRET }}
+        LARK_APP_ALL_PERMISSION_APP_ID: ${{ secrets.LARK_APP_ALL_PERMISSION_APP_ID }}
+        LARK_APP_ALL_PERMISSION_APP_SECRET: ${{ secrets.LARK_APP_ALL_PERMISSION_APP_SECRET }}
+        LARK_HELPDESK_ALL_PERMISSION_ID: ${{ secrets.LARK_HELPDESK_ALL_PERMISSION_ID }}
+        LARK_HELPDESK_ALL_PERMISSION_TOKEN: ${{ secrets.LARK_HELPDESK_ALL_PERMISSION_TOKEN }}
+        LARK_USER_ADMIN_USER_ID: ${{ secrets.LARK_USER_ADMIN_USER_ID }}
+        LARK_USER_ADMIN_OPEN_ID: ${{ secrets.LARK_USER_ADMIN_OPEN_ID }}
+        LARK_USER_ADMIN_NAME: ${{ secrets.LARK_USER_ADMIN_NAME }}
+        LARK_CHAT_CONTAINS_APP_PERMISSION_APP_CHAT_ID: ${{ secrets.LARK_CHAT_CONTAINS_APP_PERMISSION_APP_CHAT_ID }}
+        LARK_CHAT_NOT_CONTAINS_APP_PERMISSION_APP_CHAT_ID: ${{ secrets.LARK_CHAT_NOT_CONTAINS_APP_PERMISSION_APP_CHAT_ID }}
+        LARK_CHAT_FOR_SEND_MSG_CHAT_ID: ${{ secrets.LARK_CHAT_FOR_SEND_MSG_CHAT_ID }}
+        LARK_FILE_KEY_TEST_FILE_1_PNG: ${{ secrets.LARK_FILE_KEY_TEST_FILE_1_PNG }}
+        LARK_FILE_KEY_TEST_FILE_2_DOC: ${{ secrets.LARK_FILE_KEY_TEST_FILE_2_DOC }}
+        LARK_MESSAGE_ADMIN_SEND_TEST_IN_CHAT_CONTAINS_ALL_PERMISSION_APP: ${{ secrets.LARK_MESSAGE_ADMIN_SEND_TEST_IN_CHAT_CONTAINS_ALL_PERMISSION_APP }}
+        LARK_MESSAGE_ADMIN_SEND_IMAGE_IN_CHAT_CONTAINS_ALL_PERMISSION_APP: ${{ secrets.LARK_MESSAGE_ADMIN_SEND_IMAGE_IN_CHAT_CONTAINS_ALL_PERMISSION_APP }}
+        LARK_MESSAGE_ALL_PERMISSION_APP_SEND_TEXT_IN_CHAT_CONTAINS_ALL_PERMISSION_APP: ${{ secrets.LARK_MESSAGE_ALL_PERMISSION_APP_SEND_TEXT_IN_CHAT_CONTAINS_ALL_PERMISSION_APP }}
+        LARK_APPROVAL_ALL_FIELD: ${{ secrets.LARK_APPROVAL_ALL_FIELD }}
+        LARK_ACCESS_TOKEN_ALL_PERMISSION_APP: ${{ secrets.LARK_ACCESS_TOKEN_ALL_PERMISSION_APP }}
+        LARK_REFRESH_TOKEN_ALL_PERMISSION_APP: ${{ secrets.LARK_REFRESH_TOKEN_ALL_PERMISSION_APP }}
+        LARK_APP_CUSTOM_BOT_NO_VALID_WEBHOOK_URL: ${{ secrets.LARK_APP_CUSTOM_BOT_NO_VALID_WEBHOOK_URL }}
+        LARK_APP_CUSTOM_BOT_CHECK_CAN_SEND_WEBHOOK_URL: ${{ secrets.LARK_APP_CUSTOM_BOT_CHECK_CAN_SEND_WEBHOOK_URL }}
+        LARK_APP_CUSTOM_BOT_CHECK_SIGN_WEBHOOK_URL: ${{ secrets.LARK_APP_CUSTOM_BOT_CHECK_SIGN_WEBHOOK_URL }}
+        LARK_APP_CUSTOM_BOT_CHECK_SIGN_SIGN: ${{ secrets.LARK_APP_CUSTOM_BOT_CHECK_SIGN_SIGN }}

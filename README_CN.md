@@ -1,12 +1,12 @@
 
 
-## Support APIs
+## 支持的接口
 
-API Count: 343, Event Count: 28
+API 总数: 343, 事件总数: 28
 
 <details>
   <summary>
-    Click This to See ALL
+    点击查看所有接口和事件
   </summary>
 
 - Auth
@@ -403,6 +403,6 @@ API Count: 343, Event Count: 28
 
 </details>
 
-## Usage
+## 使用
 
 

@@ -130,3 +130,5 @@ dmypy.json
 
 .idea/
 ttt/
+generate
+t.py

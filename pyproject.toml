@@ -1,5 +1,5 @@
 [build-system]
-requires = ["flit_core >=2,<4"]
+requires = ["flit_core >=2,<4", "dacite==1.6.0", "requests==2.25.0"]
 build-backend = "flit_core.buildapi"
 
 [tool.flit.metadata]
@@ -7,6 +7,6 @@ module = "pylark"
 author = "chyroc"
 author-email = "chyroc@qq.com"
 home-page = "https://github.com/chyroc/pylark"
-classifiers = [ "License :: OSI Approved :: Apache Software License",]
+classifiers = ["License :: OSI Approved :: Apache Software License", ]
 description-file = "README.md"
 
