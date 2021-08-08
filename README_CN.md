@@ -2,7 +2,7 @@
 
 ## 支持的接口
 
-API 总数: 343, 事件总数: 28
+API 总数: 446, 事件总数: 43
 
 <details>
   <summary>
@@ -31,8 +31,14 @@ API 总数: 343, 事件总数: 28
   - UpdateDepartmentPatch
   - UpdateDepartment
   - DeleteDepartment
+  - GetEmployeeTypeEnumList
+  - UpdateEmployeeTypeEnumPatch
+  - DeleteEmployeeTypeEnum
+  - CreateEmployeeTypeEnum
+  - GetContactCustomAttrList
 - Message
   - SendRawMessage
+  - SendRawMessageOld
   - ReplyRawMessage
   - DeleteMessage
   - UpdateMessage
@@ -40,6 +46,7 @@ API 总数: 343, 事件总数: 28
   - GetMessageList
   - GetMessageFile
   - GetMessage
+  - DeleteEphemeralMessage
 - Chat
   - CreateChat
   - GetChat
@@ -70,6 +77,7 @@ API 总数: 343, 事件总数: 28
   - SearchCalendar
   - SubscribeCalendar
   - UnsubscribeCalendar
+  - SubscribeCalendarChangeEvent
   - CreateCalendarEvent
   - DeleteCalendarEvent
   - GetCalendarEvent
@@ -91,19 +99,34 @@ API 总数: 343, 事件总数: 28
   - CreateDriveFile
   - CopyDriveFile
   - DeleteDriveFile
+  - DeleteDriveSheetFile
   - CreateDriveFolder
   - GetDriveFolderMeta
   - GetDriveRootFolderMeta
   - GetDriveFolderChildren
-  - CreateDriveMemberPermission
+  - GetDriveFileStatistics
+  - DownloadDriveFile
+  - UploadDriveFile
+  - PrepareUploadDriveFile
+  - PartUploadDriveFile
+  - FinishUploadDriveFile
+  - DownloadDriveMedia
+  - UploadDriveMedia
+  - PrepareUploadDriveMedia
+  - PartUploadDriveMedia
+  - FinishUploadDriveMedia
+  - CreateDriveMemberPermissionOld
   - TransferDriveMemberPermission
-  - UpdateDrivePublicPermission
   - GetDriveMemberPermissionList
+  - CreateDriveMemberPermission
   - DeleteDriveMemberPermission
   - UpdateDriveMemberPermission
   - CheckDriveMemberPermission
-  - UpdateDrivePublicPermissionV2
+  - UpdateDrivePublicPermissionV1Old
+  - UpdateDrivePublicPermissionV2Old
   - GetDrivePublicPermissionV2
+  - UpdateDrivePublicPermission
+  - BatchGetDriveMediaTmpDownloadURL
   - GetDriveCommentList
   - GetDriveComment
   - CreateDriveComment
@@ -114,10 +137,13 @@ API 总数: 343, 事件总数: 28
   - GetDriveDocContent
   - GetDriveDocRawContent
   - GetDriveDocMeta
+  - CreateSheet
   - GetSheetMeta
   - UpdateSheetProperty
   - BatchUpdateSheet
   - ImportSheet
+  - CreateDriveImportTask
+  - GetDriveImportTask
   - MoveSheetDimension
   - PrependSheetValue
   - AppendSheetValue
@@ -134,6 +160,8 @@ API 总数: 343, 事件总数: 28
   - MergeSheetCell
   - UnmergeSheetCell
   - SetSheetValueImage
+  - FindSheet
+  - ReplaceSheet
   - CreateSheetConditionFormat
   - GetSheetConditionFormat
   - UpdateSheetConditionFormat
@@ -150,6 +178,21 @@ API 总数: 343, 事件总数: 28
   - DeleteSheetFilter
   - UpdateSheetFilter
   - GetSheetFilter
+  - CreateSheetFilterView
+  - DeleteSheetFilterView
+  - UpdateSheetFilterView
+  - GetSheetFilterView
+  - QuerySheetFilterView
+  - CreateSheetFilterViewCondition
+  - DeleteSheetFilterViewCondition
+  - UpdateSheetFilterViewCondition
+  - GetSheetFilterViewCondition
+  - QuerySheetFilterViewCondition
+  - CreateSheetFloatImage
+  - DeleteSheetFloatImage
+  - UpdateSheetFloatImage
+  - GetSheetFloatImage
+  - QuerySheetFloatImage
 - Bitable
   - GetBitableViewList
   - CreateBitableView
@@ -219,6 +262,12 @@ API 总数: 343, 事件总数: 28
   - CheckUserIsInApplicationPaidScope
   - GetApplicationOrderList
   - GetApplicationOrder
+  - GetApplicationUsageOverview
+  - GetApplicationUsageTrend
+  - GetApplicationUsageDetail
+  - GetApplicationMessageOverview
+  - GetApplicationMessageTrend
+  - GetApplicationMessageDetail
 - Mail
   - CreateMailGroup
   - GetMailGroup
@@ -284,6 +333,19 @@ API 总数: 343, 事件总数: 28
   - GetHelpdeskFAQList
   - GetHelpdeskFAQImage
   - SearchHelpdeskFAQ
+  - UpdateHelpdeskAgent
+  - GetHelpdeskAgentEmail
+  - CreateHelpdeskAgentSchedule
+  - DeleteHelpdeskAgentSchedule
+  - UpdateHelpdeskAgentSchedule
+  - GetHelpdeskAgentSchedule
+  - GetHelpdeskAgentScheduleList
+  - CreateHelpdeskAgentSkill
+  - GetHelpdeskAgentSkill
+  - UpdateHelpdeskAgentSkill
+  - DeleteHelpdeskAgentSkill
+  - GetHelpdeskAgentSkillList
+  - GetHelpdeskAgentSkillRuleList
   - SubscribeHelpdeskEvent
   - UnsubscribeHelpdeskEvent
 - Admin
@@ -300,9 +362,12 @@ API 总数: 343, 事件总数: 28
   - RecognizeSpeechFile
   - TranslateText
   - DetectTextLanguage
+  - DetectFaceAttributes
 - Attendance
-  - UpdateAttendanceUserSettings
+  - DownloadAttendanceFile
   - UploadAttendanceFile
+  - QueryAttendanceUserSettings
+  - UpdateAttendanceUserSettings
   - CreateUpdateAttendanceGroup
   - DeleteAttendanceGroup
   - GetAttendanceGroup
@@ -323,40 +388,14 @@ API 总数: 343, 事件总数: 28
   - CreateUpdateAttendanceUserDailyShift
   - GetAttendanceUserApproval
   - CreateAttendanceUserApproval
+  - GetAttendanceUserAllowedRemedy
+  - InitAttendanceRemedyApproval
+  - UpdateAttendanceRemedyApproval
 - File
   - UploadImage
   - DownloadImage
   - UploadFile
   - DownloadFile
-- EventCallback
-  - EventV2ContactUserUpdatedV3
-  - EventV2ContactUserCreatedV3
-  - EventV2ContactScopeUpdatedV3
-  - EventV2IMMessageReceiveV1
-  - EventV2IMMessageReadV1
-  - EventV2IMChatDisbandedV1
-  - EventV2IMChatUpdatedV1
-  - EventV2IMChatMemberBotAddedV1
-  - EventV2IMChatMemberBotDeletedV1
-  - EventV2IMChatMemberUserAddedV1
-  - EventV2IMChatMemberUserWithdrawnV1
-  - EventV2IMChatMemberUserDeletedV1
-  - EventV2VCMeetingMeetingStartedV1
-  - EventV2VCMeetingMeetingEndedV1
-  - EventV2VCMeetingJoinMeetingV1
-  - EventV2VCMeetingLeaveMeetingV1
-  - EventV2VCMeetingRecordingStartedV1
-  - EventV2VCMeetingRecordingEndedV1
-  - EventV2VCMeetingRecordingReadyV1
-  - EventV2VCMeetingShareStartedV1
-  - EventV2VCMeetingShareEndedV1
-  - EventV1AddBot
-  - EventV1RemoveBot
-  - EventV1P2PChatCreate
-  - EventV1AddUserToChat
-  - EventV1RemoveUserFromChat
-  - EventV1RevokeAddUserFromChat
-  - EventV1ChatDisband
 - OKR
   - GetOKRPeriodList
   - BatchGetOKR
@@ -399,6 +438,88 @@ API 总数: 343, 事件总数: 28
   - UpdateHireEmployee
   - GetHireEmployeeByApplication
   - GetHireEmployee
+- Task
+  - CreateTaskCollaborator
+  - GetTaskCollaboratorList
+  - DeleteTaskCollaborator
+  - CreateTaskFollower
+  - GetTaskFollowerList
+  - DeleteTaskFollower
+  - CreateTaskReminder
+  - GetTaskReminderList
+  - DeleteTaskReminder
+  - CreateTask
+  - GetTask
+  - DeleteTask
+  - UpdateTask
+  - CompleteTask
+  - UncompleteTask
+- ACS
+  - GetACSAccessRecordPhoto
+  - GetACSAccessRecordList
+  - GetACSDeviceList
+  - GetACSUserFace
+  - UpdateACSUserFace
+  - GetACSUser
+  - UpdateACSUser
+  - GetACSUserList
+- EventCallback
+  - EventV2HelpdeskTicketMessageCreatedV1
+  - EventV2HelpdeskTicketCreatedV1
+  - EventV2HelpdeskTicketMessageUpdatedV1
+  - EventV2ContactDepartmentCreatedV3
+  - EventV2ContactDepartmentDeletedV3
+  - EventV2ContactDepartmentUpdatedV3
+  - EventV2ContactUserUpdatedV3
+  - EventV2ContactUserCreatedV3
+  - EventV2ContactUserDeletedV3
+  - EventV2ContactScopeUpdatedV3
+  - EventV2ContactEmployeeTypeEnumCreatedV3
+  - EventV2ContactEmployeeTypeEnumActivedV3
+  - EventV2ContactEmployeeTypeEnumDeactivatedV3
+  - EventV2ContactEmployeeTypeEnumUpdatedV3
+  - EventV2ContactEmployeeTypeEnumDeletedV3
+  - EventV2IMMessageReceiveV1
+  - EventV2IMMessageReadV1
+  - EventV2IMChatDisbandedV1
+  - EventV2IMChatUpdatedV1
+  - EventV2IMChatMemberBotAddedV1
+  - EventV2IMChatMemberBotDeletedV1
+  - EventV2IMChatMemberUserAddedV1
+  - EventV2IMChatMemberUserWithdrawnV1
+  - EventV2IMChatMemberUserDeletedV1
+  - EventV2VCMeetingMeetingStartedV1
+  - EventV2VCMeetingMeetingEndedV1
+  - EventV2VCMeetingJoinMeetingV1
+  - EventV2VCMeetingLeaveMeetingV1
+  - EventV2VCMeetingRecordingStartedV1
+  - EventV2VCMeetingRecordingEndedV1
+  - EventV2VCMeetingRecordingReadyV1
+  - EventV2VCMeetingShareStartedV1
+  - EventV2VCMeetingShareEndedV1
+  - EventV2ACSAccessRecordCreatedV1
+  - EventV2ACSUserUpdatedV1
+  - EventV1AddBot
+  - EventV1RemoveBot
+  - EventV1P2PChatCreate
+  - EventV1ReceiveMessage
+  - EventV1AddUserToChat
+  - EventV1RemoveUserFromChat
+  - EventV1RevokeAddUserFromChat
+  - EventV1ChatDisband
+- AppLink
+  - OpenLark
+  - OpenMiniProgram
+  - OpenWebApp
+  - OpenChat
+  - OpenCalender
+  - OpenCalenderView
+  - OpenCalenderEventCreate
+  - OpenCalenderAccount
+  - OpenDocs
+  - OpenBot
+  - OpenSSOLogin
+  - OpenWebURL
 
 
 </details>

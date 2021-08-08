@@ -61,9 +61,12 @@ class Request(object):
     def raw_request(
         cli: "Lark", req: RawRequestReq
     ) -> tuple[RawRequestDataClass, Response]:
+        print("req", req)
         req.headers = Request._prepare_headers(cli, req)
 
         data, response = Request.do_request(req)
+        print("data", data)
+        print("response", response)
 
         if not req.dataclass:
             return data, response

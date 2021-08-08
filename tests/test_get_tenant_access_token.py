@@ -11,3 +11,4 @@ class TestToken(TestCase):
         assert res.expire
 
         logger.debug("res: %s", res)
+        print(res)
