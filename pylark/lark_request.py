@@ -1,5 +1,5 @@
 import logging
-from typing import TypeVar, Type, TYPE_CHECKING
+from typing import TypeVar, Type, TYPE_CHECKING, Tuple
 from dataclasses import dataclass, field
 
 import requests
@@ -58,7 +58,7 @@ class Request(object):
     @staticmethod
     def raw_request(
         cli: "Lark", req: RawRequestReq
-    ) -> tuple[RawRequestDataClass, Response]:
+    ) -> Tuple[RawRequestDataClass, Response]:
         print("req", req)
         req.headers = Request._prepare_headers(cli, req)
 

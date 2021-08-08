@@ -2,6 +2,8 @@
 
 import typing
 
+from typing import Tuple
+
 from pylark.api_service_auth_tenant_access_token_get import (
     GetTenantAccessTokenReq,
     TokenExpire,
@@ -19,7 +21,7 @@ class LarkAuthService(object):
     def __init__(self, cli: "Lark"):
         self.cli = cli
 
-    def get_tenant_access_token(self) -> tuple[TokenExpire, Response]:
+    def get_tenant_access_token(self) -> Tuple[TokenExpire, Response]:
         return _get_tenant_access_token(
             cli=self.cli,
             is_isv=False,

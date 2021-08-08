@@ -1,6 +1,6 @@
 from pylark.lark_request import RawRequestReq, _new_method_option, Request, Response
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Tuple
 
 if TYPE_CHECKING:
     from pylark.lark import Lark
@@ -36,7 +36,7 @@ def _get_tenant_access_token(
     app_id: str,
     app_secret: str,
     tenant_key: str,
-) -> tuple[TokenExpire, Response]:
+) -> Tuple[TokenExpire, Response]:
     # mock
 
     # cache

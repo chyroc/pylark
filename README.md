@@ -2,8 +2,6 @@
 
 Feishu/Lark Open API Python Sdk, Support ALL Open API and Event Callback.
 
-
-
 ## Support APIs
 
 API Count: 446, Event Count: 43

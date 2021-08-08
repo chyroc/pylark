@@ -2,6 +2,7 @@ import logging
 
 from dacite import from_dict
 import requests
+from typing import Tuple
 
 from pylark.api_service_ai import LarkAIService
 from pylark.api_service_auth import LarkAuthService
@@ -32,7 +33,7 @@ class Lark(object):
         self.custom_secret = custom_secret
         self.custom_url = custom_url
 
-    def raw_request(self, req: RawRequestReq) -> tuple[RawRequestDataClass, Response]:
+    def raw_request(self, req: RawRequestReq) -> Tuple[RawRequestDataClass, Response]:
         logger.info("[lark] %s#%s call api", req.scope, req.api)
 
         req.headers = self.prepare_headers(req)
