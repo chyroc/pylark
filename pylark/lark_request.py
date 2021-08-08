@@ -7,9 +7,7 @@ from dacite import from_dict
 
 from pylark.lark_exception import PyLarkError
 from pylark.log import logger
-from urllib.parse import urlparse
 import dataclasses
-from urllib.parse import urlparse
 
 if TYPE_CHECKING:
     from pylark import Lark

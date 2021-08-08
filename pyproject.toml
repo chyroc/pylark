@@ -1,6 +1,16 @@
-[build-system]
-requires = ["flit_core >=2,<4", "dacite==1.6.0", "requests==2.25.0"]
-build-backend = "flit_core.buildapi"
+[tool.poetry]
+name = "pylark"
+version = "0.0.4"
+description = "Feishu/Lark Open API Python Sdk, Support ALL Open API and Event Callback."
+authors = ["chyroc <chyroc@qq.com>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+attrs = "^21.2.0"
+requests = "^2.26.0"
+
+[tool.poetry.dev-dependencies]
 
 [tool.flit.metadata]
 module = "pylark"
@@ -10,3 +20,6 @@ home-page = "https://github.com/chyroc/pylark"
 classifiers = ["License :: OSI Approved :: Apache Software License", ]
 description-file = "README.md"
 
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
