@@ -1,7 +1,8 @@
 import logging
 import os
-from dataclasses import dataclass, field
 from unittest import TestCase
+
+import attr
 
 from pylark import Lark
 from pylark.log import logger
@@ -9,12 +10,12 @@ from pylark.log import logger
 logger.setLevel(logging.DEBUG)
 
 
-@dataclass
+@attr.s
 class App(object):
-    app_id: str = ""
-    app_secret: str = ""
-    custom_url: str = ""
-    custom_secret: str = ""
+    app_id = attr.ib(default="")
+    app_secret = attr.ib(default="")
+    custom_url = attr.ib(default="")
+    custom_secret = attr.ib(default="")
 
     def ins(self) -> Lark:
         return Lark(

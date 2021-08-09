@@ -1,13 +1,11 @@
 import logging
 from typing import TypeVar, Type, TYPE_CHECKING, Tuple
-from dataclasses import dataclass, field
-
+import attr
 import requests
 
 from pylark.helper import _make_dataclass_from_dict
 from pylark.lark_exception import PyLarkError
 from pylark.log import logger
-import dataclasses
 
 if TYPE_CHECKING:
     from pylark import Lark
@@ -15,19 +13,19 @@ if TYPE_CHECKING:
 RawRequestDataClass = TypeVar("RawRequestDataClass")
 
 
-@dataclass
+@attr.s
 class Response(object):
-    method: str = ""
-    url: str = ""
-    header: dict = field(default_factory=lambda: dict())
-    status_code: int = 0
-    request_id: str = ""
-    content_length: int = 0
+    method = attr.ib(default="")
+    url = attr.ib(default="")
+    header = attr.ib(factory=lambda: dict())
+    status_code = attr.ib(default=0)
+    request_id = attr.ib(default="")
+    content_length = attr.ib(default=0)
 
 
-@dataclass
+@attr.s
 class MethodOption(object):
-    user_access_token: str = ""
+    user_access_token = attr.ib(default="")
 
 
 # type MethodOptionFunc func(*MethodOption)
@@ -37,21 +35,21 @@ def _new_method_option(options=None) -> MethodOption:
     return MethodOption()
 
 
-@dataclass
+@attr.s
 class RawRequestReq(object):
-    scope: str = ""
-    api: str = ""
-    method: str = ""
-    url: str = ""
-    body: any = None
-    is_file: bool = False
-    need_tenant_access_token: bool = False
-    need_app_access_token: bool = False
-    need_user_access_token: bool = False
-    need_helpdesk_access_token: bool = False
-    method_option: MethodOption = field(default_factory=lambda: MethodOption())
-    headers: dict = field(default_factory=lambda: dict())
-    dataclass: Type[RawRequestDataClass] = None
+    scope = attr.ib(default="")
+    api = attr.ib(default="")
+    method = attr.ib(default="")
+    url = attr.ib(default="")
+    body = attr.ib(default=None)
+    is_file = attr.ib(default=False)
+    need_tenant_access_token = attr.ib(default=False)
+    need_app_access_token = attr.ib(default=False)
+    need_user_access_token = attr.ib(default=False)
+    need_helpdesk_access_token = attr.ib(default=False)
+    method_option: MethodOption = attr.ib(factory=lambda: MethodOption())
+    headers: dict = attr.ib(factory=lambda: dict())
+    dataclass: Type[RawRequestDataClass] = attr.ib(default=None)
 
 
 class Request(object):
@@ -69,7 +67,7 @@ class Request(object):
         if not req.dataclass:
             return data, response
 
-        return _make_dataclass_from_dict(data_class=req.dataclass, data=data), response
+        return _make_dataclass_from_dict(req.dataclass, data), response
 
     @staticmethod
     def _prepare_headers(cli: "Lark", req: RawRequestReq) -> dict:
@@ -166,7 +164,7 @@ class Request(object):
         if isinstance(req.body, dict):
             body = req.body
         else:
-            for field in dataclasses.fields(req.body):
+            for field in attr.fields(type(req.body)):
                 req_type = field.metadata["req_type"]
                 if req_type == "json":
                     field_val = getattr(req.body, field.name, None)

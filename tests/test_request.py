@@ -1,5 +1,4 @@
 # import logging
-# from dataclasses import dataclass, field
 # import pytest
 # from pylark.api_service_auth_app_ticket_resend import ResendAppTicketReq
 # from pylark.lark import Lark

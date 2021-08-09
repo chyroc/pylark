@@ -1,21 +1,21 @@
 from pylark.lark_request import RawRequestReq, _new_method_option, Request, Response
-from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Tuple
+import attr
 
 if TYPE_CHECKING:
     from pylark.lark import Lark
 
 
-@dataclass
+@attr.s
 class GetTenantAccessTokenReq(object):
-    app_id: str = field(metadata={"req_type": "json"})  # 应用唯一标识，创建应用后获得
-    app_secret: str = field(metadata={"req_type": "json"})  # 应用秘钥，创建应用后获得
+    app_id = attr.ib(metadata={"req_type": "json"})  # 应用唯一标识，创建应用后获得
+    app_secret = attr.ib(metadata={"req_type": "json"})  # 应用秘钥，创建应用后获得
 
 
-@dataclass
+@attr.s
 class TokenExpire(object):
-    token: str = ""
-    expire: int = 0
+    token = attr.ib(default="")
+    expire = attr.ib(default=0)
 
 
 # def _gen_get_tenant_access_token_req(request, options) -> RawRequestReq:
