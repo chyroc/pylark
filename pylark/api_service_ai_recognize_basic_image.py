@@ -14,7 +14,7 @@ class RecognizeBasicImageReq(object):
 
 @attr.s
 class RecognizeBasicImageResp(object):
-    text_list: typing._list[str] = attr.ib(
+    text_list: typing.List[str] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 按区域识别，返回文本列表
 

@@ -3,8 +3,8 @@ from typing import TypeVar, Type, TYPE_CHECKING, Tuple
 from dataclasses import dataclass, field
 
 import requests
-from dacite import from_dict
 
+from pylark.helper import _make_dataclass_from_dict
 from pylark.lark_exception import PyLarkError
 from pylark.log import logger
 import dataclasses
@@ -69,7 +69,7 @@ class Request(object):
         if not req.dataclass:
             return data, response
 
-        return from_dict(data_class=req.dataclass, data=data), response
+        return _make_dataclass_from_dict(data_class=req.dataclass, data=data), response
 
     @staticmethod
     def _prepare_headers(cli: "Lark", req: RawRequestReq) -> dict:
@@ -92,7 +92,7 @@ class Request(object):
         return headers
 
     @staticmethod
-    def do_request(request_parm: RawRequestReq) -> tuple[dict, Response]:
+    def do_request(request_parm: RawRequestReq) -> Tuple[dict, Response]:
         response = Response()
         real_req = Request._parse_request_param(request_parm)
 

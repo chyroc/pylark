@@ -1,6 +1,5 @@
 import logging
 
-from dacite import from_dict
 import requests
 from typing import Tuple
 

@@ -17,11 +17,6 @@ from pylark.api_service_ai_recognize_speech_file import (
     RecognizeSpeechFileResp,
     _gen_recognize_speech_file_req,
 )
-from pylark.api_service_ai_translate_text import (
-    TranslateTextReq,
-    TranslateTextResp,
-    _gen_translate_text_req,
-)
 from pylark.api_service_ai_detect_text_language import (
     DetectTextLanguageReq,
     DetectTextLanguageResp,
@@ -32,7 +27,6 @@ from pylark.api_service_ai_detect_face_attributes import (
     DetectFaceAttributesResp,
     _gen_detect_face_attributes_req,
 )
-
 
 if typing.TYPE_CHECKING:
     from lark import Lark
@@ -45,31 +39,26 @@ class LarkAIService(object):
         self.cli = cli
 
     def recognize_basic_image(
-        self, request: RecognizeBasicImageReq, options: List[str] = None
-    ) -> tuple[RecognizeBasicImageResp, Response]:
+        self, request: RecognizeBasicImageReq, options: typing.List[str] = None
+    ) -> typing.Tuple[RecognizeBasicImageResp, Response]:
         return self.cli.raw_request(_gen_recognize_basic_image_req(request, options))
 
     def recognize_speech_stream(
-        self, request: RecognizeSpeechStreamReq, options: List[str] = None
-    ) -> tuple[RecognizeSpeechStreamResp, Response]:
+        self, request: RecognizeSpeechStreamReq, options: typing.List[str] = None
+    ) -> typing.Tuple[RecognizeSpeechStreamResp, Response]:
         return self.cli.raw_request(_gen_recognize_speech_stream_req(request, options))
 
     def recognize_speech_file(
-        self, request: RecognizeSpeechFileReq, options: List[str] = None
-    ) -> tuple[RecognizeSpeechFileResp, Response]:
+        self, request: RecognizeSpeechFileReq, options: typing.List[str] = None
+    ) -> typing.Tuple[RecognizeSpeechFileResp, Response]:
         return self.cli.raw_request(_gen_recognize_speech_file_req(request, options))
 
-    def translate_text(
-        self, request: TranslateTextReq, options: List[str] = None
-    ) -> tuple[TranslateTextResp, Response]:
-        return self.cli.raw_request(_gen_translate_text_req(request, options))
-
     def detect_text_language(
-        self, request: DetectTextLanguageReq, options: List[str] = None
-    ) -> tuple[DetectTextLanguageResp, Response]:
+        self, request: DetectTextLanguageReq, options: typing.List[str] = None
+    ) -> typing.Tuple[DetectTextLanguageResp, Response]:
         return self.cli.raw_request(_gen_detect_text_language_req(request, options))
 
     def detect_face_attributes(
-        self, request: DetectFaceAttributesReq, options: List[str] = None
-    ) -> tuple[DetectFaceAttributesResp, Response]:
+        self, request: DetectFaceAttributesReq, options: typing.List[str] = None
+    ) -> typing.Tuple[DetectFaceAttributesResp, Response]:
         return self.cli.raw_request(_gen_detect_face_attributes_req(request, options))
