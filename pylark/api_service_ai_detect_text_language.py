@@ -2,6 +2,7 @@
 
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
+import typing
 
 
 @attr.s

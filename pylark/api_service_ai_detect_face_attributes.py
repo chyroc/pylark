@@ -2,6 +2,7 @@
 
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
+import typing
 
 
 @attr.s
@@ -267,8 +268,8 @@ class DetectFaceAttributesResp(object):
         factory=lambda: DetectFaceAttributesRespImageInfo(),
         metadata={"req_type": "json"},
     )  # 图片信息
-    face_infos: [] * DetectFaceAttributesRespFaceInfo = attr.ib(
-        factory=lambda: [] * DetectFaceAttributesRespFaceInfo(),
+    face_infos: typing.List[DetectFaceAttributesRespFaceInfo] = attr.ib(
+        factory=lambda: [DetectFaceAttributesRespFaceInfo()],
         metadata={"req_type": "json"},
     )  # 人脸信息列表
 

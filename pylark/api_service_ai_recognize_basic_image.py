@@ -2,6 +2,7 @@
 
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
+import typing
 
 
 @attr.s
@@ -13,7 +14,7 @@ class RecognizeBasicImageReq(object):
 
 @attr.s
 class RecognizeBasicImageResp(object):
-    text_list: list[str] = attr.ib(
+    text_list: typing._list[str] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 按区域识别，返回文本列表
 
