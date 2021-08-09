@@ -34,10 +34,10 @@ class RecognizeSpeechStreamReqSpeech(object):
 @attr.s
 class RecognizeSpeechStreamReq(object):
     speech: RecognizeSpeechStreamReqSpeech = attr.ib(
-        factory=lambda: RecognizeSpeechStreamReqSpeech(), metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json"}
     )  # 语音资源
     config: RecognizeSpeechStreamReqConfig = attr.ib(
-        factory=lambda: RecognizeSpeechStreamReqConfig(), metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json"}
     )  # 配置属性
 
 

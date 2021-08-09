@@ -28,10 +28,10 @@ class RecognizeSpeechFileReqSpeech(object):
 @attr.s
 class RecognizeSpeechFileReq(object):
     speech: RecognizeSpeechFileReqSpeech = attr.ib(
-        factory=lambda: RecognizeSpeechFileReqSpeech(), metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json"}
     )  # 语音资源
     config: RecognizeSpeechFileReqConfig = attr.ib(
-        factory=lambda: RecognizeSpeechFileReqConfig(), metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json"}
     )  # 配置属性
 
 

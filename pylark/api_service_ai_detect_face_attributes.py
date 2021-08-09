@@ -89,8 +89,7 @@ class DetectFaceAttributesRespFaceInfoQuality(object):
     )  # 清晰度，值越高越清晰
     brightness: float = attr.ib(default=None, metadata={"req_type": "json"})  # 亮度
     occlude: DetectFaceAttributesRespFaceInfoQualityOcclude = attr.ib(
-        factory=lambda: DetectFaceAttributesRespFaceInfoQualityOcclude(),
-        metadata={"req_type": "json"},
+        default=None, metadata={"req_type": "json"}
     )  # 面部遮挡属性
 
 
@@ -169,30 +168,24 @@ class DetectFaceAttributesRespFaceInfoAttributeGender(object):
 @attr.s
 class DetectFaceAttributesRespFaceInfoAttribute(object):
     gender: DetectFaceAttributesRespFaceInfoAttributeGender = attr.ib(
-        factory=lambda: DetectFaceAttributesRespFaceInfoAttributeGender(),
-        metadata={"req_type": "json"},
+        default=None, metadata={"req_type": "json"}
     )  # 性别信息：0 男性，1 女性
     age: int = attr.ib(default=0, metadata={"req_type": "json"})  # 年龄大小
     emotion: DetectFaceAttributesRespFaceInfoAttributeEmotion = attr.ib(
-        factory=lambda: DetectFaceAttributesRespFaceInfoAttributeEmotion(),
-        metadata={"req_type": "json"},
+        default=None, metadata={"req_type": "json"}
     )  # 情绪：0 自然, 1 高兴，2 惊讶，3 害怕，4 悲伤，5 生气, 6 厌恶
     beauty: int = attr.ib(default=0, metadata={"req_type": "json"})  # 颜值打分：[0, 100]
     pose: DetectFaceAttributesRespFaceInfoAttributePose = attr.ib(
-        factory=lambda: DetectFaceAttributesRespFaceInfoAttributePose(),
-        metadata={"req_type": "json"},
+        default=None, metadata={"req_type": "json"}
     )  # 人脸姿态
     hat: DetectFaceAttributesRespFaceInfoAttributeHat = attr.ib(
-        factory=lambda: DetectFaceAttributesRespFaceInfoAttributeHat(),
-        metadata={"req_type": "json"},
+        default=None, metadata={"req_type": "json"}
     )  # 帽子：0 未戴帽子，1 戴帽子
     glass: DetectFaceAttributesRespFaceInfoAttributeGlass = attr.ib(
-        factory=lambda: DetectFaceAttributesRespFaceInfoAttributeGlass(),
-        metadata={"req_type": "json"},
+        default=None, metadata={"req_type": "json"}
     )  # 眼镜：0 未戴眼镜，1 戴眼镜
     mask: DetectFaceAttributesRespFaceInfoAttributeMask = attr.ib(
-        factory=lambda: DetectFaceAttributesRespFaceInfoAttributeMask(),
-        metadata={"req_type": "json"},
+        default=None, metadata={"req_type": "json"}
     )  # 口罩：0 未戴口罩，1 戴口罩
 
 
@@ -231,28 +224,23 @@ class DetectFaceAttributesRespFaceInfoPositionUpperLeft(object):
 @attr.s
 class DetectFaceAttributesRespFaceInfoPosition(object):
     upper_left: DetectFaceAttributesRespFaceInfoPositionUpperLeft = attr.ib(
-        factory=lambda: DetectFaceAttributesRespFaceInfoPositionUpperLeft(),
-        metadata={"req_type": "json"},
+        default=None, metadata={"req_type": "json"}
     )  # 人脸框的左上角坐标
     lower_right: DetectFaceAttributesRespFaceInfoPositionLowerRight = attr.ib(
-        factory=lambda: DetectFaceAttributesRespFaceInfoPositionLowerRight(),
-        metadata={"req_type": "json"},
+        default=None, metadata={"req_type": "json"}
     )  # 人脸框的右下角坐标
 
 
 @attr.s
 class DetectFaceAttributesRespFaceInfo(object):
     position: DetectFaceAttributesRespFaceInfoPosition = attr.ib(
-        factory=lambda: DetectFaceAttributesRespFaceInfoPosition(),
-        metadata={"req_type": "json"},
+        default=None, metadata={"req_type": "json"}
     )  # 人脸位置信息
     attribute: DetectFaceAttributesRespFaceInfoAttribute = attr.ib(
-        factory=lambda: DetectFaceAttributesRespFaceInfoAttribute(),
-        metadata={"req_type": "json"},
+        default=None, metadata={"req_type": "json"}
     )  # 人脸属性信息
     quality: DetectFaceAttributesRespFaceInfoQuality = attr.ib(
-        factory=lambda: DetectFaceAttributesRespFaceInfoQuality(),
-        metadata={"req_type": "json"},
+        default=None, metadata={"req_type": "json"}
     )  # 人脸质量信息
 
 
@@ -265,12 +253,10 @@ class DetectFaceAttributesRespImageInfo(object):
 @attr.s
 class DetectFaceAttributesResp(object):
     image_info: DetectFaceAttributesRespImageInfo = attr.ib(
-        factory=lambda: DetectFaceAttributesRespImageInfo(),
-        metadata={"req_type": "json"},
+        default=None, metadata={"req_type": "json"}
     )  # 图片信息
     face_infos: typing.List[DetectFaceAttributesRespFaceInfo] = attr.ib(
-        factory=lambda: [DetectFaceAttributesRespFaceInfo()],
-        metadata={"req_type": "json"},
+        factory=lambda: [], metadata={"req_type": "json"}
     )  # 人脸信息列表
 
 

@@ -17,6 +17,11 @@ from pylark.api_service_ai_recognize_speech_file import (
     RecognizeSpeechFileResp,
     _gen_recognize_speech_file_req,
 )
+from pylark.api_service_ai_translate_text import (
+    TranslateTextReq,
+    TranslateTextResp,
+    _gen_translate_text_req,
+)
 from pylark.api_service_ai_detect_text_language import (
     DetectTextLanguageReq,
     DetectTextLanguageResp,
@@ -27,6 +32,7 @@ from pylark.api_service_ai_detect_face_attributes import (
     DetectFaceAttributesResp,
     _gen_detect_face_attributes_req,
 )
+
 
 if typing.TYPE_CHECKING:
     from lark import Lark
@@ -52,6 +58,11 @@ class LarkAIService(object):
         self, request: RecognizeSpeechFileReq, options: typing.List[str] = None
     ) -> typing.Tuple[RecognizeSpeechFileResp, Response]:
         return self.cli.raw_request(_gen_recognize_speech_file_req(request, options))
+
+    def translate_text(
+        self, request: TranslateTextReq, options: typing.List[str] = None
+    ) -> typing.Tuple[TranslateTextResp, Response]:
+        return self.cli.raw_request(_gen_translate_text_req(request, options))
 
     def detect_text_language(
         self, request: DetectTextLanguageReq, options: typing.List[str] = None
