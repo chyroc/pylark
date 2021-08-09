@@ -17,7 +17,7 @@ class CreatePublicMailboxMemberReqUserIDType(object):
 
 @attr.s
 class CreatePublicMailboxMemberReq(object):
-    user_id_type: IDType = attr.ib(
+    user_id_type: CreatePublicMailboxMemberReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 userid
     public_mailbox_id: str = attr.ib(
@@ -26,7 +26,7 @@ class CreatePublicMailboxMemberReq(object):
     user_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 租户内用户的唯一标识（当成员类型是USER时有值）, 示例值："xxxxxxxxxx"
-    type: MailUserType = attr.ib(
+    type: CreatePublicMailboxMemberReqType = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 成员类型, 示例值："USER", 可选值有: `USER`：内部用户
 

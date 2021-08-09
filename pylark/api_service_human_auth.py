@@ -2,6 +2,7 @@
 
 import typing
 from pylark.lark_request import Response
+
 from pylark.api_service_human_auth_face_verify_get_auth_result import (
     GetFaceVerifyAuthResultReq,
     GetFaceVerifyAuthResultResp,

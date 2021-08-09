@@ -69,7 +69,7 @@ class CreateAttendanceUserApprovalReqUserApprovalLeave(object):
     end_time: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 结束时间，时间格式为 yyyy-MM-dd HH:mm:ss
-    i18n_names: I18nNames = attr.ib(
+    i18n_names: CreateAttendanceUserApprovalReqUserApprovalLeaveI18nNames = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 假期多语言展示，格式为 map，key 为["ch"、"en"、"ja"]，其中 ch 代表中文，en 代表英文、ja 代表日文
     default_locale: str = attr.ib(
@@ -108,7 +108,7 @@ class CreateAttendanceUserApprovalReqUserApprovalOut(object):
     end_time: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 结束时间，时间格式为 yyyy-MM-dd HH:mm:ss
-    i18n_names: I18nNames = attr.ib(
+    i18n_names: CreateAttendanceUserApprovalReqUserApprovalOutI18nNames = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 外出多语言展示，格式为 map，key 为["ch"、"en"、"ja"]，其中 ch 代表中文，en 代表英文、ja 代表日文
     default_locale: str = attr.ib(
@@ -220,7 +220,7 @@ class CreateAttendanceUserApprovalRespUserApprovalLeave(object):
     end_time: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 结束时间，时间格式为 yyyy-MM-dd HH:mm:ss
-    i18n_names: I18nNames = attr.ib(
+    i18n_names: CreateAttendanceUserApprovalRespUserApprovalLeaveI18nNames = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 假期多语言展示，格式为 map，key 为["ch"、"en"、"ja"]，其中 ch 代表中文，en 代表英文、ja 代表日文
     default_locale: str = attr.ib(
@@ -258,7 +258,7 @@ class CreateAttendanceUserApprovalRespUserApprovalOut(object):
     end_time: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 结束时间，时间格式为 yyyy-MM-dd HH:mm:ss
-    i18n_names: I18nNames = attr.ib(
+    i18n_names: CreateAttendanceUserApprovalRespUserApprovalOutI18nNames = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 外出多语言展示，格式为 map，key 为["ch"、"en"、"ja"]，其中 ch 代表中文，en 代表英文、ja 代表日文
     default_locale: str = attr.ib(

@@ -24,10 +24,10 @@ class GetApplicationMessageOverviewReq(object):
     time_end: int = attr.ib(
         default=0, metadata={"req_type": "json"}
     )  # 截止时间戳（秒），时间跨度最长支持180天
-    chat_type: ChatType = attr.ib(
+    chat_type: GetApplicationMessageOverviewReqChatType = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 聊天类型，大小写不敏感，p2p：私聊；group：群聊
-    message_type: MsgType = attr.ib(
+    message_type: GetApplicationMessageOverviewReqMessageType = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 消息类型，大小写不敏感，text：文本消息；image：图片消息；card：卡片消息；post：富文本消息；share_chat：群名片
 

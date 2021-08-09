@@ -12,7 +12,7 @@ class GetChatMemberListReqMemberIDType(object):
 
 @attr.s
 class GetChatMemberListReq(object):
-    member_id_type: IDType = attr.ib(
+    member_id_type: GetChatMemberListReqMemberIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 群成员 id 类型 open_id/user_id/union_id, 示例值："user_id", 可选值有: `user_id`：以 user_id 来识别成员, `union_id`：以 union_id 来识别成员, `open_id`：以 open_id 来识别成员
     page_token: str = attr.ib(

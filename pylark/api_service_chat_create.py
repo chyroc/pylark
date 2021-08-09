@@ -45,22 +45,22 @@ class CreateChatReq(object):
     description: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 群描述, 示例值："测试群描述"
-    i18n_names: I18nNames = attr.ib(
+    i18n_names: CreateChatReqI18nNames = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 群国际化名称
     chat_mode: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 群模式(group), 示例值："group"
-    chat_type: ChatType = attr.ib(
+    chat_type: CreateChatReqChatType = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 群类型(private/public), 示例值："private"
-    join_message_visibility: MessageVisibility = attr.ib(
+    join_message_visibility: CreateChatReqJoinMessageVisibility = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 入群消息可见性(only_owner/all_members/not_anyone), 示例值："all_members"
-    leave_message_visibility: MessageVisibility = attr.ib(
+    leave_message_visibility: CreateChatReqLeaveMessageVisibility = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 出群消息可见性(only_owner/all_members/not_anyone), 示例值："all_members"
-    membership_approval: MembershipApproval = attr.ib(
+    membership_approval: CreateChatReqMembershipApproval = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 加群审批(no_approval_required/approval_required), 示例值："no_approval_required"
 
@@ -123,7 +123,7 @@ class CreateChatResp(object):
     avatar: str = attr.ib(default="", metadata={"req_type": "json"})  # 群头像 URL
     name: str = attr.ib(default="", metadata={"req_type": "json"})  # 群名称
     description: str = attr.ib(default="", metadata={"req_type": "json"})  # 群描述
-    i18n_names: I18nNames = attr.ib(
+    i18n_names: CreateChatRespI18nNames = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 群国际化名称
     add_member_permission: CreateChatRespAddMemberPermission = attr.ib(

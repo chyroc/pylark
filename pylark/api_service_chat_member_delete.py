@@ -12,7 +12,7 @@ class DeleteChatMemberReqMemberIDType(object):
 
 @attr.s
 class DeleteChatMemberReq(object):
-    member_id_type: IDType = attr.ib(
+    member_id_type: DeleteChatMemberReqMemberIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 出群成员 id 类型 open_id/user_id/union_id/app_id, 示例值："user_id", 可选值有: `user_id`：以 user_id 来识别成员, `union_id`：以 union_id 来识别成员, `open_id`：以 open_id 来识别成员, `app_id`：以 app_id 来识别成员
     chat_id: str = attr.ib(

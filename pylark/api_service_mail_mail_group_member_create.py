@@ -22,10 +22,10 @@ class CreateMailGroupMemberReqUserIDType(object):
 
 @attr.s
 class CreateMailGroupMemberReq(object):
-    user_id_type: IDType = attr.ib(
+    user_id_type: CreateMailGroupMemberReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 userid
-    department_id_type: DepartmentIDType = attr.ib(
+    department_id_type: CreateMailGroupMemberReqDepartmentIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 此次调用中使用的部门ID的类型, 示例值："open_department_id", 可选值有: `department_id`：以自定义department_id来标识部门, `open_department_id`：以open_department_id来标识部门
     mailgroup_id: str = attr.ib(
@@ -40,7 +40,7 @@ class CreateMailGroupMemberReq(object):
     department_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 租户内部门的唯一标识（当成员类型是DEPARTMENT时有值）, 示例值："xxxxxxxxxx"
-    type: MailUserType = attr.ib(
+    type: CreateMailGroupMemberReqType = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 成员类型, 示例值："USER", 可选值有: `USER`：内部用户, `DEPARTMENT`：部门, `COMPANY`：全员, `EXTERNAL_USER`：外部用户, `MAIL_GROUP`：邮件组, `OTHER_MEMBER`：内部成员
 

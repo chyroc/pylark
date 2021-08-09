@@ -12,7 +12,7 @@ class DeleteDepartmentReqDepartmentIDType(object):
 
 @attr.s
 class DeleteDepartmentReq(object):
-    department_id_type: DepartmentIDType = attr.ib(
+    department_id_type: DeleteDepartmentReqDepartmentIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 此次调用中使用的部门ID的类型, 示例值："open_department_id", 可选值有: `department_id`：以自定义department_id来标识部门, `open_department_id`：以open_department_id来标识部门, 默认值: `open_department_id`
     department_id: str = attr.ib(

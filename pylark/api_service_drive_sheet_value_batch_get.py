@@ -21,7 +21,7 @@ class BatchGetSheetValueReq(object):
     date_time_render_option: str = attr.ib(
         default="", metadata={"req_type": "query"}
     )  # dateTimeRenderOption=FormattedString 计算并将时间日期按照其格式进行格式化，但不会对数字进行格式化，返回格式化后的字符串。
-    user_id_type: IDType = attr.ib(
+    user_id_type: BatchGetSheetValueReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 返回的用户id类型，可选open_id,union_id
     spreadsheet_token: str = attr.ib(
@@ -41,7 +41,7 @@ class BatchGetSheetValueRespValueRange(object):
         default="", metadata={"req_type": "json"}
     )  # 返回数据的范围，为空时表示查询范围没有数据
     revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # sheet 的版本号
-    values: typing.List[typing.Any] = attr.ib(
+    values: typing.List[BatchGetSheetValueRespValueRangeValue] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 查询得到的值
 

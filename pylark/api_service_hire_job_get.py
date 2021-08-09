@@ -12,7 +12,7 @@ class GetHireJobReqUserIDType(object):
 
 @attr.s
 class GetHireJobReq(object):
-    user_id_type: IDType = attr.ib(
+    user_id_type: GetHireJobReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, `people_admin_id`：以people_admin_id来识别用户, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 userid
     job_id: int = attr.ib(

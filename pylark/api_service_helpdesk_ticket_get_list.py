@@ -40,7 +40,7 @@ class GetHelpdeskTicketListReq(object):
     guest_id: str = attr.ib(
         default="", metadata={"req_type": "query"}
     )  # 搜索条件: 用户id, 示例值："ou_b5de90429xxx"
-    customized_fields: typing.List[HelpdeskCustomizedField] = attr.ib(
+    customized_fields: typing.List[GetHelpdeskTicketListReqCustomizedFields] = attr.ib(
         factory=lambda: [], metadata={"req_type": "query"}
     )  # 搜索条件: 自定义字段列表
     tags: typing.List[str] = attr.ib(

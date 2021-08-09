@@ -32,7 +32,7 @@ class CreateHelpdeskCategoryRespCategory(object):
 
 @attr.s
 class CreateHelpdeskCategoryResp(object):
-    category: HelpdeskCategory = attr.ib(
+    category: CreateHelpdeskCategoryRespCategory = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 知识库分类
 

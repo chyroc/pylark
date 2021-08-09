@@ -18,7 +18,7 @@ class SetSheetValueImageReq(object):
     range_: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 查询范围  range=<sheetId>!<开始格子>:<结束格子> 如：xxxx!A1:D5，详见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)。此处限定为一个格子，如: xxxx!A1:A1
-    image: typing.List[byte] = attr.ib(
+    image: typing.List[SetSheetValueImageReqImage] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 需要写入的图片二进制流，支持  "PNG", "JPEG", "JPG", "GIF", "BMP", "JFIF", "EXIF", "TIFF", "BPG", "WEBP", "HEIC" 等图片格式
     name: str = attr.ib(default="", metadata={"req_type": "json"})  # 写入的图片名字

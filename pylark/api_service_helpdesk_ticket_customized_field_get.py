@@ -23,7 +23,9 @@ class GetHelpdeskTicketCustomizedFieldRespUpdatedByDropdownOptionsChildrenChildr
 class GetHelpdeskTicketCustomizedFieldRespUpdatedByDropdownOptionsChildren(object):
     tag: str = attr.ib(default="", metadata={"req_type": "json"})  # 选项ID
     display_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 展示名称
-    children: typing.List[dropdown_option] = attr.ib(
+    children: typing.List[
+        GetHelpdeskTicketCustomizedFieldRespUpdatedByDropdownOptionsChildrenChildren
+    ] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 同上：选项列表，只适用于多层下拉列表（最多可以设置三级下拉列表）
 
@@ -41,8 +43,8 @@ class GetHelpdeskTicketCustomizedFieldRespUpdatedBy(object):
     avatar_url: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户头像url
     name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户名
     email: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户邮箱
-    dropdown_options: HelpdeskDropdownOption = attr.ib(
-        default=None, metadata={"req_type": "json"}
+    dropdown_options: GetHelpdeskTicketCustomizedFieldRespUpdatedByDropdownOptions = (
+        attr.ib(default=None, metadata={"req_type": "json"})
     )  # 下拉列表选项
 
 

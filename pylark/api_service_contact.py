@@ -2,6 +2,7 @@
 
 import typing
 from pylark.lark_request import Response
+
 from pylark.api_service_contact_user_create import (
     CreateUserReq,
     CreateUserResp,

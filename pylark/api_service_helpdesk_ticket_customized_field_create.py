@@ -13,7 +13,7 @@ class CreateHelpdeskTicketCustomizedFieldReqDropdownOptionsChildrenTagChildren(o
 @attr.s
 class CreateHelpdeskTicketCustomizedFieldReqDropdownOptionsChildrenTag(object):
     display_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 展示名称
-    children: dropdown_option = attr.ib(
+    children: CreateHelpdeskTicketCustomizedFieldReqDropdownOptionsChildrenTagChildren = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 同上：选项列表，只适用于多层下拉列表（最多可以设置三级下拉列表）
 
@@ -61,7 +61,7 @@ class CreateHelpdeskTicketCustomizedFieldReq(object):
     required: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 是否必填, 示例值：false
-    dropdown_options: HelpdeskDropdownOption = attr.ib(
+    dropdown_options: CreateHelpdeskTicketCustomizedFieldReqDropdownOptions = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 下拉列表选项
     dropdown_allow_multiple: bool = attr.ib(

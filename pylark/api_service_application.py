@@ -2,6 +2,7 @@
 
 import typing
 from pylark.lark_request import Response
+
 from pylark.api_service_application_is_user_admin import (
     IsApplicationUserAdminReq,
     IsApplicationUserAdminResp,

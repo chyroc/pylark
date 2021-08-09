@@ -51,7 +51,7 @@ class CreateBitableFieldReqUserIDType(object):
 
 @attr.s
 class CreateBitableFieldReq(object):
-    user_id_type: IDType = attr.ib(
+    user_id_type: CreateBitableFieldReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 userid
     app_token: str = attr.ib(

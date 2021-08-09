@@ -15,7 +15,7 @@ class CreateIdentityReq(object):
     user_id: str = attr.ib(
         default="", metadata={"req_type": "query"}
     )  # 用户的唯一标识, 示例值: "ou_2eb5483cb377daa5054bc6f86e2089a5"
-    user_id_type: IDType = attr.ib(
+    user_id_type: CreateIdentityReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 用户ID类型, 示例值: "open_id", 可选值有: `open_id`：用户的open id, `union_id`：用户的union id, `user_id`：用户的user id, 默认值: `open_id`, 当值为 `user_id`，字段权限要求: 获取用户 userid
     identity_name: str = attr.ib(

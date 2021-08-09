@@ -97,13 +97,13 @@ class SendRawMessageResp(object):
         factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 消息是否被更新
     chat_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 所属的群
-    sender: Sender = attr.ib(
+    sender: SendRawMessageRespSender = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 发送者，可以是用户或应用
-    body: MessageBody = attr.ib(
+    body: SendRawMessageRespBody = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 消息内容，json结构，格式说明参考： [消息content说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/events/message_content)
-    mentions: typing.List[Mention] = attr.ib(
+    mentions: typing.List[SendRawMessageRespMention] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 被艾特的人或应用的id
     upper_message_id: str = attr.ib(

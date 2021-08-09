@@ -18,7 +18,7 @@ class CreateCalendarReq(object):
     description: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 日历描述, 示例值："使用开放接口创建日历", 最大长度：`255` 字符
-    permissions: CalendarPermission = attr.ib(
+    permissions: CreateCalendarReqPermissions = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 日历公开范围, 示例值："private", 可选值有: `private`：私密, `show_only_free_busy`：仅展示忙闲信息, `public`：他人可查看日程详情
     color: int = attr.ib(

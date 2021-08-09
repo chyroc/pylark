@@ -12,7 +12,7 @@ class CreateCalendarEventAttendeeReqAttendeeType(object):
 
 @attr.s
 class CreateCalendarEventAttendeeReqAttendee(object):
-    type: CalendarEventAttendeeType = attr.ib(
+    type: CreateCalendarEventAttendeeReqAttendeeType = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 参与人类型, 示例值："user", 可选值有: `user`：用户, `chat`：群组, `resource`：会议室, `third_party`：邮箱
     is_optional: bool = attr.ib(
@@ -39,7 +39,7 @@ class CreateCalendarEventAttendeeReqUserIDType(object):
 
 @attr.s
 class CreateCalendarEventAttendeeReq(object):
-    user_id_type: IDType = attr.ib(
+    user_id_type: CreateCalendarEventAttendeeReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 userid
     calendar_id: str = attr.ib(

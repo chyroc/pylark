@@ -2,6 +2,7 @@
 
 import typing
 from pylark.lark_request import Response
+
 from pylark.api_service_meeting_room_summary_batch_get import (
     BatchGetMeetingRoomSummaryReq,
     BatchGetMeetingRoomSummaryResp,

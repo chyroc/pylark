@@ -33,14 +33,14 @@ class GetHelpdeskCategoryListRespCategorie(object):
     parent_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 父知识库分类ID
     helpdesk_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 服务台ID
     language: str = attr.ib(default="", metadata={"req_type": "json"})  # 语言
-    children: typing.List[category] = attr.ib(
+    children: typing.List[GetHelpdeskCategoryListRespCategorieChildren] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 子分类详情
 
 
 @attr.s
 class GetHelpdeskCategoryListResp(object):
-    categories: typing.List[HelpdeskCategory] = attr.ib(
+    categories: typing.List[GetHelpdeskCategoryListRespCategorie] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 知识库分类列表
 

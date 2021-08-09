@@ -63,7 +63,7 @@ class CreateHelpdeskFAQRespFAQ(object):
     answer_richtext: str = attr.ib(default="", metadata={"req_type": "json"})  # 富文本答案
     create_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 创建时间
     update_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 修改时间
-    categories: typing.List[HelpdeskCategory] = attr.ib(
+    categories: typing.List[CreateHelpdeskFAQRespFAQCategorie] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 分类
     tags: typing.List[str] = attr.ib(

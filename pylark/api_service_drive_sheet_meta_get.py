@@ -15,7 +15,7 @@ class GetSheetMetaReq(object):
     ext_fields: str = attr.ib(
         default="", metadata={"req_type": "query"}
     )  # 额外返回的字段，extFields=protectedRange时返回保护行列信息
-    user_id_type: IDType = attr.ib(
+    user_id_type: GetSheetMetaReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 返回的用户id类型，可选open_id,union_id
     spreadsheet_token: str = attr.ib(

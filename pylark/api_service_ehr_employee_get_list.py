@@ -27,7 +27,7 @@ class GetEHREmployeeListReq(object):
     end_time: int = attr.ib(
         default=0, metadata={"req_type": "query"}
     )  # 查询结束时间（创建时间 &lt;= 此时间）, 示例值：1608690517811
-    user_id_type: IDType = attr.ib(
+    user_id_type: GetEHREmployeeListReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 userid
     user_ids: str = attr.ib(
@@ -326,43 +326,57 @@ class GetEHREmployeeListRespItemSystemFields(object):
     )  # 劳动合同签订次数
     personal_email: str = attr.ib(default="", metadata={"req_type": "json"})  # 个人邮箱
     family_address: str = attr.ib(default="", metadata={"req_type": "json"})  # 家庭地址
-    primary_emergency_contact: EHREmergencyContact = attr.ib(
+    primary_emergency_contact: GetEHREmployeeListRespItemSystemFieldsPrimaryEmergencyContact = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 主要紧急联系人
-    emergency_contact: typing.List[EHREmergencyContact] = attr.ib(
+    emergency_contact: typing.List[
+        GetEHREmployeeListRespItemSystemFieldsEmergencyContact
+    ] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 紧急联系人
-    highest_level_of_edu: EHREducation = attr.ib(
-        default=None, metadata={"req_type": "json"}
+    highest_level_of_edu: GetEHREmployeeListRespItemSystemFieldsHighestLevelOfEdu = (
+        attr.ib(default=None, metadata={"req_type": "json"})
     )  # 最高学历
-    education: typing.List[EHREducation] = attr.ib(
+    education: typing.List[GetEHREmployeeListRespItemSystemFieldsEducation] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 教育经历
-    former_work_exp: EHRWorkExperience = attr.ib(
+    former_work_exp: GetEHREmployeeListRespItemSystemFieldsFormerWorkExp = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 前工作经历
-    work_exp: typing.List[EHRWorkExperience] = attr.ib(
+    work_exp: typing.List[GetEHREmployeeListRespItemSystemFieldsWorkExp] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 工作经历
-    id_photo_po_side: typing.List[EHRAttachment] = attr.ib(
+    id_photo_po_side: typing.List[
+        GetEHREmployeeListRespItemSystemFieldsIDPhotoPoSide
+    ] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 身份证照片（人像面）
-    id_photo_em_side: typing.List[EHRAttachment] = attr.ib(
+    id_photo_em_side: typing.List[
+        GetEHREmployeeListRespItemSystemFieldsIDPhotoEmSide
+    ] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 身份证照片（国徽面）
-    id_photo: typing.List[EHRAttachment] = attr.ib(
+    id_photo: typing.List[GetEHREmployeeListRespItemSystemFieldsIDPhoto] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 证件照
-    diploma_photo: typing.List[EHRAttachment] = attr.ib(
+    diploma_photo: typing.List[
+        GetEHREmployeeListRespItemSystemFieldsDiplomaPhoto
+    ] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 学位证书
-    graduation_cert: typing.List[EHRAttachment] = attr.ib(
+    graduation_cert: typing.List[
+        GetEHREmployeeListRespItemSystemFieldsGraduationCert
+    ] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 毕业证书
-    cert_of_merit: typing.List[EHRAttachment] = attr.ib(
+    cert_of_merit: typing.List[
+        GetEHREmployeeListRespItemSystemFieldsCertOfMerit
+    ] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 奖励证明
-    offboarding_file: typing.List[EHRAttachment] = attr.ib(
+    offboarding_file: typing.List[
+        GetEHREmployeeListRespItemSystemFieldsOffboardingFile
+    ] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 离职证明
     cancel_onboarding_reason: int = attr.ib(

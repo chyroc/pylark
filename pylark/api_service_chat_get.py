@@ -12,7 +12,7 @@ class GetChatReqUserIDType(object):
 
 @attr.s
 class GetChatReq(object):
-    user_id_type: IDType = attr.ib(
+    user_id_type: GetChatReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 userid
     chat_id: str = attr.ib(
@@ -82,7 +82,7 @@ class GetChatResp(object):
     avatar: str = attr.ib(default="", metadata={"req_type": "json"})  # 群头像 URL
     name: str = attr.ib(default="", metadata={"req_type": "json"})  # 群名称
     description: str = attr.ib(default="", metadata={"req_type": "json"})  # 群描述
-    i18n_names: I18nNames = attr.ib(
+    i18n_names: GetChatRespI18nNames = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 群国际化名称
     add_member_permission: GetChatRespAddMemberPermission = attr.ib(

@@ -12,7 +12,7 @@ class ImportSheetReqFile(object):
 
 @attr.s
 class ImportSheetReq(object):
-    file: typing.List[byte] = attr.ib(
+    file: typing.List[ImportSheetReqFile] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 需要导入的文件数据，转换成字节数组的形式，支持"xlsx","csv"格式，最大不超过20M
     name: str = attr.ib(

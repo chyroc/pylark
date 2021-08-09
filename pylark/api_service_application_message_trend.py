@@ -27,10 +27,10 @@ class GetApplicationMessageTrendReq(object):
     time_interval: int = attr.ib(
         default=0, metadata={"req_type": "json"}
     )  # 步长（秒），最小步长为60秒，需满足(${time_end} - ${time_start}) / ${time_interval} <= 2*24*60
-    chat_type: ChatType = attr.ib(
+    chat_type: GetApplicationMessageTrendReqChatType = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 聊天类型，大小写不敏感，p2p：私聊；group：群聊
-    message_type: MsgType = attr.ib(
+    message_type: GetApplicationMessageTrendReqMessageType = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 消息类型，大小写不敏感，text：文本消息；image：图片消息；card：卡片消息；post：富文本消息；share_chat：群名片
 

@@ -36,7 +36,7 @@ class CreateSheetProtectedDimensionReqUserIDType(object):
 
 @attr.s
 class CreateSheetProtectedDimensionReq(object):
-    user_id_type: IDType = attr.ib(
+    user_id_type: CreateSheetProtectedDimensionReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 请求的用户id类型，可选open_id,union_id
     spreadsheet_token: str = attr.ib(

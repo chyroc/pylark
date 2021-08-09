@@ -2,6 +2,7 @@
 
 import typing
 from pylark.lark_request import Response
+
 from pylark.api_service_admin_admin_dept_stats_get import (
     GetAdminDeptStatsReq,
     GetAdminDeptStatsResp,

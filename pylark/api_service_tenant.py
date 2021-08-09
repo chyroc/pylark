@@ -2,6 +2,7 @@
 
 import typing
 from pylark.lark_request import Response
+
 from pylark.api_service_tenant_tenant_get import (
     GetTenantReq,
     GetTenantResp,

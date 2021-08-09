@@ -2,6 +2,7 @@
 
 import typing
 from pylark.lark_request import Response
+
 from pylark.api_service_ehr_employee_get_list import (
     GetEHREmployeeListReq,
     GetEHREmployeeListResp,

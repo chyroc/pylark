@@ -2,6 +2,7 @@
 
 import typing
 from pylark.lark_request import Response
+
 from pylark.api_service_message_send import (
     SendRawMessageReq,
     SendRawMessageResp,
