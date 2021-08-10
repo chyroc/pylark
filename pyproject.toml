@@ -9,17 +9,9 @@ license = "Apache-2.0"
 python = "^3.6"
 attrs = "^21.2.0"
 requests = "^2.26.0"
-pytest = "^6.2.4"
 
 [tool.poetry.dev-dependencies]
-
-[tool.flit.metadata]
-module = "pylark"
-author = "chyroc"
-author-email = "chyroc@qq.com"
-home-page = "https://github.com/chyroc/pylark"
-classifiers = ["License :: OSI Approved :: Apache Software License", ]
-description-file = "README.md"
+pytest = "^6.2.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
