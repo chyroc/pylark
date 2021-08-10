@@ -3,7 +3,7 @@ from typing import TypeVar, Type, TYPE_CHECKING, Tuple
 import attr
 import requests
 
-from pylark.helper import _make_dataclass_from_dict
+from pylark.helper import _make_dataclass_from_dict, _to_attr_dict
 from pylark.lark_exception import PyLarkError
 from pylark.log import logger
 
@@ -47,6 +47,7 @@ class RawRequestReq(object):
     need_app_access_token = attr.ib(default=False)
     need_user_access_token = attr.ib(default=False)
     need_helpdesk_access_token = attr.ib(default=False)
+    need_helpdesk_auth = attr.ib(default=False)
     method_option: MethodOption = attr.ib(factory=lambda: MethodOption())
     headers: dict = attr.ib(factory=lambda: dict())
     dataclass: Type[RawRequestDataClass] = attr.ib(default=None)
@@ -57,12 +58,9 @@ class Request(object):
     def raw_request(
         cli: "Lark", req: RawRequestReq
     ) -> Tuple[RawRequestDataClass, Response]:
-        print("req", req)
         req.headers = Request._prepare_headers(cli, req)
 
         data, response = Request.do_request(req)
-        print("data", data)
-        print("response", response)
 
         if not req.dataclass:
             return data, response
@@ -78,8 +76,10 @@ class Request(object):
         if req.need_user_access_token and req.method_option.user_access_token != "":
             headers["Authorization"] = "Bearer " + req.method_option.user_access_token
         elif req.need_tenant_access_token:
-            token = ""
             res, _ = cli.auth.get_tenant_access_token()
+            headers["Authorization"] = "Bearer " + res.token
+        elif req.need_app_access_token:
+            res, _ = cli.auth.get_app_access_token()
             headers["Authorization"] = "Bearer " + res.token
 
         if req.need_helpdesk_access_token:
@@ -113,6 +113,8 @@ class Request(object):
             body,
         )
 
+        body = _to_attr_dict(body)
+
         r = requests.request(
             response.method,
             response.url,
@@ -131,7 +133,7 @@ class Request(object):
             resp_body,
         )
 
-        r.raise_for_status()
+        # r.raise_for_status()
 
         # 	response.StatusCode = resp.StatusCode
         # 	response.RequestID = resp.Header.Get("X-Request-Id")

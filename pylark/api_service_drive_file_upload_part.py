@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -20,8 +21,8 @@ class PartUploadDriveFileReq(object):
     checksum: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 文件分块adler32校验和, 示例值："12342388237783294798"
-    file: PartUploadDriveFileReqFile = attr.ib(
-        factory=lambda: PartUploadDriveFileReqFile(), metadata={"req_type": "json"}
+    file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
+        default=None, metadata={"req_type": "json"}
     )  # 文件分片内容, 示例值：file binary
 
 
@@ -40,4 +41,6 @@ def _gen_part_upload_drive_file_req(request, options) -> RawRequestReq:
         body=request,
         method_option=_new_method_option(options),
         need_tenant_access_token=True,
+        need_user_access_token=True,
+        is_file=True,
     )

@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 from pylark.type_message_post import MessageContentPostAll
 
 

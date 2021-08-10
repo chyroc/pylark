@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -28,8 +29,8 @@ class UpdateACSUserFaceReq(object):
     user_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 用户 ID, 示例值："ou_7dab8a3d3cdcc9da365777c7ad535d62"
-    files: UpdateACSUserFaceReqFiles = attr.ib(
-        factory=lambda: UpdateACSUserFaceReqFiles(), metadata={"req_type": "json"}
+    files: typing.Union[str, bytes, io.BytesIO] = attr.ib(
+        default=None, metadata={"req_type": "json"}
     )  # 人脸图片内容, 示例值：jpg图片
     file_type: UpdateACSUserFaceReqFileType = attr.ib(
         factory=lambda: UpdateACSUserFaceReqFileType(), metadata={"req_type": "json"}
@@ -54,4 +55,5 @@ def _gen_update_acs_user_face_req(request, options) -> RawRequestReq:
         body=request,
         method_option=_new_method_option(options),
         need_tenant_access_token=True,
+        is_file=True,
     )

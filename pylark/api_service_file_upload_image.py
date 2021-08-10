@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -20,8 +21,8 @@ class UploadImageReq(object):
     image_type: UploadImageReqImageType = attr.ib(
         factory=lambda: UploadImageReqImageType(), metadata={"req_type": "json"}
     )  # 图片类型, 示例值："message", 可选值有: `message`：用于发送消息, `avatar`：用于设置头像
-    image: UploadImageReqImage = attr.ib(
-        factory=lambda: UploadImageReqImage(), metadata={"req_type": "json"}
+    image: typing.Union[str, bytes, io.BytesIO] = attr.ib(
+        default=None, metadata={"req_type": "json"}
     )  # 图片内容, 示例值：二进流
 
 
@@ -40,4 +41,5 @@ def _gen_upload_image_req(request, options) -> RawRequestReq:
         body=request,
         method_option=_new_method_option(options),
         need_tenant_access_token=True,
+        is_file=True,
     )

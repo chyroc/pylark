@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -52,4 +53,5 @@ def _gen_set_vc_permission_meeting_recording_req(request, options) -> RawRequest
         url="https://open.feishu.cn/open-apis/vc/v1/meetings/:meeting_id/recording/set_permission",
         body=request,
         method_option=_new_method_option(options),
+        need_user_access_token=True,
     )

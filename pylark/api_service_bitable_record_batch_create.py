@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -13,7 +14,7 @@ class BatchCreateBitableRecordReqRecordFieldValue(object):
 @attr.s
 class BatchCreateBitableRecordReqRecordField(object):
     key: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段名, 示例值："多行文本"
-    value: typing._any = attr.ib(
+    value: typing.Any = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 内容, 示例值：文本
 
@@ -58,7 +59,7 @@ class BatchCreateBitableRecordRespRecordFieldValue(object):
 @attr.s
 class BatchCreateBitableRecordRespRecordField(object):
     key: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段名
-    value: typing._any = attr.ib(default=None, metadata={"req_type": "json"})  # 内容
+    value: typing.Any = attr.ib(default=None, metadata={"req_type": "json"})  # 内容
 
 
 @attr.s
@@ -87,4 +88,5 @@ def _gen_batch_create_bitable_record_req(request, options) -> RawRequestReq:
         body=request,
         method_option=_new_method_option(options),
         need_tenant_access_token=True,
+        need_user_access_token=True,
     )

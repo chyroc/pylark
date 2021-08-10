@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -13,8 +14,8 @@ class UploadAttendanceFileReqFile(object):
 @attr.s
 class UploadAttendanceFileReq(object):
     file_name: str = attr.ib(default="", metadata={"req_type": "query"})  # 文件名
-    file: UploadAttendanceFileReqFile = attr.ib(
-        factory=lambda: UploadAttendanceFileReqFile(), metadata={"req_type": "json"}
+    file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
+        default=None, metadata={"req_type": "json"}
     )  # 文件
 
 
@@ -40,4 +41,5 @@ def _gen_upload_attendance_file_req(request, options) -> RawRequestReq:
         body=request,
         method_option=_new_method_option(options),
         need_tenant_access_token=True,
+        is_file=True,
     )

@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -25,8 +26,8 @@ class GetMessageFileRespFile(object):
 
 @attr.s
 class GetMessageFileResp(object):
-    file: GetMessageFileRespFile = attr.ib(
-        factory=lambda: GetMessageFileRespFile(), metadata={"req_type": "json"}
+    file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
+        default=None, metadata={"req_type": "json"}
     )
 
 

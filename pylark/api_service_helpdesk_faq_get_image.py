@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -20,8 +21,8 @@ class GetHelpdeskFAQImageRespFile(object):
 
 @attr.s
 class GetHelpdeskFAQImageResp(object):
-    file: GetHelpdeskFAQImageRespFile = attr.ib(
-        factory=lambda: GetHelpdeskFAQImageRespFile(), metadata={"req_type": "json"}
+    file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
+        default=None, metadata={"req_type": "json"}
     )
 
 
@@ -43,4 +44,5 @@ def _gen_get_helpdesk_faq_image_req(request, options) -> RawRequestReq:
         body=request,
         method_option=_new_method_option(options),
         need_tenant_access_token=True,
+        need_helpdesk_auth=True,
     )

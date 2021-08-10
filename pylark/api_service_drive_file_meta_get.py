@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -55,4 +56,5 @@ def _gen_get_drive_file_meta_req(request, options) -> RawRequestReq:
         url="https://open.feishu.cn/open-apis/suite/docs-api/meta",
         body=request,
         method_option=_new_method_option(options),
+        need_user_access_token=True,
     )

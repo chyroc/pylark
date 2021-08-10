@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from pylark.api_service_ai_detect_text_language import DetectTextLanguageReq
+from pylark import DetectTextLanguageReq
 from tests.test_conf import app_all_permission
 
 

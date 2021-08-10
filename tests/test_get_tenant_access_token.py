@@ -1,5 +1,5 @@
 from unittest import TestCase
-from pylark.log import logger
+from pylark import logger
 from tests.test_conf import app_all_permission
 
 

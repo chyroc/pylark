@@ -5,11 +5,32 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import inspect
 from copy import deepcopy
 from enum import Enum
+from io import BytesIO
 from typing import List, TypeVar, Type, Any
 
 import attr
 
 T = TypeVar("T")
+
+
+def _to_file_like(image):
+    if isinstance(image, bytes):
+        return BytesIO(image)
+
+    if isinstance(image, str):
+        return open(image, "rb")
+
+    return image
+
+
+def _to_attr_dict(data):
+    if isinstance(data, dict):
+        return {k: _to_attr_dict(v) for k, v in data.items()}
+    if isinstance(data, list):
+        return [_to_attr_dict(v) for v in data]
+    if attr.has(data):
+        return attr.asdict(data)
+    return data
 
 
 def _to_json(cls):

@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -28,8 +29,8 @@ class DownloadDriveFileRespFile(object):
 
 @attr.s
 class DownloadDriveFileResp(object):
-    file: DownloadDriveFileRespFile = attr.ib(
-        factory=lambda: DownloadDriveFileRespFile(), metadata={"resp_type": "header"}
+    file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
+        default=None, metadata={"resp_type": "header"}
     )
     filename: str = attr.ib(default="", metadata={"resp_type": "header"})  # 文件名
 
@@ -54,4 +55,5 @@ def _gen_download_drive_file_req(request, options) -> RawRequestReq:
         body=request,
         method_option=_new_method_option(options),
         need_tenant_access_token=True,
+        need_user_access_token=True,
     )

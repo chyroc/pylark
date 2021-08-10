@@ -6,6 +6,8 @@ from pylark.api_service_auth_tenant_access_token_get import (
     _get_tenant_access_token,
     TokenExpire,
 )
+from pylark.api_service_auth_app_access_token_get import _get_app_access_token
+
 from pylark.api_service_auth_app_ticket_resend import (
     ResendAppTicketReq,
     ResendAppTicketResp,
@@ -38,6 +40,14 @@ class LarkAuthService(object):
     def __init__(self, cli: "Lark"):
         self.cli = cli
 
+    def get_app_ticket(self) -> str:
+        # genISVAppTicketKey(r.cli.appSecret)
+        return self.cli.store.get()
+
+    def set_app_ticket(self):
+        # genISVAppTicketKey(r.cli.appID), appTicket, time.Hour * 2
+        self.cli.store.set()
+
     def resend_app_ticket(
         self, request: ResendAppTicketReq, options: typing.List[str] = None
     ) -> typing.Tuple[ResendAppTicketResp, Response]:
@@ -65,4 +75,12 @@ class LarkAuthService(object):
             app_id=self.cli.app_id,
             app_secret=self.cli.app_secret,
             tenant_key="",
+        )
+
+    def get_app_access_token(self) -> typing.Tuple[TokenExpire, Response]:
+        return _get_app_access_token(
+            cli=self.cli,
+            is_isv=False,
+            app_id=self.cli.app_id,
+            app_secret=self.cli.app_secret,
         )

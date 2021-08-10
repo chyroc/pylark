@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -32,4 +33,6 @@ def _gen_update_helpdesk_category_req(request, options) -> RawRequestReq:
         url="https://open.feishu.cn/open-apis/helpdesk/v1/categories/:id",
         body=request,
         method_option=_new_method_option(options),
+        need_user_access_token=True,
+        need_helpdesk_auth=True,
     )

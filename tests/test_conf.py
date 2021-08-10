@@ -4,8 +4,7 @@ from unittest import TestCase
 
 import attr
 
-from pylark import Lark
-from pylark.log import logger
+from pylark import Lark, logger
 
 logger.setLevel(logging.DEBUG)
 

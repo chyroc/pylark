@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -26,4 +27,5 @@ def _gen_delete_vc_reserve_req(request, options) -> RawRequestReq:
         url="https://open.feishu.cn/open-apis/vc/v1/reserves/:reserve_id",
         body=request,
         method_option=_new_method_option(options),
+        need_user_access_token=True,
     )

@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -19,9 +20,8 @@ class DownloadAttendanceFileRespFile(object):
 
 @attr.s
 class DownloadAttendanceFileResp(object):
-    file: DownloadAttendanceFileRespFile = attr.ib(
-        factory=lambda: DownloadAttendanceFileRespFile(),
-        metadata={"resp_type": "header"},
+    file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
+        default=None, metadata={"resp_type": "header"}
     )
     filename: str = attr.ib(default="", metadata={"resp_type": "header"})  # 文件名
 

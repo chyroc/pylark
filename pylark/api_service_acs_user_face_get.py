@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -30,8 +31,8 @@ class GetACSUserFaceRespFile(object):
 
 @attr.s
 class GetACSUserFaceResp(object):
-    file: GetACSUserFaceRespFile = attr.ib(
-        factory=lambda: GetACSUserFaceRespFile(), metadata={"req_type": "json"}
+    file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
+        default=None, metadata={"req_type": "json"}
     )
 
 

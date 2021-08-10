@@ -1,8 +1,5 @@
 # import logging
 # import pytest
-# from pylark.api_service_auth_app_ticket_resend import ResendAppTicketReq
-# from pylark.lark import Lark
-# from pylark.lark_request import Request, RawRequestReq
 # from urllib.parse import urlparse, parse_qsl, parse_qs, urlencode, urlunparse
 # from requests.models import PreparedRequest
 #

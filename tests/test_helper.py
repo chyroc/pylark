@@ -1,11 +1,20 @@
+import typing
 import unittest
 
 import attr
 
-from pylark.api_service_ai_detect_face_attributes import (
+from pylark import (
     DetectFaceAttributesRespFaceInfoPositionUpperLeft,
+    TokenExpire,
+    Response,
+    PyLarkError,
 )
 from pylark.helper import _make_dataclass_from_dict
+
+
+# mockGetTenantAccessTokenFailed
+def mock_get_tenant_access_token_failed() -> typing.Tuple[TokenExpire, Response]:
+    raise PyLarkError(scope="scope", func="func", code=1, msg="failed")
 
 
 class MyTestCase(unittest.TestCase):

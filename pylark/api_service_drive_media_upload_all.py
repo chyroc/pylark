@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -30,8 +31,8 @@ class UploadDriveMediaReq(object):
     extra: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 扩展信息(可选), 示例值："{"test":"test"}"
-    file: UploadDriveMediaReqFile = attr.ib(
-        factory=lambda: UploadDriveMediaReqFile(), metadata={"req_type": "json"}
+    file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
+        default=None, metadata={"req_type": "json"}
     )  # 文件内容, 示例值：file binary
 
 
@@ -50,4 +51,6 @@ def _gen_upload_drive_media_req(request, options) -> RawRequestReq:
         body=request,
         method_option=_new_method_option(options),
         need_tenant_access_token=True,
+        need_user_access_token=True,
+        is_file=True,
     )

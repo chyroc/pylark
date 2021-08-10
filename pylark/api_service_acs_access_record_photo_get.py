@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -19,8 +20,8 @@ class GetACSAccessRecordPhotoRespFile(object):
 
 @attr.s
 class GetACSAccessRecordPhotoResp(object):
-    file: GetACSAccessRecordPhotoRespFile = attr.ib(
-        factory=lambda: GetACSAccessRecordPhotoRespFile(), metadata={"req_type": "json"}
+    file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
+        default=None, metadata={"req_type": "json"}
     )
 
 

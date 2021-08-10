@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -18,8 +19,8 @@ class UploadFaceVerifyImageReq(object):
     employee_id: str = attr.ib(
         default="", metadata={"req_type": "query"}
     )  # 用户租户标识, 与open_id二选其一
-    image: UploadFaceVerifyImageReqImage = attr.ib(
-        factory=lambda: UploadFaceVerifyImageReqImage(), metadata={"req_type": "json"}
+    image: typing.Union[str, bytes, io.BytesIO] = attr.ib(
+        default=None, metadata={"req_type": "json"}
     )  # 带有头像的人脸照片
 
 
@@ -40,4 +41,5 @@ def _gen_upload_face_verify_image_req(request, options) -> RawRequestReq:
         body=request,
         method_option=_new_method_option(options),
         need_tenant_access_token=True,
+        is_file=True,
     )

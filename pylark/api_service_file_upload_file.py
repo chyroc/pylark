@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -26,8 +27,8 @@ class UploadFileReq(object):
     duration: int = attr.ib(
         default=0, metadata={"req_type": "json"}
     )  # 文件的时长(视频，音频),单位:毫秒, 示例值：3000
-    file: UploadFileReqFile = attr.ib(
-        factory=lambda: UploadFileReqFile(), metadata={"req_type": "json"}
+    file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
+        default=None, metadata={"req_type": "json"}
     )  # 文件内容, 示例值：二进制文件
 
 
@@ -46,4 +47,5 @@ def _gen_upload_file_req(request, options) -> RawRequestReq:
         body=request,
         method_option=_new_method_option(options),
         need_tenant_access_token=True,
+        is_file=True,
     )

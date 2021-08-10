@@ -31,8 +31,6 @@ from pylark.api_service_search import LarkSearchService
 from pylark.api_service_hire import LarkHireService
 from pylark.api_service_task import LarkTaskService
 from pylark.api_service_acs import LarkACSService
-from pylark.api_service_event_callback import LarkEventCallbackService
-from pylark.api_service_app_link import LarkAppLinkService
 
 from pylark.log import logger
 from pylark.lark_request import RawRequestReq, Response, RawRequestDataClass, Request
@@ -82,13 +80,14 @@ class Lark(object):
         self.hire = LarkHireService(cli=self)
         self.task = LarkTaskService(cli=self)
         self.acs = LarkACSService(cli=self)
-        self.event_callback = LarkEventCallbackService(cli=self)
-        self.app_link = LarkAppLinkService(cli=self)
 
         self.app_id = app_id
         self.app_secret = app_secret
         self.custom_secret = custom_secret
         self.custom_url = custom_url
+
+    def with_tenant(self, tenant_key: str):
+        pass
 
     def raw_request(self, req: RawRequestReq) -> Tuple[RawRequestDataClass, Response]:
         logger.info("[lark] %s#%s call api", req.scope, req.api)

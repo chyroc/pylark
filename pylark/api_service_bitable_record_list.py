@@ -3,6 +3,7 @@
 from pylark.lark_request import RawRequestReq, _new_method_option
 import attr
 import typing
+import io
 
 
 @attr.s
@@ -41,7 +42,7 @@ class GetBitableRecordListRespItemFieldsValue(object):
 @attr.s
 class GetBitableRecordListRespItemFields(object):
     key: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段名
-    value: typing._any = attr.ib(default=None, metadata={"req_type": "json"})  # 内容
+    value: typing.Any = attr.ib(default=None, metadata={"req_type": "json"})  # 内容
 
 
 @attr.s
@@ -76,4 +77,5 @@ def _gen_get_bitable_record_list_req(request, options) -> RawRequestReq:
         body=request,
         method_option=_new_method_option(options),
         need_tenant_access_token=True,
+        need_user_access_token=True,
     )

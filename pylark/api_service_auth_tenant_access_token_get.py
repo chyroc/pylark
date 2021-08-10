@@ -18,18 +18,6 @@ class TokenExpire(object):
     expire = attr.ib(default=0)
 
 
-# def _gen_get_tenant_access_token_req(request, options) -> RawRequestReq:
-#     return RawRequestReq(
-#         # dataclass=GetTenantAccessTokenResp,
-#         scope="Auth",
-#         api="GetTenantAccessToken",
-#         method="POST",
-#         url="https://open.feishu.cn/open-apis/auth/v3/app_ticket/resend/",
-#         body=request,
-#         method_option=_new_method_option(options),
-#     )
-
-
 def _get_tenant_access_token(
     cli: "Lark",
     is_isv: bool,
