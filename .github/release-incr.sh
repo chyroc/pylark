@@ -1,4 +1,4 @@
-cur_version=`cat pylark/__init__.py | grep version | cut -d '=' -f 2-2 | xargs`
+cur_version=`cat pylark/__init__.py | grep version__ | cut -d '=' -f 2-2 | xargs`
 echo "cur_version: $cur_version"
 
 cur_version_last=`echo $cur_version | cut -d '.' -f 3-3`
