@@ -1,4 +1,38 @@
+# pylark
 
+[![codecov](https://codecov.io/gh/chyroc/pylark/branch/master/graph/badge.svg?token=Z73T6YFF80)](https://codecov.io/gh/chyroc/pylark)
+[![test status](https://github.com/chyroc/pylark/actions/workflows/test.yml/badge.svg)](https://github.com/chyroc/pylark/actions)
+[![Apache-2.0 license](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg)](https://opensource.org/licenses/Apache-2.0)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/pylark)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pylark)
+![PyPI - Format](https://img.shields.io/pypi/format/pylark)
+
+[English README](./README.md)
+
+飞书/Lark 的开放接口 Go SDK，支持所有的开放接口，和事件回调。
+
+支持的功能
+
+- 非常多的接口和事件
+- 支持 Mock 以支持测试
+- 支持 ISV 和自建 App
+- 支持 Logger 接口
+- 支持 UserAccessToken
+- 使用代码生成创建，接口和文档更新及时
+
+## 讨论
+
+点击 [飞书群聊](https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=985n4cf0-70d7-444c-909f-98885892c233) 一起讨论。
+
+## 安装
+
+```shell
+pip install pylark
+```
+
+## 文档
+
+lark-sdk.github.io
 
 ## 支持的接口
 
