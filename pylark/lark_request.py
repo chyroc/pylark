@@ -176,10 +176,30 @@ class Request(object):
                     field_val = getattr(req.body, field.name, None)
                     if field_val:
                         query[field.name] = getattr(req.body, field.name)
+                elif req_type == "header":
+                    if field.metadata["header"] == "range":
+                        pass
+                        # if fieldVV.Kind() != reflect.Array || fieldVV.Len() != 2 || fieldVV.Index(0).Kind() != reflect.Int64 {
+                        # 					return nil, fmt.Errorf("with range header, value must be [2]int64")
+                        # 				}
+                        # 				from := fieldVV.Index(0).Int()
+                        # 				to := fieldVV.Index(1).Int()
+                        # 				if from != 0 || to != 0 {
+                        # 					headers["Range"] = "bytes=" + strconv.FormatInt(from, 10) + "-" + strconv.FormatInt(to, 10)
+                        # 				}
+                    else:
+                        continue
                 else:
                     field_val = getattr(req.body, field.name, None)
                     if field_val:
-                        uri = uri.replace(":" + field.name, field_val)
+                        if isinstance(field_val, str):
+                            uri = uri.replace(":" + field.name, field_val)
+                        elif isinstance(field_val, int):
+                            uri = uri.replace(":" + field.name, f"{field_val}")
+                        else:
+                            raise ValueError(
+                                f"{field_val}({type(field_val)}) not valid for path params"
+                            )
 
         return {
             "query": query,

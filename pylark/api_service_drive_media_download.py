@@ -19,7 +19,7 @@ class DownloadDriveMediaReq(object):
     file_token: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 文件标识符, 示例值："boxcnabCdefg12345"
-    range_: DownloadDriveMediaReqRange = attr.ib(
+    range: DownloadDriveMediaReqRange = attr.ib(
         factory=lambda: DownloadDriveMediaReqRange(),
         metadata={"req_type": "header", "header": "range"},
     )  # 指定文件下载部分，示例:bytes=0-1024
