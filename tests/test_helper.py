@@ -9,7 +9,7 @@ from pylark import (
     Response,
     PyLarkError,
 )
-from pylark.helper import _make_dataclass_from_dict
+from pylark._internal_helper import _make_dataclass_from_dict
 
 
 # mockGetTenantAccessTokenFailed

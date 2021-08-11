@@ -3,9 +3,9 @@ from typing import TypeVar, Type, TYPE_CHECKING, Tuple
 import attr
 import requests
 
-from pylark.helper import _make_dataclass_from_dict, _to_attr_dict
+from pylark._internal_helper import _make_dataclass_from_dict, _to_attr_dict
 from pylark.lark_exception import PyLarkError
-from pylark.log import logger
+from pylark._internal_log import logger
 
 if TYPE_CHECKING:
     from pylark import Lark

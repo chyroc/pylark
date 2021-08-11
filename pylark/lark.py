@@ -32,7 +32,7 @@ from pylark.api_service_hire import LarkHireService
 from pylark.api_service_task import LarkTaskService
 from pylark.api_service_acs import LarkACSService
 
-from pylark.log import logger
+from pylark._internal_log import logger
 from pylark.lark_request import RawRequestReq, Response, RawRequestDataClass, Request
 
 

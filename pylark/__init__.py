@@ -2951,13 +2951,13 @@ from pylark.api_service_vc_room_config_set import (
 from pylark.lark import Lark
 from pylark.lark_exception import PyLarkError
 from pylark.lark_request import Response, MethodOption, RawRequestReq, Request
-from pylark.type import DepartmentIDType
-from pylark.type_message_post import (
+from pylark.lark_type_enum import DepartmentIDType
+from pylark.lark_type_message_post import (
     MessageContentPostItem,
     MessageContentPost,
     MessageContentPostAll,
 )
-from pylark.log import logger
+from pylark._internal_log import logger
 
 
 __version__ = "0.0.7"
