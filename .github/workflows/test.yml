@@ -1,13 +1,12 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
-name: Python package
+name: test
 
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
   build:
@@ -20,21 +19,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install flake8 pytest requests
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        python -m pip install flake8 pytest pytest-cov requests
+
     - name: Lint with flake8
       run: |
         ./.github/lint.sh
+
     - name: Test with pytest
       run: |
-        pytest
+        pytest --cov=./
       env:
         LARK_APP_NO_PERMISSION_APP_ID: ${{ secrets.LARK_APP_NO_PERMISSION_APP_ID }}
         LARK_APP_NO_PERMISSION_APP_SECRET: ${{ secrets.LARK_APP_NO_PERMISSION_APP_SECRET }}
@@ -60,3 +62,8 @@ jobs:
         LARK_APP_CUSTOM_BOT_CHECK_CAN_SEND_WEBHOOK_URL: ${{ secrets.LARK_APP_CUSTOM_BOT_CHECK_CAN_SEND_WEBHOOK_URL }}
         LARK_APP_CUSTOM_BOT_CHECK_SIGN_WEBHOOK_URL: ${{ secrets.LARK_APP_CUSTOM_BOT_CHECK_SIGN_WEBHOOK_URL }}
         LARK_APP_CUSTOM_BOT_CHECK_SIGN_SIGN: ${{ secrets.LARK_APP_CUSTOM_BOT_CHECK_SIGN_SIGN }}
+
+    - name: "Upload coverage to Codecov"
+      uses: codecov/codecov-action@v1
+      with:
+        fail_ci_if_error: true
