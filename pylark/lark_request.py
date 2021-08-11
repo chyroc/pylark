@@ -144,6 +144,8 @@ class Request(object):
         msg = resp_body.get("msg") or ""
         if "data" in resp_body:
             data = resp_body.get("data") or {}
+        elif "bot" in resp_body:
+            data = resp_body.get("bot") or {}
         else:
             data = resp_body
         if code != 0:

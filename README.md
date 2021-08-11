@@ -1,5 +1,11 @@
 # pylark
 
+[![codecov](https://codecov.io/gh/chyroc/pylark/branch/master/graph/badge.svg?token=Z73T6YFF80)](https://codecov.io/gh/chyroc/pylark)
+[![test status](https://github.com/chyroc/pylark/actions/workflows/test.yml/badge.svg)](https://github.com/chyroc/pylark/actions)
+[![Apache-2.0 license](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg)](https://opensource.org/licenses/Apache-2.0)
+
+[中文版 README](./README_CN.md)
+
 Feishu/Lark Open API Python Sdk, Support ALL Open API and Event Callback.
 
 ## Support APIs
