@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pylark"
-version = "0.0.7"
+version = "0.0.8"
 description = "Feishu/Lark Open API Python Sdk, Support ALL Open API and Event Callback."
 authors = ["chyroc <chyroc@qq.com>"]
 license = "Apache-2.0"
