@@ -68,6 +68,16 @@ from pylark.api_service_approval_carbon_copy_create import (
     CreateApprovalCarbonCopyResp,
     _gen_create_approval_carbon_copy_req,
 )
+from pylark.api_service_approval_instance_add_sign import (
+    AddApprovalInstanceSignReq,
+    AddApprovalInstanceSignResp,
+    _gen_add_approval_instance_sign_req,
+)
+from pylark.api_service_approval_instance_preview import (
+    PreviewApprovalInstanceReq,
+    PreviewApprovalInstanceResp,
+    _gen_preview_approval_instance_req,
+)
 
 
 if typing.TYPE_CHECKING:
@@ -153,4 +163,18 @@ class LarkApprovalService(object):
     ) -> typing.Tuple[CreateApprovalCarbonCopyResp, Response]:
         return self.cli.raw_request(
             _gen_create_approval_carbon_copy_req(request, options)
+        )
+
+    def add_approval_instance_sign(
+        self, request: AddApprovalInstanceSignReq, options: typing.List[str] = None
+    ) -> typing.Tuple[AddApprovalInstanceSignResp, Response]:
+        return self.cli.raw_request(
+            _gen_add_approval_instance_sign_req(request, options)
+        )
+
+    def preview_approval_instance(
+        self, request: PreviewApprovalInstanceReq, options: typing.List[str] = None
+    ) -> typing.Tuple[PreviewApprovalInstanceResp, Response]:
+        return self.cli.raw_request(
+            _gen_preview_approval_instance_req(request, options)
         )

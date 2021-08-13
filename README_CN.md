@@ -37,7 +37,7 @@ lark-sdk.github.io
 
 ## 支持的接口
 
-API 总数: 446, 事件总数: 43
+API 总数: 448, 事件总数: 43
 
 <details>
   <summary>
@@ -342,6 +342,8 @@ API 总数: 446, 事件总数: 43
   - SearchApprovalTask
   - SearchApprovalCarbonCopy
   - CreateApprovalCarbonCopy
+  - AddApprovalInstanceSign
+  - PreviewApprovalInstance
 - Helpdesk
   - StartHelpdeskService
   - GetHelpdeskTicket

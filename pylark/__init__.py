@@ -272,6 +272,10 @@ from pylark.api_service_approval_file_upload import (
     UploadApprovalFileReq,
     UploadApprovalFileResp,
 )
+from pylark.api_service_approval_instance_add_sign import (
+    AddApprovalInstanceSignReq,
+    AddApprovalInstanceSignResp,
+)
 from pylark.api_service_approval_instance_approve import (
     ApproveApprovalInstanceReq,
     ApproveApprovalInstanceResp,
@@ -300,6 +304,12 @@ from pylark.api_service_approval_instance_get import (
 from pylark.api_service_approval_instance_list import (
     GetApprovalInstanceListReq,
     GetApprovalInstanceListResp,
+)
+from pylark.api_service_approval_instance_preview import (
+    PreviewApprovalInstanceReqForm,
+    PreviewApprovalInstanceReqUserIDType,
+    PreviewApprovalInstanceReq,
+    PreviewApprovalInstanceResp,
 )
 from pylark.api_service_approval_instance_reject import (
     RejectApprovalInstanceReq,
@@ -3162,6 +3172,8 @@ __all__ = [
     UploadApprovalFileReqContent,
     UploadApprovalFileReq,
     UploadApprovalFileResp,
+    AddApprovalInstanceSignReq,
+    AddApprovalInstanceSignResp,
     ApproveApprovalInstanceReq,
     ApproveApprovalInstanceResp,
     CancelApprovalInstanceReq,
@@ -3181,6 +3193,10 @@ __all__ = [
     GetApprovalInstanceResp,
     GetApprovalInstanceListReq,
     GetApprovalInstanceListResp,
+    PreviewApprovalInstanceReqForm,
+    PreviewApprovalInstanceReqUserIDType,
+    PreviewApprovalInstanceReq,
+    PreviewApprovalInstanceResp,
     RejectApprovalInstanceReq,
     RejectApprovalInstanceResp,
     SearchApprovalInstanceReq,

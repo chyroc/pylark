@@ -31,6 +31,9 @@ class CreateCalendarEventAttendeeReqAttendee(object):
     third_party_email: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # third_party类型参与人的邮箱, 示例值："wangwu@email.com"
+    operate_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 如果日程是使用应用身份创建的，在添加会议室的时候，用来指定会议室的联系人，在会议室视图展示。, 示例值："omm_xxxxxxxx"
 
 
 @attr.s
@@ -42,7 +45,7 @@ class CreateCalendarEventAttendeeReqUserIDType(object):
 class CreateCalendarEventAttendeeReq(object):
     user_id_type: CreateCalendarEventAttendeeReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 userid
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 userid
     calendar_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 日历 ID, 示例值："feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn"
@@ -64,7 +67,7 @@ class CreateCalendarEventAttendeeRespAttendeeChatMember(object):
     )  # 参与人RSVP状态, 可选值有: `needs_action`：参与人尚未回复状态，或表示会议室预约中, `accept`：参与人回复接受，或表示会议室预约成功, `tentative`：参与人回复待定, `decline`：参与人回复拒绝，或表示会议室预约失败, `removed`：参与人或会议室已经从日程中被移除
     is_optional: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
-    )  # 参与人是否为「可选参加」, 默认值: `false`
+    )  # 参与人是否为「可选参加」
     display_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 参与人名称
     is_organizer: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
@@ -91,7 +94,7 @@ class CreateCalendarEventAttendeeRespAttendee(object):
     )  # 参与人RSVP状态, 可选值有: `needs_action`：参与人尚未回复状态，或表示会议室预约中, `accept`：参与人回复接受，或表示会议室预约成功, `tentative`：参与人回复待定, `decline`：参与人回复拒绝，或表示会议室预约失败, `removed`：参与人或会议室已经从日程中被移除
     is_optional: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
-    )  # 参与人是否为「可选参加」，无法编辑群参与人的此字段, 默认值: `false`
+    )  # 参与人是否为「可选参加」，无法编辑群参与人的此字段
     is_organizer: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 参与人是否为日程组织者
@@ -116,6 +119,9 @@ class CreateCalendarEventAttendeeRespAttendee(object):
     third_party_email: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # third_party类型参与人的邮箱
+    operate_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 如果日程是使用应用身份创建的，在添加会议室的时候，用来指定会议室的联系人，在会议室视图展示。
 
 
 @attr.s
