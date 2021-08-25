@@ -10,10 +10,10 @@ import io
 class UpdateDrivePublicPermissionReq(object):
     type: str = attr.ib(
         default="", metadata={"req_type": "query"}
-    )  # 权限客体类型, 示例值："doc", 可选值有: `doc`：文档, `sheet`：电子表格, `file`：云空间文件, `wiki`：知识库节点（暂不支持）, `bitable`：多维表格, `docx`：文档
+    )  # 权限客体类型，放于query参数中，如：`?type=doc`, 示例值："doc", 可选值有: `doc`：文档, `sheet`：电子表格, `file`：云空间文件, `wiki`：知识库节点, `bitable`：多维表格, `docx`：文档
     token: str = attr.ib(
         default="", metadata={"req_type": "path"}
-    )  # 权限客体token, 示例值："doccnBKgoMyY5OMbUG6FioTXuBe"
+    )  # 文件的 token，获取方式见 [概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction), 示例值："doccnBKgoMyY5OMbUG6FioTXuBe"
     external_access: bool = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 是否允许分享到租户外开关, 示例值：true

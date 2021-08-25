@@ -49,7 +49,7 @@ class CreateHelpdeskTicketCustomizedFieldReq(object):
     )  # 字段在列表后台管理列表中的位置, 示例值："3"
     field_type: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 类型, 示例值："dropdown"
+    )  # 类型,string - 单行文本,multiline - 多行文本,dropdown - 下拉列表,dropdown_nested - 级联下拉,      , 示例值："dropdown"
     description: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 描述, 示例值："下拉示例"

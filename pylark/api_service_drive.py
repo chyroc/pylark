@@ -128,10 +128,20 @@ from pylark.api_service_drive_permission_member_create import (
     CreateDriveMemberPermissionResp,
     _gen_create_drive_member_permission_req,
 )
+from pylark.api_service_drive_permission_member_delete_old import (
+    DeleteDriveMemberPermissionOldReq,
+    DeleteDriveMemberPermissionOldResp,
+    _gen_delete_drive_member_permission_old_req,
+)
 from pylark.api_service_drive_permission_member_delete import (
     DeleteDriveMemberPermissionReq,
     DeleteDriveMemberPermissionResp,
     _gen_delete_drive_member_permission_req,
+)
+from pylark.api_service_drive_permission_member_update_old import (
+    UpdateDriveMemberPermissionOldReq,
+    UpdateDriveMemberPermissionOldResp,
+    _gen_update_drive_member_permission_old_req,
 )
 from pylark.api_service_drive_permission_member_update import (
     UpdateDriveMemberPermissionReq,
@@ -659,11 +669,29 @@ class LarkDriveService(object):
             _gen_create_drive_member_permission_req(request, options)
         )
 
+    def delete_drive_member_permission_old(
+        self,
+        request: DeleteDriveMemberPermissionOldReq,
+        options: typing.List[str] = None,
+    ) -> typing.Tuple[DeleteDriveMemberPermissionOldResp, Response]:
+        return self.cli.raw_request(
+            _gen_delete_drive_member_permission_old_req(request, options)
+        )
+
     def delete_drive_member_permission(
         self, request: DeleteDriveMemberPermissionReq, options: typing.List[str] = None
     ) -> typing.Tuple[DeleteDriveMemberPermissionResp, Response]:
         return self.cli.raw_request(
             _gen_delete_drive_member_permission_req(request, options)
+        )
+
+    def update_drive_member_permission_old(
+        self,
+        request: UpdateDriveMemberPermissionOldReq,
+        options: typing.List[str] = None,
+    ) -> typing.Tuple[UpdateDriveMemberPermissionOldResp, Response]:
+        return self.cli.raw_request(
+            _gen_update_drive_member_permission_old_req(request, options)
         )
 
     def update_drive_member_permission(

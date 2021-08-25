@@ -23,7 +23,7 @@ class GetBitableTableListReq(object):
 class GetBitableTableListRespItem(object):
     table_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 表格表 id
     revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # 数据表的版本号
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 数据表 名字
+    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 数据表名字
 
 
 @attr.s
@@ -34,6 +34,7 @@ class GetBitableTableListResp(object):
     page_token: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
+    total: int = attr.ib(default=0, metadata={"req_type": "json"})  # 总数
     items: typing.List[GetBitableTableListRespItem] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 数据表信息

@@ -20,7 +20,7 @@ class UpdateTaskReqTaskOriginHref(object):
 class UpdateTaskReqTaskOrigin(object):
     platform_i18n_name: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 任务导入来源的名称，用于在任务中心详情页展示。请提供一个字典，多种语言名称映射。支持的各地区语言名：it_it, th_th, ko_kr, es_es, ja_jp, zh_cn, id_id, zh_hk, pt_br, de_de, fr_fr, zh_tw, ru_ru, en_us, hi_in, vi_vn, 示例值：""{\"zh_cn\": \"IT 工作台\", \"en_us\": \"IT Workspace\"}"", 长度范围：`0` ～ `1024` 字符
+    )  # 任务导入来源的名称，用于在任务中心详情页展示。请提供一个字典，多种语言名称映射。支持的各地区语言名：it_it, th_th, ko_kr, es_es, ja_jp, zh_cn, id_id, zh_hk, pt_br, de_de, fr_fr, zh_tw, ru_ru, en_us, hi_in, vi_vn, 示例值："{\"zh_cn\": \"IT 工作台\", \"en_us\": \"IT Workspace\"}", 长度范围：`0` ～ `1024` 字符
     href: UpdateTaskReqTaskOriginHref = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 任务关联的来源平台详情页链接
@@ -67,7 +67,7 @@ class UpdateTaskReqUserIDType(object):
 class UpdateTaskReq(object):
     user_id_type: UpdateTaskReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 userid
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     task_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 任务 ID, 示例值："83912691-2e43-47fc-94a4-d512e03984fa"

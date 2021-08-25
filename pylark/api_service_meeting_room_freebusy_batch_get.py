@@ -8,7 +8,9 @@ import io
 
 @attr.s
 class BatchGetMeetingRoomFreebusyReq(object):
-    room_ids: str = attr.ib(default="", metadata={"req_type": "query"})  # 用于查询指定会议室的 ID
+    room_ids: typing.List[str] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "query"}
+    )  # 用于查询指定会议室的 ID
     time_min: str = attr.ib(
         default="", metadata={"req_type": "query"}
     )  # 查询会议室忙闲的起始时间，需要遵循格式 [RFC3339](https://tools.ietf.org/html/rfc3339)，需要进行URL Encode

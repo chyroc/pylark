@@ -285,6 +285,8 @@ from pylark.api_service_approval_instance_cancel import (
     CancelApprovalInstanceResp,
 )
 from pylark.api_service_approval_instance_create import (
+    CreateApprovalInstanceReqNodeCcOpenIDList,
+    CreateApprovalInstanceReqNodeCcUserIDList,
     CreateApprovalInstanceReqNodeApproverOpenIDList,
     CreateApprovalInstanceReqNodeApproverUserIDList,
     CreateApprovalInstanceReqForm,
@@ -678,6 +680,7 @@ from pylark.api_service_bitable_record_get import (
     GetBitableRecordResp,
 )
 from pylark.api_service_bitable_record_list import (
+    GetBitableRecordListReqUserIDType,
     GetBitableRecordListReq,
     GetBitableRecordListRespItemFieldsValue,
     GetBitableRecordListRespItemFields,
@@ -1016,6 +1019,14 @@ from pylark.api_service_chat_get_list_of_self import (
     GetChatListOfSelfRespItemOwnerIDType,
     GetChatListOfSelfRespItem,
     GetChatListOfSelfResp,
+)
+from pylark.api_service_chat_get_old import (
+    GetChatOldReq,
+    GetChatOldRespLeaveMessageVisibility,
+    GetChatOldRespJoinMessageVisibility,
+    GetChatOldRespMember,
+    GetChatOldRespI18nNames,
+    GetChatOldResp,
 )
 from pylark.api_service_chat_join import JoinChatReq, JoinChatResp
 from pylark.api_service_chat_member_add import (
@@ -1465,6 +1476,10 @@ from pylark.api_service_drive_permission_member_delete import (
     DeleteDriveMemberPermissionReq,
     DeleteDriveMemberPermissionResp,
 )
+from pylark.api_service_drive_permission_member_delete_old import (
+    DeleteDriveMemberPermissionOldReq,
+    DeleteDriveMemberPermissionOldResp,
+)
 from pylark.api_service_drive_permission_member_list import (
     GetDriveMemberPermissionListReq,
     GetDriveMemberPermissionListRespMember,
@@ -1478,7 +1493,12 @@ from pylark.api_service_drive_permission_member_transfer import (
 )
 from pylark.api_service_drive_permission_member_update import (
     UpdateDriveMemberPermissionReq,
+    UpdateDriveMemberPermissionRespMember,
     UpdateDriveMemberPermissionResp,
+)
+from pylark.api_service_drive_permission_member_update_old import (
+    UpdateDriveMemberPermissionOldReq,
+    UpdateDriveMemberPermissionOldResp,
 )
 from pylark.api_service_drive_permission_public_get_v2 import (
     GetDrivePublicPermissionV2Req,
@@ -2915,6 +2935,7 @@ from pylark.api_service_vc_reserve_apply import (
 )
 from pylark.api_service_vc_reserve_delete import DeleteVCReserveReq, DeleteVCReserveResp
 from pylark.api_service_vc_reserve_get import (
+    GetVCReserveReqUserIDType,
     GetVCReserveReq,
     GetVCReserveRespReserveMeetingSettingsCallSettingCalleePstnSipInfo,
     GetVCReserveRespReserveMeetingSettingsCallSettingCallee,
@@ -3178,6 +3199,8 @@ __all__ = [
     ApproveApprovalInstanceResp,
     CancelApprovalInstanceReq,
     CancelApprovalInstanceResp,
+    CreateApprovalInstanceReqNodeCcOpenIDList,
+    CreateApprovalInstanceReqNodeCcUserIDList,
     CreateApprovalInstanceReqNodeApproverOpenIDList,
     CreateApprovalInstanceReqNodeApproverUserIDList,
     CreateApprovalInstanceReqForm,
@@ -3472,6 +3495,7 @@ __all__ = [
     GetBitableRecordRespRecordFields,
     GetBitableRecordRespRecord,
     GetBitableRecordResp,
+    GetBitableRecordListReqUserIDType,
     GetBitableRecordListReq,
     GetBitableRecordListRespItemFieldsValue,
     GetBitableRecordListRespItemFields,
@@ -3729,6 +3753,12 @@ __all__ = [
     GetChatListOfSelfRespItemOwnerIDType,
     GetChatListOfSelfRespItem,
     GetChatListOfSelfResp,
+    GetChatOldReq,
+    GetChatOldRespLeaveMessageVisibility,
+    GetChatOldRespJoinMessageVisibility,
+    GetChatOldRespMember,
+    GetChatOldRespI18nNames,
+    GetChatOldResp,
     JoinChatReq,
     JoinChatResp,
     AddChatMemberReqMemberIDType,
@@ -4063,6 +4093,8 @@ __all__ = [
     CreateDriveMemberPermissionOldResp,
     DeleteDriveMemberPermissionReq,
     DeleteDriveMemberPermissionResp,
+    DeleteDriveMemberPermissionOldReq,
+    DeleteDriveMemberPermissionOldResp,
     GetDriveMemberPermissionListReq,
     GetDriveMemberPermissionListRespMember,
     GetDriveMemberPermissionListResp,
@@ -4071,7 +4103,10 @@ __all__ = [
     TransferDriveMemberPermissionRespOwner,
     TransferDriveMemberPermissionResp,
     UpdateDriveMemberPermissionReq,
+    UpdateDriveMemberPermissionRespMember,
     UpdateDriveMemberPermissionResp,
+    UpdateDriveMemberPermissionOldReq,
+    UpdateDriveMemberPermissionOldResp,
     GetDrivePublicPermissionV2Req,
     GetDrivePublicPermissionV2Resp,
     UpdateDrivePublicPermissionReq,
@@ -5085,6 +5120,7 @@ __all__ = [
     ApplyVCReserveResp,
     DeleteVCReserveReq,
     DeleteVCReserveResp,
+    GetVCReserveReqUserIDType,
     GetVCReserveReq,
     GetVCReserveRespReserveMeetingSettingsCallSettingCalleePstnSipInfo,
     GetVCReserveRespReserveMeetingSettingsCallSettingCallee,

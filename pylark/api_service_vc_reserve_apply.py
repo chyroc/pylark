@@ -46,7 +46,7 @@ class ApplyVCReserveReqMeetingSettingsActionPermissionPermissionChecker(object):
     )  # 检查方式, 示例值：1, 可选值有: `1`：在check_list中为有权限（白名单）, `2`：不在check_list中为有权限（黑名单）
     check_list: typing.List[str] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
-    )  # 检查字段列表
+    )  # 检查字段列表, 示例值：123
 
 
 @attr.s
@@ -88,7 +88,7 @@ class ApplyVCReserveReqUserIDType(object):
 class ApplyVCReserveReq(object):
     user_id_type: ApplyVCReserveReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 userid
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 userid
     end_time: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 预约到期时间（unix时间，单位sec），多人会议必填, 示例值："1608888867"
@@ -109,6 +109,7 @@ class ApplyVCReserveRespReserve(object):
     app_link: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # APPLink用于唤起飞书APP入会。"{?}"为占位符，用于配置入会参数，使用时需替换具体值：0表示关闭，1表示打开。preview为入会前的设置页，mic为麦克风，speaker为扬声器，camera为摄像头
+    live_link: str = attr.ib(default="", metadata={"req_type": "json"})  # 直播链接
     end_time: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 预约到期时间（unix时间，单位sec）

@@ -7,6 +7,11 @@ import io
 
 
 @attr.s
+class GetBitableRecordListReqUserIDType(object):
+    pass
+
+
+@attr.s
 class GetBitableRecordListReq(object):
     view_id: str = attr.ib(
         default="", metadata={"req_type": "query"}
@@ -26,6 +31,9 @@ class GetBitableRecordListReq(object):
     page_size: int = attr.ib(
         default=0, metadata={"req_type": "query"}
     )  # 分页大小, 示例值：10, 最大值：`100`
+    user_id_type: GetBitableRecordListReqUserIDType = attr.ib(
+        default=None, metadata={"req_type": "query"}
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 userid
     app_token: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # bitable app token, 示例值："bascnCMII2ORej2RItqpZZUNMIe"
@@ -62,6 +70,7 @@ class GetBitableRecordListResp(object):
     page_token: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
+    total: int = attr.ib(default=0, metadata={"req_type": "json"})  # 总数
     items: typing.List[GetBitableRecordListRespItem] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 记录信息

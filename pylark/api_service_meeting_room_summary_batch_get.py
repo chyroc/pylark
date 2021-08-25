@@ -11,7 +11,7 @@ class BatchGetMeetingRoomSummaryReqEventUid(object):
     uid: str = attr.ib(default="", metadata={"req_type": "json"})  # 日程的唯一id
     original_time: int = attr.ib(
         default=0, metadata={"req_type": "json"}
-    )  # 日程实例原始时间，非重复日程必为0。重复日程若为0则表示回复其所有实例，否则表示回复单个实例。
+    )  # 日程实例原始时间，非重复日程必为0。若为0则表示回复其重复日程的名字（不包含重复日程中的单个例外），否则表示回复单个实例。
 
 
 @attr.s
@@ -26,7 +26,7 @@ class BatchGetMeetingRoomSummaryRespErrorEventUid(object):
     uid: str = attr.ib(default="", metadata={"req_type": "json"})  # 日程的唯一id
     original_time: int = attr.ib(
         default=0, metadata={"req_type": "json"}
-    )  # 日程实例原始时间，非重复日程必为0。重复日程若为0则表示回复其所有实例，否则表示回复单个实例。
+    )  # 日程实例原始时间，非重复日程必为0。若为0则表示回复其重复日程的名字（不包含重复日程中的单个例外），否则表示回复单个实例。
     error_msg: str = attr.ib(default="", metadata={"req_type": "json"})  # 错误信息
 
 

@@ -33,7 +33,7 @@ class CreateCalendarEventAttendeeReqAttendee(object):
     )  # third_party类型参与人的邮箱, 示例值："wangwu@email.com"
     operate_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 如果日程是使用应用身份创建的，在添加会议室的时候，用来指定会议室的联系人，在会议室视图展示。, 示例值："omm_xxxxxxxx"
+    )  # 如果日程是使用应用身份创建的，在添加会议室的时候，用来指定会议室的联系人，在会议室视图展示。, 示例值："ou_xxxxxxxx"
 
 
 @attr.s
@@ -45,7 +45,7 @@ class CreateCalendarEventAttendeeReqUserIDType(object):
 class CreateCalendarEventAttendeeReq(object):
     user_id_type: CreateCalendarEventAttendeeReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 userid
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     calendar_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 日历 ID, 示例值："feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn"

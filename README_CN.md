@@ -37,7 +37,7 @@ lark-sdk.github.io
 
 ## 支持的接口
 
-API 总数: 448, 事件总数: 43
+API 总数: 451, 事件总数: 43
 
 <details>
   <summary>
@@ -84,6 +84,7 @@ API 总数: 448, 事件总数: 43
   - DeleteEphemeralMessage
 - Chat
   - CreateChat
+  - GetChatOld
   - GetChat
   - UpdateChat
   - DeleteChat
@@ -154,7 +155,9 @@ API 总数: 448, 事件总数: 43
   - TransferDriveMemberPermission
   - GetDriveMemberPermissionList
   - CreateDriveMemberPermission
+  - DeleteDriveMemberPermissionOld
   - DeleteDriveMemberPermission
+  - UpdateDriveMemberPermissionOld
   - UpdateDriveMemberPermission
   - CheckDriveMemberPermission
   - UpdateDrivePublicPermissionV1Old

@@ -11,14 +11,16 @@ class TransferDriveMemberPermissionReqOwner(object):
     member_type: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 用户类型，可选 **email、openid、userid**
-    member_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户类型下的值
+    member_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 用户类型下的值，获取方式见 [如何获得 User ID、Open ID 和 Union ID？](https://open.feishu.cn/document/home/user-identity-introduction/how-to-get)
 
 
 @attr.s
 class TransferDriveMemberPermissionReq(object):
     token: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 文件的 token，获取方式见 [对接前说明](https://open.feishu.cn/document/ukTMukTMukTM/uczNzUjL3czM14yN3MTN)的第 4 项
+    )  # 文件的 token，获取方式见 [概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction)
     type: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 文档类型  "doc"  or  "sheet" or "bitable"  or "file"

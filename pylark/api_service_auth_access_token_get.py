@@ -10,10 +10,10 @@ import io
 class GetAccessTokenReq(object):
     grant_type: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 在本流程中，此值为 authorization_code
+    )  # 授权类型，本流程中，此值为："authorization_code", 示例值："authorization_code"
     code: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 来自[请求身份验证(新)](https://open.feishu.cn/document/ukTMukTMukTM/ukzN4UjL5cDO14SO3gTN)流程，用户扫码登录后会自动302到redirect_uri并带上此参数
+    )  # 来自[请求身份验证](https://open.feishu.cn/document/ukTMukTMukTM/ukzN4UjL5cDO14SO3gTN)流程，用户扫码登录后会自动302到redirect_uri并带上此参数, 示例值："xMSldislSkdK"
 
 
 @attr.s
@@ -21,28 +21,29 @@ class GetAccessTokenResp(object):
     access_token: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # user_access_token，用于获取用户资源
+    token_type: str = attr.ib(default="", metadata={"req_type": "json"})  # token 类型
+    expires_in: int = attr.ib(
+        default=0, metadata={"req_type": "json"}
+    )  # access_token 的有效期，单位: 秒
+    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户姓名
+    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户英文名称
     avatar_url: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户头像
     avatar_thumb: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户头像 72x72
     avatar_middle: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 用户头像 240x240
     avatar_big: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户头像 640x640
-    expires_in: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
-    )  # access_token 的有效期，单位: 秒
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户姓名
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户英文名称
     open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户在应用内的唯一标识
     union_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户统一ID
     email: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 申请了"获取用户邮箱"权限的应用返回该字段
+    )  # 用户邮箱, 字段权限要求:  获取用户邮箱信息
     user_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 申请了"获取用户 user_id"权限的应用返回该字段
+    )  # 用户 user_id, 字段权限要求:  获取用户 user ID
     mobile: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 申请了"获取用户手机号"权限的应用返回该字段
+    )  # 用户手机号, 字段权限要求:  获取用户手机号
     tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # 当前企业标识
     refresh_expires_in: int = attr.ib(
         default=0, metadata={"req_type": "json"}
@@ -50,7 +51,6 @@ class GetAccessTokenResp(object):
     refresh_token: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 刷新用户 access_token 时使用的 token
-    token_type: str = attr.ib(default="", metadata={"req_type": "json"})  # 此处为 Bearer
 
 
 def _gen_get_access_token_req(request, options) -> RawRequestReq:

@@ -32,7 +32,7 @@ class CreateUpdateAttendanceGroupReqGroupFreePunchCfg(object):
     )  # 自由班制的打卡结束时间
     punch_day: int = attr.ib(
         default=0, metadata={"req_type": "json"}
-    )  # 打卡时间，格式 1111100
+    )  # 打卡时间：7 位数字，从左到右依次代表周一到周日，0 为不上班，1 为上班。例如：周一到周五上班 1111100
     work_day_no_punch_as_lack: bool = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 工作日不打卡是否记为缺卡
@@ -221,7 +221,7 @@ class CreateUpdateAttendanceGroupRespGroupFreePunchCfg(object):
     )  # 自由班制的打卡结束时间
     punch_day: int = attr.ib(
         default=0, metadata={"req_type": "json"}
-    )  # 打卡时间，格式 1111100
+    )  # 打卡时间：7 位数字，从左到右依次代表周一到周日，0 为不上班，1 为上班。例如：周一到周五上班 1111100
     work_day_no_punch_as_lack: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 工作日不打卡是否记为缺卡

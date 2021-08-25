@@ -20,7 +20,7 @@ class PartUploadDriveFileReq(object):
     size: int = attr.ib(default=0, metadata={"req_type": "json"})  # 块大小, 示例值：4194304
     checksum: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 文件分块adler32校验和, 示例值："12342388237783294798"
+    )  # 文件分块adler32校验和(可选), 示例值："12342388237783294798"
     file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 文件分片内容, 示例值：file binary

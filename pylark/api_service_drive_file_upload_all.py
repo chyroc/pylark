@@ -27,7 +27,7 @@ class UploadDriveFileReq(object):
     )  # 文件大小,全量上传最大20M, 示例值：1024, 最大值：`20971520`
     checksum: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 文件adler32校验和, 示例值："123423882374238957235"
+    )  # 文件adler32校验和(可选), 示例值："123423882374238957235"
     file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 文件数据, 示例值：file binary

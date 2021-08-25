@@ -18,7 +18,7 @@ class DownloadDriveMediaReq(object):
     )  # 扩展信息, 示例值："[请参考-上传点类型及对应Extra说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/media/introduction)"
     file_token: str = attr.ib(
         default="", metadata={"req_type": "path"}
-    )  # 文件标识符, 示例值："boxcnabCdefg12345"
+    )  # 文件的 token，获取方式见 [概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction), 示例值："boxcnabCdefg12345"
     range: DownloadDriveMediaReqRange = attr.ib(
         factory=lambda: DownloadDriveMediaReqRange(),
         metadata={"req_type": "header", "header": "range"},

@@ -40,6 +40,7 @@ class GetBitableViewListResp(object):
     has_more: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 是否还有更多项
+    total: int = attr.ib(default=0, metadata={"req_type": "json"})  # 总数
 
 
 def _gen_get_bitable_view_list_req(request, options) -> RawRequestReq:

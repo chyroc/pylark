@@ -35,7 +35,7 @@ class SetVCHostMeetingReqUserIDType(object):
 class SetVCHostMeetingReq(object):
     user_id_type: SetVCHostMeetingReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 userid
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     meeting_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 会议ID（视频会议的唯一标识，视频会议开始后才会产生）, 示例值："6911188411932033028"
@@ -44,7 +44,7 @@ class SetVCHostMeetingReq(object):
     )  # 将要设置的主持人
     old_host_user: SetVCHostMeetingReqOldHostUser = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # 当前主持人（CAS并发安全：如果和会中当前主持人不符则会设置失败，可使用返回的最新数据需重新设置）
+    )  # 当前主持人（CAS并发安全：如果和会中当前主持人不符则会设置失败，可使用返回的最新数据重新设置）
 
 
 @attr.s

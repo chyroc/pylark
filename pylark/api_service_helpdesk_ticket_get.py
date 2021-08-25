@@ -71,7 +71,9 @@ class GetHelpdeskTicketRespTicketGuest(object):
 
 @attr.s
 class GetHelpdeskTicketRespTicket(object):
-    ticket_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 工单ID
+    ticket_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 工单ID,[可以从工单列表里面取](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/helpdesk-v1/ticket/list),[也可以订阅工单创建事件获取](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/helpdesk-v1/ticket/events/created)
     helpdesk_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 服务台ID
     guest: GetHelpdeskTicketRespTicketGuest = attr.ib(
         default=None, metadata={"req_type": "json"}

@@ -20,7 +20,7 @@ class SearchDepartmentReqUserIDType(object):
 class SearchDepartmentReq(object):
     user_id_type: SearchDepartmentReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 userid
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     department_id_type: SearchDepartmentReqDepartmentIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 此次调用中使用的部门ID的类型, 示例值："open_department_id", 可选值有: `department_id`：以自定义 department_id 来标识部门, `open_department_id`：以 open_department_id 来标识部门
@@ -53,10 +53,10 @@ class SearchDepartmentRespItemI18nName(object):
 class SearchDepartmentRespItem(object):
     name: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 部门名称, 最小长度：`1` 字符,**字段权限要求（满足任一）**：, 获取部门基础信息, 以应用身份访问通讯录
+    )  # 部门名称, 最小长度：`1` 字符,**字段权限要求（满足任一）**：, 获取部门基础信息, 以应用身份访问通讯录（历史版本）
     i18n_name: SearchDepartmentRespItemI18nName = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # 国际化的部门名称,**字段权限要求（满足任一）**：, 获取部门基础信息, 以应用身份访问通讯录
+    )  # 国际化的部门名称,**字段权限要求（满足任一）**：, 获取部门基础信息, 以应用身份访问通讯录（历史版本）
     parent_department_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 父部门的ID,* 创建根部门，该参数值为 “0”
@@ -70,16 +70,16 @@ class SearchDepartmentRespItem(object):
     chat_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 部门群ID
     order: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 部门的排序，即部门在其同级部门的展示顺序,**字段权限要求（满足任一）**：, 获取部门组织架构信息, 以应用身份访问通讯录
+    )  # 部门的排序，即部门在其同级部门的展示顺序,**字段权限要求（满足任一）**：, 获取部门组织架构信息, 以应用身份访问通讯录（历史版本）
     unit_ids: typing.List[str] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
-    )  # 部门单位自定义ID列表，当前只支持一个,**字段权限要求（满足任一）**：, 获取部门组织架构信息, 以应用身份访问通讯录
+    )  # 部门单位自定义ID列表，当前只支持一个,**字段权限要求（满足任一）**：, 获取部门组织架构信息, 以应用身份访问通讯录（历史版本）
     member_count: int = attr.ib(
         default=0, metadata={"req_type": "json"}
-    )  # 部门下用户的个数,**字段权限要求（满足任一）**：, 获取部门组织架构信息, 以应用身份访问通讯录
+    )  # 部门下用户的个数,**字段权限要求（满足任一）**：, 获取部门组织架构信息, 以应用身份访问通讯录（历史版本）
     status: SearchDepartmentRespItemStatus = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # 部门状态,**字段权限要求（满足任一）**：, 获取部门基础信息, 以应用身份访问通讯录
+    )  # 部门状态,**字段权限要求（满足任一）**：, 获取部门基础信息, 以应用身份访问通讯录（历史版本）
     create_group_chat: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 是否创建部门群，默认不创建

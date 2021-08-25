@@ -18,7 +18,7 @@ class GetACSUserFaceReq(object):
     )  # 裁剪图, 示例值：true
     user_id_type: GetACSUserFaceReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 userid
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     user_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 用户 ID, 示例值："ou_7dab8a3d3cdcc9da365777c7ad535d62"

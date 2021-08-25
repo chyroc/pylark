@@ -56,7 +56,7 @@ class PreviewApprovalInstanceResp(object):
     node_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 节点名称
     node_type: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 节点类型：AND：会签，OR: 或签
+    )  # 节点类型：<br>AND：会签<br>OR: 或签
     custom_node_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 用户自定义节点id

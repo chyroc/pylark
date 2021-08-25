@@ -8,8 +8,8 @@ import io
 
 @attr.s
 class BatchGetMeetingRoomBuildingReq(object):
-    building_ids: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+    building_ids: typing.List[str] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "query"}
     )  # 用于查询指定建筑物的 ID
     fields: str = attr.ib(
         default="", metadata={"req_type": "query"}

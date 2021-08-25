@@ -32,6 +32,12 @@ class TestChatSampleMockGetTokenFailed(unittest.TestCase):
 
         assert "msg=failed" in f"{e}"
 
+    def test_mock_get_token_get_chat_old(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_chat_old(pylark.GetChatOldReq())
+
+        assert "msg=failed" in f"{e}"
+
     def test_mock_get_token_get_chat(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.get_chat(pylark.GetChatReq())
@@ -121,6 +127,16 @@ class TestChatSampleMockSelfFuncFailed(unittest.TestCase):
 
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.create_chat = origin_func
+
+    def test_mock_self_func_get_chat_old(self):
+        origin_func = self.module_cli.get_chat_old
+        self.module_cli.get_chat_old = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_chat_old(pylark.GetChatOldReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_chat_old = origin_func
 
     def test_mock_self_func_get_chat(self):
         origin_func = self.module_cli.get_chat
@@ -254,6 +270,14 @@ class TestChatSampleMockRawRequestFailed(unittest.TestCase):
     def test_mock_raw_request_create_chat(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.create_chat(pylark.CreateChatReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_get_chat_old(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_chat_old(pylark.GetChatOldReq())
 
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0
@@ -406,6 +430,13 @@ class TestChatSampleRealRequestFailed(unittest.TestCase):
     def test_real_request_create_chat(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.create_chat(pylark.CreateChatReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_chat_old(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_chat_old(pylark.GetChatOldReq())
 
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0

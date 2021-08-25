@@ -184,10 +184,26 @@ class TestDriveSampleMockGetTokenFailed(unittest.TestCase):
 
         assert "msg=failed" in f"{e}"
 
+    def test_mock_get_token_delete_drive_member_permission_old(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_drive_member_permission_old(
+                pylark.DeleteDriveMemberPermissionOldReq()
+            )
+
+        assert "msg=failed" in f"{e}"
+
     def test_mock_get_token_delete_drive_member_permission(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.delete_drive_member_permission(
                 pylark.DeleteDriveMemberPermissionReq()
+            )
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_update_drive_member_permission_old(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_drive_member_permission_old(
+                pylark.UpdateDriveMemberPermissionOldReq()
             )
 
         assert "msg=failed" in f"{e}"
@@ -946,6 +962,18 @@ class TestDriveSampleMockSelfFuncFailed(unittest.TestCase):
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.create_drive_member_permission = origin_func
 
+    def test_mock_self_func_delete_drive_member_permission_old(self):
+        origin_func = self.module_cli.delete_drive_member_permission_old
+        self.module_cli.delete_drive_member_permission_old = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_drive_member_permission_old(
+                pylark.DeleteDriveMemberPermissionOldReq()
+            )
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.delete_drive_member_permission_old = origin_func
+
     def test_mock_self_func_delete_drive_member_permission(self):
         origin_func = self.module_cli.delete_drive_member_permission
         self.module_cli.delete_drive_member_permission = mock
@@ -957,6 +985,18 @@ class TestDriveSampleMockSelfFuncFailed(unittest.TestCase):
 
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.delete_drive_member_permission = origin_func
+
+    def test_mock_self_func_update_drive_member_permission_old(self):
+        origin_func = self.module_cli.update_drive_member_permission_old
+        self.module_cli.update_drive_member_permission_old = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_drive_member_permission_old(
+                pylark.UpdateDriveMemberPermissionOldReq()
+            )
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.update_drive_member_permission_old = origin_func
 
     def test_mock_self_func_update_drive_member_permission(self):
         origin_func = self.module_cli.update_drive_member_permission
@@ -1997,10 +2037,33 @@ class TestDriveSampleMockRawRequestFailed(unittest.TestCase):
         assert e.value.code > 0
         assert "mock-raw-request-failed" in e.value.msg
 
+    def test_mock_raw_request_delete_drive_member_permission_old(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_drive_member_permission_old(
+                pylark.DeleteDriveMemberPermissionOldReq()
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
     def test_mock_raw_request_delete_drive_member_permission(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.delete_drive_member_permission(
-                pylark.DeleteDriveMemberPermissionReq()
+                pylark.DeleteDriveMemberPermissionReq(
+                    token="x",
+                    member_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_update_drive_member_permission_old(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_drive_member_permission_old(
+                pylark.UpdateDriveMemberPermissionOldReq()
             )
 
         assert e.type is pylark.PyLarkError
@@ -2010,7 +2073,10 @@ class TestDriveSampleMockRawRequestFailed(unittest.TestCase):
     def test_mock_raw_request_update_drive_member_permission(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.update_drive_member_permission(
-                pylark.UpdateDriveMemberPermissionReq()
+                pylark.UpdateDriveMemberPermissionReq(
+                    token="x",
+                    member_id="x",
+                )
             )
 
         assert e.type is pylark.PyLarkError
@@ -3127,10 +3193,31 @@ class TestDriveSampleRealRequestFailed(unittest.TestCase):
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0
 
+    def test_real_request_delete_drive_member_permission_old(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_drive_member_permission_old(
+                pylark.DeleteDriveMemberPermissionOldReq()
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
     def test_real_request_delete_drive_member_permission(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.delete_drive_member_permission(
-                pylark.DeleteDriveMemberPermissionReq()
+                pylark.DeleteDriveMemberPermissionReq(
+                    token="x",
+                    member_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_update_drive_member_permission_old(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_drive_member_permission_old(
+                pylark.UpdateDriveMemberPermissionOldReq()
             )
 
         assert e.type is pylark.PyLarkError
@@ -3139,7 +3226,10 @@ class TestDriveSampleRealRequestFailed(unittest.TestCase):
     def test_real_request_update_drive_member_permission(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.update_drive_member_permission(
-                pylark.UpdateDriveMemberPermissionReq()
+                pylark.UpdateDriveMemberPermissionReq(
+                    token="x",
+                    member_id="x",
+                )
             )
 
         assert e.type is pylark.PyLarkError

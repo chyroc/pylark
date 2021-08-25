@@ -39,7 +39,7 @@ class GetApprovalRespNode(object):
     )  # 节点自定义 ID，如果没有设置则不返回
     node_type: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 审批方式<br>AND -会签<br>OR - 或签
+    )  # 审批方式<br>AND -会签<br>OR - 或签<br>CC_NODE -抄送节点
 
 
 @attr.s

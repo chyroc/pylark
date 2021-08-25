@@ -8,6 +8,11 @@ from pylark.api_service_chat_create import (
     CreateChatResp,
     _gen_create_chat_req,
 )
+from pylark.api_service_chat_get_old import (
+    GetChatOldReq,
+    GetChatOldResp,
+    _gen_get_chat_old_req,
+)
 from pylark.api_service_chat_get import GetChatReq, GetChatResp, _gen_get_chat_req
 from pylark.api_service_chat_update import (
     UpdateChatReq,
@@ -76,6 +81,11 @@ class LarkChatService(object):
         self, request: CreateChatReq, options: typing.List[str] = None
     ) -> typing.Tuple[CreateChatResp, Response]:
         return self.cli.raw_request(_gen_create_chat_req(request, options))
+
+    def get_chat_old(
+        self, request: GetChatOldReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetChatOldResp, Response]:
+        return self.cli.raw_request(_gen_get_chat_old_req(request, options))
 
     def get_chat(
         self, request: GetChatReq, options: typing.List[str] = None

@@ -134,6 +134,12 @@ class GetAttendanceUserTaskRespUserTaskResultRecord(object):
     check_out_result_supplement: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 下班打卡结果补充，可用值：【None（无），ManagerModification（管理员修改），CardReplacement（补卡通过），ShiftChange（换班），Travel（出差），Leave（请假），GoOut（外出），CardReplacementApplication（补卡申请中），FieldPunch（外勤打卡）】
+    check_in_shift_time: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 正常默认上班时间，精确到秒的时间戳
+    check_out_shift_time: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 正常默认下班时间，精确到秒的时间戳
 
 
 @attr.s

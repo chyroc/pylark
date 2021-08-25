@@ -7,7 +7,15 @@ import io
 
 
 @attr.s
+class GetVCReserveReqUserIDType(object):
+    pass
+
+
+@attr.s
 class GetVCReserveReq(object):
+    user_id_type: GetVCReserveReqUserIDType = attr.ib(
+        default=None, metadata={"req_type": "query"}
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     reserve_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 预约ID（预约的唯一标识）, 示例值："6911188411932033028"
@@ -94,6 +102,7 @@ class GetVCReserveRespReserve(object):
     app_link: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # APPLink用于唤起飞书APP入会。"{?}"为占位符，用于配置入会参数，使用时需替换具体值：0表示关闭，1表示打开。preview为入会前的设置页，mic为麦克风，speaker为扬声器，camera为摄像头
+    live_link: str = attr.ib(default="", metadata={"req_type": "json"})  # 直播链接
     end_time: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 预约到期时间（unix时间，单位sec）

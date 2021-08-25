@@ -10,7 +10,7 @@ import io
 class GetMessageFileReq(object):
     type: str = attr.ib(
         default="", metadata={"req_type": "query"}
-    )  # 资源类型，可选"image, file“； image对应消息中的 图片资源。  file对应消息中的 文件、音频、视频资源, 示例值："image,"
+    )  # 资源类型，可选"image, file“； image对应消息中的 图片资源。  file对应消息中的 文件、音频、视频资源（**表情包资源除外**）, 示例值："image,"
     message_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 待查询资源对应的消息ID, 示例值："om_dc13264520392913993dd051dba21dcf"

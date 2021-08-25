@@ -20,7 +20,7 @@ class GetUserReqUserIDType(object):
 class GetUserReq(object):
     user_id_type: GetUserReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 userid
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     department_id_type: GetUserReqDepartmentIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 此次调用中使用的部门ID的类型, 示例值："open_department_id", 可选值有: `department_id`：以自定义department_id来标识部门, `open_department_id`：以open_department_id来标识部门, 默认值: `open_department_id`
@@ -69,7 +69,7 @@ class GetUserRespUserCustomAttr(object):
 class GetUserRespUserOrder(object):
     department_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 排序信息对应的部门ID
+    )  # 排序信息对应的部门ID, ID值与查询参数中的department_id_type 对应。,不同 ID 的说明参见 [部门ID说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/department/field-overview#23857fe0)
     user_order: int = attr.ib(
         default=0, metadata={"req_type": "json"}
     )  # 用户在其直属部门内的排序，数值越大，排序越靠前
@@ -105,11 +105,15 @@ class GetUserRespUserAvatar(object):
 
 @attr.s
 class GetUserRespUser(object):
-    union_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户的union_id
+    union_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 用户的union_id，不同ID的说明参见 [用户相关的 ID 概念](https://open.feishu.cn/document/home/user-identity-introduction/introduction)
     user_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 租户内用户的唯一标识, 字段权限要求:  获取用户 user ID
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户的open_id
+    )  # 租户内用户的唯一标识，ID值与查询参数中的user_id_type 对应。,不同 ID 的说明参见 [用户相关的 ID 概念](https://open.feishu.cn/document/home/user-identity-introduction/introduction), 字段权限要求:  获取用户 user ID
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 用户的open_id，不同ID的说明参见 [用户相关的 ID 概念](https://open.feishu.cn/document/home/user-identity-introduction/introduction)
     name: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 用户名, 最小长度：`1` 字符,**字段权限要求（满足任一）**：, 获取用户基本信息, 以应用身份访问通讯录（历史版本）
@@ -136,10 +140,10 @@ class GetUserRespUser(object):
     )  # 用户状态,**字段权限要求（满足任一）**：, 获取用户雇佣信息, 以应用身份访问通讯录（历史版本）
     department_ids: typing.List[str] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
-    )  # 用户所属部门的ID列表,**字段权限要求（满足任一）**：, 获取用户组织架构信息, 以应用身份访问通讯录（历史版本）
+    )  # 用户所属部门的ID列表，一个用户可属于多个部门。,ID值与查询参数中的department_id_type 对应。,不同 ID 的说明参见 [部门ID说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/department/field-overview#23857fe0),**字段权限要求（满足任一）**：, 获取用户组织架构信息, 以应用身份访问通讯录（历史版本）
     leader_user_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 用户的直接主管的用户ID,**字段权限要求（满足任一）**：, 获取用户组织架构信息, 以应用身份访问通讯录（历史版本）
+    )  # 用户的直接主管的用户ID，ID值与查询参数中的user_id_type 对应。,不同 ID 的说明参见 [用户相关的 ID 概念](https://open.feishu.cn/document/home/user-identity-introduction/introduction),**字段权限要求（满足任一）**：, 获取用户组织架构信息, 以应用身份访问通讯录（历史版本）
     city: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 城市,**字段权限要求（满足任一）**：, 获取用户雇佣信息, 以应用身份访问通讯录（历史版本）
@@ -166,7 +170,7 @@ class GetUserRespUser(object):
     )  # 用户排序信息,**字段权限要求（满足任一）**：, 获取用户组织架构信息, 以应用身份访问通讯录（历史版本）
     custom_attrs: typing.List[GetUserRespUserCustomAttr] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
-    )  # 自定义字段,**字段权限要求（满足任一）**：, 获取用户雇佣信息, 以应用身份访问通讯录（历史版本）
+    )  # 自定义字段，请确保你的组织管理员已在管理后台/组织架构/成员字段管理/自定义字段管理/全局设置中开启了“允许开放平台 API 调用“，否则该字段不会生效/返回。,**字段权限要求（满足任一）**：, 获取用户雇佣信息, 以应用身份访问通讯录（历史版本）
     enterprise_email: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 企业邮箱，请先确保已在管理后台启用飞书邮箱服务,**字段权限要求（满足任一）**：, 获取用户雇佣信息, 以应用身份访问通讯录（历史版本）
