@@ -14,4 +14,4 @@ gsed -i 's/version = "'$cur_version'"/version = "'$new_version'"/g' pyproject.to
 git commit -a -m "release: v$new_version"
 git tag "v$new_version"
 
-poetry publish
+poetry publish --build
