@@ -6,7 +6,7 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/pylark)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pylark)
 ![PyPI - Format](https://img.shields.io/pypi/format/pylark)
-[![PyPI version](https://badge.fury.io/py/pylark.svg)](https://badge.fury.io/py/pylark)
+[![PyPI version](https://badge.fury.io/py/pylark.svg)](https://pypi.org/project/pylark)
 
 [中文版 README](./README_CN.md)
 
