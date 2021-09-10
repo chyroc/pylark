@@ -17,6 +17,9 @@ class GetAttendanceUserTaskReq(object):
         factory=lambda: GetAttendanceUserTaskReqEmployeeType(),
         metadata={"req_type": "query"},
     )  # 请求体中的 user_ids 的员工工号类型，可用值：【employee_id（员工的 employeeId），employee_no（员工工号）】，示例值：“employee_id”
+    ignore_invalid_users: bool = attr.ib(
+        default=None, metadata={"req_type": "query"}
+    )  # 是否忽略无效和没有权限的用户。如果 true，返回有效用户的数据，并告知无效和没有权限的用户；如果 false，且 user_ids 中存在无效或没有权限的用户，返回错误
     user_ids: typing.List[str] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # employee_no 或 employee_id 列表
@@ -162,6 +165,12 @@ class GetAttendanceUserTaskResp(object):
     user_task_results: typing.List[GetAttendanceUserTaskRespUserTaskResult] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 打卡任务列表
+    invalid_user_ids: typing.List[str] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "json"}
+    )  # 无效用户工号列表
+    unauthorized_user_ids: typing.List[str] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "json"}
+    )  # 没有权限用户工号列表
 
 
 def _gen_get_attendance_user_task_req(request, options) -> RawRequestReq:

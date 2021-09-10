@@ -119,7 +119,7 @@ class UpdateCalendarEventReq(object):
     )  # 日程结束时间
     vchat: UpdateCalendarEventReqVchat = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # 视频会议信息，仅当日程至少有一位attendee时生效
+    )  # 视频会议信息。
     visibility: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 日程公开范围，新建日程默认为Default；仅新建日程时对所有参与人生效，之后修改该属性仅对当前身份生效, 示例值："default", 可选值有: `default`：默认权限，跟随日历权限，默认仅向他人显示是否“忙碌”, `public`：公开，显示日程详情, `private`：私密，仅自己可见详情
@@ -254,7 +254,7 @@ class UpdateCalendarEventRespEvent(object):
     )  # 日程结束时间
     vchat: UpdateCalendarEventRespEventVchat = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # 视频会议信息，仅当日程至少有一位attendee时生效
+    )  # 视频会议信息。
     visibility: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 日程公开范围，新建日程默认为Default；仅新建日程时对所有参与人生效，之后修改该属性仅对当前身份生效, 可选值有: `default`：默认权限，跟随日历权限，默认仅向他人显示是否“忙碌”, `public`：公开，显示日程详情, `private`：私密，仅自己可见详情

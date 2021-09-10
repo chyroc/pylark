@@ -15,7 +15,7 @@ class GetUserOKRListReqUserIDType(object):
 class GetUserOKRListReq(object):
     user_id_type: GetUserOKRListReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, `people_admin_id`：以people_admin_id来识别用户, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     offset: str = attr.ib(
         default="", metadata={"req_type": "query"}
     )  # 请求列表的偏移，offset>=0，请求Query中, 示例值："0"
@@ -25,6 +25,9 @@ class GetUserOKRListReq(object):
     lang: str = attr.ib(
         default="", metadata={"req_type": "query"}
     )  # 请求OKR的语言版本（比如@的人名），lang=en_us/zh_cn，请求 Query中, 示例值："zh_cn", 默认值: `zh_cn`
+    period_ids: typing.List[str] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "query"}
+    )  # period_id列表，最多10个, 示例值：["6951461264858777132"], 最大长度：`10`
     user_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 目标用户id, 示例值："ou-asdasdasdasdasd"
@@ -33,6 +36,7 @@ class GetUserOKRListReq(object):
 @attr.s
 class GetUserOKRListRespOKRObjectiveAligningObjectiveOwner(object):
     open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户的 open_id
+    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户的 user_id
 
 
 @attr.s
@@ -47,6 +51,7 @@ class GetUserOKRListRespOKRObjectiveAligningObjective(object):
 @attr.s
 class GetUserOKRListRespOKRObjectiveAlignedObjectiveOwner(object):
     open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户的 open_id
+    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户的 user_id
 
 
 @attr.s
@@ -146,6 +151,7 @@ class GetUserOKRListRespOKR(object):
     permission: int = attr.ib(
         default=0, metadata={"req_type": "json"}
     )  # OKR的访问权限, 可选值有: `0`：此时OKR只返回id, `1`：返回OKR的其他具体字段
+    period_id: str = attr.ib(default="", metadata={"req_type": "json"})  # period_id
     name: str = attr.ib(default="", metadata={"req_type": "json"})  # 名称
     objective_list: typing.List[GetUserOKRListRespOKRObjective] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}

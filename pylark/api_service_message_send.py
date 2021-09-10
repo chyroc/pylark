@@ -20,13 +20,13 @@ class SendRawMessageReqReceiveIDType(object):
 class SendRawMessageReq(object):
     receive_id_type: SendRawMessageReqReceiveIDType = attr.ib(
         factory=lambda: SendRawMessageReqReceiveIDType(), metadata={"req_type": "query"}
-    )  # 消息接收者id类型 open_id/user_id/union_id/email/chat_id, 示例值："open_id", 可选值有: `open_id`：以open_id来识别用户, `user_id`：以user_id来识别用户, `union_id`：以union_id来识别用户, `email`：以email来识别用户, `chat_id`：以chat_id来识别群聊。可以调用接口 [搜索对用户或机器人可见的群列表](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/chat/search) 获取chat_id, 默认值: `open_id`
+    )  # 消息接收者id类型 open_id/user_id/union_id/email/chat_id, 示例值："open_id", 可选值有: `open_id`：以open_id来识别用户([什么是 Open ID？](https://open.feishu.cn/document/home/user-identity-introduction/open-id)), `user_id`：以user_id来识别用户。需要有获取用户 userID的权限 ([什么是 User ID？](https://open.feishu.cn/document/home/user-identity-introduction/user-id)), `union_id`：以union_id来识别用户([什么是 Union ID？](https://open.feishu.cn/document/home/user-identity-introduction/union-id)), `email`：以email来识别用户。是用户的真实邮箱, `chat_id`：以chat_id来识别群聊。可以调用接口 [搜索对用户或机器人可见的群列表](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/chat/search) 获取chat_id。群ID说明请参考：[群ID 说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/chat-id-description), 默认值: `open_id`
     receive_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 依据receive_id_type的值，填写对应的消息接收者id, 示例值："ou_7d8a6e6df7621556ce0d21922b676706ccs"
     content: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 消息内容 json格式，格式说明参考: [发送消息content说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/create_json), 示例值："{\"text\":\"<at user_id=\\\"ou_155184d1e73cbfb8973e5a9e698e74f2\\\">Tom</at> test content\"}"
+    )  # 消息内容为 json格式转义成string，格式说明参考: [发送消息content说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/create_json), 示例值："{\"text\":\"<at user_id=\\\"ou_155184d1e73cbfb8973e5a9e698e74f2\\\">Tom</at> test content\"}"
     msg_type: SendRawMessageReqMsgType = attr.ib(
         factory=lambda: SendRawMessageReqMsgType(), metadata={"req_type": "json"}
     )  # 消息类型，包括：text、post、image、file、audio、media、sticker、interactive、share_chat、share_user, 示例值："text"
@@ -89,8 +89,10 @@ class SendRawMessageResp(object):
     )  # 消息类型 text post card image等等
     create_time: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 消息生成的时间戳(毫秒)
-    update_time: str = attr.ib(default="", metadata={"req_type": "json"})  # 消息更新的时间戳
+    )  # 消息生成的时间戳（毫秒）
+    update_time: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 消息更新的时间戳（毫秒）
     deleted: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 消息是否被撤回

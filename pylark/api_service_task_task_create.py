@@ -33,7 +33,7 @@ class CreateTaskReqDue(object):
     )  # 截止时间的时间戳（单位为秒）, 示例值："1623124318"
     timezone: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 截止时间对应的时区，完整的时区名称列表可参考：https://docs.aws.amazon.com/zh_cn/redshift/latest/dg/time-zone-names.html, 示例值："Asia/Shanghai", 默认值: `Asia/Shanghai`
+    )  # 截止时间对应的时区，使用IANA Time Zone Database标准，如Asia/Shanghai, 示例值："Asia/Shanghai", 默认值: `Asia/Shanghai`
     is_all_day: bool = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 标记任务是否为全天任务（全天任务的截止时间为当天 UTC 时间的 0 点）, 示例值：false, 默认值: `false`
@@ -64,6 +64,9 @@ class CreateTaskReq(object):
     origin: CreateTaskReqOrigin = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 任务关联的第三方平台来源信息
+    can_edit: bool = attr.ib(
+        default=None, metadata={"req_type": "json"}
+    )  # 此字段用于控制该任务在飞书任务中心是否可编辑，默认为false，若为true则第三方需考虑是否需要接入事件来接收任务在任务中心的变更信息, 示例值：true, 默认值: `false`
 
 
 @attr.s
@@ -87,7 +90,7 @@ class CreateTaskRespTaskDue(object):
     time: str = attr.ib(default="", metadata={"req_type": "json"})  # 截止时间的时间戳（单位为秒）
     timezone: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 截止时间对应的时区，完整的时区名称列表可参考：https://docs.aws.amazon.com/zh_cn/redshift/latest/dg/time-zone-names.html
+    )  # 截止时间对应的时区，使用IANA Time Zone Database标准，如Asia/Shanghai
     is_all_day: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 标记任务是否为全天任务（全天任务的截止时间为当天 UTC 时间的 0 点）
@@ -121,6 +124,9 @@ class CreateTaskRespTask(object):
     origin: CreateTaskRespTaskOrigin = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 任务关联的第三方平台来源信息
+    can_edit: bool = attr.ib(
+        factory=lambda: bool(), metadata={"req_type": "json"}
+    )  # 此字段用于控制该任务在飞书任务中心是否可编辑，默认为false，若为true则第三方需考虑是否需要接入事件来接收任务在任务中心的变更信息
 
 
 @attr.s

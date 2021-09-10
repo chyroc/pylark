@@ -10,7 +10,7 @@ import io
 class IsInChatReq(object):
     chat_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
-    )  # 群 ID, 示例值: "oc_a0553eda9014c201e6969b478895c230"
+    )  # 群 ID, 示例值："oc_a0553eda9014c201e6969b478895c230"
 
 
 @attr.s

@@ -18,6 +18,7 @@ class GetBitableMetaRespApp(object):
     app_token: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 多维表格的 app_token
+    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 多维表格的名字
     revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # 多维表格的版本号
 
 

@@ -18,12 +18,15 @@ class GetHireResumeSourceReq(object):
 
 @attr.s
 class GetHireResumeSourceRespItem(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 简历来源id
+    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 来源 ID
     zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文名
     en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名
+    active_status: int = attr.ib(
+        default=0, metadata={"req_type": "json"}
+    )  # 启用状态, 可选值有: `1`：已启用, `2`：已禁用
     resume_source_type: int = attr.ib(
         default=0, metadata={"req_type": "json"}
-    )  # 简历源类型, 可选值有: `10000`：内推, `10001`：猎头, `10002`：内部来源, `10003`：第三方招聘网站, `10004`：社交媒体, `10005`：线下来源, `10006`：其他
+    )  # 来源类型, 可选值有: `10000`：内推, `10001`：猎头, `10002`：内部来源, `10003`：第三方招聘网站, `10004`：社交媒体, `10005`：线下来源, `10006`：其他, `10007`：外部推荐
 
 
 @attr.s

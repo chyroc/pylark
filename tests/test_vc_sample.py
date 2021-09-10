@@ -32,6 +32,12 @@ class TestVCSampleMockGetTokenFailed(unittest.TestCase):
 
         assert "msg=failed" in f"{e}"
 
+    def test_mock_get_token_kickout_vc_meeting(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.kickout_vc_meeting(pylark.KickoutVCMeetingReq())
+
+        assert "msg=failed" in f"{e}"
+
     def test_mock_get_token_set_vc_host_meeting(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.set_vc_host_meeting(pylark.SetVCHostMeetingReq())
@@ -79,6 +85,16 @@ class TestVCSampleMockSelfFuncFailed(unittest.TestCase):
 
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.get_vc_meeting = origin_func
+
+    def test_mock_self_func_kickout_vc_meeting(self):
+        origin_func = self.module_cli.kickout_vc_meeting
+        self.module_cli.kickout_vc_meeting = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.kickout_vc_meeting(pylark.KickoutVCMeetingReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.kickout_vc_meeting = origin_func
 
     def test_mock_self_func_set_vc_host_meeting(self):
         origin_func = self.module_cli.set_vc_host_meeting
@@ -151,6 +167,18 @@ class TestVCSampleMockRawRequestFailed(unittest.TestCase):
         assert e.value.code > 0
         assert "mock-raw-request-failed" in e.value.msg
 
+    def test_mock_raw_request_kickout_vc_meeting(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.kickout_vc_meeting(
+                pylark.KickoutVCMeetingReq(
+                    meeting_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
     def test_mock_raw_request_set_vc_host_meeting(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.set_vc_host_meeting(
@@ -207,6 +235,17 @@ class TestVCSampleRealRequestFailed(unittest.TestCase):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.get_vc_meeting(
                 pylark.GetVCMeetingReq(
+                    meeting_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_kickout_vc_meeting(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.kickout_vc_meeting(
+                pylark.KickoutVCMeetingReq(
                     meeting_id="x",
                 )
             )

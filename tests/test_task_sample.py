@@ -118,6 +118,30 @@ class TestTaskSampleMockGetTokenFailed(unittest.TestCase):
 
         assert "msg=failed" in f"{e}"
 
+    def test_mock_get_token_create_task_comment(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_task_comment(pylark.CreateTaskCommentReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_get_task_comment(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_task_comment(pylark.GetTaskCommentReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_delete_task_comment(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_task_comment(pylark.DeleteTaskCommentReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_update_task_comment(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_task_comment(pylark.UpdateTaskCommentReq())
+
+        assert "msg=failed" in f"{e}"
+
 
 # mock mock self func
 class TestTaskSampleMockSelfFuncFailed(unittest.TestCase):
@@ -277,6 +301,46 @@ class TestTaskSampleMockSelfFuncFailed(unittest.TestCase):
 
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.uncomplete_task = origin_func
+
+    def test_mock_self_func_create_task_comment(self):
+        origin_func = self.module_cli.create_task_comment
+        self.module_cli.create_task_comment = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_task_comment(pylark.CreateTaskCommentReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.create_task_comment = origin_func
+
+    def test_mock_self_func_get_task_comment(self):
+        origin_func = self.module_cli.get_task_comment
+        self.module_cli.get_task_comment = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_task_comment(pylark.GetTaskCommentReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_task_comment = origin_func
+
+    def test_mock_self_func_delete_task_comment(self):
+        origin_func = self.module_cli.delete_task_comment
+        self.module_cli.delete_task_comment = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_task_comment(pylark.DeleteTaskCommentReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.delete_task_comment = origin_func
+
+    def test_mock_self_func_update_task_comment(self):
+        origin_func = self.module_cli.update_task_comment
+        self.module_cli.update_task_comment = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_task_comment(pylark.UpdateTaskCommentReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.update_task_comment = origin_func
 
 
 # mock raw request
@@ -466,6 +530,57 @@ class TestTaskSampleMockRawRequestFailed(unittest.TestCase):
         assert e.value.code > 0
         assert "mock-raw-request-failed" in e.value.msg
 
+    def test_mock_raw_request_create_task_comment(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_task_comment(
+                pylark.CreateTaskCommentReq(
+                    task_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_get_task_comment(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_task_comment(
+                pylark.GetTaskCommentReq(
+                    task_id="x",
+                    comment_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_delete_task_comment(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_task_comment(
+                pylark.DeleteTaskCommentReq(
+                    task_id="x",
+                    comment_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_update_task_comment(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_task_comment(
+                pylark.UpdateTaskCommentReq(
+                    task_id="x",
+                    comment_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
 
 # real request
 class TestTaskSampleRealRequestFailed(unittest.TestCase):
@@ -632,6 +747,53 @@ class TestTaskSampleRealRequestFailed(unittest.TestCase):
             self.module_cli.uncomplete_task(
                 pylark.UncompleteTaskReq(
                     task_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_create_task_comment(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_task_comment(
+                pylark.CreateTaskCommentReq(
+                    task_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_task_comment(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_task_comment(
+                pylark.GetTaskCommentReq(
+                    task_id="x",
+                    comment_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_delete_task_comment(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_task_comment(
+                pylark.DeleteTaskCommentReq(
+                    task_id="x",
+                    comment_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_update_task_comment(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_task_comment(
+                pylark.UpdateTaskCommentReq(
+                    task_id="x",
+                    comment_id="x",
                 )
             )
 

@@ -74,6 +74,26 @@ from pylark.api_service_task_task_uncomplete import (
     UncompleteTaskResp,
     _gen_uncomplete_task_req,
 )
+from pylark.api_service_task_comment_create import (
+    CreateTaskCommentReq,
+    CreateTaskCommentResp,
+    _gen_create_task_comment_req,
+)
+from pylark.api_service_task_comment_get import (
+    GetTaskCommentReq,
+    GetTaskCommentResp,
+    _gen_get_task_comment_req,
+)
+from pylark.api_service_task_comment_delete import (
+    DeleteTaskCommentReq,
+    DeleteTaskCommentResp,
+    _gen_delete_task_comment_req,
+)
+from pylark.api_service_task_comment_update import (
+    UpdateTaskCommentReq,
+    UpdateTaskCommentResp,
+    _gen_update_task_comment_req,
+)
 
 
 if typing.TYPE_CHECKING:
@@ -162,3 +182,23 @@ class LarkTaskService(object):
         self, request: UncompleteTaskReq, options: typing.List[str] = None
     ) -> typing.Tuple[UncompleteTaskResp, Response]:
         return self.cli.raw_request(_gen_uncomplete_task_req(request, options))
+
+    def create_task_comment(
+        self, request: CreateTaskCommentReq, options: typing.List[str] = None
+    ) -> typing.Tuple[CreateTaskCommentResp, Response]:
+        return self.cli.raw_request(_gen_create_task_comment_req(request, options))
+
+    def get_task_comment(
+        self, request: GetTaskCommentReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetTaskCommentResp, Response]:
+        return self.cli.raw_request(_gen_get_task_comment_req(request, options))
+
+    def delete_task_comment(
+        self, request: DeleteTaskCommentReq, options: typing.List[str] = None
+    ) -> typing.Tuple[DeleteTaskCommentResp, Response]:
+        return self.cli.raw_request(_gen_delete_task_comment_req(request, options))
+
+    def update_task_comment(
+        self, request: UpdateTaskCommentReq, options: typing.List[str] = None
+    ) -> typing.Tuple[UpdateTaskCommentResp, Response]:
+        return self.cli.raw_request(_gen_update_task_comment_req(request, options))

@@ -15,7 +15,7 @@ class CreateCalendarEventAttendeeReqAttendeeType(object):
 class CreateCalendarEventAttendeeReqAttendee(object):
     type: CreateCalendarEventAttendeeReqAttendeeType = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # 参与人类型, 示例值："user", 可选值有: `user`：用户, `chat`：群组, `resource`：会议室, `third_party`：邮箱
+    )  # 参与人类型；暂不支持创建邮箱参与人。, 示例值："user", 可选值有: `user`：用户, `chat`：群组, `resource`：会议室, `third_party`：邮箱
     is_optional: bool = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 参与人是否为「可选参加」，无法编辑群参与人的此字段, 示例值：true, 默认值: `false`
@@ -87,7 +87,7 @@ class CreateCalendarEventAttendeeRespAttendee(object):
     type: CreateCalendarEventAttendeeRespAttendeeType = attr.ib(
         factory=lambda: CreateCalendarEventAttendeeRespAttendeeType(),
         metadata={"req_type": "json"},
-    )  # 参与人类型, 可选值有: `user`：用户, `chat`：群组, `resource`：会议室, `third_party`：邮箱
+    )  # 参与人类型；暂不支持创建邮箱参与人。, 可选值有: `user`：用户, `chat`：群组, `resource`：会议室, `third_party`：邮箱
     attendee_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 参与人ID
     rsvp_status: str = attr.ib(
         default="", metadata={"req_type": "json"}

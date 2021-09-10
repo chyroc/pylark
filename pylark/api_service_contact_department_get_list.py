@@ -26,7 +26,7 @@ class GetDepartmentListReq(object):
     )  # 此次调用中使用的部门ID的类型, 示例值："open_department_id", 可选值有: `department_id`：以自定义department_id来标识部门, `open_department_id`：以open_department_id来标识部门, 默认值: `open_department_id`
     parent_department_id: str = attr.ib(
         default="", metadata={"req_type": "query"}
-    )  # 父部门的ID，填上获取部门下所有子部门, 示例值："od-4e6ac4d14bcd5071a37a39de902c7141"
+    )  # 父部门的ID，填上获取部门下所有子部门，此处填写的 ID 必须是 department_id_type 指定的 ID。, 示例值："od-4e6ac4d14bcd5071a37a39de902c7141"
     fetch_child: bool = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 是否递归获取子部门, 示例值：是否递归获取子部门，默认值：false

@@ -15,7 +15,7 @@ class GetCalendarEventAttendeeListReqUserIDType(object):
 class GetCalendarEventAttendeeListReq(object):
     user_id_type: GetCalendarEventAttendeeListReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     page_token: str = attr.ib(
         default="", metadata={"req_type": "query"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："780TRhwXXXXX"
@@ -37,7 +37,7 @@ class GetCalendarEventAttendeeListRespItemChatMember(object):
     )  # 参与人RSVP状态, 可选值有: `needs_action`：参与人尚未回复状态，或表示会议室预约中, `accept`：参与人回复接受，或表示会议室预约成功, `tentative`：参与人回复待定, `decline`：参与人回复拒绝，或表示会议室预约失败, `removed`：参与人或会议室已经从日程中被移除
     is_optional: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
-    )  # 参与人是否为「可选参加」, 默认值: `false`
+    )  # 参与人是否为「可选参加」
     display_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 参与人名称
     is_organizer: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
@@ -57,14 +57,14 @@ class GetCalendarEventAttendeeListRespItem(object):
     type: GetCalendarEventAttendeeListRespItemType = attr.ib(
         factory=lambda: GetCalendarEventAttendeeListRespItemType(),
         metadata={"req_type": "json"},
-    )  # 参与人类型, 可选值有: `user`：用户, `chat`：群组, `resource`：会议室, `third_party`：邮箱
+    )  # 参与人类型；暂不支持创建邮箱参与人。, 可选值有: `user`：用户, `chat`：群组, `resource`：会议室, `third_party`：邮箱
     attendee_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 参与人ID
     rsvp_status: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 参与人RSVP状态, 可选值有: `needs_action`：参与人尚未回复状态，或表示会议室预约中, `accept`：参与人回复接受，或表示会议室预约成功, `tentative`：参与人回复待定, `decline`：参与人回复拒绝，或表示会议室预约失败, `removed`：参与人或会议室已经从日程中被移除
     is_optional: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
-    )  # 参与人是否为「可选参加」，无法编辑群参与人的此字段, 默认值: `false`
+    )  # 参与人是否为「可选参加」，无法编辑群参与人的此字段
     is_organizer: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 参与人是否为日程组织者

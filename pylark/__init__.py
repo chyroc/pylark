@@ -2788,6 +2788,25 @@ from pylark.api_service_task_collaborator_list import (
     GetTaskCollaboratorListRespItem,
     GetTaskCollaboratorListResp,
 )
+from pylark.api_service_task_comment_create import (
+    CreateTaskCommentReq,
+    CreateTaskCommentRespComment,
+    CreateTaskCommentResp,
+)
+from pylark.api_service_task_comment_delete import (
+    DeleteTaskCommentReq,
+    DeleteTaskCommentResp,
+)
+from pylark.api_service_task_comment_get import (
+    GetTaskCommentReq,
+    GetTaskCommentRespComment,
+    GetTaskCommentResp,
+)
+from pylark.api_service_task_comment_update import (
+    UpdateTaskCommentReq,
+    UpdateTaskCommentRespComment,
+    UpdateTaskCommentResp,
+)
 from pylark.api_service_task_follower_create import (
     CreateTaskFollowerReqUserIDType,
     CreateTaskFollowerReq,
@@ -2883,6 +2902,13 @@ from pylark.api_service_vc_meeting_invite import (
     InviteVCMeetingRespInviteResult,
     InviteVCMeetingResp,
 )
+from pylark.api_service_vc_meeting_kickout import (
+    KickoutVCMeetingReqKickoutUser,
+    KickoutVCMeetingReqUserIDType,
+    KickoutVCMeetingReq,
+    KickoutVCMeetingRespKickoutResult,
+    KickoutVCMeetingResp,
+)
 from pylark.api_service_vc_meeting_recording_get import (
     GetVCMeetingRecordingReq,
     GetVCMeetingRecordingRespRecording,
@@ -2947,6 +2973,7 @@ from pylark.api_service_vc_reserve_get import (
     GetVCReserveResp,
 )
 from pylark.api_service_vc_reserve_get_active_meeting import (
+    GetVCReserveActiveMeetingReqUserIDType,
     GetVCReserveActiveMeetingReq,
     GetVCReserveActiveMeetingRespMeetingAbility,
     GetVCReserveActiveMeetingRespMeetingParticipant,
@@ -5012,6 +5039,17 @@ __all__ = [
     GetTaskCollaboratorListReq,
     GetTaskCollaboratorListRespItem,
     GetTaskCollaboratorListResp,
+    CreateTaskCommentReq,
+    CreateTaskCommentRespComment,
+    CreateTaskCommentResp,
+    DeleteTaskCommentReq,
+    DeleteTaskCommentResp,
+    GetTaskCommentReq,
+    GetTaskCommentRespComment,
+    GetTaskCommentResp,
+    UpdateTaskCommentReq,
+    UpdateTaskCommentRespComment,
+    UpdateTaskCommentResp,
     CreateTaskFollowerReqUserIDType,
     CreateTaskFollowerReq,
     CreateTaskFollowerRespFollower,
@@ -5084,6 +5122,11 @@ __all__ = [
     InviteVCMeetingReq,
     InviteVCMeetingRespInviteResult,
     InviteVCMeetingResp,
+    KickoutVCMeetingReqKickoutUser,
+    KickoutVCMeetingReqUserIDType,
+    KickoutVCMeetingReq,
+    KickoutVCMeetingRespKickoutResult,
+    KickoutVCMeetingResp,
     GetVCMeetingRecordingReq,
     GetVCMeetingRecordingRespRecording,
     GetVCMeetingRecordingResp,
@@ -5130,6 +5173,7 @@ __all__ = [
     GetVCReserveRespReserveMeetingSettings,
     GetVCReserveRespReserve,
     GetVCReserveResp,
+    GetVCReserveActiveMeetingReqUserIDType,
     GetVCReserveActiveMeetingReq,
     GetVCReserveActiveMeetingRespMeetingAbility,
     GetVCReserveActiveMeetingRespMeetingParticipant,

@@ -38,6 +38,11 @@ from pylark.api_service_vc_meeting_invite import (
     InviteVCMeetingResp,
     _gen_invite_vc_meeting_req,
 )
+from pylark.api_service_vc_meeting_kickout import (
+    KickoutVCMeetingReq,
+    KickoutVCMeetingResp,
+    _gen_kickout_vc_meeting_req,
+)
 from pylark.api_service_vc_meeting_set_host import (
     SetVCHostMeetingReq,
     SetVCHostMeetingResp,
@@ -136,6 +141,11 @@ class LarkVCService(object):
         self, request: InviteVCMeetingReq, options: typing.List[str] = None
     ) -> typing.Tuple[InviteVCMeetingResp, Response]:
         return self.cli.raw_request(_gen_invite_vc_meeting_req(request, options))
+
+    def kickout_vc_meeting(
+        self, request: KickoutVCMeetingReq, options: typing.List[str] = None
+    ) -> typing.Tuple[KickoutVCMeetingResp, Response]:
+        return self.cli.raw_request(_gen_kickout_vc_meeting_req(request, options))
 
     def set_vc_host_meeting(
         self, request: SetVCHostMeetingReq, options: typing.List[str] = None

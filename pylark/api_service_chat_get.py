@@ -15,7 +15,7 @@ class GetChatReqUserIDType(object):
 class GetChatReq(object):
     user_id_type: GetChatReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     chat_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 群 ID, 示例值："oc_a0553eda9014c201e6969b478895c230"
@@ -127,6 +127,10 @@ class GetChatResp(object):
     moderation_permission: GetChatRespModerationPermission = attr.ib(
         factory=lambda: GetChatRespModerationPermission(), metadata={"req_type": "json"}
     )  # 发言权限(all_members/only_owner/moderator_list)
+    external: bool = attr.ib(
+        factory=lambda: bool(), metadata={"req_type": "json"}
+    )  # 是否是外部群
+    tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # tenant key
 
 
 def _gen_get_chat_req(request, options) -> RawRequestReq:
