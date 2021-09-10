@@ -10,3 +10,8 @@ echo "new_version: $new_version"
 
 gsed -i 's/__version__ = "'$cur_version'"/__version__ = "'$new_version'"/g' pylark/__init__.py
 gsed -i 's/version = "'$cur_version'"/version = "'$new_version'"/g' pyproject.toml
+
+git commit -a -m "release: v$new_version"
+git tag "v$new_version"
+
+poetry publish
