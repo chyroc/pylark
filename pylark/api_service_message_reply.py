@@ -38,6 +38,7 @@ class ReplyRawMessageRespMention(object):
         metadata={"req_type": "json"},
     )  # id 可以是open_id，user_id或者union_id
     name: str = attr.ib(default="", metadata={"req_type": "json"})  # 被at用户的姓名
+    tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # tenant key
 
 
 @attr.s
@@ -57,6 +58,7 @@ class ReplyRawMessageRespSender(object):
         factory=lambda: ReplyRawMessageRespSenderIDType(), metadata={"req_type": "json"}
     )  # 该字段标识发送者的id类型
     sender_type: str = attr.ib(default="", metadata={"req_type": "json"})  # 该字段标识发送者的类型
+    tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # tenant key
 
 
 @attr.s
@@ -80,8 +82,10 @@ class ReplyRawMessageResp(object):
     )  # 消息类型 text post card image等等
     create_time: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 消息生成的时间戳(毫秒)
-    update_time: str = attr.ib(default="", metadata={"req_type": "json"})  # 消息更新的时间戳
+    )  # 消息生成的时间戳（毫秒）
+    update_time: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 消息更新的时间戳（毫秒）
     deleted: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 消息是否被撤回

@@ -68,7 +68,7 @@ class UpdateChatReq(object):
     avatar: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 群头像对应的 Image Key，可通过[上传图片](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/image/create)获取（注意：上传图片的 [image_type] 需要指定为 [avatar]）, 示例值："default-avatar_44ae0ca3-e140-494b-956f-78091e348435"
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 群名称, 示例值："测试群名称"
+    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 群名称, 示例值："群聊"
     description: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 群描述, 示例值："测试群描述"

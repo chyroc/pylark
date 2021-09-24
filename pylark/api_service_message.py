@@ -3,6 +3,11 @@
 import typing
 from pylark.lark_request import Response
 
+from pylark.api_service_message_send_ephemeral import (
+    SendEphemeralMessageReq,
+    SendEphemeralMessageResp,
+    _gen_send_ephemeral_message_req,
+)
 from pylark.api_service_message_send import (
     SendRawMessageReq,
     SendRawMessageResp,
@@ -64,6 +69,11 @@ class LarkMessageService(object):
 
     def __init__(self, cli: "Lark"):
         self.cli = cli
+
+    def send_ephemeral_message(
+        self, request: SendEphemeralMessageReq, options: typing.List[str] = None
+    ) -> typing.Tuple[SendEphemeralMessageResp, Response]:
+        return self.cli.raw_request(_gen_send_ephemeral_message_req(request, options))
 
     def send_raw_message(
         self, request: SendRawMessageReq, options: typing.List[str] = None

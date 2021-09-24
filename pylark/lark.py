@@ -31,6 +31,7 @@ from pylark.api_service_search import LarkSearchService
 from pylark.api_service_hire import LarkHireService
 from pylark.api_service_task import LarkTaskService
 from pylark.api_service_acs import LarkACSService
+from pylark.api_service_ecosystem import LarkEcosystemService
 
 from pylark._internal_log import logger
 from pylark.lark_request import RawRequestReq, Response, RawRequestDataClass, Request
@@ -80,6 +81,7 @@ class Lark(object):
         self.hire = LarkHireService(cli=self)
         self.task = LarkTaskService(cli=self)
         self.acs = LarkACSService(cli=self)
+        self.ecosystem = LarkEcosystemService(cli=self)
 
         self.app_id = app_id
         self.app_secret = app_secret

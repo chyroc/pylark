@@ -26,6 +26,12 @@ class TestMessageSampleMockGetTokenFailed(unittest.TestCase):
         self.cli.auth.get_app_access_token = mock_get_tenant_access_token_failed
         self.module_cli = self.cli.message
 
+    def test_mock_get_token_send_ephemeral_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_ephemeral_message(pylark.SendEphemeralMessageReq())
+
+        assert "msg=failed" in f"{e}"
+
     def test_mock_get_token_send_raw_message(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.send_raw_message(pylark.SendRawMessageReq())
@@ -95,6 +101,16 @@ class TestMessageSampleMockSelfFuncFailed(unittest.TestCase):
         super(TestMessageSampleMockSelfFuncFailed, self).__init__(*args, **kwargs)
         self.cli = app_all_permission.ins()
         self.module_cli = self.cli.message
+
+    def test_mock_self_func_send_ephemeral_message(self):
+        origin_func = self.module_cli.send_ephemeral_message
+        self.module_cli.send_ephemeral_message = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_ephemeral_message(pylark.SendEphemeralMessageReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.send_ephemeral_message = origin_func
 
     def test_mock_self_func_send_raw_message(self):
         origin_func = self.module_cli.send_raw_message
@@ -206,6 +222,14 @@ class TestMessageSampleMockRawRequestFailed(unittest.TestCase):
         self.cli = app_all_permission.ins()
         self.module_cli = self.cli.message
         self.cli.raw_request = mock_raw_request
+
+    def test_mock_raw_request_send_ephemeral_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_ephemeral_message(pylark.SendEphemeralMessageReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
 
     def test_mock_raw_request_send_raw_message(self):
         with pytest.raises(pylark.PyLarkError) as e:
@@ -319,6 +343,13 @@ class TestMessageSampleRealRequestFailed(unittest.TestCase):
         super(TestMessageSampleRealRequestFailed, self).__init__(*args, **kwargs)
         self.cli = app_no_permission.ins()
         self.module_cli = self.cli.message
+
+    def test_real_request_send_ephemeral_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_ephemeral_message(pylark.SendEphemeralMessageReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
 
     def test_real_request_send_raw_message(self):
         with pytest.raises(pylark.PyLarkError) as e:

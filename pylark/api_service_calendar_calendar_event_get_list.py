@@ -16,10 +16,16 @@ class GetCalendarEventListReq(object):
     )  # 拉取anchor_time之后的日程，为timestamp, 示例值："1609430400"
     page_token: str = attr.ib(
         default="", metadata={"req_type": "query"}
-    )  # 上次请求Response返回的分页标记，首次请求时为空, 示例值："xxxxx"
+    )  # 上次请求Response返回的分页标记，首次请求时为空, 示例值："ListCalendarsPageToken_1632452910_1632539310"
     sync_token: str = attr.ib(
         default="", metadata={"req_type": "query"}
-    )  # 上次请求Response返回的增量同步标记，分页请求未结束时为空, 示例值："xxxxx"
+    )  # 上次请求Response返回的增量同步标记，分页请求未结束时为空, 示例值："ListCalendarsSyncToken_1632452910"
+    start_time: str = attr.ib(
+        default="", metadata={"req_type": "query"}
+    )  # 日程开始Unix时间戳，单位为秒, 示例值："1631777271"
+    end_time: str = attr.ib(
+        default="", metadata={"req_type": "query"}
+    )  # 日程结束Unix时间戳，单位为秒, 示例值："1631777271"
     calendar_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 日历ID, 示例值："feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn"
@@ -33,16 +39,14 @@ class GetCalendarEventListRespItemSchema(object):
     ui_status: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # UI项自定义状态。目前只支持hide, 可选值有: `hide`：隐藏显示, `readonly`：只读, `editable`：可编辑, `unknown`：未知UI项自定义状态，仅用于读取时兼容
-    app_link: str = attr.ib(
-        default="", metadata={"req_type": "json"}
-    )  # 按钮点击后跳转的链接, 最大长度：`2000` 字符
+    app_link: str = attr.ib(default="", metadata={"req_type": "json"})  # 按钮点击后跳转的链接
 
 
 @attr.s
 class GetCalendarEventListRespItemReminder(object):
     minutes: int = attr.ib(
         default=0, metadata={"req_type": "json"}
-    )  # 日程提醒时间的偏移量，正数时表示在日程开始前X分钟提醒，负数时表示在日程开始后X分钟提醒,新建或更新日程时传入该字段，仅对当前身份生效, 取值范围：`-20160` ～ `20160`
+    )  # 日程提醒时间的偏移量，正数时表示在日程开始前X分钟提醒，负数时表示在日程开始后X分钟提醒,新建或更新日程时传入该字段，仅对当前身份生效
 
 
 @attr.s
@@ -57,12 +61,8 @@ class GetCalendarEventListRespItemLocationLatitude(object):
 
 @attr.s
 class GetCalendarEventListRespItemLocation(object):
-    name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
-    )  # 地点名称, 长度范围：`1` ～ `512` 字符
-    address: str = attr.ib(
-        default="", metadata={"req_type": "json"}
-    )  # 地点地址, 长度范围：`1` ～ `255` 字符
+    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 地点名称
+    address: str = attr.ib(default="", metadata={"req_type": "json"})  # 地点地址
     latitude: float = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 地点坐标纬度信息，对于国内的地点，采用GCJ-02标准，海外地点采用WGS84标准
@@ -81,10 +81,8 @@ class GetCalendarEventListRespItemVchat(object):
     )  # 第三方视频会议icon类型；可以为空，为空展示默认icon。, 可选值有: `vc`：飞书视频会议icon, `live`：直播视频会议icon, `default`：默认icon
     description: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 第三方视频会议文案，可以为空，为空展示默认文案, 长度范围：`0` ～ `500` 字符
-    meeting_url: str = attr.ib(
-        default="", metadata={"req_type": "json"}
-    )  # 视频会议URL, 长度范围：`1` ～ `2000` 字符
+    )  # 第三方视频会议文案，可以为空，为空展示默认文案
+    meeting_url: str = attr.ib(default="", metadata={"req_type": "json"})  # 视频会议URL
 
 
 @attr.s
@@ -116,12 +114,8 @@ class GetCalendarEventListRespItemStartTime(object):
 @attr.s
 class GetCalendarEventListRespItem(object):
     event_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 日程ID
-    summary: str = attr.ib(
-        default="", metadata={"req_type": "json"}
-    )  # 日程标题, 最大长度：`1000` 字符
-    description: str = attr.ib(
-        default="", metadata={"req_type": "json"}
-    )  # 日程描述, 最大长度：`8192` 字符
+    summary: str = attr.ib(default="", metadata={"req_type": "json"})  # 日程标题
+    description: str = attr.ib(default="", metadata={"req_type": "json"})  # 日程描述
     start_time: GetCalendarEventListRespItemStartTime = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 日程开始时间
@@ -151,7 +145,7 @@ class GetCalendarEventListRespItem(object):
     )  # 日程提醒列表
     recurrence: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 重复日程的重复性规则；参考[rfc5545](https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10)；, 不支持COUNT和UNTIL同时出现；, 预定会议室重复日程长度不得超过两年。, 最大长度：`2000` 字符
+    )  # 重复日程的重复性规则；参考[rfc5545](https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10)；, 不支持COUNT和UNTIL同时出现；, 预定会议室重复日程长度不得超过两年。
     status: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 日程状态, 可选值有: `tentative`：未回应, `confirmed`：已确认, `cancelled`：日程已取消

@@ -26,9 +26,6 @@ class OpenMiniProgramReq(object):
     path_pc: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 同 path 参数，PC 端会优先使用该参数，如果该参数不存在，则会使用 path 参数
-    bdp_launch_query: str = attr.ib(
-        default="", metadata={"req_type": "json"}
-    )  # 自定义启动参数。可通过 [getHostLaunchQuery](https://open.feishu.cn/document/uYjL24iN/ugzM4UjL4MDO14COzgTN) 接口取得
     min_lk_ver: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 指定 AppLink 协议能够兼容的最小飞书版本，使用三位版本号 x.y.z。如果当前飞书版本号小于min_lk_ver，打开该 AppLink 会显示为兼容页面

@@ -116,6 +116,56 @@ class TestContactSampleMockGetTokenFailed(unittest.TestCase):
 
         assert "msg=failed" in f"{e}"
 
+    def test_mock_get_token_create_contact_group(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_contact_group(pylark.CreateContactGroupReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_update_contact_group(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_contact_group(pylark.UpdateContactGroupReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_delete_contact_group(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_contact_group(pylark.DeleteContactGroupReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_get_contact_group(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_group(pylark.GetContactGroupReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_get_contact_group_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_group_list(pylark.GetContactGroupListReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_add_contact_group_member(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.add_contact_group_member(pylark.AddContactGroupMemberReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_delete_contact_group_member(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_contact_group_member(
+                pylark.DeleteContactGroupMemberReq()
+            )
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_get_contact_group_member(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_group_member(pylark.GetContactGroupMemberReq())
+
+        assert "msg=failed" in f"{e}"
+
     def test_mock_get_token_get_employee_type_enum_list(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.get_employee_type_enum_list(
@@ -313,6 +363,88 @@ class TestContactSampleMockSelfFuncFailed(unittest.TestCase):
 
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.delete_department = origin_func
+
+    def test_mock_self_func_create_contact_group(self):
+        origin_func = self.module_cli.create_contact_group
+        self.module_cli.create_contact_group = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_contact_group(pylark.CreateContactGroupReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.create_contact_group = origin_func
+
+    def test_mock_self_func_update_contact_group(self):
+        origin_func = self.module_cli.update_contact_group
+        self.module_cli.update_contact_group = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_contact_group(pylark.UpdateContactGroupReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.update_contact_group = origin_func
+
+    def test_mock_self_func_delete_contact_group(self):
+        origin_func = self.module_cli.delete_contact_group
+        self.module_cli.delete_contact_group = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_contact_group(pylark.DeleteContactGroupReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.delete_contact_group = origin_func
+
+    def test_mock_self_func_get_contact_group(self):
+        origin_func = self.module_cli.get_contact_group
+        self.module_cli.get_contact_group = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_group(pylark.GetContactGroupReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_contact_group = origin_func
+
+    def test_mock_self_func_get_contact_group_list(self):
+        origin_func = self.module_cli.get_contact_group_list
+        self.module_cli.get_contact_group_list = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_group_list(pylark.GetContactGroupListReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_contact_group_list = origin_func
+
+    def test_mock_self_func_add_contact_group_member(self):
+        origin_func = self.module_cli.add_contact_group_member
+        self.module_cli.add_contact_group_member = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.add_contact_group_member(pylark.AddContactGroupMemberReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.add_contact_group_member = origin_func
+
+    def test_mock_self_func_delete_contact_group_member(self):
+        origin_func = self.module_cli.delete_contact_group_member
+        self.module_cli.delete_contact_group_member = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_contact_group_member(
+                pylark.DeleteContactGroupMemberReq()
+            )
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.delete_contact_group_member = origin_func
+
+    def test_mock_self_func_get_contact_group_member(self):
+        origin_func = self.module_cli.get_contact_group_member
+        self.module_cli.get_contact_group_member = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_group_member(pylark.GetContactGroupMemberReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_contact_group_member = origin_func
 
     def test_mock_self_func_get_employee_type_enum_list(self):
         origin_func = self.module_cli.get_employee_type_enum_list
@@ -535,6 +667,94 @@ class TestContactSampleMockRawRequestFailed(unittest.TestCase):
         assert e.value.code > 0
         assert "mock-raw-request-failed" in e.value.msg
 
+    def test_mock_raw_request_create_contact_group(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_contact_group(pylark.CreateContactGroupReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_update_contact_group(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_contact_group(
+                pylark.UpdateContactGroupReq(
+                    group_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_delete_contact_group(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_contact_group(
+                pylark.DeleteContactGroupReq(
+                    group_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_get_contact_group(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_group(
+                pylark.GetContactGroupReq(
+                    group_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_get_contact_group_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_group_list(pylark.GetContactGroupListReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_add_contact_group_member(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.add_contact_group_member(
+                pylark.AddContactGroupMemberReq(
+                    group_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_delete_contact_group_member(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_contact_group_member(
+                pylark.DeleteContactGroupMemberReq(
+                    group_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_get_contact_group_member(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_group_member(
+                pylark.GetContactGroupMemberReq(
+                    group_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
     def test_mock_raw_request_get_employee_type_enum_list(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.get_employee_type_enum_list(
@@ -728,6 +948,86 @@ class TestContactSampleRealRequestFailed(unittest.TestCase):
             self.module_cli.delete_department(
                 pylark.DeleteDepartmentReq(
                     department_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_create_contact_group(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_contact_group(pylark.CreateContactGroupReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_update_contact_group(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_contact_group(
+                pylark.UpdateContactGroupReq(
+                    group_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_delete_contact_group(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_contact_group(
+                pylark.DeleteContactGroupReq(
+                    group_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_contact_group(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_group(
+                pylark.GetContactGroupReq(
+                    group_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_contact_group_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_group_list(pylark.GetContactGroupListReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_add_contact_group_member(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.add_contact_group_member(
+                pylark.AddContactGroupMemberReq(
+                    group_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_delete_contact_group_member(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_contact_group_member(
+                pylark.DeleteContactGroupMemberReq(
+                    group_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_contact_group_member(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_group_member(
+                pylark.GetContactGroupMemberReq(
+                    group_id="x",
                 )
             )
 

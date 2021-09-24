@@ -10,7 +10,7 @@ import io
 class CreateDriveDocReq(object):
     folder_token: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 文件夹 token，获取方式见[准备接入文档 API](https://open.feishu.cn/document/ukTMukTMukTM/ugzNzUjL4czM14CO3MTN/guide/getting-start)；空表示根目录
+    )  # 文件夹 token，获取方式见[准备接入文档 API](https://open.feishu.cn/document/ukTMukTMukTM/ugzNzUjL4czM14CO3MTN/guide/getting-start)；空表示根目录，tenant_access_token应用权限仅允许操作应用创建的目录
     content: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 传入符合[文档数据结构](https://open.feishu.cn/document/ukTMukTMukTM/uAzM5YjLwMTO24CMzkjN)的字符串，若为空表示创建空文档

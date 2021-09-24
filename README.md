@@ -37,7 +37,7 @@ http://lark-sdk.github.io/
 
 ## Support APIs
 
-API Count: 456, Event Count: 49
+API Count: 466, Event Count: 50
 
 <details>
   <summary>
@@ -66,12 +66,21 @@ API Count: 456, Event Count: 49
   - UpdateDepartmentPatch
   - UpdateDepartment
   - DeleteDepartment
+  - CreateContactGroup
+  - UpdateContactGroup
+  - DeleteContactGroup
+  - GetContactGroup
+  - GetContactGroupList
+  - AddContactGroupMember
+  - DeleteContactGroupMember
+  - GetContactGroupMember
   - GetEmployeeTypeEnumList
   - UpdateEmployeeTypeEnumPatch
   - DeleteEmployeeTypeEnum
   - CreateEmployeeTypeEnum
   - GetContactCustomAttrList
 - Message
+  - SendEphemeralMessage
   - SendRawMessage
   - SendRawMessageOld
   - ReplyRawMessage
@@ -508,7 +517,10 @@ API Count: 456, Event Count: 49
   - GetACSUser
   - UpdateACSUser
   - GetACSUserList
+- Ecosystem
+  - GetEcosystemBindAwemeUser
 - EventCallback
+  - EventV2AwemeEcosystemAwemeUserBindedAccountV1
   - EventV2TaskTaskUpdatedV1
   - EventV2TaskTaskCommentUpdatedV1
   - EventV2HelpdeskTicketMessageCreatedV1

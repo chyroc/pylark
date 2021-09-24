@@ -72,7 +72,7 @@ class UpdateCalendarEventReqVchat(object):
 class UpdateCalendarEventReqEndTime(object):
     date: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 仅全天日程使用该字段，如2018-09-01。需满足 RFC3339 格式。不能与 timestamp 同时指定, 示例值：" 2018-09-01"
+    )  # 仅全天日程使用该字段，如2018-09-01。需满足 RFC3339 格式。不能与 timestamp 同时指定, 示例值："2018-09-01"
     timestamp: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 秒级时间戳，如1602504000(表示2020/10/12 20:0:00 +8时区), 示例值："1605024000"
@@ -85,7 +85,7 @@ class UpdateCalendarEventReqEndTime(object):
 class UpdateCalendarEventReqStartTime(object):
     date: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 仅全天日程使用该字段，如2018-09-01。需满足 RFC3339 格式。不能与 timestamp 同时指定, 示例值：" 2018-09-01"
+    )  # 仅全天日程使用该字段，如2018-09-01。需满足 RFC3339 格式。不能与 timestamp 同时指定, 示例值："2018-09-01"
     timestamp: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 秒级时间戳，如1602504000(表示2020/10/12 20:0:00 +8时区), 示例值："1605024000"

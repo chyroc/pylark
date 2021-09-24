@@ -34,7 +34,7 @@ class PreviewApprovalInstanceReq(object):
     )  # 发起审批用户部门，如果用户只属于一个部门，可以不填，如果属于多个部门，必须填其中一个部门
     form: PreviewApprovalInstanceReqForm = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # json 数组，控件值。提交审批之前，查看预览流程时，该字段必填
+    )  # JSON字符串，控件值。提交审批之前，查看预览流程时，该字段必填
     instance_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批实例code
     task_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
@@ -51,7 +51,7 @@ class PreviewApprovalInstanceResp(object):
     )  # 审批人id列表
     end_cc_id_list: typing.List[str] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
-    )  # 审批结束抄送人ie列表
+    )  # 审批结束抄送人id列表
     node_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 节点id
     node_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 节点名称
     node_type: str = attr.ib(

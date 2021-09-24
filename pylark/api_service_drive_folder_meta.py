@@ -10,7 +10,7 @@ import io
 class GetDriveFolderMetaReq(object):
     folder_token: str = attr.ib(
         default="", metadata={"req_type": "path"}
-    )  # 文件夹 token，用于在此文件夹下新建文档，获取方式见[概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction)
+    )  # 文件夹 token，获取方式见[概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction)
 
 
 @attr.s

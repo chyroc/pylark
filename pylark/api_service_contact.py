@@ -83,6 +83,46 @@ from pylark.api_service_contact_department_delete import (
     DeleteDepartmentResp,
     _gen_delete_department_req,
 )
+from pylark.api_service_contact_group_create import (
+    CreateContactGroupReq,
+    CreateContactGroupResp,
+    _gen_create_contact_group_req,
+)
+from pylark.api_service_contact_group_update import (
+    UpdateContactGroupReq,
+    UpdateContactGroupResp,
+    _gen_update_contact_group_req,
+)
+from pylark.api_service_contact_group_Delete import (
+    DeleteContactGroupReq,
+    DeleteContactGroupResp,
+    _gen_delete_contact_group_req,
+)
+from pylark.api_service_contact_group_Get import (
+    GetContactGroupReq,
+    GetContactGroupResp,
+    _gen_get_contact_group_req,
+)
+from pylark.api_service_contact_group_get_list import (
+    GetContactGroupListReq,
+    GetContactGroupListResp,
+    _gen_get_contact_group_list_req,
+)
+from pylark.api_service_contact_group_member_add import (
+    AddContactGroupMemberReq,
+    AddContactGroupMemberResp,
+    _gen_add_contact_group_member_req,
+)
+from pylark.api_service_contact_group_member_delete import (
+    DeleteContactGroupMemberReq,
+    DeleteContactGroupMemberResp,
+    _gen_delete_contact_group_member_req,
+)
+from pylark.api_service_contact_group_member_get import (
+    GetContactGroupMemberReq,
+    GetContactGroupMemberResp,
+    _gen_get_contact_group_member_req,
+)
 from pylark.api_service_contact_employee_type_enums_list import (
     GetEmployeeTypeEnumListReq,
     GetEmployeeTypeEnumListResp,
@@ -199,6 +239,48 @@ class LarkContactService(object):
         self, request: DeleteDepartmentReq, options: typing.List[str] = None
     ) -> typing.Tuple[DeleteDepartmentResp, Response]:
         return self.cli.raw_request(_gen_delete_department_req(request, options))
+
+    def create_contact_group(
+        self, request: CreateContactGroupReq, options: typing.List[str] = None
+    ) -> typing.Tuple[CreateContactGroupResp, Response]:
+        return self.cli.raw_request(_gen_create_contact_group_req(request, options))
+
+    def update_contact_group(
+        self, request: UpdateContactGroupReq, options: typing.List[str] = None
+    ) -> typing.Tuple[UpdateContactGroupResp, Response]:
+        return self.cli.raw_request(_gen_update_contact_group_req(request, options))
+
+    def delete_contact_group(
+        self, request: DeleteContactGroupReq, options: typing.List[str] = None
+    ) -> typing.Tuple[DeleteContactGroupResp, Response]:
+        return self.cli.raw_request(_gen_delete_contact_group_req(request, options))
+
+    def get_contact_group(
+        self, request: GetContactGroupReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetContactGroupResp, Response]:
+        return self.cli.raw_request(_gen_get_contact_group_req(request, options))
+
+    def get_contact_group_list(
+        self, request: GetContactGroupListReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetContactGroupListResp, Response]:
+        return self.cli.raw_request(_gen_get_contact_group_list_req(request, options))
+
+    def add_contact_group_member(
+        self, request: AddContactGroupMemberReq, options: typing.List[str] = None
+    ) -> typing.Tuple[AddContactGroupMemberResp, Response]:
+        return self.cli.raw_request(_gen_add_contact_group_member_req(request, options))
+
+    def delete_contact_group_member(
+        self, request: DeleteContactGroupMemberReq, options: typing.List[str] = None
+    ) -> typing.Tuple[DeleteContactGroupMemberResp, Response]:
+        return self.cli.raw_request(
+            _gen_delete_contact_group_member_req(request, options)
+        )
+
+    def get_contact_group_member(
+        self, request: GetContactGroupMemberReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetContactGroupMemberResp, Response]:
+        return self.cli.raw_request(_gen_get_contact_group_member_req(request, options))
 
     def get_employee_type_enum_list(
         self, request: GetEmployeeTypeEnumListReq, options: typing.List[str] = None

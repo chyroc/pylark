@@ -1171,6 +1171,44 @@ from pylark.api_service_contact_employee_type_enums_update import (
     UpdateEmployeeTypeEnumPatchRespEmployeeTypeEnum,
     UpdateEmployeeTypeEnumPatchResp,
 )
+from pylark.api_service_contact_group_Delete import (
+    DeleteContactGroupReq,
+    DeleteContactGroupResp,
+)
+from pylark.api_service_contact_group_Get import (
+    GetContactGroupReq,
+    GetContactGroupRespGroup,
+    GetContactGroupResp,
+)
+from pylark.api_service_contact_group_create import (
+    CreateContactGroupReq,
+    CreateContactGroupResp,
+)
+from pylark.api_service_contact_group_get_list import (
+    GetContactGroupListReq,
+    GetContactGroupListRespGroup,
+    GetContactGroupListResp,
+)
+from pylark.api_service_contact_group_member_add import (
+    AddContactGroupMemberReqMemberIDType,
+    AddContactGroupMemberReq,
+    AddContactGroupMemberResp,
+)
+from pylark.api_service_contact_group_member_delete import (
+    DeleteContactGroupMemberReqMemberIDType,
+    DeleteContactGroupMemberReq,
+    DeleteContactGroupMemberResp,
+)
+from pylark.api_service_contact_group_member_get import (
+    GetContactGroupMemberReqMemberIDType,
+    GetContactGroupMemberReq,
+    GetContactGroupMemberRespMember,
+    GetContactGroupMemberResp,
+)
+from pylark.api_service_contact_group_update import (
+    UpdateContactGroupReq,
+    UpdateContactGroupResp,
+)
 from pylark.api_service_contact_user_create import (
     CreateUserReqNotificationOption,
     CreateUserReqCustomAttrValueGenericUser,
@@ -1879,6 +1917,13 @@ from pylark.api_service_drive_sheet_value_set import (
     SetSheetValueReqValueRange,
     SetSheetValueReq,
     SetSheetValueResp,
+)
+from pylark.api_service_ecosystem import LarkEcosystemService
+from pylark.api_service_ecosystem_aweme_users_get import (
+    GetEcosystemBindAwemeUserReqUserIDType,
+    GetEcosystemBindAwemeUserReq,
+    GetEcosystemBindAwemeUserRespAwemeUser,
+    GetEcosystemBindAwemeUserResp,
 )
 from pylark.api_service_ehr import LarkEHRService
 from pylark.api_service_ehr_download_attachment import (
@@ -2681,6 +2726,12 @@ from pylark.api_service_message_send import (
     SendRawMessageRespSender,
     SendRawMessageRespMsgType,
     SendRawMessageResp,
+)
+from pylark.api_service_message_send_ephemeral import (
+    SendEphemeralMessageReqCard,
+    SendEphemeralMessageReqMsgType,
+    SendEphemeralMessageReq,
+    SendEphemeralMessageResp,
 )
 from pylark.api_service_message_send_old import (
     SendRawMessageOldReqContent,
@@ -3895,6 +3946,28 @@ __all__ = [
     UpdateEmployeeTypeEnumPatchRespEmployeeTypeEnumI18nContent,
     UpdateEmployeeTypeEnumPatchRespEmployeeTypeEnum,
     UpdateEmployeeTypeEnumPatchResp,
+    DeleteContactGroupReq,
+    DeleteContactGroupResp,
+    GetContactGroupReq,
+    GetContactGroupRespGroup,
+    GetContactGroupResp,
+    CreateContactGroupReq,
+    CreateContactGroupResp,
+    GetContactGroupListReq,
+    GetContactGroupListRespGroup,
+    GetContactGroupListResp,
+    AddContactGroupMemberReqMemberIDType,
+    AddContactGroupMemberReq,
+    AddContactGroupMemberResp,
+    DeleteContactGroupMemberReqMemberIDType,
+    DeleteContactGroupMemberReq,
+    DeleteContactGroupMemberResp,
+    GetContactGroupMemberReqMemberIDType,
+    GetContactGroupMemberReq,
+    GetContactGroupMemberRespMember,
+    GetContactGroupMemberResp,
+    UpdateContactGroupReq,
+    UpdateContactGroupResp,
     CreateUserReqNotificationOption,
     CreateUserReqCustomAttrValueGenericUser,
     CreateUserReqCustomAttrValue,
@@ -4398,6 +4471,11 @@ __all__ = [
     SetSheetValueReqValueRange,
     SetSheetValueReq,
     SetSheetValueResp,
+    LarkEcosystemService,
+    GetEcosystemBindAwemeUserReqUserIDType,
+    GetEcosystemBindAwemeUserReq,
+    GetEcosystemBindAwemeUserRespAwemeUser,
+    GetEcosystemBindAwemeUserResp,
     LarkEHRService,
     DownloadEHRAttachmentsReq,
     DownloadEHRAttachmentsRespFile,
@@ -4962,6 +5040,10 @@ __all__ = [
     SendRawMessageRespSender,
     SendRawMessageRespMsgType,
     SendRawMessageResp,
+    SendEphemeralMessageReqCard,
+    SendEphemeralMessageReqMsgType,
+    SendEphemeralMessageReq,
+    SendEphemeralMessageResp,
     SendRawMessageOldReqContent,
     SendRawMessageOldReqMsgType,
     SendRawMessageOldReq,

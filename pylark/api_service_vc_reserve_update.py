@@ -13,7 +13,7 @@ class UpdateVCReserveReqMeetingSettingsCallSettingCalleePstnSipInfo(object):
     )  # 给pstn/sip用户设置的临时昵称, 示例值："dodo"
     main_address: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # pstn/sip主机号, 示例值："1234"
+    )  # pstn/sip主机号，格式为：[国际冠字]-[电话区号][电话号码]，当前仅支持国内手机及固定电话号码, 示例值："+86-02187654321"
 
 
 @attr.s
@@ -23,7 +23,7 @@ class UpdateVCReserveReqMeetingSettingsCallSettingCallee(object):
     )  # 用户ID, 示例值："ou_3ec3f6a28a0d08c45d895276e8e5e19b"
     user_type: int = attr.ib(
         default=0, metadata={"req_type": "json"}
-    )  # 用户类型, 示例值：1, 可选值有: `1`：lark用户, `2`：rooms用户, `3`：文档用户, `4`：neo单品用户, `5`：neo单品游客用户, `6`：pstn用户, `7`：sip用户
+    )  # 用户类型，当前仅支持用户类型6(pstn用户), 示例值：1, 可选值有: `1`：lark用户, `2`：rooms用户, `3`：文档用户, `4`：neo单品用户, `5`：neo单品游客用户, `6`：pstn用户, `7`：sip用户
     pstn_sip_info: UpdateVCReserveReqMeetingSettingsCallSettingCalleePstnSipInfo = (
         attr.ib(default=None, metadata={"req_type": "json"})
     )  # pstn/sip信息

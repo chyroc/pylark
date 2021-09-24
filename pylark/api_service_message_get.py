@@ -68,8 +68,10 @@ class GetMessageRespItem(object):
     )  # 消息类型 text post card image等等
     create_time: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 消息生成的时间戳(毫秒)
-    update_time: str = attr.ib(default="", metadata={"req_type": "json"})  # 消息更新的时间戳
+    )  # 消息生成的时间戳（毫秒）
+    update_time: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 消息更新的时间戳（毫秒）
     deleted: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 消息是否被撤回
