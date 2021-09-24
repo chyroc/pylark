@@ -16,7 +16,7 @@ class UpdateCalendarEventReqSchema(object):
     )  # UI项自定义状态。目前只支持hide, 示例值："hide", 可选值有: `hide`：隐藏显示, `readonly`：只读, `editable`：可编辑, `unknown`：未知UI项自定义状态，仅用于读取时兼容
     app_link: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 按钮点击后跳转的链接, 示例值："xxxxx", 最大长度：`2000` 字符
+    )  # 按钮点击后跳转的链接, 示例值："https://applink.feishu.cn/client/calendar/event/detail?calendarId=xxxxxx&key=xxxxxx&originalTime=xxxxxx&startTime=xxxxxx", 最大长度：`2000` 字符
 
 
 @attr.s
@@ -46,10 +46,10 @@ class UpdateCalendarEventReqLocation(object):
     )  # 地点地址, 示例值："地点地址", 长度范围：`1` ～ `255` 字符
     latitude: float = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # 地点坐标纬度信息，对于国内的地点，采用GCJ-02标准，海外地点采用WGS84标准, 示例值：xxxxx
+    )  # 地点坐标纬度信息，对于国内的地点，采用GCJ-02标准，海外地点采用WGS84标准, 示例值：1.100000023841858
     longitude: float = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # 地点坐标经度信息，对于国内的地点，采用GCJ-02标准，海外地点采用WGS84标准, 示例值：xxxxx
+    )  # 地点坐标经度信息，对于国内的地点，采用GCJ-02标准，海外地点采用WGS84标准, 示例值：2.200000047683716
 
 
 @attr.s
