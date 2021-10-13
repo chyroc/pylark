@@ -10,7 +10,7 @@ import io
 class GetCalendarEventListReq(object):
     page_size: int = attr.ib(
         default=0, metadata={"req_type": "query"}
-    )  # 一次请求要求返回最大数量，默认500，取值范围为[50. 1000], 示例值：50, 默认值: `500`, 取值范围：`50` ～ `1000`
+    )  # 一次请求要求返回最大数量，默认500，取值范围为[50, 1000], 示例值：50, 默认值: `500`, 取值范围：`50` ～ `1000`
     anchor_time: str = attr.ib(
         default="", metadata={"req_type": "query"}
     )  # 拉取anchor_time之后的日程，为timestamp, 示例值："1609430400"

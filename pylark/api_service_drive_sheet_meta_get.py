@@ -96,7 +96,7 @@ class GetSheetMetaRespProperties(object):
     owner_user: int = attr.ib(default=0, metadata={"req_type": "json"})  # 所有者的 id
     owner_user_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 所有者的 id，取决于user_id_type的值
+    )  # 所有者的 id，取决于user_id_type的值，仅user_id_type不为空是返回该值
     sheet_count: int = attr.ib(
         default=0, metadata={"req_type": "json"}
     )  # spreadsheet 下的 sheet 数

@@ -44,7 +44,7 @@ class GetCalendarFreeBusyListRespFreebusy(object):
 class GetCalendarFreeBusyListResp(object):
     freebusy_list: typing.List[GetCalendarFreeBusyListRespFreebusy] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
-    )  # 日历上请求时间区间内的忙闲信息
+    )  # 日历上请求时间区间内的忙碌时间段信息。
 
 
 def _gen_get_calendar_free_busy_list_req(request, options) -> RawRequestReq:

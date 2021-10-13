@@ -8,12 +8,12 @@ import io
 
 @attr.s
 class BatchGetUserByIDReq(object):
-    emails: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "query"}
-    )  # 要查询的用户邮箱，最多 50 条。
-    mobiles: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "query"}
-    )  # 要查询的用户手机号，最多 50 条。<br>非中国大陆地区的手机号需要添加以 “+” 开头的国家 / 地区代码，并且需要进行 URL 转义。<br>
+    emails: str = attr.ib(
+        default="", metadata={"req_type": "query"}
+    )  # 要查询的用户邮箱，最多 50 条，多个邮箱以 & 隔开。
+    mobiles: str = attr.ib(
+        default="", metadata={"req_type": "query"}
+    )  # 要查询的用户手机号，最多 50 条，多个手机号以 & 隔开。<br>非中国大陆地区的手机号需要添加以 “+” 开头的国家 / 地区代码，并且需要进行 URL 转义。<br>
 
 
 @attr.s

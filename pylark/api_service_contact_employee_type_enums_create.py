@@ -8,8 +8,10 @@ import io
 
 @attr.s
 class CreateEmployeeTypeEnumReqI18nContent(object):
-    locale: str = attr.ib(default="", metadata={"req_type": "json"})  # 语言, 示例值："zh_cn"
-    value: str = attr.ib(default="", metadata={"req_type": "json"})  # i18n内容, 示例值："专家"
+    locale: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 语言版本, 示例值："zh_cn"
+    value: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段名, 示例值："专家"
 
 
 @attr.s
@@ -22,7 +24,7 @@ class CreateEmployeeTypeEnumReq(object):
     )  # 类型, 示例值：2, 可选值有: `1`：内置类型, `2`：自定义
     enum_status: int = attr.ib(
         default=0, metadata={"req_type": "json"}
-    )  # 类型, 示例值：1, 可选值有: `1`：激活, `2`：未激活
+    )  # 使用状态, 示例值：1, 可选值有: `1`：激活, `2`：未激活
     i18n_content: CreateEmployeeTypeEnumReqI18nContent = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # i18n定义
@@ -30,8 +32,8 @@ class CreateEmployeeTypeEnumReq(object):
 
 @attr.s
 class CreateEmployeeTypeEnumRespEmployeeTypeEnumI18nContent(object):
-    locale: str = attr.ib(default="", metadata={"req_type": "json"})  # 语言
-    value: str = attr.ib(default="", metadata={"req_type": "json"})  # i18n内容
+    locale: str = attr.ib(default="", metadata={"req_type": "json"})  # 语言版本
+    value: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段名
 
 
 @attr.s
@@ -46,7 +48,7 @@ class CreateEmployeeTypeEnumRespEmployeeTypeEnum(object):
     )  # 类型, 可选值有: `1`：内置类型, `2`：自定义
     enum_status: int = attr.ib(
         default=0, metadata={"req_type": "json"}
-    )  # 类型, 可选值有: `1`：激活, `2`：未激活
+    )  # 使用状态, 可选值有: `1`：激活, `2`：未激活
     i18n_content: CreateEmployeeTypeEnumRespEmployeeTypeEnumI18nContent = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # i18n定义

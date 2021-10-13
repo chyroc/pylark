@@ -20,13 +20,13 @@ class GetUserReqUserIDType(object):
 class GetUserReq(object):
     user_id_type: GetUserReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     department_id_type: GetUserReqDepartmentIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
     )  # 此次调用中使用的部门ID的类型, 示例值："open_department_id", 可选值有: `department_id`：以自定义department_id来标识部门, `open_department_id`：以open_department_id来标识部门, 默认值: `open_department_id`
     user_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
-    )  # 用户ID，需要与查询参数中的user_id_type类型保持一致。, 示例值："ou_7dab8a3d3cdcc9da365777c7ad535d62"
+    )  # 用户ID，需要与查询参数中的user_id_type类型保持一致。, 示例值："7be5fg9a", 字段权限要求:  获取用户 user ID
 
 
 @attr.s
@@ -58,7 +58,7 @@ class GetUserRespUserCustomAttrValue(object):
 class GetUserRespUserCustomAttr(object):
     type: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 自定义字段类型   , `TEXT`, `HREF`, `ENUMERATION`, `PICTURE_ENUM`, `GENERIC_USER`
+    )  # 自定义字段类型   , `TEXT`：文本, `HREF`：网页, `ENUMERATION`：枚举, `PICTURE_ENUM`：图片, `GENERIC_USER`：用户
     id: str = attr.ib(default="", metadata={"req_type": "json"})  # 自定义字段ID
     value: GetUserRespUserCustomAttrValue = attr.ib(
         default=None, metadata={"req_type": "json"}
@@ -116,7 +116,7 @@ class GetUserRespUser(object):
     )  # 用户的open_id，不同ID的说明参见 [用户相关的 ID 概念](https://open.feishu.cn/document/home/user-identity-introduction/introduction)
     name: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 用户名, 最小长度：`1` 字符,**字段权限要求（满足任一）**：, 获取用户基本信息, 以应用身份访问通讯录（历史版本）
+    )  # 用户名,**字段权限要求（满足任一）**：, 获取用户基本信息, 以应用身份访问通讯录（历史版本）
     en_name: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 英文名,**字段权限要求（满足任一）**：, 获取用户基本信息, 以应用身份访问通讯录（历史版本）
@@ -164,7 +164,7 @@ class GetUserRespUser(object):
     )  # 工号,**字段权限要求（满足任一）**：, 获取用户雇佣信息, 以应用身份访问通讯录（历史版本）
     employee_type: int = attr.ib(
         default=0, metadata={"req_type": "json"}
-    )  # 员工类型，可选值有：, 1：正式员工, 2：实习生, 3：外包, 4：劳务, 5：顾问   ,同时可读取到自定义员工类型的 int 值，可通过下方接口获取到该租户的自定义员工类型的名称   ,[获取人员类型](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/employee_type_enum/list),**字段权限要求（满足任一）**：, 获取用户雇佣信息, 以应用身份访问通讯录（历史版本）
+    )  # 员工类型，可选值有：, `1`：正式员工, `2`：实习生, `3`：外包, `4`：劳务, `5`：顾问   ,同时可读取到自定义员工类型的 int 值，可通过下方接口获取到该租户的自定义员工类型的名称   ,[获取人员类型](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/employee_type_enum/list),**字段权限要求（满足任一）**：, 获取用户雇佣信息, 以应用身份访问通讯录（历史版本）
     orders: typing.List[GetUserRespUserOrder] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 用户排序信息,**字段权限要求（满足任一）**：, 获取用户组织架构信息, 以应用身份访问通讯录（历史版本）

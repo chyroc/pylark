@@ -24,7 +24,7 @@ class CreateCalendarEventAttendeeReqAttendee(object):
     )  # 参与人的用户id，依赖于user_id_type返回对应的取值，当is_external为true时，此字段只会返回open_id或者union_id, 示例值："ou_xxxxxxxx"
     chat_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # chat类型参与人的群组chat_id, 示例值："om_xxxxxxxxx"
+    )  # chat类型参与人的群组chat_id, 示例值："oc_xxxxxxxxx"
     room_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # resource类型参与人的会议室room_id, 示例值："omm_xxxxxxxx"

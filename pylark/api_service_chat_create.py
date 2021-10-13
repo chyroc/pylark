@@ -38,7 +38,15 @@ class CreateChatReqI18nNames(object):
 
 
 @attr.s
+class CreateChatReqUserIDType(object):
+    pass
+
+
+@attr.s
 class CreateChatReq(object):
+    user_id_type: CreateChatReqUserIDType = attr.ib(
+        default=None, metadata={"req_type": "query"}
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     avatar: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 群头像对应的 Image Key，可通过[上传图片](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/image/create)获取（注意：上传图片的 [image_type] 需要指定为 [avatar]）, 示例值："default-avatar_44ae0ca3-e140-494b-956f-78091e348435"
@@ -49,12 +57,18 @@ class CreateChatReq(object):
     i18n_names: CreateChatReqI18nNames = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 群国际化名称
+    owner_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 创建群时指定的群主，不填时指定建群的机器人为群主, 示例值："4d7a3c6g"
     chat_mode: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 群模式(group), 示例值："group"
     chat_type: CreateChatReqChatType = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 群类型(private/public), 示例值："private"
+    external: bool = attr.ib(
+        default=None, metadata={"req_type": "json"}
+    )  # 是否是外部群, 示例值：false
     join_message_visibility: CreateChatReqJoinMessageVisibility = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 入群消息可见性(only_owner/all_members/not_anyone), 示例值："all_members"
@@ -112,6 +126,11 @@ class CreateChatRespAddMemberPermission(object):
 
 
 @attr.s
+class CreateChatRespOwnerIDType(object):
+    pass
+
+
+@attr.s
 class CreateChatRespI18nNames(object):
     zh_cn: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文名
     en_us: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名
@@ -127,6 +146,10 @@ class CreateChatResp(object):
     i18n_names: CreateChatRespI18nNames = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 群国际化名称
+    owner_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 群主 ID
+    owner_id_type: CreateChatRespOwnerIDType = attr.ib(
+        factory=lambda: CreateChatRespOwnerIDType(), metadata={"req_type": "json"}
+    )  # 群主 ID 类型
     add_member_permission: CreateChatRespAddMemberPermission = attr.ib(
         factory=lambda: CreateChatRespAddMemberPermission(),
         metadata={"req_type": "json"},
@@ -148,6 +171,10 @@ class CreateChatResp(object):
     chat_tag: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 优先级最高的一个群 tag（inner/tenant/department/edu/meeting/customer_service）
+    external: bool = attr.ib(
+        factory=lambda: bool(), metadata={"req_type": "json"}
+    )  # 是否是外部群
+    tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # tenant key
     join_message_visibility: CreateChatRespJoinMessageVisibility = attr.ib(
         factory=lambda: CreateChatRespJoinMessageVisibility(),
         metadata={"req_type": "json"},

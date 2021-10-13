@@ -18,7 +18,7 @@ class GetApplicationAppVisibilityReq(object):
 
 
 @attr.s
-class GetApplicationAppVisibilityRespUsers(object):
+class GetApplicationAppVisibilityRespUser(object):
     user_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 用户的 user_id，只返回给申请了 user_id 权限的企业自建应用
@@ -26,17 +26,17 @@ class GetApplicationAppVisibilityRespUsers(object):
 
 
 @attr.s
-class GetApplicationAppVisibilityRespDepartments(object):
+class GetApplicationAppVisibilityRespDepartment(object):
     id: str = attr.ib(default="", metadata={"req_type": "json"})  # 自定义 department_id
 
 
 @attr.s
 class GetApplicationAppVisibilityResp(object):
-    departments: GetApplicationAppVisibilityRespDepartments = attr.ib(
-        default=None, metadata={"req_type": "json"}
+    departments: typing.List[GetApplicationAppVisibilityRespDepartment] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "json"}
     )  # 可用部门列表
-    users: GetApplicationAppVisibilityRespUsers = attr.ib(
-        default=None, metadata={"req_type": "json"}
+    users: typing.List[GetApplicationAppVisibilityRespUser] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "json"}
     )  # 可用用户列表（仅包含单独设置的用户，可用部门、用户组中的用户未展开）
     is_visible_to_all: int = attr.ib(
         default=0, metadata={"req_type": "json"}

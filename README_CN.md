@@ -37,7 +37,7 @@ lark-sdk.github.io
 
 ## 支持的接口
 
-API 总数: 466, 事件总数: 50
+API 总数: 470, 事件总数: 51
 
 <details>
   <summary>
@@ -50,6 +50,7 @@ API 总数: 466, 事件总数: 50
   - RefreshAccessToken
   - GetUserInfo
 - Contact
+  - SearchUserOld
   - CreateUser
   - DeleteUser
   - GetUser
@@ -81,6 +82,9 @@ API 总数: 466, 事件总数: 50
   - GetContactCustomAttrList
 - Message
   - SendEphemeralMessage
+  - SendUrgentAppMessage
+  - SendUrgentSmsMessage
+  - SendUrgentPhoneMessage
   - SendRawMessage
   - SendRawMessageOld
   - ReplyRawMessage
@@ -520,6 +524,7 @@ API 总数: 466, 事件总数: 50
 - Ecosystem
   - GetEcosystemBindAwemeUser
 - EventCallback
+  - EventV2AttendanceUserFlowCreatedV1
   - EventV2AwemeEcosystemAwemeUserBindedAccountV1
   - EventV2TaskTaskUpdatedV1
   - EventV2TaskTaskCommentUpdatedV1

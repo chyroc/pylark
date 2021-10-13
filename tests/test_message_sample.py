@@ -32,6 +32,26 @@ class TestMessageSampleMockGetTokenFailed(unittest.TestCase):
 
         assert "msg=failed" in f"{e}"
 
+    def test_mock_get_token_send_urgent_app_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_urgent_app_message(pylark.SendUrgentAppMessageReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_send_urgent_sms_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_urgent_sms_message(pylark.SendUrgentSmsMessageReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_send_urgent_phone_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_urgent_phone_message(
+                pylark.SendUrgentPhoneMessageReq()
+            )
+
+        assert "msg=failed" in f"{e}"
+
     def test_mock_get_token_send_raw_message(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.send_raw_message(pylark.SendRawMessageReq())
@@ -111,6 +131,38 @@ class TestMessageSampleMockSelfFuncFailed(unittest.TestCase):
 
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.send_ephemeral_message = origin_func
+
+    def test_mock_self_func_send_urgent_app_message(self):
+        origin_func = self.module_cli.send_urgent_app_message
+        self.module_cli.send_urgent_app_message = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_urgent_app_message(pylark.SendUrgentAppMessageReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.send_urgent_app_message = origin_func
+
+    def test_mock_self_func_send_urgent_sms_message(self):
+        origin_func = self.module_cli.send_urgent_sms_message
+        self.module_cli.send_urgent_sms_message = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_urgent_sms_message(pylark.SendUrgentSmsMessageReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.send_urgent_sms_message = origin_func
+
+    def test_mock_self_func_send_urgent_phone_message(self):
+        origin_func = self.module_cli.send_urgent_phone_message
+        self.module_cli.send_urgent_phone_message = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_urgent_phone_message(
+                pylark.SendUrgentPhoneMessageReq()
+            )
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.send_urgent_phone_message = origin_func
 
     def test_mock_self_func_send_raw_message(self):
         origin_func = self.module_cli.send_raw_message
@@ -226,6 +278,42 @@ class TestMessageSampleMockRawRequestFailed(unittest.TestCase):
     def test_mock_raw_request_send_ephemeral_message(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.send_ephemeral_message(pylark.SendEphemeralMessageReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_send_urgent_app_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_urgent_app_message(
+                pylark.SendUrgentAppMessageReq(
+                    message_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_send_urgent_sms_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_urgent_sms_message(
+                pylark.SendUrgentSmsMessageReq(
+                    message_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_send_urgent_phone_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_urgent_phone_message(
+                pylark.SendUrgentPhoneMessageReq(
+                    message_id="x",
+                )
+            )
 
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0
@@ -347,6 +435,39 @@ class TestMessageSampleRealRequestFailed(unittest.TestCase):
     def test_real_request_send_ephemeral_message(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.send_ephemeral_message(pylark.SendEphemeralMessageReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_send_urgent_app_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_urgent_app_message(
+                pylark.SendUrgentAppMessageReq(
+                    message_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_send_urgent_sms_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_urgent_sms_message(
+                pylark.SendUrgentSmsMessageReq(
+                    message_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_send_urgent_phone_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.send_urgent_phone_message(
+                pylark.SendUrgentPhoneMessageReq(
+                    message_id="x",
+                )
+            )
 
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0

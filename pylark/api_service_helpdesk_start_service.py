@@ -13,7 +13,7 @@ class StartHelpdeskServiceReq(object):
     )  # 是否直接进入人工(若appointed_agents填写了，该值为必填), 示例值：false
     appointed_agents: typing.List[str] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
-    )  # 客服 open ids (获取方式参考[获取单个用户信息](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/user/get))，human_service需要为true
+    )  # 客服 open ids (获取方式参考[获取单个用户信息](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/user/get))，human_service需要为true, 示例值：[ou_7dab8a3d3cdcc9da365777c7ad535d62]
     open_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 用户 open id,(获取方式参考[获取单个用户信息](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/contact-v3/user/get)), 示例值："ou_7dab8a3d3cdcc9da365777c7ad535d62"
@@ -25,7 +25,6 @@ class StartHelpdeskServiceReq(object):
 @attr.s
 class StartHelpdeskServiceResp(object):
     chat_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 客服群open ID
-    ticket_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 工单ID
 
 
 def _gen_start_helpdesk_service_req(request, options) -> RawRequestReq:

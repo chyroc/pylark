@@ -63,6 +63,15 @@ class PreviewApprovalInstanceResp(object):
     comments: typing.List[str] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
     )  # 节点的说明信息
+    is_empty_logic: bool = attr.ib(
+        factory=lambda: bool(), metadata={"req_type": "json"}
+    )  # 审批人是否为空，若为空，则user_id_list为兜底审批人id列表
+    is_approver_type_free: bool = attr.ib(
+        factory=lambda: bool(), metadata={"req_type": "json"}
+    )  # 是否发起人自选节点
+    has_cc_type_free: bool = attr.ib(
+        factory=lambda: bool(), metadata={"req_type": "json"}
+    )  # 节点是否支持抄送人自选
 
 
 def _gen_preview_approval_instance_req(request, options) -> RawRequestReq:

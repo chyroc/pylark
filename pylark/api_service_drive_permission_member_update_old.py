@@ -22,7 +22,7 @@ class UpdateDriveMemberPermissionOldReq(object):
         default="", metadata={"req_type": "json"}
     )  # 权限，"view" or "edit"
     notify_lark: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 修改权限后是否飞书/lark通知对方<br>true 通知 or false 不通知
 
 

@@ -3,6 +3,11 @@
 import typing
 from pylark.lark_request import Response
 
+from pylark.api_service_contact_user_search_old import (
+    SearchUserOldReq,
+    SearchUserOldResp,
+    _gen_search_user_old_req,
+)
 from pylark.api_service_contact_user_create import (
     CreateUserReq,
     CreateUserResp,
@@ -159,6 +164,11 @@ class LarkContactService(object):
 
     def __init__(self, cli: "Lark"):
         self.cli = cli
+
+    def search_user_old(
+        self, request: SearchUserOldReq, options: typing.List[str] = None
+    ) -> typing.Tuple[SearchUserOldResp, Response]:
+        return self.cli.raw_request(_gen_search_user_old_req(request, options))
 
     def create_user(
         self, request: CreateUserReq, options: typing.List[str] = None

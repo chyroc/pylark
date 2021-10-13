@@ -34,11 +34,11 @@ class UpdateApplicationAppVisibilityReq(object):
     is_visiable_to_all: int = attr.ib(
         default=0, metadata={"req_type": "json"}
     )  # 是否全员可见，0：否；1：是；不填：继续当前状态不改变
-    add_departments: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+    add_departments: typing.List[str] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "json"}
     )  # 添加的部门列表，元素个数不超过 500，**先增加后删除**
-    del_departments: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+    del_departments: typing.List[str] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "json"}
     )  # 删除的部门列表，元素个数不超过 500，**先增加后删除**
 
 

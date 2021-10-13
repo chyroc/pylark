@@ -78,7 +78,9 @@ class GetHelpdeskTicketRespTicket(object):
     guest: GetHelpdeskTicketRespTicketGuest = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 工单创建用户
-    stage: int = attr.ib(default=0, metadata={"req_type": "json"})  # 工单阶段，1：bot，2：人工
+    ticket_type: int = attr.ib(
+        default=0, metadata={"req_type": "json"}
+    )  # 工单阶段：1. 机器人 2. 人工
     status: int = attr.ib(
         default=0, metadata={"req_type": "json"}
     )  # 工单状态，1：已创建 2: 处理中 3: 排队中 4：待定 5：待用户响应 50: 被机器人关闭 51: 被人工关闭

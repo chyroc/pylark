@@ -21,7 +21,7 @@ class GetBitableTableListReq(object):
 
 @attr.s
 class GetBitableTableListRespItem(object):
-    table_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 表格表 id
+    table_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 数据表 id
     revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # 数据表的版本号
     name: str = attr.ib(default="", metadata={"req_type": "json"})  # 数据表名字
 

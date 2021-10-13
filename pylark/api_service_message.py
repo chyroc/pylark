@@ -8,6 +8,21 @@ from pylark.api_service_message_send_ephemeral import (
     SendEphemeralMessageResp,
     _gen_send_ephemeral_message_req,
 )
+from pylark.api_service_message_send_urgent_app import (
+    SendUrgentAppMessageReq,
+    SendUrgentAppMessageResp,
+    _gen_send_urgent_app_message_req,
+)
+from pylark.api_service_message_send_urgent_sms import (
+    SendUrgentSmsMessageReq,
+    SendUrgentSmsMessageResp,
+    _gen_send_urgent_sms_message_req,
+)
+from pylark.api_service_message_send_urgent_phone import (
+    SendUrgentPhoneMessageReq,
+    SendUrgentPhoneMessageResp,
+    _gen_send_urgent_phone_message_req,
+)
 from pylark.api_service_message_send import (
     SendRawMessageReq,
     SendRawMessageResp,
@@ -74,6 +89,23 @@ class LarkMessageService(object):
         self, request: SendEphemeralMessageReq, options: typing.List[str] = None
     ) -> typing.Tuple[SendEphemeralMessageResp, Response]:
         return self.cli.raw_request(_gen_send_ephemeral_message_req(request, options))
+
+    def send_urgent_app_message(
+        self, request: SendUrgentAppMessageReq, options: typing.List[str] = None
+    ) -> typing.Tuple[SendUrgentAppMessageResp, Response]:
+        return self.cli.raw_request(_gen_send_urgent_app_message_req(request, options))
+
+    def send_urgent_sms_message(
+        self, request: SendUrgentSmsMessageReq, options: typing.List[str] = None
+    ) -> typing.Tuple[SendUrgentSmsMessageResp, Response]:
+        return self.cli.raw_request(_gen_send_urgent_sms_message_req(request, options))
+
+    def send_urgent_phone_message(
+        self, request: SendUrgentPhoneMessageReq, options: typing.List[str] = None
+    ) -> typing.Tuple[SendUrgentPhoneMessageResp, Response]:
+        return self.cli.raw_request(
+            _gen_send_urgent_phone_message_req(request, options)
+        )
 
     def send_raw_message(
         self, request: SendRawMessageReq, options: typing.List[str] = None

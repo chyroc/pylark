@@ -143,8 +143,8 @@ from pylark.api_service_application_app_list import (
 )
 from pylark.api_service_application_app_visibility_get import (
     GetApplicationAppVisibilityReq,
-    GetApplicationAppVisibilityRespUsers,
-    GetApplicationAppVisibilityRespDepartments,
+    GetApplicationAppVisibilityRespUser,
+    GetApplicationAppVisibilityRespDepartment,
     GetApplicationAppVisibilityResp,
 )
 from pylark.api_service_application_app_visibility_update import (
@@ -983,6 +983,7 @@ from pylark.api_service_chat_create import (
     CreateChatReqJoinMessageVisibility,
     CreateChatReqChatType,
     CreateChatReqI18nNames,
+    CreateChatReqUserIDType,
     CreateChatReq,
     CreateChatRespModerationPermission,
     CreateChatRespMembershipApproval,
@@ -993,6 +994,7 @@ from pylark.api_service_chat_create import (
     CreateChatRespAtAllPermission,
     CreateChatRespShareCardPermission,
     CreateChatRespAddMemberPermission,
+    CreateChatRespOwnerIDType,
     CreateChatRespI18nNames,
     CreateChatResp,
 )
@@ -1270,6 +1272,12 @@ from pylark.api_service_contact_user_get_list import (
     GetUserListRespItemAvatar,
     GetUserListRespItem,
     GetUserListResp,
+)
+from pylark.api_service_contact_user_search_old import (
+    SearchUserOldReq,
+    SearchUserOldRespUserAvatar,
+    SearchUserOldRespUser,
+    SearchUserOldResp,
 )
 from pylark.api_service_contact_user_update import (
     UpdateUserReqCustomAttrValueGenericUser,
@@ -2199,8 +2207,8 @@ from pylark.api_service_helpdesk_ticket_get import (
     GetHelpdeskTicketResp,
 )
 from pylark.api_service_helpdesk_ticket_get_list import (
-    GetHelpdeskTicketListReqCustomizedFields,
     GetHelpdeskTicketListReq,
+    GetHelpdeskTicketListRespTicketAgentServiceDuration,
     GetHelpdeskTicketListRespTicketCustomizedField,
     GetHelpdeskTicketListRespTicketCollaborator,
     GetHelpdeskTicketListRespTicketClosedBy,
@@ -2739,6 +2747,21 @@ from pylark.api_service_message_send_old import (
     SendRawMessageOldReq,
     SendRawMessageOldResp,
 )
+from pylark.api_service_message_send_urgent_app import (
+    SendUrgentAppMessageReqUserIDType,
+    SendUrgentAppMessageReq,
+    SendUrgentAppMessageResp,
+)
+from pylark.api_service_message_send_urgent_phone import (
+    SendUrgentPhoneMessageReqUserIDType,
+    SendUrgentPhoneMessageReq,
+    SendUrgentPhoneMessageResp,
+)
+from pylark.api_service_message_send_urgent_sms import (
+    SendUrgentSmsMessageReqUserIDType,
+    SendUrgentSmsMessageReq,
+    SendUrgentSmsMessageResp,
+)
 from pylark.api_service_message_update import UpdateMessageReq, UpdateMessageResp
 from pylark.api_service_okr import LarkOKRService
 from pylark.api_service_okr_okr_batch_get import (
@@ -3177,8 +3200,8 @@ __all__ = [
     GetApplicationAppListRespAppList,
     GetApplicationAppListResp,
     GetApplicationAppVisibilityReq,
-    GetApplicationAppVisibilityRespUsers,
-    GetApplicationAppVisibilityRespDepartments,
+    GetApplicationAppVisibilityRespUser,
+    GetApplicationAppVisibilityRespDepartment,
     GetApplicationAppVisibilityResp,
     UpdateApplicationAppVisibilityReqAddUsers,
     UpdateApplicationAppVisibilityReqDelUsers,
@@ -3798,6 +3821,7 @@ __all__ = [
     CreateChatReqJoinMessageVisibility,
     CreateChatReqChatType,
     CreateChatReqI18nNames,
+    CreateChatReqUserIDType,
     CreateChatReq,
     CreateChatRespModerationPermission,
     CreateChatRespMembershipApproval,
@@ -3808,6 +3832,7 @@ __all__ = [
     CreateChatRespAtAllPermission,
     CreateChatRespShareCardPermission,
     CreateChatRespAddMemberPermission,
+    CreateChatRespOwnerIDType,
     CreateChatRespI18nNames,
     CreateChatResp,
     DeleteChatReq,
@@ -4018,6 +4043,10 @@ __all__ = [
     GetUserListRespItemAvatar,
     GetUserListRespItem,
     GetUserListResp,
+    SearchUserOldReq,
+    SearchUserOldRespUserAvatar,
+    SearchUserOldRespUser,
+    SearchUserOldResp,
     UpdateUserReqCustomAttrValueGenericUser,
     UpdateUserReqCustomAttrValue,
     UpdateUserReqCustomAttr,
@@ -4667,8 +4696,8 @@ __all__ = [
     GetHelpdeskTicketRespTicketGuest,
     GetHelpdeskTicketRespTicket,
     GetHelpdeskTicketResp,
-    GetHelpdeskTicketListReqCustomizedFields,
     GetHelpdeskTicketListReq,
+    GetHelpdeskTicketListRespTicketAgentServiceDuration,
     GetHelpdeskTicketListRespTicketCustomizedField,
     GetHelpdeskTicketListRespTicketCollaborator,
     GetHelpdeskTicketListRespTicketClosedBy,
@@ -5048,6 +5077,15 @@ __all__ = [
     SendRawMessageOldReqMsgType,
     SendRawMessageOldReq,
     SendRawMessageOldResp,
+    SendUrgentAppMessageReqUserIDType,
+    SendUrgentAppMessageReq,
+    SendUrgentAppMessageResp,
+    SendUrgentPhoneMessageReqUserIDType,
+    SendUrgentPhoneMessageReq,
+    SendUrgentPhoneMessageResp,
+    SendUrgentSmsMessageReqUserIDType,
+    SendUrgentSmsMessageReq,
+    SendUrgentSmsMessageResp,
     UpdateMessageReq,
     UpdateMessageResp,
     LarkOKRService,

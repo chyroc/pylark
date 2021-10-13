@@ -32,7 +32,7 @@ class SearchDepartmentReq(object):
     )  # 分页大小, 示例值：10, 最大值：`50`
     query: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 搜索关键词, 示例值："DemoName"
+    )  # 搜索关键词，匹配字段为部门名称（不支持匹配部门国际化名称）, 示例值："DemoName"
 
 
 @attr.s
