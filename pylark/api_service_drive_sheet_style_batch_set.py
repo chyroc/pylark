@@ -58,8 +58,8 @@ class BatchSetSheetStyleReq(object):
     spreadsheet_token: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # spreadsheet 的 token，获取方式见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
-    data: BatchSetSheetStyleReqData = attr.ib(
-        default=None, metadata={"req_type": "json"}
+    data: typing.List[BatchSetSheetStyleReqData] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "json"}
     )  # 请求数据
 
 
@@ -89,8 +89,8 @@ class BatchSetSheetStyleResp(object):
         default=0, metadata={"req_type": "json"}
     )  # 设置样式的单元格总数
     revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # sheet 的版本号
-    responses: BatchSetSheetStyleRespResponse = attr.ib(
-        default=None, metadata={"req_type": "json"}
+    responses: typing.List[BatchSetSheetStyleRespResponse] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "json"}
     )  # 各个范围的设置单元格样式的范围、行列数等
 
 

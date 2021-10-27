@@ -43,20 +43,30 @@ from pylark.api_service_approval_instance_cancel import (
     CancelApprovalInstanceResp,
     _gen_cancel_approval_instance_req,
 )
-from pylark.api_service_approval_file_upload import (
-    UploadApprovalFileReq,
-    UploadApprovalFileResp,
-    _gen_upload_approval_file_req,
-)
 from pylark.api_service_approval_instance_search import (
     SearchApprovalInstanceReq,
     SearchApprovalInstanceResp,
     _gen_search_approval_instance_req,
 )
+from pylark.api_service_approval_instance_add_sign import (
+    AddApprovalInstanceSignReq,
+    AddApprovalInstanceSignResp,
+    _gen_add_approval_instance_sign_req,
+)
+from pylark.api_service_approval_file_upload import (
+    UploadApprovalFileReq,
+    UploadApprovalFileResp,
+    _gen_upload_approval_file_req,
+)
 from pylark.api_service_approval_task_search import (
     SearchApprovalTaskReq,
     SearchApprovalTaskResp,
     _gen_search_approval_task_req,
+)
+from pylark.api_service_approval_get_user_task_list import (
+    GetApprovalUserTaskListReq,
+    GetApprovalUserTaskListResp,
+    _gen_get_approval_user_task_list_req,
 )
 from pylark.api_service_approval_carbon_copy_search import (
     SearchApprovalCarbonCopyReq,
@@ -68,15 +78,15 @@ from pylark.api_service_approval_carbon_copy_create import (
     CreateApprovalCarbonCopyResp,
     _gen_create_approval_carbon_copy_req,
 )
-from pylark.api_service_approval_instance_add_sign import (
-    AddApprovalInstanceSignReq,
-    AddApprovalInstanceSignResp,
-    _gen_add_approval_instance_sign_req,
-)
 from pylark.api_service_approval_instance_preview import (
     PreviewApprovalInstanceReq,
     PreviewApprovalInstanceResp,
     _gen_preview_approval_instance_req,
+)
+from pylark.api_service_approval_message_update import (
+    updateApprovalMessageReq,
+    updateApprovalMessageResp,
+    _gen_update_approval_message_req,
 )
 
 
@@ -136,20 +146,34 @@ class LarkApprovalService(object):
     ) -> typing.Tuple[CancelApprovalInstanceResp, Response]:
         return self.cli.raw_request(_gen_cancel_approval_instance_req(request, options))
 
-    def upload_approval_file(
-        self, request: UploadApprovalFileReq, options: typing.List[str] = None
-    ) -> typing.Tuple[UploadApprovalFileResp, Response]:
-        return self.cli.raw_request(_gen_upload_approval_file_req(request, options))
-
     def search_approval_instance(
         self, request: SearchApprovalInstanceReq, options: typing.List[str] = None
     ) -> typing.Tuple[SearchApprovalInstanceResp, Response]:
         return self.cli.raw_request(_gen_search_approval_instance_req(request, options))
 
+    def add_approval_instance_sign(
+        self, request: AddApprovalInstanceSignReq, options: typing.List[str] = None
+    ) -> typing.Tuple[AddApprovalInstanceSignResp, Response]:
+        return self.cli.raw_request(
+            _gen_add_approval_instance_sign_req(request, options)
+        )
+
+    def upload_approval_file(
+        self, request: UploadApprovalFileReq, options: typing.List[str] = None
+    ) -> typing.Tuple[UploadApprovalFileResp, Response]:
+        return self.cli.raw_request(_gen_upload_approval_file_req(request, options))
+
     def search_approval_task(
         self, request: SearchApprovalTaskReq, options: typing.List[str] = None
     ) -> typing.Tuple[SearchApprovalTaskResp, Response]:
         return self.cli.raw_request(_gen_search_approval_task_req(request, options))
+
+    def get_approval_user_task_list(
+        self, request: GetApprovalUserTaskListReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetApprovalUserTaskListResp, Response]:
+        return self.cli.raw_request(
+            _gen_get_approval_user_task_list_req(request, options)
+        )
 
     def search_approval_carbon_copy(
         self, request: SearchApprovalCarbonCopyReq, options: typing.List[str] = None
@@ -165,16 +189,14 @@ class LarkApprovalService(object):
             _gen_create_approval_carbon_copy_req(request, options)
         )
 
-    def add_approval_instance_sign(
-        self, request: AddApprovalInstanceSignReq, options: typing.List[str] = None
-    ) -> typing.Tuple[AddApprovalInstanceSignResp, Response]:
-        return self.cli.raw_request(
-            _gen_add_approval_instance_sign_req(request, options)
-        )
-
     def preview_approval_instance(
         self, request: PreviewApprovalInstanceReq, options: typing.List[str] = None
     ) -> typing.Tuple[PreviewApprovalInstanceResp, Response]:
         return self.cli.raw_request(
             _gen_preview_approval_instance_req(request, options)
         )
+
+    def update_approval_message(
+        self, request: updateApprovalMessageReq, options: typing.List[str] = None
+    ) -> typing.Tuple[updateApprovalMessageResp, Response]:
+        return self.cli.raw_request(_gen_update_approval_message_req(request, options))

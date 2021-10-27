@@ -33,6 +33,12 @@ class GetApplicationAppListRespAppList(object):
         default=0, metadata={"req_type": "json"}
     )  # 应用类型，0：企业自建应用；1：应用商店应用
     status: int = attr.ib(default=0, metadata={"req_type": "json"})  # 启停状态，0：停用；1：启用
+    mobile_default_ability: int = attr.ib(
+        default=0, metadata={"req_type": "json"}
+    )  # 移动端默认的应用功能，0：未开启；1：小程序；2：H5；8：机器人
+    pc_default_ability: int = attr.ib(
+        default=0, metadata={"req_type": "json"}
+    )  # PC客户端默认的应用功能，0：未开启；1：小程序；2：H5；8：机器人
 
 
 @attr.s

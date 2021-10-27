@@ -24,7 +24,7 @@ class GetSheetValueReq(object):
     )  # 返回的用户id类型，可选open_id,union_id
     spreadsheet_token: str = attr.ib(
         default="", metadata={"req_type": "path"}
-    )  # spreadsheet 的 token，详见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
+    )  # spreadsheet 的 token，详见电子表格[概述](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     range_: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 查询范围，包含 sheetId 与单元格范围两部分，详见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
@@ -52,7 +52,7 @@ class GetSheetValueResp(object):
     revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # sheet 的版本号
     spreadsheet_token: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # spreadsheet 的 token，详见 [对接前说明](https://open.feishu.cn/document/ukTMukTMukTM/uczNzUjL3czM14yN3MTN) 的第 4 项
+    )  # spreadsheet 的 token，详见电子表格[概述](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     value_range: GetSheetValueRespValueRange = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 值与范围

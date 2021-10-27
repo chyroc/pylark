@@ -59,7 +59,9 @@ class UpdateBitableFieldReq(object):
     field_name: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 多维表格字段名, 示例值："多行文本"
-    type: int = attr.ib(default=0, metadata={"req_type": "json"})  # 多维表格字段类型, 示例值：1
+    type: int = attr.ib(
+        default=0, metadata={"req_type": "json"}
+    )  # 多维表格字段类型, 示例值：具体参考: [Property说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/bitable/development-guide/bitable-structure#b286b4ee), 可选值有: `1`：多行文本, `2`：数字, `3`：单选, `4`：多选, `5`：日期, `7`：复选框, `11`：人员, `15`：超链接, `17`：附件, `18`：关联, `20`：公式, `1001`：创建时间, `1002`：最后更新时间, `1003`：创建人, `1004`：修改人
     property: UpdateBitableFieldReqProperty = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 字段属性, 具体参考: [Property说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/bitable/development-guide/bitable-structure#b286b4ee)
@@ -96,7 +98,9 @@ class UpdateBitableFieldRespFieldProperty(object):
 class UpdateBitableFieldRespField(object):
     field_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 多维表格字段 id
     field_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 多维表格字段名
-    type: int = attr.ib(default=0, metadata={"req_type": "json"})  # 多维表格字段类型
+    type: int = attr.ib(
+        default=0, metadata={"req_type": "json"}
+    )  # 多维表格字段类型, 可选值有: `1`：多行文本, `2`：数字, `3`：单选, `4`：多选, `5`：日期, `7`：复选框, `11`：人员, `15`：超链接, `17`：附件, `18`：关联, `20`：公式, `1001`：创建时间, `1002`：最后更新时间, `1003`：创建人, `1004`：修改人
     property: UpdateBitableFieldRespFieldProperty = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 字段属性, 具体参考: [Property说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/bitable/development-guide/bitable-structure#b286b4ee)

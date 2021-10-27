@@ -26,9 +26,7 @@ class GetEmployeeTypeEnumListRespItemI18nContent(object):
 class GetEmployeeTypeEnumListRespItem(object):
     enum_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 枚举值id
     enum_value: str = attr.ib(default="", metadata={"req_type": "json"})  # 枚举值
-    content: str = attr.ib(
-        default="", metadata={"req_type": "json"}
-    )  # 枚举内容, 长度范围：`1` ～ `100` 字符
+    content: str = attr.ib(default="", metadata={"req_type": "json"})  # 枚举内容
     enum_type: int = attr.ib(
         default=0, metadata={"req_type": "json"}
     )  # 类型, 可选值有: `1`：内置类型, `2`：自定义

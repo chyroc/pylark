@@ -15,7 +15,7 @@ class DeleteUserReqUserIDType(object):
 class DeleteUserReq(object):
     user_id_type: DeleteUserReqUserIDType = attr.ib(
         default=None, metadata={"req_type": "query"}
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     user_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # 用户ID，需要与查询参数中的user_id_type类型保持一致。, 示例值："ou_7dab8a3d3cdcc9da365777c7ad535d62"

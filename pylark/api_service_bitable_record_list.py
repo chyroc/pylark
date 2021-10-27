@@ -25,6 +25,9 @@ class GetBitableRecordListReq(object):
     field_names: str = attr.ib(
         default="", metadata={"req_type": "query"}
     )  # field_names, 示例值："["字段1"]"
+    text_field_as_array: bool = attr.ib(
+        default=None, metadata={"req_type": "query"}
+    )  # 控制多行文本字段数据的返回格式, true 表示以数组形式返回, 示例值：true
     page_token: str = attr.ib(
         default="", metadata={"req_type": "query"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："recn0hoyXL"

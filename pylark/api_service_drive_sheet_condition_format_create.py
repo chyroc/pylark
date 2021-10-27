@@ -25,7 +25,7 @@ class CreateSheetConditionFormatReqSheetConditionFormatConditionFormatStyle(obje
 
 
 @attr.s
-class CreateSheetConditionFormatReqSheetConditionFormatConditionFormatAttrs(object):
+class CreateSheetConditionFormatReqSheetConditionFormatConditionFormatAttr(object):
     operator: str = attr.ib(default="", metadata={"req_type": "json"})  # 操作方法
     time_period: str = attr.ib(default="", metadata={"req_type": "json"})  # 时间范围
     formula: typing.List[str] = attr.ib(
@@ -42,8 +42,10 @@ class CreateSheetConditionFormatReqSheetConditionFormatConditionFormat(object):
     rule_type: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 条件格式规则类型，目前只有7种：***containsBlanks（为空）、notContainsBlanks（不为空）、duplicateValues（重复值）、uniqueValues（唯一值）、cellIs（限定值范围）、containsText（包含内容）、timePeriod（日期）***
-    attrs: CreateSheetConditionFormatReqSheetConditionFormatConditionFormatAttrs = attr.ib(
-        default=None, metadata={"req_type": "json"}
+    attrs: typing.List[
+        CreateSheetConditionFormatReqSheetConditionFormatConditionFormatAttr
+    ] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "json"}
     )  # rule_type对应的具体属性信息，详见 [条件格式指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/conditionformat/condition-format-guide)
     style: CreateSheetConditionFormatReqSheetConditionFormatConditionFormatStyle = (
         attr.ib(default=None, metadata={"req_type": "json"})

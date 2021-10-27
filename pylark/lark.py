@@ -14,6 +14,7 @@ from pylark.api_service_calendar import LarkCalendarService
 from pylark.api_service_drive import LarkDriveService
 from pylark.api_service_bitable import LarkBitableService
 from pylark.api_service_meeting_room import LarkMeetingRoomService
+from pylark.api_service_jssdk import LarkJssdkService
 from pylark.api_service_vc import LarkVCService
 from pylark.api_service_application import LarkApplicationService
 from pylark.api_service_mail import LarkMailService
@@ -64,6 +65,7 @@ class Lark(object):
         self.drive = LarkDriveService(cli=self)
         self.bitable = LarkBitableService(cli=self)
         self.meeting_room = LarkMeetingRoomService(cli=self)
+        self.jssdk = LarkJssdkService(cli=self)
         self.vc = LarkVCService(cli=self)
         self.application = LarkApplicationService(cli=self)
         self.mail = LarkMailService(cli=self)
