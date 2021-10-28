@@ -9,26 +9,28 @@ import io
 @attr.s
 class UpdateSheetPropertyReqProperties(object):
     title: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "title"}
     )  # spreadsheet 的标题，最大长度100个字符
 
 
 @attr.s
 class UpdateSheetPropertyReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token，获取方式见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     properties: UpdateSheetPropertyReqProperties = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "properties"}
     )  # spreadsheet 的属性
 
 
 @attr.s
 class UpdateSheetPropertyResp(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # spreadsheet 的标题
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # spreadsheet 的标题
 
 
 def _gen_update_sheet_property_req(request, options) -> RawRequestReq:

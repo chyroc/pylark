@@ -14,25 +14,27 @@ class CreateIdentityReqUserIDType(object):
 @attr.s
 class CreateIdentityReq(object):
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "user_id"}
     )  # 用户的唯一标识（使用的ID类型见下一参数描述，不同ID类型的区别和获取，参考文档：[如何获得 User ID、Open ID 和 Union ID？](https://open.feishu.cn/document/home/user-identity-introduction/how-to-get)）, 示例值: "ou_2eb5483cb377daa5054bc6f86e2089a5"
     user_id_type: CreateIdentityReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户ID类型, 示例值: "open_id", 可选值有: `open_id`：用户的open id, `union_id`：用户的union id, `user_id`：用户的user id, 默认值: `open_id`, 当值为 `user_id`，字段权限要求: 获取用户 user ID
     identity_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "identity_name"}
     )  # user identity name, 示例值: "张三"
     identity_code: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "identity_code"}
     )  # user identity code, 示例值: "4xxxxxxxx"
     mobile: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "mobile"}
     )  # user mobile, 示例值: "13xxxxxxx"
 
 
 @attr.s
 class CreateIdentityResp(object):
-    verify_uid: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户绑定实名身份的uid
+    verify_uid: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "verify_uid"}
+    )  # 用户绑定实名身份的uid
 
 
 def _gen_create_identity_req(request, options) -> RawRequestReq:

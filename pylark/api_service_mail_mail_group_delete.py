@@ -9,7 +9,7 @@ import io
 @attr.s
 class DeleteMailGroupReq(object):
     mailgroup_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "mailgroup_id"}
     )  # 邮件组ID或者邮件组地址, 示例值："xxxxxxxxxxxxxxx 或 test_mail_group@xxx.xx"
 
 

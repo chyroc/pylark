@@ -9,36 +9,38 @@ import io
 @attr.s
 class UpdateApplicationAppVisibilityReqAddUsers(object):
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "open_id"}
     )  # 与 user_id 至少给其中之一，user_id 优先于 open_id
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})
+    user_id: str = attr.ib(default="", metadata={"req_type": "json", "key": "user_id"})
 
 
 @attr.s
 class UpdateApplicationAppVisibilityReqDelUsers(object):
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "open_id"}
     )  # 与 user_id 至少给其中之一，user_id 优先于 open_id
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})
+    user_id: str = attr.ib(default="", metadata={"req_type": "json", "key": "user_id"})
 
 
 @attr.s
 class UpdateApplicationAppVisibilityReq(object):
-    app_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 目标应用的 ID
+    app_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "app_id"}
+    )  # 目标应用的 ID
     del_users: UpdateApplicationAppVisibilityReqDelUsers = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "del_users"}
     )  # 删除的用户列表，元素个数不超过 500，**先增加后删除**
     add_users: UpdateApplicationAppVisibilityReqAddUsers = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "add_users"}
     )  # 增加的用户列表，元素个数不超过500，**先增加后删除**
     is_visiable_to_all: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "is_visiable_to_all"}
     )  # 是否全员可见，0：否；1：是；不填：继续当前状态不改变
     add_departments: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "add_departments"}
     )  # 添加的部门列表，元素个数不超过 500，**先增加后删除**
     del_departments: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "del_departments"}
     )  # 删除的部门列表，元素个数不超过 500，**先增加后删除**
 
 

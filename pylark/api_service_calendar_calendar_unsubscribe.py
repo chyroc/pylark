@@ -9,7 +9,7 @@ import io
 @attr.s
 class UnsubscribeCalendarReq(object):
     calendar_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "calendar_id"}
     )  # 日历ID, 示例值："feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn"
 
 

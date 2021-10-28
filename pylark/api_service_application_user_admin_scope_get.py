@@ -9,20 +9,20 @@ import io
 @attr.s
 class GetApplicationUserAdminScopeReq(object):
     employee_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "employee_id"}
     )  # 支持通过 open_id 或者 employee_id 查询，不支持混合两种 ID 进行查询，其中 employee_id 同通讯录 v3 版本中的 user_id
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "open_id"}
     )  # 支持通过 open_id 或者 employee_id 查询，不支持混合两种 ID 进行查询，其中 employee_id 同通讯录 v3 版本中的 user_id
 
 
 @attr.s
 class GetApplicationUserAdminScopeResp(object):
     is_all: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_all"}
     )  # 是否管理所有部门
     department_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "department_list"}
     )  # 管理的部门列表，当 is_all 为 true 时，不返回该字段
 
 

@@ -8,30 +8,34 @@ import io
 
 @attr.s
 class UpdateAttendanceRemedyApprovalReq(object):
-    approval_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批实例 ID
+    approval_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "approval_id"}
+    )  # 审批实例 ID
     approval_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "approval_type"}
     )  # 审批类型，leave：请假，out：外出，overtime：加班，trip：出差，remedy：补卡
     status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "status"}
     )  # 审批状态，1：不通过，2：通过，4：撤销
 
 
 @attr.s
 class UpdateAttendanceRemedyApprovalRespApprovalInfo(object):
-    approval_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批实例 ID
+    approval_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "approval_id"}
+    )  # 审批实例 ID
     approval_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "approval_type"}
     )  # 审批类型，leave：请假，out：外出，overtime：加班，trip：出差，remedy：补卡
     status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "status"}
     )  # 审批状态，1：不通过，2：通过，4：已撤销
 
 
 @attr.s
 class UpdateAttendanceRemedyApprovalResp(object):
     approval_info: UpdateAttendanceRemedyApprovalRespApprovalInfo = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "approval_info"}
     )
 
 

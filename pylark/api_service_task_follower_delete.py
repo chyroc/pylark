@@ -9,10 +9,10 @@ import io
 @attr.s
 class DeleteTaskFollowerReq(object):
     task_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "task_id"}
     )  # 任务 ID, 示例值："83912691-2e43-47fc-94a4-d512e03984fa"
     follower_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "follower_id"}
     )  # 任务关注者 ID（Open ID）, 示例值："ou_87e1a581b36ecc4862cbfbce473f346a"
 
 

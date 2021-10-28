@@ -9,13 +9,13 @@ import io
 @attr.s
 class GetSheetDataValidationDropdownReq(object):
     range_: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "range"}
     )  # 查询范围，包含 sheetId 与单元格范围两部分，目前支持四种索引方式，详见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     data_validation_type: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "dataValidationType"}
     )  # 下拉列表填"list"
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token，获取方式见 [在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
 
 
@@ -27,44 +27,48 @@ class GetSheetDataValidationDropdownRespDataValidationOptionsColorValueMap(objec
 @attr.s
 class GetSheetDataValidationDropdownRespDataValidationOptions(object):
     multiple_values: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "multipleValues"}
     )  # 单选填false, 多选填true
     highlight_valid_data: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "highlightValidData"}
     )  # 是否设置颜色和胶囊样式
     color_value_map: GetSheetDataValidationDropdownRespDataValidationOptionsColorValueMap = attr.ib(
         factory=lambda: GetSheetDataValidationDropdownRespDataValidationOptionsColorValueMap(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "colorValueMap"},
     )  # 当highlightValidData为true时，colorValueMap的key与conditionValues中的值一一对应，value为对应的颜色参数。
 
 
 @attr.s
 class GetSheetDataValidationDropdownRespDataValidation(object):
     data_validation_id: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "dataValidationId"}
     )  # 唯一标示id
     data_validation_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "dataValidationType"}
     )  # 下拉列表为"list"
     condition_values: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "conditionValues"}
     )  # 下拉列表选项值
     options: GetSheetDataValidationDropdownRespDataValidationOptions = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "options"}
     )  # 可选属性
 
 
 @attr.s
 class GetSheetDataValidationDropdownResp(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "spreadsheetToken"}
     )  # spreadsheet的token
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 工作表 sheet 的 id
-    revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # 版本号
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # 工作表 sheet 的 id
+    revision: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "revision"}
+    )  # 版本号
     data_validations: typing.List[
         GetSheetDataValidationDropdownRespDataValidation
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "dataValidations"}
     )  # 下拉列表数组, 不存在时为空
 
 

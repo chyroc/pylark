@@ -9,20 +9,20 @@ import io
 @attr.s
 class CheckDriveMemberPermissionReq(object):
     token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "token"}
     )  # 文件的 token，获取方式见 [概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction)
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 文档类型  "doc"  or  "sheet" or "file"
     perm: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "perm"}
     )  # 权限，"view" or "edit" or "share"
 
 
 @attr.s
 class CheckDriveMemberPermissionResp(object):
     is_permitted: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_permitted"}
     )  # 是否具有指定权限
 
 

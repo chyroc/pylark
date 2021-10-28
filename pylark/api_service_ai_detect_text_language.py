@@ -9,14 +9,14 @@ import io
 @attr.s
 class DetectTextLanguageReq(object):
     text: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "text"}
     )  # 需要被识别语种的文本, 示例值："你好"
 
 
 @attr.s
 class DetectTextLanguageResp(object):
     language: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "language"}
     )  # 识别的文本语种，返回符合 ISO 693-1 标准
 
 

@@ -14,17 +14,17 @@ class AddContactGroupMemberReqMemberIDType(object):
 @attr.s
 class AddContactGroupMemberReq(object):
     group_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "group_id"}
     )  # 用户组ID, 示例值："g281721"
     member_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_type"}
     )  # 用户组成员的类型，取值为 user, 示例值："user", 可选值有: `user`：user, 默认值: `user`
     member_id_type: AddContactGroupMemberReqMemberIDType = attr.ib(
         factory=lambda: AddContactGroupMemberReqMemberIDType(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "member_id_type"},
     )  # 当member_type =user时候，member_id_type表示user_id_type，枚举值为open_id, union_id, user_id, 示例值："open_id", 可选值有: `open_id`：member_type =user时候，表示用户的open_id, `union_id`：member_type =user时候，表示用户的union_id, `user_id`：member_type =user时候，表示用户的user_id
     member_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_id"}
     )  # 添加的成员ID, 示例值："ou_7dab8a3d3cdcc9da365777c7ad535d62"
 
 

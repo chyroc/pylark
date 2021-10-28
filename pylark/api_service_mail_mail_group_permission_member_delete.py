@@ -9,10 +9,10 @@ import io
 @attr.s
 class DeleteMailGroupPermissionMemberReq(object):
     mailgroup_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "mailgroup_id"}
     )  # The unique ID or email address of a mail group, 示例值："xxxxxxxxxxxxxxx or test_mail_group@xxx.xx"
     permission_member_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "permission_member_id"}
     )  # The unique ID of a member in this permission group, 示例值："xxxxxxxxxxxxxxx"
 
 

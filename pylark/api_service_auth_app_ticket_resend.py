@@ -9,10 +9,10 @@ import io
 @attr.s
 class ResendAppTicketReq(object):
     app_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "app_id"}
     )  # 应用唯一标识，创建应用后获得, 示例值："cli_slkdjalasdkjasd"
     app_secret: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "app_secret"}
     )  # 应用秘钥，创建应用后获得, 示例值："dskLLdkasdjlasdKK"
 
 

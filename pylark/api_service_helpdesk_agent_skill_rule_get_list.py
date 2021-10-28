@@ -14,22 +14,26 @@ class GetHelpdeskAgentSkillRuleListReq(object):
 @attr.s
 class GetHelpdeskAgentSkillRuleListRespRule(object):
     id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "id"}
     )  # rule id, 看[获取客服技能rules](https://open.feishu.cn/document/ukTMukTMukTM/ucDOyYjL3gjM24yN4IjN/list-agent-skill-rules) 用于获取rules options
     operator_options: typing.List[int] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "operator_options"}
     )  # rule操作数value，[客服技能及运算符](https://open.feishu.cn/document/ukTMukTMukTM/ucDOyYjL3gjM24yN4IjN/operator-options)
-    operand: str = attr.ib(default="", metadata={"req_type": "json"})  # rule操作数value
+    operand: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "operand"}
+    )  # rule操作数value
     category: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "category"}
     )  # rule type，1-知识库，2-工单信息，3-用户飞书信息
-    display_name: str = attr.ib(default="", metadata={"req_type": "json"})  # rule 名
+    display_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "display_name"}
+    )  # rule 名
 
 
 @attr.s
 class GetHelpdeskAgentSkillRuleListResp(object):
     rules: typing.List[GetHelpdeskAgentSkillRuleListRespRule] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "rules"}
     )  # rules列表
 
 

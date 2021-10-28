@@ -9,45 +9,51 @@ import io
 @attr.s
 class GetSearchDataSourceListReq(object):
     view: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "view"}
     )  # 回包数据格式，0-全量数据；1-摘要数据。,**注**：摘要数据仅包含"id"，"name"，"state"。, 示例值：0, 可选值有: `0`：全量数据, `1`：摘要数据
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："PxZFma9OIRhdBlT/dOYNiu2Ro8F2WAhcby7OhOijfljZ"
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 示例值：10, 最大值：`50`
 
 
 @attr.s
 class GetSearchDataSourceListRespItem(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 数据源的唯一标识
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # data_source的展示名称
+    id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "id"}
+    )  # 数据源的唯一标识
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # data_source的展示名称
     state: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "state"}
     )  # 数据源状态，0-未上线，1-已上线, 可选值有: `0`：未上线, `1`：已上线
-    description: str = attr.ib(default="", metadata={"req_type": "json"})  # 对于数据源的描述
+    description: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "description"}
+    )  # 对于数据源的描述
     create_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "create_time"}
     )  # 创建时间，使用Unix时间戳，单位为“秒”
     update_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "update_time"}
     )  # 更新时间，使用Unix时间戳，单位为“秒”
     is_exceed_quota: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_exceed_quota"}
     )  # 是否超限
 
 
 @attr.s
 class GetSearchDataSourceListResp(object):
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多项
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
     items: typing.List[GetSearchDataSourceListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 数据源中的数据记录
 
 

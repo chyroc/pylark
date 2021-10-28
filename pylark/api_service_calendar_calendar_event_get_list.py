@@ -9,43 +9,45 @@ import io
 @attr.s
 class GetCalendarEventListReq(object):
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 一次请求要求返回最大数量，默认500，取值范围为[50, 1000], 示例值：50, 默认值: `500`, 取值范围：`50` ～ `1000`
     anchor_time: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "anchor_time"}
     )  # 拉取anchor_time之后的日程，为timestamp, 示例值："1609430400"
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 上次请求Response返回的分页标记，首次请求时为空, 示例值："ListCalendarsPageToken_1632452910_1632539310"
     sync_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "sync_token"}
     )  # 上次请求Response返回的增量同步标记，分页请求未结束时为空, 示例值："ListCalendarsSyncToken_1632452910"
     start_time: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "start_time"}
     )  # 日程开始Unix时间戳，单位为秒, 示例值："1631777271"
     end_time: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "end_time"}
     )  # 日程结束Unix时间戳，单位为秒, 示例值："1631777271"
     calendar_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "calendar_id"}
     )  # 日历ID, 示例值："feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn"
 
 
 @attr.s
 class GetCalendarEventListRespItemSchema(object):
     ui_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "ui_name"}
     )  # UI名称。取值范围如下： \,ForwardIcon: 日程转发按钮 \,MeetingChatIcon: 会议群聊按钮 \,MeetingMinutesIcon: 会议纪要按钮 \,MeetingVideo: 视频会议区域 \,RSVP: 接受/拒绝/待定区域 \,Attendee: 参与者区域 \,OrganizerOrCreator: 组织者/创建者区域
     ui_status: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "ui_status"}
     )  # UI项自定义状态。目前只支持hide, 可选值有: `hide`：隐藏显示, `readonly`：只读, `editable`：可编辑, `unknown`：未知UI项自定义状态，仅用于读取时兼容
-    app_link: str = attr.ib(default="", metadata={"req_type": "json"})  # 按钮点击后跳转的链接
+    app_link: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "app_link"}
+    )  # 按钮点击后跳转的链接
 
 
 @attr.s
 class GetCalendarEventListRespItemReminder(object):
     minutes: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "minutes"}
     )  # 日程提醒时间的偏移量，正数时表示在日程开始前X分钟提醒，负数时表示在日程开始后X分钟提醒,新建或更新日程时传入该字段，仅对当前身份生效
 
 
@@ -61,118 +63,130 @@ class GetCalendarEventListRespItemLocationLatitude(object):
 
 @attr.s
 class GetCalendarEventListRespItemLocation(object):
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 地点名称
-    address: str = attr.ib(default="", metadata={"req_type": "json"})  # 地点地址
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 地点名称
+    address: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "address"}
+    )  # 地点地址
     latitude: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "latitude"}
     )  # 地点坐标纬度信息，对于国内的地点，采用GCJ-02标准，海外地点采用WGS84标准
     longitude: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "longitude"}
     )  # 地点坐标经度信息，对于国内的地点，采用GCJ-02标准，海外地点采用WGS84标准
 
 
 @attr.s
 class GetCalendarEventListRespItemVchat(object):
     vc_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "vc_type"}
     )  # 视频会议类型, 可选值有: `vc`：飞书视频会议，取该类型时，其他字段无效。, `third_party`：第三方链接视频会议，取该类型时，icon_type、description、meeting_url字段生效。, `no_meeting`：无视频会议，取该类型时，其他字段无效。, `lark_live`：Lark直播，内部类型，只读。, `unknown`：未知类型，做兼容使用，只读。
     icon_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "icon_type"}
     )  # 第三方视频会议icon类型；可以为空，为空展示默认icon。, 可选值有: `vc`：飞书视频会议icon, `live`：直播视频会议icon, `default`：默认icon
     description: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "description"}
     )  # 第三方视频会议文案，可以为空，为空展示默认文案
-    meeting_url: str = attr.ib(default="", metadata={"req_type": "json"})  # 视频会议URL
+    meeting_url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "meeting_url"}
+    )  # 视频会议URL
 
 
 @attr.s
 class GetCalendarEventListRespItemEndTime(object):
     date: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "date"}
     )  # 仅全天日程使用该字段，如2018-09-01。需满足 RFC3339 格式。不能与 timestamp 同时指定
     timestamp: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "timestamp"}
     )  # 秒级时间戳，如1602504000(表示2020/10/12 20:0:00 +8时区)
     timezone: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "timezone"}
     )  # 时区名称，使用IANA Time Zone Database标准，如Asia/Shanghai；全天日程时区固定为UTC，非全天日程时区默认为Asia/Shanghai
 
 
 @attr.s
 class GetCalendarEventListRespItemStartTime(object):
     date: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "date"}
     )  # 仅全天日程使用该字段，如2018-09-01。需满足 RFC3339 格式。不能与 timestamp 同时指定
     timestamp: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "timestamp"}
     )  # 秒级时间戳，如1602504000(表示2020/10/12 20:0:00 +8时区)
     timezone: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "timezone"}
     )  # 时区名称，使用IANA Time Zone Database标准，如Asia/Shanghai；全天日程时区固定为UTC，非全天日程时区默认为Asia/Shanghai
 
 
 @attr.s
 class GetCalendarEventListRespItem(object):
-    event_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 日程ID
-    summary: str = attr.ib(default="", metadata={"req_type": "json"})  # 日程标题
-    description: str = attr.ib(default="", metadata={"req_type": "json"})  # 日程描述
+    event_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "event_id"}
+    )  # 日程ID
+    summary: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "summary"}
+    )  # 日程标题
+    description: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "description"}
+    )  # 日程描述
     start_time: GetCalendarEventListRespItemStartTime = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "start_time"}
     )  # 日程开始时间
     end_time: GetCalendarEventListRespItemEndTime = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "end_time"}
     )  # 日程结束时间
     vchat: GetCalendarEventListRespItemVchat = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "vchat"}
     )  # 视频会议信息。
     visibility: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "visibility"}
     )  # 日程公开范围，新建日程默认为Default；仅新建日程时对所有参与人生效，之后修改该属性仅对当前身份生效, 可选值有: `default`：默认权限，跟随日历权限，默认仅向他人显示是否“忙碌”, `public`：公开，显示日程详情, `private`：私密，仅自己可见详情
     attendee_ability: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "attendee_ability"}
     )  # 参与人权限, 可选值有: `none`：无法编辑日程、无法邀请其它参与人、无法查看参与人列表, `can_see_others`：无法编辑日程、无法邀请其它参与人、可以查看参与人列表, `can_invite_others`：无法编辑日程、可以邀请其它参与人、可以查看参与人列表, `can_modify_event`：可以编辑日程、可以邀请其它参与人、可以查看参与人列表
     free_busy_status: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "free_busy_status"}
     )  # 日程占用的忙闲状态，新建日程默认为Busy；仅新建日程时对所有参与人生效，之后修改该属性仅对当前身份生效, 可选值有: `busy`：忙碌, `free`：空闲
     location: GetCalendarEventListRespItemLocation = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "location"}
     )  # 日程地点
     color: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "color"}
     )  # 日程颜色，颜色RGB值的int32表示。仅对当前身份生效；客户端展示时会映射到色板上最接近的一种颜色；值为0或-1时默认跟随日历颜色。
     reminders: typing.List[GetCalendarEventListRespItemReminder] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "reminders"}
     )  # 日程提醒列表
     recurrence: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "recurrence"}
     )  # 重复日程的重复性规则；参考[rfc5545](https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10)；, 不支持COUNT和UNTIL同时出现；, 预定会议室重复日程长度不得超过两年。
     status: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "status"}
     )  # 日程状态, 可选值有: `tentative`：未回应, `confirmed`：已确认, `cancelled`：日程已取消
     is_exception: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_exception"}
     )  # 日程是否是一个重复日程的例外日程
     recurring_event_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "recurring_event_id"}
     )  # 例外日程的原重复日程的event_id
     schemas: typing.List[GetCalendarEventListRespItemSchema] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "schemas"}
     )  # 日程自定义信息
 
 
 @attr.s
 class GetCalendarEventListResp(object):
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否有下一页数据
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 下次请求需要带上的分页标记，90 天有效期
     sync_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "sync_token"}
     )  # 下次请求需要带上的增量同步标记，90 天有效期
     items: typing.List[GetCalendarEventListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 日程列表
 
 

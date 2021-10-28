@@ -9,57 +9,57 @@ import io
 @attr.s
 class UpdateDrivePublicPermissionReq(object):
     type: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "type"}
     )  # 权限客体类型，放于query参数中，如：`?type=doc`, 示例值："doc", 可选值有: `doc`：文档, `sheet`：电子表格, `file`：云空间文件, `wiki`：知识库节点, `bitable`：多维表格, `docx`：文档（暂不支持）
     token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "token"}
     )  # 文件的 token，获取方式见 [概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction), 示例值："doccnBKgoMyY5OMbUG6FioTXuBe"
     external_access: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "external_access"}
     )  # 是否允许分享到租户外开关, 示例值：true
     security_entity: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "security_entity"}
     )  # 可创建副本/打印/导出/复制设置, 示例值："anyone_can_view", 可选值有: `anyone_can_view`：所有可访问此文档的用户, `anyone_can_edit`：有编辑权限的用户
     comment_entity: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "comment_entity"}
     )  # 可评论设置, 示例值："anyone_can_view", 可选值有: `anyone_can_view`：所有可访问此文档的用户, `anyone_can_edit`：有编辑权限的用户
     share_entity: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "share_entity"}
     )  # 谁可以添加和管理协作者, 示例值："anyone", 可选值有: `anyone`：所有可阅读或编辑此文档的用户, `same_tenant`：组织内所有可阅读或编辑此文档的用户, `only_full_access`：只有所有权限者可以
     link_share_entity: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "link_share_entity"}
     )  # 链接共享, 示例值："tenant_readable", 可选值有: `tenant_readable`：组织内获得链接的人可阅读, `tenant_editable`：组织内获得链接的人可编辑, `anyone_readable`：获得链接的任何人可阅读（仅external_access=“true”时有效）, `anyone_editable`：获得链接的任何人可编辑（仅external_access=“true”时有效）, `closed`：关闭链接分享
     invite_external: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "invite_external"}
     )  # 非所有权限者/所有者是否允许邀请外部人, 示例值：true
 
 
 @attr.s
 class UpdateDrivePublicPermissionRespPermissionPublic(object):
     external_access: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "external_access"}
     )  # 是否允许分享到租户外开关
     security_entity: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "security_entity"}
     )  # 可创建副本/打印/导出/复制设置, 可选值有: `anyone_can_view`：所有可访问此文档的用户, `anyone_can_edit`：有编辑权限的用户
     comment_entity: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "comment_entity"}
     )  # 可评论设置, 可选值有: `anyone_can_view`：所有可访问此文档的用户, `anyone_can_edit`：有编辑权限的用户
     share_entity: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "share_entity"}
     )  # 谁可以添加和管理协作者, 可选值有: `anyone`：所有可阅读或编辑此文档的用户, `same_tenant`：组织内所有可阅读或编辑此文档的用户, `only_full_access`：只有所有权限者可以
     link_share_entity: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "link_share_entity"}
     )  # 链接共享, 可选值有: `tenant_readable`：组织内获得链接的人可阅读, `tenant_editable`：组织内获得链接的人可编辑, `anyone_readable`：获得链接的任何人可阅读（仅external_access=“true”时有效）, `anyone_editable`：获得链接的任何人可编辑（仅external_access=“true”时有效）, `closed`：关闭链接分享
     invite_external: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "invite_external"}
     )  # 非所有权限者/所有者是否允许邀请外部人
 
 
 @attr.s
 class UpdateDrivePublicPermissionResp(object):
     permission_public: UpdateDrivePublicPermissionRespPermissionPublic = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "permission_public"}
     )  # 本次更新后的文档公共设置
 
 

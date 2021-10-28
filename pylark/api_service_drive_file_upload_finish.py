@@ -9,14 +9,18 @@ import io
 @attr.s
 class FinishUploadDriveFileReq(object):
     upload_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "upload_id"}
     )  # 分片上传事务ID, 示例值："123456"
-    block_num: int = attr.ib(default=0, metadata={"req_type": "json"})  # 分片数量, 示例值：1
+    block_num: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "block_num"}
+    )  # 分片数量, 示例值：1
 
 
 @attr.s
 class FinishUploadDriveFileResp(object):
-    file_token: str = attr.ib(default="", metadata={"req_type": "json"})  # 新创建的文件token
+    file_token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "file_token"}
+    )  # 新创建的文件token
 
 
 def _gen_finish_upload_drive_file_req(request, options) -> RawRequestReq:

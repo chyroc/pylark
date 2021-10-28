@@ -9,7 +9,7 @@ import io
 @attr.s
 class DeleteHelpdeskCategoryReq(object):
     id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "id"}
     )  # 知识库分类ID, 示例值："6948728206392295444"
 
 

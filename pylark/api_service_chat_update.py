@@ -43,12 +43,14 @@ class UpdateChatReqAddMemberPermission(object):
 
 @attr.s
 class UpdateChatReqI18nNames(object):
-    zh_cn: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文名, 示例值："群聊"
+    zh_cn: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_cn"}
+    )  # 中文名, 示例值："群聊"
     en_us: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "en_us"}
     )  # 英文名, 示例值："group chat"
     ja_jp: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "ja_jp"}
     )  # 日文名, 示例值："グループチャット"
 
 
@@ -60,44 +62,46 @@ class UpdateChatReqUserIDType(object):
 @attr.s
 class UpdateChatReq(object):
     user_id_type: UpdateChatReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     chat_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "chat_id"}
     )  # 群 ID，详情参见[群ID 说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/chat-id-description), 示例值："oc_a0553eda9014c201e6969b478895c230"
     avatar: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "avatar"}
     )  # 群头像对应的 Image Key，可通过[上传图片](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/image/create)获取（注意：上传图片的 [image_type] 需要指定为 [avatar]）, 示例值："default-avatar_44ae0ca3-e140-494b-956f-78091e348435"
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 群名称, 示例值："群聊"
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 群名称, 示例值："群聊"
     description: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "description"}
     )  # 群描述, 示例值："测试群描述"
     i18n_names: UpdateChatReqI18nNames = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "i18n_names"}
     )  # 群国际化名称
     add_member_permission: UpdateChatReqAddMemberPermission = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "add_member_permission"}
     )  # 加 user/bot 入群权限(all_members/only_owner), 示例值："all_members"
     share_card_permission: UpdateChatReqShareCardPermission = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "share_card_permission"}
     )  # 群分享权限(allowed/not_allowed), 示例值："allowed"
     at_all_permission: UpdateChatReqAtAllPermission = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "at_all_permission"}
     )  # at 所有人权限(all_members/only_owner), 示例值："all_members"
     edit_permission: UpdateChatReqEditPermission = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "edit_permission"}
     )  # 群编辑权限(all_members/only_owner), 示例值："all_members"
     owner_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "owner_id"}
     )  # 新群主 ID, 示例值："4d7a3c6g"
     join_message_visibility: UpdateChatReqJoinMessageVisibility = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "join_message_visibility"}
     )  # 入群消息可见性(only_owner/all_members/not_anyone), 示例值："only_owner"
     leave_message_visibility: UpdateChatReqLeaveMessageVisibility = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "leave_message_visibility"}
     )  # 出群消息可见性(only_owner/all_members/not_anyone), 示例值："only_owner"
     membership_approval: UpdateChatReqMembershipApproval = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "membership_approval"}
     )  # 加群审批(no_approval_required/approval_required), 示例值："no_approval_required"
 
 

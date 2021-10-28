@@ -15,59 +15,67 @@ class GetAttendanceStatisticsDataReqEmployeeType(object):
 class GetAttendanceStatisticsDataReq(object):
     employee_type: GetAttendanceStatisticsDataReqEmployeeType = attr.ib(
         factory=lambda: GetAttendanceStatisticsDataReqEmployeeType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "employee_type"},
     )  # 用户 ID 类型, 可选值有: `employee_id`, `employee_no`
     locale: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "locale"}
     )  # 语言类型, 可选值有: `en`：英文, `ja`：日文, `zh`：中文
     stats_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "stats_type"}
     )  # 统计类型,      , 可选值有: `daily`：日度统计, `month`：月度统计
     start_date: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "start_date"}
     )  # 开始时间, 示例值：20210316
     end_date: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "end_date"}
     )  # 结束时间, 示例值：20210323,      ,      （时间间隔不超过 40 天）
     user_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_ids"}
     )  # 查询的用户 ID 列表,      ,      （用户数量不超过 20）
     need_history: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "need_history"}
     )  # 是否包含历史数据, 示例值：true
     current_group_only: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "current_group_only"}
     )  # 是否只包含当前考勤组, 示例值：true
 
 
 @attr.s
 class GetAttendanceStatisticsDataRespUserDataDataFeature(object):
-    key: str = attr.ib(default="", metadata={"req_type": "json"})  # 属性名
-    value: str = attr.ib(default="", metadata={"req_type": "json"})  # 属性值
+    key: str = attr.ib(default="", metadata={"req_type": "json", "key": "key"})  # 属性名
+    value: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "value"}
+    )  # 属性值
 
 
 @attr.s
 class GetAttendanceStatisticsDataRespUserDataData(object):
-    code: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段编号
-    value: str = attr.ib(default="", metadata={"req_type": "json"})  # 数据值
+    code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "code"}
+    )  # 字段编号
+    value: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "value"}
+    )  # 数据值
     features: typing.List[GetAttendanceStatisticsDataRespUserDataDataFeature] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "features"}
     )  # 数据属性
 
 
 @attr.s
 class GetAttendanceStatisticsDataRespUserData(object):
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 姓名
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户 ID
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 姓名
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 用户 ID
     datas: typing.List[GetAttendanceStatisticsDataRespUserDataData] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "datas"}
     )  # 数据
 
 
 @attr.s
 class GetAttendanceStatisticsDataResp(object):
     user_datas: typing.List[GetAttendanceStatisticsDataRespUserData] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_datas"}
     )  # 用户统计数据
 
 

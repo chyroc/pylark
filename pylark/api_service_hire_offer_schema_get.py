@@ -9,59 +9,73 @@ import io
 @attr.s
 class GetHireOfferSchemaReq(object):
     offer_schema_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "offer_schema_id"}
     )  # offer申请表的ID *必需属性, 示例值："1231231231231"
 
 
 @attr.s
 class GetHireOfferSchemaRespObjectOptionName(object):
-    zh_cn: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文名
-    en_us: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名
+    zh_cn: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_cn"}
+    )  # 中文名
+    en_us: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_us"}
+    )  # 英文名
 
 
 @attr.s
 class GetHireOfferSchemaRespObjectOption(object):
     name: GetHireOfferSchemaRespObjectOptionName = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "name"}
     )  # 名字
-    index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 选项序号
+    index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "index"}
+    )  # 选项序号
     active_status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "active_status"}
     )  # 选项当前是否启用, 可选值有: `1`：进行中, `2`：已终止
 
 
 @attr.s
 class GetHireOfferSchemaRespObjectName(object):
-    zh_cn: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文名
-    en_us: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名
+    zh_cn: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_cn"}
+    )  # 中文名
+    en_us: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_us"}
+    )  # 英文名
 
 
 @attr.s
 class GetHireOfferSchemaRespObject(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段ID
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 字段ID
     name: GetHireOfferSchemaRespObjectName = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "name"}
     )  # 字段名称
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 字段类型, text=单行文本, long_text=多行文本, select=单选, multi_select=多选, date_select=日期, number=数字
     is_customized: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_customized"}
     )  # 字段是否为自定义
     option_list: typing.List[GetHireOfferSchemaRespObjectOption] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "option_list"}
     )  # 单选/多选可选择字段的选项值
 
 
 @attr.s
 class GetHireOfferSchemaResp(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # offer申请表ID
+    id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "id"}
+    )  # offer申请表ID
     scenario: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "scenario"}
     )  # offer申请表使用场景, 可选值有: `1`：Offer审批表
-    version: int = attr.ib(default=0, metadata={"req_type": "json"})  # 申请表版本
+    version: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "version"}
+    )  # 申请表版本
     object_list: typing.List[GetHireOfferSchemaRespObject] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "object_list"}
     )  # 字段对象信息
 
 

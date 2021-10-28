@@ -9,17 +9,21 @@ import io
 @attr.s
 class CreateDriveDocReq(object):
     folder_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "FolderToken"}
     )  # 文件夹 token，获取方式见[云文档接口快速入门](https://open.feishu.cn/document/ukTMukTMukTM/uczNzUjL3czM14yN3MTN)；空表示根目录，tenant_access_token应用权限仅允许操作应用创建的目录
     content: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "Content"}
     )  # 传入符合[文档数据结构](https://open.feishu.cn/document/ukTMukTMukTM/uAzM5YjLwMTO24CMzkjN)的字符串，若为空表示创建空文档
 
 
 @attr.s
 class CreateDriveDocResp(object):
-    obj_token: str = attr.ib(default="", metadata={"req_type": "json"})  # 新建文档的token
-    url: str = attr.ib(default="", metadata={"req_type": "json"})  # 新建文档的访问链接
+    obj_token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "objToken"}
+    )  # 新建文档的token
+    url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "url"}
+    )  # 新建文档的访问链接
 
 
 def _gen_create_drive_doc_req(request, options) -> RawRequestReq:

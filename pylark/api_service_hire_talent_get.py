@@ -9,232 +9,312 @@ import io
 @attr.s
 class GetHireTalentReq(object):
     talent_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "talent_id"}
     )  # 人才ID, 示例值："6891560630172518670"
 
 
 @attr.s
 class GetHireTalentRespTalentInterviewRegistration(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
-    registration_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 创建时间
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
+    registration_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "registration_time"}
+    )  # 创建时间
 
 
 @attr.s
 class GetHireTalentRespTalentResumeSource(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文名
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 中文名
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 英文名
 
 
 @attr.s
 class GetHireTalentRespTalentSns(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
     sns_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "sns_type"}
     )  # SNS类型, 可选值有: `1`：领英, `2`：脉脉, `3`：微信, `4`：微博, `5`：Github, `6`：知乎, `7`：脸书, `8`：推特, `9`：Whatsapp, `10`：个人网站, `11`：QQ
-    link: str = attr.ib(default="", metadata={"req_type": "json"})  # SNS链接
+    link: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "link"}
+    )  # SNS链接
 
 
 @attr.s
 class GetHireTalentRespTalentLanguage(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
     language: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "language"}
     )  # 语言, 可选值有: `1`：英语, `2`：法语, `3`：日语, `4`：韩语, `5`：德语, `6`：俄语, `7`：西班牙语, `8`：葡萄牙语, `9`：阿拉伯语, `10`：印地语, `11`：印度斯坦语, `12`：孟加拉语, `13`：豪萨语, `14`：旁遮普语, `15`：波斯语, `16`：斯瓦西里语, `17`：泰卢固语, `18`：土耳其语, `19`：意大利语, `20`：爪哇语, `21`：泰米尔语, `22`：马拉地语, `23`：越南语, `24`：普通话, `25`：粤语
     proficiency: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "proficiency"}
     )  # 熟练程度, 可选值有: `1`：入门, `2`：日常会话, `3`：商务会话, `4`：无障碍沟通, `5`：母语
 
 
 @attr.s
 class GetHireTalentRespTalentCertificate(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 证件名称
-    desc: str = attr.ib(default="", metadata={"req_type": "json"})  # 证件描述
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 证件名称
+    desc: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "desc"}
+    )  # 证件描述
 
 
 @attr.s
 class GetHireTalentRespTalentCompetition(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 竞赛名称
-    desc: str = attr.ib(default="", metadata={"req_type": "json"})  # 竞赛描述
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 竞赛名称
+    desc: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "desc"}
+    )  # 竞赛描述
 
 
 @attr.s
 class GetHireTalentRespTalentAward(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 名称
-    award_time: str = attr.ib(default="", metadata={"req_type": "json"})  # 获奖时间
-    desc: str = attr.ib(default="", metadata={"req_type": "json"})  # 描述
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 名称
+    award_time: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "award_time"}
+    )  # 获奖时间
+    desc: str = attr.ib(default="", metadata={"req_type": "json", "key": "desc"})  # 描述
 
 
 @attr.s
 class GetHireTalentRespTalentWorks(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
-    link: str = attr.ib(default="", metadata={"req_type": "json"})  # 链接
-    desc: str = attr.ib(default="", metadata={"req_type": "json"})  # 描述
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 名字
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
+    link: str = attr.ib(default="", metadata={"req_type": "json", "key": "link"})  # 链接
+    desc: str = attr.ib(default="", metadata={"req_type": "json", "key": "desc"})  # 描述
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 名字
 
 
 @attr.s
 class GetHireTalentRespTalentProject(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 项目名称
-    role: str = attr.ib(default="", metadata={"req_type": "json"})  # 项目角色
-    link: str = attr.ib(default="", metadata={"req_type": "json"})  # 项目链接
-    desc: str = attr.ib(default="", metadata={"req_type": "json"})  # 描述
-    start_time: str = attr.ib(default="", metadata={"req_type": "json"})  # 开始时间
-    end_time: str = attr.ib(default="", metadata={"req_type": "json"})  # 结束时间
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 项目名称
+    role: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "role"}
+    )  # 项目角色
+    link: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "link"}
+    )  # 项目链接
+    desc: str = attr.ib(default="", metadata={"req_type": "json", "key": "desc"})  # 描述
+    start_time: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "start_time"}
+    )  # 开始时间
+    end_time: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "end_time"}
+    )  # 结束时间
 
 
 @attr.s
 class GetHireTalentRespTalentCareer(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
-    company: str = attr.ib(default="", metadata={"req_type": "json"})  # 公司
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位
-    desc: str = attr.ib(default="", metadata={"req_type": "json"})  # 描述
-    start_time: str = attr.ib(default="", metadata={"req_type": "json"})  # 开始时间
-    end_time: str = attr.ib(default="", metadata={"req_type": "json"})  # 结束时间
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
+    company: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "company"}
+    )  # 公司
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 职位
+    desc: str = attr.ib(default="", metadata={"req_type": "json", "key": "desc"})  # 描述
+    start_time: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "start_time"}
+    )  # 开始时间
+    end_time: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "end_time"}
+    )  # 结束时间
     tag_list: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "tag_list"}
     )  # 标签, 可选值有: `1`：985学校, `2`：211学校, `3`：一本, `4`：国外院校QS200, `5`：百度 阿里 腾讯, `6`：头条, 美团, 滴滴, `7`：其它大厂, `8`：猎头渠道, `9`：内推渠道, `10`：互联网大厂（包含 BAT/TMD）, `11`：熟人内推, `100`：email, `101`：mobile, `102`：猎头保护中, `103`：已入职, `104`：已离职
 
 
 @attr.s
 class GetHireTalentRespTalentEducation(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
     degree: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "degree"}
     )  # 学位, 可选值有: `1`：小学, `2`：初中, `3`：专职, `4`：高中, `5`：大专, `6`：本科, `7`：硕士, `8`：博士, `9`：其他
-    school: str = attr.ib(default="", metadata={"req_type": "json"})  # 学校
-    field_of_study: str = attr.ib(default="", metadata={"req_type": "json"})  # 专业
-    start_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 开始时间
-    end_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 结束时间
+    school: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "school"}
+    )  # 学校
+    field_of_study: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "field_of_study"}
+    )  # 专业
+    start_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "start_time"}
+    )  # 开始时间
+    end_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "end_time"}
+    )  # 结束时间
     education_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "education_type"}
     )  # 学历类型, 可选值有: `1`：非中国大陆, `2`：统招全日制, `3`：非全日制, `4`：自考, `5`：其他
     academic_ranking: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "academic_ranking"}
     )  # 成绩排名, 可选值有: `5`：前 5 %, `10`：前 10 %, `20`：前 20 %, `30`：前 30 %, `50`：前 50 %, `-1`：其他
     tag_list: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "tag_list"}
     )  # 标记, 可选值有: `1`：985学校, `2`：211学校, `3`：一本, `4`：国外院校QS200, `5`：百度 阿里 腾讯, `6`：头条, 美团, 滴滴, `7`：其它大厂, `8`：猎头渠道, `9`：内推渠道, `10`：互联网大厂（包含 BAT/TMD）, `11`：熟人内推, `100`：email, `101`：mobile, `102`：猎头保护中, `103`：已入职, `104`：已离职
 
 
 @attr.s
 class GetHireTalentRespTalentBasicInfoPreferredCity(object):
-    city_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 城市码
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 名字
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名
+    city_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "city_code"}
+    )  # 城市码
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 名字
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 英文名
 
 
 @attr.s
 class GetHireTalentRespTalentBasicInfoHometownCity(object):
-    city_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 城市码
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 名字
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名
+    city_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "city_code"}
+    )  # 城市码
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 名字
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 英文名
 
 
 @attr.s
 class GetHireTalentRespTalentBasicInfoCurrentCity(object):
-    city_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 城市码
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 名字
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名
+    city_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "city_code"}
+    )  # 城市码
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 名字
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 英文名
 
 
 @attr.s
 class GetHireTalentRespTalentBasicInfoNationality(object):
-    nationality_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 国家编码
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 名字
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名
+    nationality_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "nationality_code"}
+    )  # 国家编码
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 名字
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 英文名
 
 
 @attr.s
 class GetHireTalentRespTalentBasicInfo(object):
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 名字
-    mobile: str = attr.ib(default="", metadata={"req_type": "json"})  # 手机
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 名字
+    mobile: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "mobile"}
+    )  # 手机
     mobile_country_code: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "mobile_country_code"}
     )  # 手机国家代码
-    email: str = attr.ib(default="", metadata={"req_type": "json"})  # 邮箱
-    experience_years: int = attr.ib(default=0, metadata={"req_type": "json"})  # 工作年限
-    age: int = attr.ib(default=0, metadata={"req_type": "json"})  # 年龄
+    email: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "email"}
+    )  # 邮箱
+    experience_years: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "experience_years"}
+    )  # 工作年限
+    age: int = attr.ib(default=0, metadata={"req_type": "json", "key": "age"})  # 年龄
     nationality: GetHireTalentRespTalentBasicInfoNationality = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "nationality"}
     )  # 国籍
     gender: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "gender"}
     )  # 性别, 可选值有: `1`：男, `2`：女, `3`：其他
     current_city: GetHireTalentRespTalentBasicInfoCurrentCity = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "current_city"}
     )  # 当前所在城市信息
     hometown_city: GetHireTalentRespTalentBasicInfoHometownCity = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "hometown_city"}
     )  # 家乡
     preferred_city_list: typing.List[
         GetHireTalentRespTalentBasicInfoPreferredCity
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "preferred_city_list"}
     )  # 偏好城市
     identification_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "identification_type"}
     )  # 证件类型, 可选值有: `1`：中国 - 居民身份证, `2`：护照, `3`：中国 - 港澳居民居住证, `4`：中国 - 台湾居民来往大陆通行证, `5`：其他, `6`：中国 - 港澳居民来往内地通行证, `9`：中国 - 台湾居民居住证
     identification_number: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "identification_number"}
     )  # 证件号
-    birthday: int = attr.ib(default=0, metadata={"req_type": "json"})  # 生日
+    birthday: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "birthday"}
+    )  # 生日
 
 
 @attr.s
 class GetHireTalentRespTalent(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
     basic_info: GetHireTalentRespTalentBasicInfo = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "basic_info"}
     )  # 基础信息
     education_list: typing.List[GetHireTalentRespTalentEducation] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "education_list"}
     )  # 教育经历
     career_list: typing.List[GetHireTalentRespTalentCareer] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "career_list"}
     )  # 工作经历
     project_list: typing.List[GetHireTalentRespTalentProject] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "project_list"}
     )  # 项目经历
     works_list: typing.List[GetHireTalentRespTalentWorks] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "works_list"}
     )  # 作品集
     award_list: typing.List[GetHireTalentRespTalentAward] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "award_list"}
     )  # 获奖列表
     competition_list: typing.List[GetHireTalentRespTalentCompetition] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "competition_list"}
     )  # 竞赛列表
     certificate_list: typing.List[GetHireTalentRespTalentCertificate] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "certificate_list"}
     )  # 证书列表
     language_list: typing.List[GetHireTalentRespTalentLanguage] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "language_list"}
     )  # 语言列表
     sns_list: typing.List[GetHireTalentRespTalentSns] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "sns_list"}
     )  # SNS列表
     resume_source_list: typing.List[GetHireTalentRespTalentResumeSource] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "resume_source_list"}
     )  # 简历来源
     interview_registration_list: typing.List[
         GetHireTalentRespTalentInterviewRegistration
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [],
+        metadata={"req_type": "json", "key": "interview_registration_list"},
     )  # 面试登记表
     resume_attachment_id_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [],
+        metadata={"req_type": "json", "key": "resume_attachment_id_list"},
     )  # 简历附件id列表（按照简历创建时间降序）
 
 
 @attr.s
 class GetHireTalentResp(object):
     talent: GetHireTalentRespTalent = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "talent"}
     )  # 人才信息
 
 

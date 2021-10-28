@@ -14,20 +14,20 @@ class AddChatMemberReqMemberIDType(object):
 @attr.s
 class AddChatMemberReq(object):
     member_id_type: AddChatMemberReqMemberIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "member_id_type"}
     )  # 进群成员 id 类型 open_id/user_id/union_id/app_id, 示例值："user_id", 可选值有: `user_id`：以 user_id 来识别成员，需要有获取用户UserID的权限 ([什么是 User ID？](https://open.feishu.cn/document/home/user-identity-introduction/user-id)), `union_id`：以 union_id 来识别成员([什么是 Union ID？](https://open.feishu.cn/document/home/user-identity-introduction/union-id)), `open_id`：以 open_id 来识别成员([什么是 Open ID？](https://open.feishu.cn/document/home/user-identity-introduction/open-id)), `app_id`：以 app_id 来识别成员([获取应用身份访问凭证](https://open.feishu.cn/document/ukTMukTMukTM/ukDNz4SO0MjL5QzM/g))
     chat_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "chat_id"}
     )  # 群 ID，详情参见[群ID 说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/chat-id-description), 示例值："oc_a0553eda9014c201e6969b478895c230"
     id_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "id_list"}
     )  # 成员列表
 
 
 @attr.s
 class AddChatMemberResp(object):
     invalid_id_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "invalid_id_list"}
     )  # 无效成员列表
 
 

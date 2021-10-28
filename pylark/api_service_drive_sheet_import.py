@@ -14,20 +14,20 @@ class ImportSheetReqFile(object):
 @attr.s
 class ImportSheetReq(object):
     file: typing.List[ImportSheetReqFile] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "file"}
     )  # 需要导入的文件数据，转换成字节数组的形式，支持"xlsx","csv"格式，最大不超过20M
     name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "name"}
     )  # 文件名，带上文件拓展名，如"hello.csv"、"hello.xlsx"。导入后sheet的标题将去除文件拓展名，如"hello.xlsx"导入后标题为"hello"。
     folder_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "folderToken"}
     )  # 导入的文件夹token，默认导入到根目录下
 
 
 @attr.s
 class ImportSheetResp(object):
     ticket: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "ticket"}
     )  # 与导入文件一一对应的凭证，用于查询文件导入的进度，详见[查询导入结果的接口](https://open.feishu.cn/document/ukTMukTMukTM/uETO2YjLxkjN24SM5YjN)
 
 

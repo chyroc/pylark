@@ -9,41 +9,49 @@ import io
 @attr.s
 class GetDriveFileMetaReqRequestDocs(object):
     docs_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "docs_token"}
     )  # 文件的 token，获取方式见[概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction)
     docs_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "docs_type"}
     )  # 文件类型  <br>1) "doc": 飞书文档<br>2) "sheet": 飞书电子表格 <br>3) "bitable": 飞书多维表格<br>4) "mindnote": 飞书思维笔记 <br>5) "file": 飞书文件
 
 
 @attr.s
 class GetDriveFileMetaReq(object):
     request_docs: GetDriveFileMetaReqRequestDocs = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "request_docs"}
     )  # 请求文档，一次不超过200个
 
 
 @attr.s
 class GetDriveFileMetaRespDocsMetas(object):
-    docs_token: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件token
-    docs_type: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件类型
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 标题
-    owner_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件拥有者
+    docs_token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "docs_token"}
+    )  # 文件token
+    docs_type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "docs_type"}
+    )  # 文件类型
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 标题
+    owner_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "owner_id"}
+    )  # 文件拥有者
     create_time: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "create_time"}
     )  # 创建时间（Unix时间戳）
     latest_modify_user: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "latest_modify_user"}
     )  # 最后编辑者
     latest_modify_time: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "latest_modify_time"}
     )  # 最后编辑时间（Unix时间戳）
 
 
 @attr.s
 class GetDriveFileMetaResp(object):
     docs_metas: GetDriveFileMetaRespDocsMetas = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "docs_metas"}
     )  # 文件元数据
 
 

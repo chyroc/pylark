@@ -14,10 +14,10 @@ class DeleteDepartmentReqDepartmentIDType(object):
 @attr.s
 class DeleteDepartmentReq(object):
     department_id_type: DeleteDepartmentReqDepartmentIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "department_id_type"}
     )  # 此次调用中使用的部门ID的类型, 示例值："open_department_id", 可选值有: `department_id`：以自定义department_id来标识部门, `open_department_id`：以open_department_id来标识部门, 默认值: `open_department_id`
     department_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "department_id"}
     )  # 部门ID，需要与查询参数中传入的department_id_type类型保持一致。, 示例值："od-4e6ac4d14bcd5071a37a39de902c7141", 最大长度：`64` 字符, 正则校验：`^0|[^od][A-Za-z0-9]*`
 
 

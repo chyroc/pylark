@@ -14,14 +14,20 @@ class GetBotInfoReq(object):
 @attr.s
 class GetBotInfoResp(object):
     activate_status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "activate_status"}
     )  # app 当前状态。,0: 初始化，租户待安装,1: 租户停用,2: 租户启用,3: 安装后待启用,4: 升级待启用,5: license过期停用,6: Lark套餐到期或降级停用
-    app_name: str = attr.ib(default="", metadata={"req_type": "json"})  # app 名称
-    avatar_url: str = attr.ib(default="", metadata={"req_type": "json"})  # app 图像地址
+    app_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "app_name"}
+    )  # app 名称
+    avatar_url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_url"}
+    )  # app 图像地址
     ip_white_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "ip_white_list"}
     )  # app 的 IP 白名单地址
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 机器人的open_id
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "open_id"}
+    )  # 机器人的open_id
 
 
 def _gen_get_bot_info_req(request, options) -> RawRequestReq:

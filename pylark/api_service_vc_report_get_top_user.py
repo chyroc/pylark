@@ -9,34 +9,38 @@ import io
 @attr.s
 class GetVCTopUserReportReq(object):
     start_time: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "start_time"}
     )  # 开始时间（unix时间，单位sec）, 示例值："1608888867"
     end_time: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "end_time"}
     )  # 结束时间（unix时间，单位sec）, 示例值："1608889966"
-    limit: int = attr.ib(default=0, metadata={"req_type": "query"})  # 取前多少位, 示例值：10
+    limit: int = attr.ib(
+        default=0, metadata={"req_type": "query", "key": "limit"}
+    )  # 取前多少位, 示例值：10
     order_by: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "order_by"}
     )  # 排序依据（降序）, 示例值：1, 可选值有: `1`：会议数量, `2`：会议时长
 
 
 @attr.s
 class GetVCTopUserReportRespTopUserReport(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户ID
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户名
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 用户ID
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 用户名
     user_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "user_type"}
     )  # 用户类型, 可选值有: `1`：lark用户, `2`：rooms用户, `3`：文档用户, `4`：neo单品用户, `5`：neo单品游客用户, `6`：pstn用户, `7`：sip用户
-    meeting_count: str = attr.ib(default="", metadata={"req_type": "json"})  # 会议数量
+    meeting_count: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "meeting_count"}
+    )  # 会议数量
     meeting_duration: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "meeting_duration"}
     )  # 会议时长（单位sec）
 
 
 @attr.s
 class GetVCTopUserReportResp(object):
     top_user_report: GetVCTopUserReportRespTopUserReport = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "top_user_report"}
     )  # top用户列表
 
 

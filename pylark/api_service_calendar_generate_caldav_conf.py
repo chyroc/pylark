@@ -9,16 +9,24 @@ import io
 @attr.s
 class GenerateCaldavConfReq(object):
     device_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "device_name"}
     )  # 需要同步日历的设备名，在日历中展示用来管理密码, 示例值："iPhone", 最大长度：`100` 字符
 
 
 @attr.s
 class GenerateCaldavConfResp(object):
-    password: str = attr.ib(default="", metadata={"req_type": "json"})  # caldav密码
-    user_name: str = attr.ib(default="", metadata={"req_type": "json"})  # caldav用户名
-    server_address: str = attr.ib(default="", metadata={"req_type": "json"})  # 服务器地址
-    device_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 设备名
+    password: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "password"}
+    )  # caldav密码
+    user_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_name"}
+    )  # caldav用户名
+    server_address: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "server_address"}
+    )  # 服务器地址
+    device_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "device_name"}
+    )  # 设备名
 
 
 def _gen_generate_caldav_conf_req(request, options) -> RawRequestReq:

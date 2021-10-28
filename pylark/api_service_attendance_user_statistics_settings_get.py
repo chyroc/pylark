@@ -15,58 +15,76 @@ class GetAttendanceUserStatisticsSettingsReqEmployeeType(object):
 class GetAttendanceUserStatisticsSettingsReq(object):
     employee_type: GetAttendanceUserStatisticsSettingsReqEmployeeType = attr.ib(
         factory=lambda: GetAttendanceUserStatisticsSettingsReqEmployeeType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "employee_type"},
     )  # 用户 ID 类型, 可选值有: `employee_id`, `employee_no`
     locale: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "locale"}
     )  # 语言类型, 可选值有: `en`：英文, `ja`：日文, `zh`：中文
     stats_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "stats_type"}
     )  # 统计类型,      , 可选值有: `daily`：日度统计, `month`：月度统计
 
 
 @attr.s
 class GetAttendanceUserStatisticsSettingsRespViewItemChildItem(object):
-    code: str = attr.ib(default="", metadata={"req_type": "json"})  # 标题编号
+    code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "code"}
+    )  # 标题编号
     value: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "value"}
     )  # 是否开启,      , 可选值有: `0`：关闭, `1`：开启
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 标题名称
-    column_type: int = attr.ib(default=0, metadata={"req_type": "json"})  # 标题类型
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 标题名称
+    column_type: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "column_type"}
+    )  # 标题类型
     read_only: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "read_only"}
     )  # 是否只读
-    min_value: str = attr.ib(default="", metadata={"req_type": "json"})  # 最小值
-    max_value: str = attr.ib(default="", metadata={"req_type": "json"})  # 最大值
+    min_value: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "min_value"}
+    )  # 最小值
+    max_value: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "max_value"}
+    )  # 最大值
 
 
 @attr.s
 class GetAttendanceUserStatisticsSettingsRespViewItem(object):
-    code: str = attr.ib(default="", metadata={"req_type": "json"})  # 标题编号
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 标题名称
+    code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "code"}
+    )  # 标题编号
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 标题名称
     child_items: typing.List[
         GetAttendanceUserStatisticsSettingsRespViewItemChildItem
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "child_items"}
     )  # 子标题
 
 
 @attr.s
 class GetAttendanceUserStatisticsSettingsRespView(object):
-    view_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 视图 ID
+    view_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "view_id"}
+    )  # 视图 ID
     stats_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "stats_type"}
     )  # 统计类型, 可选值有: `daily`：日度统计, `month`：月度统计
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户 ID
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 用户 ID
     items: typing.List[GetAttendanceUserStatisticsSettingsRespViewItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 一级标题
 
 
 @attr.s
 class GetAttendanceUserStatisticsSettingsResp(object):
     view: GetAttendanceUserStatisticsSettingsRespView = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "view"}
     )  # 统计视图
 
 

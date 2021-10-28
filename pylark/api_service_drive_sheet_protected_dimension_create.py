@@ -8,26 +8,34 @@ import io
 
 @attr.s
 class CreateSheetProtectedDimensionReqAddProtectedDimensionDimension(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # sheetId
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # sheetId
     major_dimension: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "majorDimension"}
     )  # 默认 ROWS ，可选 ROWS、COLUMNS
-    start_index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 开始的位置
-    end_index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 结束的位置
+    start_index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "startIndex"}
+    )  # 开始的位置
+    end_index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "endIndex"}
+    )  # 结束的位置
 
 
 @attr.s
 class CreateSheetProtectedDimensionReqAddProtectedDimension(object):
     dimension: CreateSheetProtectedDimensionReqAddProtectedDimensionDimension = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "dimension"}
     )  # 需要保护行列的维度信息
     editors: typing.List[int] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "editors"}
     )  # 允许编辑保护范围的用户的 userID
     users: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "users"}
     )  # 允许编辑保护范围的用户的id，id类型取决于user_id_type
-    lock_info: str = attr.ib(default="", metadata={"req_type": "json"})  # 保护范围的信息
+    lock_info: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "lockInfo"}
+    )  # 保护范围的信息
 
 
 @attr.s
@@ -38,42 +46,51 @@ class CreateSheetProtectedDimensionReqUserIDType(object):
 @attr.s
 class CreateSheetProtectedDimensionReq(object):
     user_id_type: CreateSheetProtectedDimensionReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 请求的用户id类型，可选open_id,union_id
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token，获取方式见 [在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     add_protected_dimension: typing.List[
         CreateSheetProtectedDimensionReqAddProtectedDimension
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [],
+        metadata={"req_type": "json", "key": "addProtectedDimension"},
     )  # 需要增加保护范围的维度信息，可多个范围
 
 
 @attr.s
 class CreateSheetProtectedDimensionRespAddProtectedDimensionDimension(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # sheetId
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # sheetId
     major_dimension: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "majorDimension"}
     )  # 默认 ROWS ，可选 ROWS、COLUMNS
-    start_index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 开始的位置
-    end_index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 结束的位置
+    start_index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "startIndex"}
+    )  # 开始的位置
+    end_index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "endIndex"}
+    )  # 结束的位置
 
 
 @attr.s
 class CreateSheetProtectedDimensionRespAddProtectedDimension(object):
     dimension: CreateSheetProtectedDimensionRespAddProtectedDimensionDimension = (
-        attr.ib(default=None, metadata={"req_type": "json"})
+        attr.ib(default=None, metadata={"req_type": "json", "key": "dimension"})
     )  # 需要保护行列的维度信息
     editors: typing.List[int] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "editors"}
     )  # 允许编辑保护范围的用户的 userID
     users: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "users"}
     )  # 允许编辑保护范围的用户的id，id类型取决于user_id_type
-    lock_info: str = attr.ib(default="", metadata={"req_type": "json"})  # 保护范围的信息
+    lock_info: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "lockInfo"}
+    )  # 保护范围的信息
     protect_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "protectId"}
     )  # 保护区域的唯一 uid ，可用做后续解除保护
 
 
@@ -82,7 +99,8 @@ class CreateSheetProtectedDimensionResp(object):
     add_protected_dimension: typing.List[
         CreateSheetProtectedDimensionRespAddProtectedDimension
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [],
+        metadata={"req_type": "json", "key": "addProtectedDimension"},
     )  # 需要增加保护范围的维度信息，可多个范围
 
 

@@ -13,9 +13,11 @@ class UpdateBitableRecordReqFieldsValue(object):
 
 @attr.s
 class UpdateBitableRecordReqFields(object):
-    key: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段名, 示例值："多行文本"
+    key: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "key"}
+    )  # 字段名, 示例值："多行文本"
     value: typing.Any = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "value"}
     )  # 内容, 示例值：文本
 
 
@@ -27,19 +29,20 @@ class UpdateBitableRecordReqUserIDType(object):
 @attr.s
 class UpdateBitableRecordReq(object):
     user_id_type: UpdateBitableRecordReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     app_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "app_token"}
     )  # bitable app token, 示例值："appbcbWCzen6D8dezhoCH2RpMAh"
     table_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "table_id"}
     )  # table id, 示例值："tblsRc9GRRXKqhvW"
     record_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "record_id"}
     )  # 单条记录的 id, 示例值："recqwIwhc6"
     fields: UpdateBitableRecordReqFields = attr.ib(
-        factory=lambda: UpdateBitableRecordReqFields(), metadata={"req_type": "json"}
+        factory=lambda: UpdateBitableRecordReqFields(),
+        metadata={"req_type": "json", "key": "fields"},
     )  # 记录字段
 
 
@@ -50,23 +53,27 @@ class UpdateBitableRecordRespRecordFieldsValue(object):
 
 @attr.s
 class UpdateBitableRecordRespRecordFields(object):
-    key: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段名
-    value: typing.Any = attr.ib(default=None, metadata={"req_type": "json"})  # 内容
+    key: str = attr.ib(default="", metadata={"req_type": "json", "key": "key"})  # 字段名
+    value: typing.Any = attr.ib(
+        default=None, metadata={"req_type": "json", "key": "value"}
+    )  # 内容
 
 
 @attr.s
 class UpdateBitableRecordRespRecord(object):
-    record_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 记录 id
+    record_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "record_id"}
+    )  # 记录 id
     fields: UpdateBitableRecordRespRecordFields = attr.ib(
         factory=lambda: UpdateBitableRecordRespRecordFields(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "fields"},
     )  # 记录字段
 
 
 @attr.s
 class UpdateBitableRecordResp(object):
     record: UpdateBitableRecordRespRecord = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "record"}
     )  # {,    "fields": {,        "人力评估": 2,,        "任务执行人": [,            {,                "id": "ou_debc524b2d8cb187704df652b43d29de",            },        ],,        "任务描述": "多渠道收集用户反馈",,        "对应 OKR": [,            "recqwIwhc6",,            "recOuEJMvN",        ],,        "截止日期": 1609516800000,,        "是否完成": true,,        "状态": "已结束",,        "相关部门": [,            "销售",,            "客服",        ],    },}
 
 

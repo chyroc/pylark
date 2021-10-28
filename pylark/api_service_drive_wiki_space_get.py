@@ -9,21 +9,27 @@ import io
 @attr.s
 class GetWikiSpaceReq(object):
     space_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "space_id"}
     )  # 知识空间id, 示例值："6870403571079249922"
 
 
 @attr.s
 class GetWikiSpaceRespSpace(object):
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 知识空间名称
-    description: str = attr.ib(default="", metadata={"req_type": "json"})  # 知识空间描述
-    space_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 知识空间id
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 知识空间名称
+    description: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "description"}
+    )  # 知识空间描述
+    space_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "space_id"}
+    )  # 知识空间id
 
 
 @attr.s
 class GetWikiSpaceResp(object):
     space: GetWikiSpaceRespSpace = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "space"}
     )  # 知识空间
 
 

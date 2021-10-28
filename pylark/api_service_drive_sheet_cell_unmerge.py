@@ -9,17 +9,17 @@ import io
 @attr.s
 class UnmergeSheetCellReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token，获取方式见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     range_: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "range"}
     )  # 查询范围，包含 sheetId 与单元格范围两部分，目前支持四种索引方式，详见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
 
 
 @attr.s
 class UnmergeSheetCellResp(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token
 
 

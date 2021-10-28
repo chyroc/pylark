@@ -14,42 +14,44 @@ class GetACSUserListReqUserIDType(object):
 @attr.s
 class GetACSUserListReq(object):
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 示例值：10, 最大值：`50`
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："10"
     user_id_type: GetACSUserListReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
 
 
 @attr.s
 class GetACSUserListRespItemFeature(object):
-    card: int = attr.ib(default=0, metadata={"req_type": "json"})  # 卡号
+    card: int = attr.ib(default=0, metadata={"req_type": "json", "key": "card"})  # 卡号
     face_uploaded: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "face_uploaded"}
     )  # 是否已上传人脸图片
 
 
 @attr.s
 class GetACSUserListRespItem(object):
     feature: GetACSUserListRespItemFeature = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "feature"}
     )  # 用户特征
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户 ID
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 用户 ID
 
 
 @attr.s
 class GetACSUserListResp(object):
     items: typing.List[GetACSUserListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # -
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多项
 
 

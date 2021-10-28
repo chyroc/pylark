@@ -9,10 +9,10 @@ import io
 @attr.s
 class DeleteTaskCommentReq(object):
     task_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "task_id"}
     )  # 任务ID, 示例值："83912691-2e43-47fc-94a4-d512e03984fa"
     comment_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "comment_id"}
     )  # 评论ID, 示例值："6937231762296684564"
 
 

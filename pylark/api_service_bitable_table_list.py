@@ -9,34 +9,40 @@ import io
 @attr.s
 class GetBitableTableListReq(object):
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："tblsRc9GRRXKqhvW"
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 示例值：10, 最大值：`100`
     app_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "app_token"}
     )  # bitable app token, 示例值："appbcbWCzen6D8dezhoCH2RpMAh"
 
 
 @attr.s
 class GetBitableTableListRespItem(object):
-    table_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 数据表 id
-    revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # 数据表的版本号
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 数据表名字
+    table_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "table_id"}
+    )  # 数据表 id
+    revision: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "revision"}
+    )  # 数据表的版本号
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 数据表名字
 
 
 @attr.s
 class GetBitableTableListResp(object):
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多项
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
-    total: int = attr.ib(default=0, metadata={"req_type": "json"})  # 总数
+    total: int = attr.ib(default=0, metadata={"req_type": "json", "key": "total"})  # 总数
     items: typing.List[GetBitableTableListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 数据表信息
 
 

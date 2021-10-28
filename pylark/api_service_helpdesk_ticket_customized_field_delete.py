@@ -9,7 +9,7 @@ import io
 @attr.s
 class DeleteHelpdeskTicketCustomizedFieldReq(object):
     ticket_customized_field_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "ticket_customized_field_id"}
     )  # 工单自定义字段ID, 示例值："6948728206392295444"
 
 

@@ -9,22 +9,24 @@ import io
 @attr.s
 class CreateContactGroupReq(object):
     group_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "group_id"}
     )  # 自定义用户组ID，可在创建时自定义，不自定义则由系统自动生成，已创建用户组不允许修改 group_id 。,自定义group_id数据校验规则：,最大长度：64 字符,校验规则：数字、大小写字母的组合，不能包含空格, 示例值："g122817"
     name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "name"}
     )  # 用户组的名字，企业内唯一，最大长度：100 字符, 示例值："IT 外包组"
     description: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "description"}
     )  # 用户组描述, 示例值："IT服务人员的集合"
     type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "type"}
     )  # 用户组的类型。默认为1表示普通用户组, 示例值：1, 可选值有: `1`：普通用户组, 默认值: `1`
 
 
 @attr.s
 class CreateContactGroupResp(object):
-    group_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户组ID
+    group_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "group_id"}
+    )  # 用户组ID
 
 
 def _gen_create_contact_group_req(request, options) -> RawRequestReq:

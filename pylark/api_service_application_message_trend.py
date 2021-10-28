@@ -18,121 +18,135 @@ class GetApplicationMessageTrendReqChatType(object):
 
 @attr.s
 class GetApplicationMessageTrendReq(object):
-    app_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 目标应用的 ID
+    app_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "app_id"}
+    )  # 目标应用的 ID
     time_start: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "time_start"}
     )  # 起始时间戳（秒），时间跨度最长支持180天
     time_end: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "time_end"}
     )  # 截止时间戳（秒），时间跨度最长支持180天
     time_interval: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "time_interval"}
     )  # 步长（秒），最小步长为60秒，需满足(${time_end} - ${time_start}) / ${time_interval} <= 2*24*60
     chat_type: GetApplicationMessageTrendReqChatType = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "chat_type"}
     )  # 聊天类型，大小写不敏感，p2p：私聊；group：群聊
     message_type: GetApplicationMessageTrendReqMessageType = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "message_type"}
     )  # 消息类型，大小写不敏感，text：文本消息；image：图片消息；card：卡片消息；post：富文本消息；share_chat：群名片
 
 
 @attr.s
 class GetApplicationMessageTrendRespGroupReadTimestamp(object):
-    pv: int = attr.ib(default=0, metadata={"req_type": "json"})  # 消息已读用户数量
-    uv: int = attr.ib(default=0, metadata={"req_type": "json"})  # 去重的消息已读用户数量
+    pv: int = attr.ib(default=0, metadata={"req_type": "json", "key": "pv"})  # 消息已读用户数量
+    uv: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "uv"}
+    )  # 去重的消息已读用户数量
 
 
 @attr.s
 class GetApplicationMessageTrendRespGroupRead(object):
     timestamp: GetApplicationMessageTrendRespGroupReadTimestamp = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "timestamp"}
     )  # 时间戳（秒）
 
 
 @attr.s
 class GetApplicationMessageTrendRespGroupReceivedTimestamp(object):
-    pv: int = attr.ib(default=0, metadata={"req_type": "json"})  # 消息接收群聊数量
-    uv: int = attr.ib(default=0, metadata={"req_type": "json"})  # 去重的消息接收群聊数量
+    pv: int = attr.ib(default=0, metadata={"req_type": "json", "key": "pv"})  # 消息接收群聊数量
+    uv: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "uv"}
+    )  # 去重的消息接收群聊数量
 
 
 @attr.s
 class GetApplicationMessageTrendRespGroupReceived(object):
     timestamp: GetApplicationMessageTrendRespGroupReceivedTimestamp = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "timestamp"}
     )  # 时间戳（秒）
 
 
 @attr.s
 class GetApplicationMessageTrendRespGroupSentTimestamp(object):
-    pv: int = attr.ib(default=0, metadata={"req_type": "json"})  # 消息接收群聊数量
-    uv: int = attr.ib(default=0, metadata={"req_type": "json"})  # 去重的消息接收群聊数量
+    pv: int = attr.ib(default=0, metadata={"req_type": "json", "key": "pv"})  # 消息接收群聊数量
+    uv: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "uv"}
+    )  # 去重的消息接收群聊数量
 
 
 @attr.s
 class GetApplicationMessageTrendRespGroupSent(object):
     timestamp: GetApplicationMessageTrendRespGroupSentTimestamp = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "timestamp"}
     )  # 时间戳（秒）
 
 
 @attr.s
 class GetApplicationMessageTrendRespP2pReadTimestamp(object):
-    pv: int = attr.ib(default=0, metadata={"req_type": "json"})  # 消息已读用户数量
-    uv: int = attr.ib(default=0, metadata={"req_type": "json"})  # 去重的消息已读用户数量
+    pv: int = attr.ib(default=0, metadata={"req_type": "json", "key": "pv"})  # 消息已读用户数量
+    uv: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "uv"}
+    )  # 去重的消息已读用户数量
 
 
 @attr.s
 class GetApplicationMessageTrendRespP2pRead(object):
     timestamp: GetApplicationMessageTrendRespP2pReadTimestamp = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "timestamp"}
     )  # 时间戳（秒）
 
 
 @attr.s
 class GetApplicationMessageTrendRespP2pReceivedTimestamp(object):
-    pv: int = attr.ib(default=0, metadata={"req_type": "json"})  # 消息接收用户数量
-    uv: int = attr.ib(default=0, metadata={"req_type": "json"})  # 去重的消息接收用户数量
+    pv: int = attr.ib(default=0, metadata={"req_type": "json", "key": "pv"})  # 消息接收用户数量
+    uv: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "uv"}
+    )  # 去重的消息接收用户数量
 
 
 @attr.s
 class GetApplicationMessageTrendRespP2pReceived(object):
     timestamp: GetApplicationMessageTrendRespP2pReceivedTimestamp = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "timestamp"}
     )  # 时间戳（秒）
 
 
 @attr.s
 class GetApplicationMessageTrendRespP2pSentTimestamp(object):
-    pv: int = attr.ib(default=0, metadata={"req_type": "json"})  # 消息接收用户数量
-    uv: int = attr.ib(default=0, metadata={"req_type": "json"})  # 去重的消息接收用户数量
+    pv: int = attr.ib(default=0, metadata={"req_type": "json", "key": "pv"})  # 消息接收用户数量
+    uv: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "uv"}
+    )  # 去重的消息接收用户数量
 
 
 @attr.s
 class GetApplicationMessageTrendRespP2pSent(object):
     timestamp: GetApplicationMessageTrendRespP2pSentTimestamp = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "timestamp"}
     )  # 时间戳（秒）
 
 
 @attr.s
 class GetApplicationMessageTrendResp(object):
     p2p_sent: GetApplicationMessageTrendRespP2pSent = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "p2p_sent"}
     )  # 单聊发送
     p2p_received: GetApplicationMessageTrendRespP2pReceived = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "p2p_received"}
     )  # 单聊接收
     p2p_read: GetApplicationMessageTrendRespP2pRead = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "p2p_read"}
     )  # 单聊已读
     group_sent: GetApplicationMessageTrendRespGroupSent = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "group_sent"}
     )  # 群聊发送
     group_received: GetApplicationMessageTrendRespGroupReceived = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "group_received"}
     )  # 群聊接收
     group_read: GetApplicationMessageTrendRespGroupRead = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "group_read"}
     )  # 群聊已读
 
 

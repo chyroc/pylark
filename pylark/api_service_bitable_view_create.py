@@ -9,33 +9,39 @@ import io
 @attr.s
 class CreateBitableViewReq(object):
     app_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "app_token"}
     )  # bitable app token, 示例值："appbcbWCzen6D8dezhoCH2RpMAh"
     table_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "table_id"}
     )  # table id, 示例值："tblsRc9GRRXKqhvW"
     view_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "view_id"}
     )  # 视图Id, 示例值："vewTpR1urY"
     view_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "view_name"}
     )  # 视图名字, 示例值："甘特视图1"
     view_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "view_type"}
     )  # 视图类型, 示例值："gantt"
 
 
 @attr.s
 class CreateBitableViewRespApptableview(object):
-    view_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 视图Id
-    view_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 视图名字
-    view_type: str = attr.ib(default="", metadata={"req_type": "json"})  # 视图类型
+    view_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "view_id"}
+    )  # 视图Id
+    view_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "view_name"}
+    )  # 视图名字
+    view_type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "view_type"}
+    )  # 视图类型
 
 
 @attr.s
 class CreateBitableViewResp(object):
     view: CreateBitableViewRespApptableview = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "view"}
     )  # 视图
 
 

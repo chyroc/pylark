@@ -9,20 +9,24 @@ import io
 @attr.s
 class GetBatchSentMessageReadUserReq(object):
     batch_message_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "batch_message_id"}
     )  # 待查询的批量消息的ID, 示例值："bm_dc13264520392913993dd051dba21dcf"
 
 
 @attr.s
 class GetBatchSentMessageReadUserRespReadUser(object):
-    read_count: str = attr.ib(default="", metadata={"req_type": "json"})  # 已读的人数
-    total_count: str = attr.ib(default="", metadata={"req_type": "json"})  # 推送的总人数
+    read_count: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "read_count"}
+    )  # 已读的人数
+    total_count: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "total_count"}
+    )  # 推送的总人数
 
 
 @attr.s
 class GetBatchSentMessageReadUserResp(object):
     read_user: GetBatchSentMessageReadUserRespReadUser = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "read_user"}
     )  # 批量发送消息的用户阅读情况
 
 

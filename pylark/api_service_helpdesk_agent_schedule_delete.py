@@ -9,7 +9,7 @@ import io
 @attr.s
 class DeleteHelpdeskAgentScheduleReq(object):
     agent_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "agent_id"}
     )  # agent user id, 示例值："12345"
 
 

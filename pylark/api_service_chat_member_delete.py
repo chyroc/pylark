@@ -14,20 +14,20 @@ class DeleteChatMemberReqMemberIDType(object):
 @attr.s
 class DeleteChatMemberReq(object):
     member_id_type: DeleteChatMemberReqMemberIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "member_id_type"}
     )  # 出群成员 id 类型 open_id/user_id/union_id/app_id, 示例值："user_id", 可选值有: `user_id`：以 user_id 来识别成员, `union_id`：以 union_id 来识别成员, `open_id`：以 open_id 来识别成员, `app_id`：以 app_id 来识别成员
     chat_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "chat_id"}
     )  # 群 ID，详情参见[群ID 说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/chat-id-description), 示例值："oc_a0553eda9014c201e6969b478895c230"
     id_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "id_list"}
     )  # 成员列表
 
 
 @attr.s
 class DeleteChatMemberResp(object):
     invalid_id_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "invalid_id_list"}
     )  # 无效成员列表
 
 

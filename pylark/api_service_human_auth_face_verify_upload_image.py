@@ -14,20 +14,20 @@ class UploadFaceVerifyImageReqImage(object):
 @attr.s
 class UploadFaceVerifyImageReq(object):
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "open_id"}
     )  # 用户应用标识, 与employee_id二选其一
     employee_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "employee_id"}
     )  # 用户租户标识, 与open_id二选其一
     image: typing.Union[str, bytes, io.BytesIO] = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "image"}
     )  # 带有头像的人脸照片
 
 
 @attr.s
 class UploadFaceVerifyImageResp(object):
     face_uid: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "face_uid"}
     )  # 人脸图片用户Uid，需返回给应用小程序，作为小程序调起人脸识别接口的uid参数
 
 

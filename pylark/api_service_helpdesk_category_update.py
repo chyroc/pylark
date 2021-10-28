@@ -9,13 +9,13 @@ import io
 @attr.s
 class UpdateHelpdeskCategoryReq(object):
     id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "id"}
     )  # category id, 示例值："6948728206392295444"
     name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "name"}
     )  # 名称, 示例值："创建团队和邀请成员"
     parent_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "parent_id"}
     )  # 父知识库分类ID, 示例值："0"
 
 

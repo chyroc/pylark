@@ -14,25 +14,27 @@ class CreateTaskFollowerReqUserIDType(object):
 @attr.s
 class CreateTaskFollowerReq(object):
     user_id_type: CreateTaskFollowerReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     task_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "task_id"}
     )  # 任务 ID, 示例值："83912691-2e43-47fc-94a4-d512e03984fa"
     id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "id"}
     )  # 任务关注者 ID, 示例值："ou_99e1a581b36ecc4862cbfbce473f3123"
 
 
 @attr.s
 class CreateTaskFollowerRespFollower(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 任务关注者 ID
+    id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "id"}
+    )  # 任务关注者 ID
 
 
 @attr.s
 class CreateTaskFollowerResp(object):
     follower: CreateTaskFollowerRespFollower = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "follower"}
     )  # 创建后的任务关注者
 
 

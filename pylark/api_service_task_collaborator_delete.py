@@ -9,10 +9,10 @@ import io
 @attr.s
 class DeleteTaskCollaboratorReq(object):
     task_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "task_id"}
     )  # 任务 ID, 示例值："83912691-2e43-47fc-94a4-d512e03984fa"
     collaborator_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "collaborator_id"}
     )  # 任务协作者 ID（Open ID）, 示例值："ou_99e1a581b36ecc4862cbfbce123f346a"
 
 

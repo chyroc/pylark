@@ -9,13 +9,13 @@ import io
 @attr.s
 class GetHelpdeskCategoryListReq(object):
     lang: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "lang"}
     )  # 知识库分类语言, 示例值："zh_cn"
     order_by: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "order_by"}
     )  # 排序键。1: 根据知识库分类更新时间排序, 示例值：1
     asc: bool = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "asc"}
     )  # 顺序。true: 正序；false：反序, 示例值：true
 
 
@@ -26,23 +26,31 @@ class GetHelpdeskCategoryListRespCategorieChildren(object):
 
 @attr.s
 class GetHelpdeskCategoryListRespCategorie(object):
-    category_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 知识库分类ID
+    category_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "category_id"}
+    )  # 知识库分类ID
     id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "id"}
     )  # 知识库分类ID，（旧版，请使用category_id）
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 名称
-    parent_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 父知识库分类ID
-    helpdesk_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 服务台ID
-    language: str = attr.ib(default="", metadata={"req_type": "json"})  # 语言
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 名称
+    parent_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "parent_id"}
+    )  # 父知识库分类ID
+    helpdesk_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "helpdesk_id"}
+    )  # 服务台ID
+    language: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "language"}
+    )  # 语言
     children: typing.List[GetHelpdeskCategoryListRespCategorieChildren] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "children"}
     )  # 子分类详情
 
 
 @attr.s
 class GetHelpdeskCategoryListResp(object):
     categories: typing.List[GetHelpdeskCategoryListRespCategorie] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "categories"}
     )  # 知识库分类列表
 
 

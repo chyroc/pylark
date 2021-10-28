@@ -8,9 +8,11 @@ import io
 
 @attr.s
 class OpenChatReq(object):
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户 openId
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "openId"}
+    )  # 用户 openId
     open_chat_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "openChatId"}
     )  # 会话ID，包括单聊会话和群聊会话。示例：oc_41e7bdf4877cfc316136f4ccf6c32613
 
 

@@ -8,132 +8,195 @@ import io
 
 @attr.s
 class GetApprovalInstanceReq(object):
-    instance_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批实例 Code
+    instance_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "instance_code"}
+    )  # 审批实例 Code
     locale: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "locale"}
     )  # zh-CN - 中文<br>en-US - 英文<br>ja-JP - 日文
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 发起审批用户,平台级审批时使用
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 发起审批用户 open id
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 发起审批用户,平台级审批时使用
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "open_id"}
+    )  # 发起审批用户 open id
 
 
 @attr.s
 class GetApprovalInstanceRespTimelineExt(object):
     user_id_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_id_list"}
     )  # **type类型** - **user_id_list 含义**<br>TRANSFER - 被转交人 <br>ADD_APPROVER_BEFORE  -  被加签人<br>ADD_APPROVER -   被加签人<br>ADD_APPROVER_AFTER -   被加签人 <br>DELETE_APPROVER  - 被减签人
     open_id_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "open_id_list"}
     )  # user_id_list 对应的 open id
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "user_id"}
     )  # **type类型** - **user_id 含义**<br>CC - 抄送人
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "open_id"}
     )  # user_id 对应的 open_id
 
 
 @attr.s
 class GetApprovalInstanceRespTimelineCcUser(object):
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 抄送人 user id
-    cc_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批实例内抄送唯一标识
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 抄送人 open id
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 抄送人 user id
+    cc_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "cc_id"}
+    )  # 审批实例内抄送唯一标识
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "open_id"}
+    )  # 抄送人 open id
 
 
 @attr.s
 class GetApprovalInstanceRespTimeline(object):
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 动态类型，不同类型 ext 内的 user_id_list 含义不一样<br>START - 审批开始<br>PASS - 通过<br>REJECT  - 拒绝<br>AUTO_PASS -  自动通过<br>AUTO_REJECT - 自动拒绝<br>REMOVE_REPEAT - 去重<br>TRANSFER - 转交 <br>ADD_APPROVER_BEFORE  - 前加签<br>ADD_APPROVER -  并加签<br>ADD_APPROVER_AFTER -  后加签 <br>DELETE_APPROVER  - 减签<br>ROLLBACK_SELECTED -  指定回退<br>ROLLBACK - 全部回退<br>CANCEL -  撤回<br>DELETE - 删除<br>CC - 抄送
-    create_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 发生时间
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 动态产生用户
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 动态产生用户 open id
+    create_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "create_time"}
+    )  # 发生时间
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 动态产生用户
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "open_id"}
+    )  # 动态产生用户 open id
     user_id_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_id_list"}
     )  # 被抄送人列表
     open_id_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "open_id_list"}
     )  # 被抄送人列表
-    task_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 产生动态关联的task_id
-    comment: str = attr.ib(default="", metadata={"req_type": "json"})  # 理由
+    task_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "task_id"}
+    )  # 产生动态关联的task_id
+    comment: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "comment"}
+    )  # 理由
     cc_user_list: typing.List[GetApprovalInstanceRespTimelineCcUser] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "cc_user_list"}
     )  # 抄送人列表
     ext: GetApprovalInstanceRespTimelineExt = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "ext"}
     )  # 动态其他信息，目前包括 user_id_list, user_id
 
 
 @attr.s
 class GetApprovalInstanceRespComment(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # comment id
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 发表评论用户
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 发表评论用户 open id
-    comment: str = attr.ib(default="", metadata={"req_type": "json"})  # 评论内容
-    create_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 评论时间
+    id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "id"}
+    )  # comment id
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 发表评论用户
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "open_id"}
+    )  # 发表评论用户 open id
+    comment: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "comment"}
+    )  # 评论内容
+    create_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "create_time"}
+    )  # 评论时间
 
 
 @attr.s
 class GetApprovalInstanceRespTask(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # task id
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # task id
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "user_id"}
     )  # 审批人<br>自动通过、自动拒绝 task user_id 为空
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批人 open id
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "open_id"}
+    )  # 审批人 open id
     status: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "status"}
     )  # 任务状态<br>PENDING - 审批中<br>APPROVED - 同意<br>REJECTED  - 拒绝<br>TRANSFERRED - 已转交<br>DONE -  完成
-    node_id: str = attr.ib(default="", metadata={"req_type": "json"})  # task 所属节点 id
-    node_name: str = attr.ib(default="", metadata={"req_type": "json"})  # task 所属节点名称
+    node_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "node_id"}
+    )  # task 所属节点 id
+    node_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "node_name"}
+    )  # task 所属节点名称
     custom_node_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "custom_node_id"}
     )  # task 所属节点自定义 id, 如果没设置自定义 id, 则不返回该字段
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 审批方式<br>AND -会签<br>OR - 或签<br>AUTO_PASS -自动通过<br>AUTO_REJECT - 自动拒绝<br>SEQUENTIAL - 按顺序
-    start_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # task 开始时间
+    start_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "start_time"}
+    )  # task 开始时间
     end_time: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "end_time"}
     )  # task 完成时间, 未完成为 0
 
 
 @attr.s
 class GetApprovalInstanceRespForm(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 控件 id
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 控件 id
     custom_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "custom_id"}
     )  # 控件自定义 id，如果没有设置自定义 id，则不返回该字段
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 控件名称
-    type: str = attr.ib(default="", metadata={"req_type": "json"})  # 控件类型
-    value: str = attr.ib(default="", metadata={"req_type": "json"})  # 控件值，不同类型格式不一样
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 控件名称
+    type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "type"}
+    )  # 控件类型
+    value: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "value"}
+    )  # 控件值，不同类型格式不一样
 
 
 @attr.s
 class GetApprovalInstanceResp(object):
-    approval_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批定义 Code
-    approval_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批名称
-    start_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 审批创建时间
-    end_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 审批完成时间，未完成为 0
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 发起审批用户
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 发起审批用户 open id
-    serial_number: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批单编号
+    approval_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "approval_code"}
+    )  # 审批定义 Code
+    approval_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "approval_name"}
+    )  # 审批名称
+    start_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "start_time"}
+    )  # 审批创建时间
+    end_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "end_time"}
+    )  # 审批完成时间，未完成为 0
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 发起审批用户
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "open_id"}
+    )  # 发起审批用户 open id
+    serial_number: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "serial_number"}
+    )  # 审批单编号
     department_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "department_id"}
     )  # 发起审批用户所在部门
     status: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "status"}
     )  # 审批实例状态<br>PENDING    - 审批中<br>APPROVED - 通过<br>REJECTED  - 拒绝<br>CANCELED -  撤回<br>DELETED    -  删除
-    uuid: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户的唯一标识id
+    uuid: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "uuid"}
+    )  # 用户的唯一标识id
     form: GetApprovalInstanceRespForm = attr.ib(
-        factory=lambda: GetApprovalInstanceRespForm(), metadata={"req_type": "json"}
+        factory=lambda: GetApprovalInstanceRespForm(),
+        metadata={"req_type": "json", "key": "form"},
     )  # json数组，**控件值**
     task_list: typing.List[GetApprovalInstanceRespTask] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "task_list"}
     )  # 审批任务列表
     comment_list: typing.List[GetApprovalInstanceRespComment] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "comment_list"}
     )  # 评论列表
     timeline: typing.List[GetApprovalInstanceRespTimeline] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "timeline"}
     )  # 审批动态
 
 

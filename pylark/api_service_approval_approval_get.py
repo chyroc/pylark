@@ -8,59 +8,74 @@ import io
 
 @attr.s
 class GetApprovalReq(object):
-    approval_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批定义 Code
+    approval_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "approval_code"}
+    )  # 审批定义 Code
     locale: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "locale"}
     )  # zh-CN - 中文<br>en-US - 英文  <br>ja-JP - 日文
 
 
 @attr.s
 class GetApprovalRespViewer(object):
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 可见人类型，分别有：<br>TENANT：租户内可见<br>DEPARTMENT：指定部门<br> USER：指定用户<br>NONE：任何人都不可见
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "open_id"}
     )  # 在可见人类型为DEPARTMENT时，open_id为部门的open_id<br>在可见人类型为USER时，open_id为用户的open_id
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "user_id"}
     )  # 在可见人类型为USER时，表示可见人用户id
 
 
 @attr.s
 class GetApprovalRespNode(object):
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 节点名称
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 节点名称
     need_approver: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "need_approver"}
     )  # 是否发起人自选节点<br>true - 发起审批时需要提交审批人
-    node_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 节点 ID
+    node_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "node_id"}
+    )  # 节点 ID
     custom_node_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "custom_node_id"}
     )  # 节点自定义 ID，如果没有设置则不返回
     node_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "node_type"}
     )  # 审批方式<br>AND -会签<br>OR - 或签<br>CC_NODE -抄送节点
 
 
 @attr.s
 class GetApprovalRespForm(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 控件 ID
-    custom_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 控件自定义 ID
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 控件名称
-    type: str = attr.ib(default="", metadata={"req_type": "json"})  # 控件类型
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 控件 ID
+    custom_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "custom_id"}
+    )  # 控件自定义 ID
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 控件名称
+    type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "type"}
+    )  # 控件类型
 
 
 @attr.s
 class GetApprovalResp(object):
-    approval_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批名称
+    approval_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "approval_name"}
+    )  # 审批名称
     form: GetApprovalRespForm = attr.ib(
-        factory=lambda: GetApprovalRespForm(), metadata={"req_type": "json"}
+        factory=lambda: GetApprovalRespForm(),
+        metadata={"req_type": "json", "key": "form"},
     )  # json 数组，**控件信息**
     node_list: typing.List[GetApprovalRespNode] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "node_list"}
     )  # 节点信息
     viewers: typing.List[GetApprovalRespViewer] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "viewers"}
     )  # 可见人列表
 
 

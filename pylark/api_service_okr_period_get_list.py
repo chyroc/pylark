@@ -9,31 +9,37 @@ import io
 @attr.s
 class GetOKRPeriodListReq(object):
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标志page_token, 示例值："xaasdasdax"
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小，默认10, 示例值：10, 默认值: `10`
 
 
 @attr.s
 class GetOKRPeriodListRespItem(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # id
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文名称
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # id
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 中文名称
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 英文名称
     status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "status"}
     )  # 启用状态, 可选值有: `0`：正常状态, `1`：暂不处理, `2`：标记失效, `3`：隐藏周期
 
 
 @attr.s
 class GetOKRPeriodListResp(object):
-    page_token: str = attr.ib(default="", metadata={"req_type": "json"})  # 分页标志
+    page_token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "page_token"}
+    )  # 分页标志
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否有更多
     items: typing.List[GetOKRPeriodListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 数据项
 
 

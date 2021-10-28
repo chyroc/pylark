@@ -9,49 +9,51 @@ import io
 @attr.s
 class GetCalendarEventAttendeeChatMemberListReq(object):
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："23jhysaxxxxsysy"
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 示例值：10, 最大值：`100`
     calendar_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "calendar_id"}
     )  # 日历 ID, 示例值："feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn"
     event_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "event_id"}
     )  # 日程 ID, 示例值："xxxxxxxxx_0"
     attendee_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "attendee_id"}
     )  # 参与人 ID, 示例值："user_xxxxxx"
 
 
 @attr.s
 class GetCalendarEventAttendeeChatMemberListRespItem(object):
     rsvp_status: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "rsvp_status"}
     )  # 参与人RSVP状态, 可选值有: `needs_action`：参与人尚未回复状态，或表示会议室预约中, `accept`：参与人回复接受，或表示会议室预约成功, `tentative`：参与人回复待定, `decline`：参与人回复拒绝，或表示会议室预约失败, `removed`：参与人或会议室已经从日程中被移除
     is_optional: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_optional"}
     )  # 参与人是否为「可选参加」, 默认值: `false`
-    display_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 参与人名称
+    display_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "display_name"}
+    )  # 参与人名称
     is_organizer: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_organizer"}
     )  # 参与人是否为日程组织者
     is_external: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_external"}
     )  # 参与人是否为外部参与人
 
 
 @attr.s
 class GetCalendarEventAttendeeChatMemberListResp(object):
     items: typing.List[GetCalendarEventAttendeeChatMemberListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 群中的群成员，当type为chat时有效；群成员不支持编辑
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多项
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
 
 

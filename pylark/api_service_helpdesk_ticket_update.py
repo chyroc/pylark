@@ -8,35 +8,43 @@ import io
 
 @attr.s
 class UpdateHelpdeskTicketReqCustomizedField(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 自定义字段ID, 示例值："123"
+    id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "id"}
+    )  # 自定义字段ID, 示例值："123"
     value: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "value"}
     )  # 自定义字段值, 示例值："value"
-    key_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 键名, 示例值："key"
+    key_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "key_name"}
+    )  # 键名, 示例值："key"
 
 
 @attr.s
 class UpdateHelpdeskTicketReq(object):
     ticket_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "ticket_id"}
     )  # 工单ID, 示例值："6945345902185807891"
     status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "status"}
     )  # new status, 1: 已创建, 2: 处理中, 3: 排队中, 5: 待定, 50: 机器人关闭工单, 51: 关闭工单, 示例值：1
     tag_names: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "tag_names"}
     )  # 新标签名
-    comment: str = attr.ib(default="", metadata={"req_type": "json"})  # 新评论, 示例值："good"
+    comment: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "comment"}
+    )  # 新评论, 示例值："good"
     customized_fields: typing.List[UpdateHelpdeskTicketReqCustomizedField] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "customized_fields"}
     )  # 自定义字段
     ticket_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "ticket_type"}
     )  # ticket stage, 示例值：1
     solved: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "solved"}
     )  # 工单是否解决，1: 未解决, 2: 已解决, 示例值：1
-    channel: int = attr.ib(default=0, metadata={"req_type": "json"})  # 工单来源渠道ID, 示例值：1
+    channel: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "channel"}
+    )  # 工单来源渠道ID, 示例值：1
 
 
 @attr.s

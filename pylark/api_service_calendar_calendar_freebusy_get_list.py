@@ -14,36 +14,36 @@ class GetCalendarFreeBusyListReqUserIDType(object):
 @attr.s
 class GetCalendarFreeBusyListReq(object):
     user_id_type: GetCalendarFreeBusyListReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     time_min: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "time_min"}
     )  # 查询时段开始时间，需要url编码, 示例值："2020-10-28T12:00:00+08:00"
     time_max: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "time_max"}
     )  # 查询时段结束时间，需要url编码, 示例值："2020-12-28T12:00:00+08:00"
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "user_id"}
     )  # 用户user_id，输入时与 room_id 二选一, 示例值："ou_xxxxxxxxxx"
     room_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "room_id"}
     )  # 会议室room_id，输入时与 user_id 二选一, 示例值："omm_xxxxxxxxxx"
 
 
 @attr.s
 class GetCalendarFreeBusyListRespFreebusy(object):
     start_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "start_time"}
     )  # 忙闲信息开始时间，RFC3339 date_time 格式
     end_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "end_time"}
     )  # 忙闲信息结束时间，RFC3339 date_time 格式
 
 
 @attr.s
 class GetCalendarFreeBusyListResp(object):
     freebusy_list: typing.List[GetCalendarFreeBusyListRespFreebusy] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "freebusy_list"}
     )  # 日历上请求时间区间内的忙碌时间段信息。
 
 

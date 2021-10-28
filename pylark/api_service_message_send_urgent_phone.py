@@ -15,20 +15,20 @@ class SendUrgentPhoneMessageReqUserIDType(object):
 class SendUrgentPhoneMessageReq(object):
     user_id_type: SendUrgentPhoneMessageReqUserIDType = attr.ib(
         factory=lambda: SendUrgentPhoneMessageReqUserIDType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "user_id_type"},
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     message_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "message_id"}
     )  # 待加急的消息的ID, 示例值："om_dc13264520392913993dd051dba21dcf"
     user_id_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_id_list"}
     )  # 目标用户的ID, 示例值：["ou_6yf8af6bgb9100449565764t3382b168"]
 
 
 @attr.s
 class SendUrgentPhoneMessageResp(object):
     invalid_user_id_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "invalid_user_id_list"}
     )  # 无效的用户ID
 
 

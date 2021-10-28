@@ -9,17 +9,17 @@ import io
 @attr.s
 class UnsubscribeHelpdeskEventReqEvent(object):
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 事件类型, 示例值："helpdesk.ticket_message"
     subtype: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "subtype"}
     )  # 事件子类型, 示例值："ticket_message.created_v1"
 
 
 @attr.s
 class UnsubscribeHelpdeskEventReq(object):
     events: typing.List[UnsubscribeHelpdeskEventReqEvent] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "events"}
     )  # event list to unsubscribe
 
 

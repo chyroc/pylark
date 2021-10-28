@@ -9,10 +9,10 @@ import io
 @attr.s
 class DeleteTaskReminderReq(object):
     task_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "task_id"}
     )  # 任务 ID, 示例值："83912691-2e43-47fc-94a4-d512e03984fa"
     reminder_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "reminder_id"}
     )  # 任务提醒时间设置的 ID（即 reminder.id）, 示例值："1"
 
 

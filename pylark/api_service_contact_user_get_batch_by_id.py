@@ -9,46 +9,46 @@ import io
 @attr.s
 class BatchGetUserByIDReq(object):
     emails: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "emails"}
     )  # 要查询的用户邮箱，最多 50 条，多个邮箱以 & 隔开。
     mobiles: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "mobiles"}
     )  # 要查询的用户手机号，最多 50 条，多个手机号以 & 隔开。<br>非中国大陆地区的手机号需要添加以 “+” 开头的国家 / 地区代码，并且需要进行 URL 转义。<br>
 
 
 @attr.s
 class BatchGetUserByIDRespEmailUser(object):
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "open_id"}
     )  # 用户的 open_id。[open_id描述](https://open.feishu.cn/document/home/user-identity-introduction/open-id)
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "user_id"}
     )  # 用户的 user_id。<br>只有已申请 `获取用户UserID` 权限的企业自建应用返回此字段。[user_id描述](https://open.feishu.cn/document/home/user-identity-introduction/user-id)
 
 
 @attr.s
 class BatchGetUserByIDRespEmailUser(object):
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "open_id"}
     )  # 用户的 open_id。[open_id描述](https://open.feishu.cn/document/home/user-identity-introduction/open-id)
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "user_id"}
     )  # 用户的 user_id。<br>只有已申请 `获取用户UserID` 权限的企业自建应用返回此字段。[user_id描述](https://open.feishu.cn/document/home/user-identity-introduction/user-id)
 
 
 @attr.s
 class BatchGetUserByIDResp(object):
     email_users: BatchGetUserByIDRespEmailUser = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "email_users"}
     )  # 根据邮箱查询到的用户，key 为邮箱，value 为查询到用户的 array。<br>目前同一个邮箱最多只能查询到一个用户。
     emails_not_exist: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "emails_not_exist"}
     )  # 没有匹配记录的邮箱。
     mobile_users: BatchGetUserByIDRespEmailUser = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "mobile_users"}
     )  # 根据手机号查询到的用户，key 为手机号，value 为查询到用户的 array。<br>目前同一个手机号最多只能查询到一个用户。
     mobiles_not_exist: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "mobiles_not_exist"}
     )  # 没有匹配记录的手机号。
 
 

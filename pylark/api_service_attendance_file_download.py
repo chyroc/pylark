@@ -9,7 +9,7 @@ import io
 @attr.s
 class DownloadAttendanceFileReq(object):
     file_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "file_id"}
     )  # 文件 ID，示例值："xxxxxb306842b1c189bc5212eefxxxxx"
 
 

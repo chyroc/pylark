@@ -9,14 +9,14 @@ import io
 @attr.s
 class IsInChatReq(object):
     chat_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "chat_id"}
     )  # 群 ID，详情参见[群ID 说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/chat-id-description), 示例值："oc_a0553eda9014c201e6969b478895c230"
 
 
 @attr.s
 class IsInChatResp(object):
     is_in_chat: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_in_chat"}
     )  # 用户或者机器人是否在群中
 
 

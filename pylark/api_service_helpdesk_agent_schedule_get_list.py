@@ -9,57 +9,69 @@ import io
 @attr.s
 class GetHelpdeskAgentScheduleListReq(object):
     status: typing.List[int] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "query"}
+        factory=lambda: [], metadata={"req_type": "query", "key": "status"}
     )  # 筛选条件, 1 - online客服, 2 - offline(手动)客服, 3 - off duty(下班)客服, 4 - 移除客服
 
 
 @attr.s
 class GetHelpdeskAgentScheduleListRespAgentScheduleAgentSkill(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 客服技能 id
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 客服技能名
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 客服技能 id
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 客服技能名
     is_default: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_default"}
     )  # 是默认技能
 
 
 @attr.s
 class GetHelpdeskAgentScheduleListRespAgentScheduleSchedule(object):
     start_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "start_time"}
     )  # 开始时间, format 00:00 - 23:59
     end_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "end_time"}
     )  # 结束时间, format 00:00 - 23:59
     weekday: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "weekday"}
     )  # 星期几, 1 - Monday, 2 - Tuesday, 3 - Wednesday, 4 - Thursday, 5 - Friday, 6 - Saturday, 7 - Sunday, 9 - Everday, 10 - Weekday, 11 - Weekend
 
 
 @attr.s
 class GetHelpdeskAgentScheduleListRespAgentScheduleAgent(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 客服 id
-    avatar_url: str = attr.ib(default="", metadata={"req_type": "json"})  # avatar url
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 客服名字
-    email: str = attr.ib(default="", metadata={"req_type": "json"})  # email
-    department: str = attr.ib(default="", metadata={"req_type": "json"})  # 部门
-    company_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 公司名
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 客服 id
+    avatar_url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_url"}
+    )  # avatar url
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 客服名字
+    email: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "email"}
+    )  # email
+    department: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "department"}
+    )  # 部门
+    company_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "company_name"}
+    )  # 公司名
 
 
 @attr.s
 class GetHelpdeskAgentScheduleListRespAgentSchedule(object):
     status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "status"}
     )  # 客服状态, 1 - online客服, 2 - offline(手动)客服, 3 - off duty(下班)自动处于非服务时间段
     agent: GetHelpdeskAgentScheduleListRespAgentScheduleAgent = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "agent"}
     )  # 客服信息
     schedule: GetHelpdeskAgentScheduleListRespAgentScheduleSchedule = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "schedule"}
     )  # 工作日程列表
     agent_skills: typing.List[
         GetHelpdeskAgentScheduleListRespAgentScheduleAgentSkill
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "agent_skills"}
     )  # 客服技能
 
 
@@ -68,7 +80,7 @@ class GetHelpdeskAgentScheduleListResp(object):
     agent_schedules: typing.List[
         GetHelpdeskAgentScheduleListRespAgentSchedule
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "agent_schedules"}
     )  # 客服列表
 
 

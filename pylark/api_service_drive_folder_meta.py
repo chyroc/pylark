@@ -9,20 +9,30 @@ import io
 @attr.s
 class GetDriveFolderMetaReq(object):
     folder_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "folderToken"}
     )  # 文件夹 token，获取方式见[概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction)
 
 
 @attr.s
 class GetDriveFolderMetaResp(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件夹的 id
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件夹的标题
-    token: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件夹的 token
-    create_uid: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件夹的创建者 id
-    edit_uid: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件夹的最后编辑者 id
-    parent_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件夹的上级目录 id
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 文件夹的 id
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 文件夹的标题
+    token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "token"}
+    )  # 文件夹的 token
+    create_uid: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "createUid"}
+    )  # 文件夹的创建者 id
+    edit_uid: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "editUid"}
+    )  # 文件夹的最后编辑者 id
+    parent_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "parentId"}
+    )  # 文件夹的上级目录 id
     own_uid: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "ownUid"}
     )  # 文件夹为个人文件夹时，为文件夹的所有者 id；文件夹为共享文件夹时，为文件夹树id
 
 

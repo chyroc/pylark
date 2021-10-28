@@ -8,7 +8,9 @@ import io
 
 @attr.s
 class DeleteHelpdeskFAQReq(object):
-    id: str = attr.ib(default="", metadata={"req_type": "path"})  # id, 示例值："12345"
+    id: str = attr.ib(
+        default="", metadata={"req_type": "path", "key": "id"}
+    )  # id, 示例值："12345"
 
 
 @attr.s

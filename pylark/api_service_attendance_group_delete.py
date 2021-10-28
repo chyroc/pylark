@@ -9,7 +9,7 @@ import io
 @attr.s
 class DeleteAttendanceGroupReq(object):
     group_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "group_id"}
     )  # 考勤组的 ID，需要从获取打卡结果的接口中获取 group_id，示例值："6919358128597097404"
 
 

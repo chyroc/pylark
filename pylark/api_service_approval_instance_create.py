@@ -29,52 +29,65 @@ class CreateApprovalInstanceReqNodeApproverUserIDList(object):
 @attr.s
 class CreateApprovalInstanceReqForm(object):
     id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "id"}
     )  # 控件 ID，也可以使用自定义 ID custom_id 的值
-    type: str = attr.ib(default="", metadata={"req_type": "json"})  # 控件类型
-    value: str = attr.ib(default="", metadata={"req_type": "json"})  # 控件值，不同类型的值格式不一样
+    type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "type"}
+    )  # 控件类型
+    value: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "value"}
+    )  # 控件值，不同类型的值格式不一样
 
 
 @attr.s
 class CreateApprovalInstanceReq(object):
-    approval_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批定义 code
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 发起审批用户
-    tenant_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 平台租户ID
+    approval_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "approval_code"}
+    )  # 审批定义 code
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 发起审批用户
+    tenant_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "tenant_id"}
+    )  # 平台租户ID
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "open_id"}
     )  # 发起审批用户 open id, 如果传了 user_id 则优先使用 user_id
     department_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "department_id"}
     )  # 发起审批用户部门id，如果用户只属于一个部门，可以不填。如果属于多个部门，默认会选择部门列表第一个部门
     form: CreateApprovalInstanceReqForm = attr.ib(
-        factory=lambda: CreateApprovalInstanceReqForm(), metadata={"req_type": "json"}
+        factory=lambda: CreateApprovalInstanceReqForm(),
+        metadata={"req_type": "json", "key": "form"},
     )  # json 数组，**控件值**
     node_approver_user_id_list: CreateApprovalInstanceReqNodeApproverUserIDList = attr.ib(
         factory=lambda: CreateApprovalInstanceReqNodeApproverUserIDList(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "node_approver_user_id_list"},
     )  # 如果有发起人自选节点，则需要填写对应节点的审批人<br>key:  node id 或 custom node id , 通过 [查看审批定义](https://open.feishu.cn/document/ukTMukTMukTM/uADNyUjLwQjM14CM0ITN) 获取<br> value: 审批人列表
     node_approver_open_id_list: CreateApprovalInstanceReqNodeApproverOpenIDList = (
         attr.ib(
             factory=lambda: CreateApprovalInstanceReqNodeApproverOpenIDList(),
-            metadata={"req_type": "json"},
+            metadata={"req_type": "json", "key": "node_approver_open_id_list"},
         )
     )  # 审批人发起人自选 open id
     node_cc_user_id_list: CreateApprovalInstanceReqNodeCcUserIDList = attr.ib(
         factory=lambda: CreateApprovalInstanceReqNodeCcUserIDList(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "node_cc_user_id_list"},
     )  # 如果有发起人自选节点，则可填写对应节点的抄送人<br>key:  node id 或 custom node id , 通过 [查看审批定义](https://open.feishu.cn/document/ukTMukTMukTM/uADNyUjLwQjM14CM0ITN) 获取<br> value: 审批人列表<br>单个节点最多选择20位抄送人
     node_cc_open_id_list: CreateApprovalInstanceReqNodeCcOpenIDList = attr.ib(
         factory=lambda: CreateApprovalInstanceReqNodeCcOpenIDList(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "node_cc_open_id_list"},
     )  # 抄送人发起人自选 open id<br>单个节点最多选择20位抄送人
     uuid: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "uuid"}
     )  # 审批实例 uuid，用于幂等操作，同一个 uuid 只能用于创建一个审批实例，如果冲突，返回错误码 60012 ，格式必须为 XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX，不区分大小写
 
 
 @attr.s
 class CreateApprovalInstanceResp(object):
-    instance_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批实例 Code
+    instance_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "instance_code"}
+    )  # 审批实例 Code
 
 
 def _gen_create_approval_instance_req(request, options) -> RawRequestReq:

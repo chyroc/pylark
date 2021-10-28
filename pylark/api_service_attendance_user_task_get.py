@@ -15,17 +15,19 @@ class GetAttendanceUserTaskReqEmployeeType(object):
 class GetAttendanceUserTaskReq(object):
     employee_type: GetAttendanceUserTaskReqEmployeeType = attr.ib(
         factory=lambda: GetAttendanceUserTaskReqEmployeeType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "employee_type"},
     )  # 请求体中的 user_ids 的员工工号类型，可用值：【employee_id（员工的 employeeId），employee_no（员工工号）】，示例值：“employee_id”
     ignore_invalid_users: bool = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "ignore_invalid_users"}
     )  # 是否忽略无效和没有权限的用户。如果 true，返回有效用户的数据，并告知无效和没有权限的用户；如果 false，且 user_ids 中存在无效或没有权限的用户，返回错误
     user_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_ids"}
     )  # employee_no 或 employee_id 列表
-    check_date_from: int = attr.ib(default=0, metadata={"req_type": "json"})  # 查询的起始工作日
+    check_date_from: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "check_date_from"}
+    )  # 查询的起始工作日
     check_date_to: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "check_date_to"}
     )  # 查询的结束工作日，与 check_date_from 的时间间隔不超过30天
 
 
@@ -41,33 +43,51 @@ class GetAttendanceUserTaskRespUserTaskResultRecordCheckOutRecordLongitude(objec
 
 @attr.s
 class GetAttendanceUserTaskRespUserTaskResultRecordCheckOutRecord(object):
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 员工工号
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 员工工号
     creator_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "creator_id"}
     )  # 打卡记录创建者的 employee_no
-    location_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡位置名称信息
+    location_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "location_name"}
+    )  # 打卡位置名称信息
     check_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_time"}
     )  # 打卡时间，精确到秒的时间戳
-    comment: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡备注
-    record_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡记录 ID
-    longitude: float = attr.ib(default=None, metadata={"req_type": "json"})  # 打卡经度
-    latitude: float = attr.ib(default=None, metadata={"req_type": "json"})  # 打卡纬度
-    ssid: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡 Wi-Fi 的 SSID
-    bssid: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡 Wi-Fi 的 MAC 地址
+    comment: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "comment"}
+    )  # 打卡备注
+    record_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "record_id"}
+    )  # 打卡记录 ID
+    longitude: float = attr.ib(
+        default=None, metadata={"req_type": "json", "key": "longitude"}
+    )  # 打卡经度
+    latitude: float = attr.ib(
+        default=None, metadata={"req_type": "json", "key": "latitude"}
+    )  # 打卡纬度
+    ssid: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "ssid"}
+    )  # 打卡 Wi-Fi 的 SSID
+    bssid: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "bssid"}
+    )  # 打卡 Wi-Fi 的 MAC 地址
     is_field: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_field"}
     )  # 是否为外勤打卡
     is_wifi: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_wifi"}
     )  # 是否为 Wi-Fi 打卡
     type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "type"}
     )  # 记录生成方式，可用值：【0（用户自己打卡），1（管理员修改），2（用户补卡），3（系统自动生成），4（下班免打卡），5（考勤机打卡），6（极速打卡），7（考勤开放平台导入），8（飞书自研考勤机），9（飞书门禁考勤机）】
     photo_urls: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "photo_urls"}
     )  # 打卡照片列表
-    device_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 手机打卡设备ID
+    device_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "device_id"}
+    )  # 手机打卡设备ID
 
 
 @attr.s
@@ -82,94 +102,121 @@ class GetAttendanceUserTaskRespUserTaskResultRecordCheckInRecordLongitude(object
 
 @attr.s
 class GetAttendanceUserTaskRespUserTaskResultRecordCheckInRecord(object):
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 员工工号
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 员工工号
     creator_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "creator_id"}
     )  # 打卡记录创建者的 employee_no
-    location_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡位置名称信息
+    location_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "location_name"}
+    )  # 打卡位置名称信息
     check_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_time"}
     )  # 打卡时间，精确到秒的时间戳
-    comment: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡备注
-    record_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡记录 ID
-    longitude: float = attr.ib(default=None, metadata={"req_type": "json"})  # 打卡经度
-    latitude: float = attr.ib(default=None, metadata={"req_type": "json"})  # 打卡纬度
-    ssid: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡 Wi-Fi 的 SSID
-    bssid: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡 Wi-Fi 的 MAC 地址
+    comment: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "comment"}
+    )  # 打卡备注
+    record_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "record_id"}
+    )  # 打卡记录 ID
+    longitude: float = attr.ib(
+        default=None, metadata={"req_type": "json", "key": "longitude"}
+    )  # 打卡经度
+    latitude: float = attr.ib(
+        default=None, metadata={"req_type": "json", "key": "latitude"}
+    )  # 打卡纬度
+    ssid: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "ssid"}
+    )  # 打卡 Wi-Fi 的 SSID
+    bssid: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "bssid"}
+    )  # 打卡 Wi-Fi 的 MAC 地址
     is_field: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_field"}
     )  # 是否为外勤打卡
     is_wifi: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_wifi"}
     )  # 是否为 Wi-Fi 打卡
     type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "type"}
     )  # 记录生成方式，可用值：【0（用户自己打卡），1（管理员修改），2（用户补卡），3（系统自动生成），4（下班免打卡），5（考勤机打卡），6（极速打卡），7（考勤开放平台导入），8（飞书自研考勤机），9（飞书门禁考勤机）】
     photo_urls: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "photo_urls"}
     )  # 打卡照片列表
-    device_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 手机打卡设备ID
+    device_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "device_id"}
+    )  # 手机打卡设备ID
 
 
 @attr.s
 class GetAttendanceUserTaskRespUserTaskResultRecord(object):
     check_in_record_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_in_record_id"}
     )  # 上班打卡记录 ID
     check_in_record: GetAttendanceUserTaskRespUserTaskResultRecordCheckInRecord = (
-        attr.ib(default=None, metadata={"req_type": "json"})
+        attr.ib(default=None, metadata={"req_type": "json", "key": "check_in_record"})
     )  # 上班打卡记录
     check_out_record_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_out_record_id"}
     )  # 下班打卡记录 ID
     check_out_record: GetAttendanceUserTaskRespUserTaskResultRecordCheckOutRecord = (
-        attr.ib(default=None, metadata={"req_type": "json"})
+        attr.ib(default=None, metadata={"req_type": "json", "key": "check_out_record"})
     )  # 下班打卡记录
     check_in_result: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_in_result"}
     )  # 上班打卡结果，可用值：【NoNeedCheck（无需打卡），SystemCheck（系统打卡），Normal（正常），Early（早退），Late（迟到），Lack（缺卡）】
     check_out_result: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_out_result"}
     )  # 下班打卡结果，可用值：【NoNeedCheck（无需打卡），SystemCheck（系统打卡），Normal（正常），Early（早退），Late（迟到），Lack（缺卡）】
     check_in_result_supplement: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_in_result_supplement"}
     )  # 上班打卡结果补充，可用值：【None（无），ManagerModification（管理员修改），CardReplacement（补卡通过），ShiftChange（换班），Travel（出差），Leave（请假），GoOut（外出），CardReplacementApplication（补卡申请中），FieldPunch（外勤打卡）】
     check_out_result_supplement: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_out_result_supplement"}
     )  # 下班打卡结果补充，可用值：【None（无），ManagerModification（管理员修改），CardReplacement（补卡通过），ShiftChange（换班），Travel（出差），Leave（请假），GoOut（外出），CardReplacementApplication（补卡申请中），FieldPunch（外勤打卡）】
     check_in_shift_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_in_shift_time"}
     )  # 正常默认上班时间，精确到秒的时间戳
     check_out_shift_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_out_shift_time"}
     )  # 正常默认下班时间，精确到秒的时间戳
 
 
 @attr.s
 class GetAttendanceUserTaskRespUserTaskResult(object):
-    result_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡记录 ID
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # employee ID
+    result_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "result_id"}
+    )  # 打卡记录 ID
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # employee ID
     employee_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "employee_name"}
     )  # employee 姓名
-    day: int = attr.ib(default=0, metadata={"req_type": "json"})  # 日期
-    group_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 考勤组 ID
-    shift_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 班次 ID
+    day: int = attr.ib(default=0, metadata={"req_type": "json", "key": "day"})  # 日期
+    group_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "group_id"}
+    )  # 考勤组 ID
+    shift_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "shift_id"}
+    )  # 班次 ID
     records: typing.List[GetAttendanceUserTaskRespUserTaskResultRecord] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "records"}
     )  # 用户考勤记录
 
 
 @attr.s
 class GetAttendanceUserTaskResp(object):
     user_task_results: typing.List[GetAttendanceUserTaskRespUserTaskResult] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_task_results"}
     )  # 打卡任务列表
     invalid_user_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "invalid_user_ids"}
     )  # 无效用户工号列表
     unauthorized_user_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [],
+        metadata={"req_type": "json", "key": "unauthorized_user_ids"},
     )  # 没有权限用户工号列表
 
 

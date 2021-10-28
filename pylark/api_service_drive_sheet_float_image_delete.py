@@ -9,13 +9,13 @@ import io
 @attr.s
 class DeleteSheetFloatImageReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheet_token"}
     )  # 表格 token, 示例值："shtcnmBA*****yGehy8"
     sheet_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "sheet_id"}
     )  # 子表 id, 示例值："0b**12"
     float_image_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "float_image_id"}
     )  # 浮动图片 id, 示例值："ye06SS14ph"
 
 

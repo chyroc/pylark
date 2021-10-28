@@ -50,15 +50,29 @@ class App(object):
 # 	ID:        os.Getenv("LARK_HELPDESK_ALL_PERMISSION_ID"),
 # 	Token:     os.Getenv("LARK_HELPDESK_ALL_PERMISSION_TOKEN"),
 # }
-#
-# type User struct {
-# 	UserID       string
-# 	OpenID       string
-# 	Name         string
-# 	AccessToken  map[string]string
-# 	RefreshToken map[string]string
-# }
-#
+
+
+@attr.s
+class User(object):
+    user_id = attr.ib(default="")
+    open_id = attr.ib(default="")
+    name = attr.ib(default="")
+    access_token = attr.ib(default=dict)
+    refresh_token = attr.ib(default=dict)
+
+    # def ins(self) -> Lark:
+    #     return Lark(
+    #         app_id=self.app_id,
+    #         app_secret=self.app_secret,
+    #     )
+    #
+    # def custom_bot(self) -> Lark:
+    #     return Lark(
+    #         custom_url=self.custom_url,
+    #         custom_secret=self.custom_secret,
+    #     )
+
+
 # func (r User) OneAccessToken() string {
 # 	for _, v := range r.AccessToken {
 # 		return v
@@ -81,7 +95,6 @@ app_all_permission = App(
     app_secret=os.getenv("LARK_APP_ALL_PERMISSION_APP_SECRET"),
 )
 
-
 # var AppCustomBotNoValid = App{
 # 	CustomURL: os.Getenv("LARK_APP_CUSTOM_BOT_NO_VALID_WEBHOOK_URL"),
 # }
@@ -94,19 +107,24 @@ app_all_permission = App(
 # 	CustomURL:    os.Getenv("LARK_APP_CUSTOM_BOT_CHECK_SIGN_WEBHOOK_URL"),
 # 	CustomSecret: os.Getenv("LARK_APP_CUSTOM_BOT_CHECK_SIGN_SIGN"),
 # }
-#
-# var UserAdmin = User{
-# 	UserID: os.Getenv("LARK_USER_ADMIN_USER_ID"),
-# 	OpenID: os.Getenv("LARK_USER_ADMIN_OPEN_ID"),
-# 	Name:   os.Getenv("LARK_USER_ADMIN_NAME"),
-# 	AccessToken: map[string]string{
-# 		os.Getenv("LARK_APP_ALL_PERMISSION_APP_ID"): os.Getenv("LARK_ACCESS_TOKEN_ALL_PERMISSION_APP"),
-# 	},
-# 	RefreshToken: map[string]string{
-# 		os.Getenv("LARK_APP_ALL_PERMISSION_APP_ID"): os.Getenv("LARK_REFRESH_TOKEN_ALL_PERMISSION_APP"),
-# 	},
-# }
-#
+
+user_admin = User(
+    user_id=os.getenv("LARK_USER_ADMIN_USER_ID"),
+    open_id=os.getenv("LARK_USER_ADMIN_OPEN_ID"),
+    name=os.getenv("LARK_USER_ADMIN_NAME"),
+    access_token={
+        os.getenv("LARK_APP_ALL_PERMISSION_APP_ID"): os.getenv(
+            "LARK_ACCESS_TOKEN_ALL_PERMISSION_APP"
+        ),
+    },
+    refresh_token={
+        os.getenv("LARK_APP_ALL_PERMISSION_APP_ID"): os.getenv(
+            "LARK_REFRESH_TOKEN_ALL_PERMISSION_APP"
+        )
+    },
+)
+
+
 # // 这个群公共，必须设置「群公共」三个字
 # var ChatContainALLPermissionApp = Chat{
 # 	ChatID: os.Getenv("LARK_CHAT_CONTAINS_APP_PERMISSION_APP_CHAT_ID"),

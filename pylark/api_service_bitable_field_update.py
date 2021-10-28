@@ -8,108 +8,124 @@ import io
 
 @attr.s
 class UpdateBitableFieldReqPropertyOption(object):
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 选项名, 示例值："红色"
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 选项名, 示例值："红色"
     id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "id"}
     )  # 选项id, 示例值："optKl35lnG"
 
 
 @attr.s
 class UpdateBitableFieldReqProperty(object):
     options: typing.List[UpdateBitableFieldReqPropertyOption] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "options"}
     )  # 单选/多选字段的选项信息
     formatter: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "formatter"}
     )  # 数字字段的数字显示格式, 示例值："0"
     date_format: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "date_format"}
     )  # 日期格式, 示例值："yyyy/MM/dd"
     time_format: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "time_format"}
     )  # 时间格式, 示例值："HH:mm"
     auto_fill: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "auto_fill"}
     )  # 是否自动填入创建时间, 示例值：false
     multiple: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "multiple"}
     )  # 多选标记, 示例值：false
     table_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "table_id"}
     )  # 关联字段中关联表的id, 示例值："tblsRc9GRRXKqhvW"
     view_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "view_id"}
     )  # 关联字段中关联表的视图id, 示例值："vewOVMEXPF"
     fields: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "fields"}
     )  # 关联字段要展示的字段, 示例值：["fldSiTwIqy"]
 
 
 @attr.s
 class UpdateBitableFieldReq(object):
     app_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "app_token"}
     )  # bitable app token, 示例值："appbcbWCzen6D8dezhoCH2RpMAh"
     table_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "table_id"}
     )  # table id, 示例值："tblsRc9GRRXKqhvW"
     field_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "field_id"}
     )  # field id, 示例值："fldPTb0U2y"
     field_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "field_name"}
     )  # 多维表格字段名, 示例值："多行文本"
     type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "type"}
     )  # 多维表格字段类型, 示例值：具体参考: [Property说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/bitable/development-guide/bitable-structure#b286b4ee), 可选值有: `1`：多行文本, `2`：数字, `3`：单选, `4`：多选, `5`：日期, `7`：复选框, `11`：人员, `15`：超链接, `17`：附件, `18`：关联, `20`：公式, `1001`：创建时间, `1002`：最后更新时间, `1003`：创建人, `1004`：修改人
     property: UpdateBitableFieldReqProperty = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "property"}
     )  # 字段属性, 具体参考: [Property说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/bitable/development-guide/bitable-structure#b286b4ee)
 
 
 @attr.s
 class UpdateBitableFieldRespFieldPropertyOption(object):
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 选项名
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 选项id
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 选项名
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 选项id
 
 
 @attr.s
 class UpdateBitableFieldRespFieldProperty(object):
     options: typing.List[UpdateBitableFieldRespFieldPropertyOption] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "options"}
     )  # 单选/多选字段的选项信息
-    formatter: str = attr.ib(default="", metadata={"req_type": "json"})  # 数字字段的数字显示格式
-    date_format: str = attr.ib(default="", metadata={"req_type": "json"})  # 日期格式
-    time_format: str = attr.ib(default="", metadata={"req_type": "json"})  # 时间格式
+    formatter: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "formatter"}
+    )  # 数字字段的数字显示格式
+    date_format: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "date_format"}
+    )  # 日期格式
+    time_format: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "time_format"}
+    )  # 时间格式
     auto_fill: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "auto_fill"}
     )  # 是否自动填入创建时间
     multiple: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "multiple"}
     )  # 多选标记
-    table_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 关联字段中关联表的id
-    view_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 关联字段中关联表的视图id
+    table_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "table_id"}
+    )  # 关联字段中关联表的id
+    view_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "view_id"}
+    )  # 关联字段中关联表的视图id
     fields: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "fields"}
     )  # 关联字段要展示的字段
 
 
 @attr.s
 class UpdateBitableFieldRespField(object):
-    field_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 多维表格字段 id
-    field_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 多维表格字段名
+    field_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "field_id"}
+    )  # 多维表格字段 id
+    field_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "field_name"}
+    )  # 多维表格字段名
     type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "type"}
     )  # 多维表格字段类型, 可选值有: `1`：多行文本, `2`：数字, `3`：单选, `4`：多选, `5`：日期, `7`：复选框, `11`：人员, `15`：超链接, `17`：附件, `18`：关联, `20`：公式, `1001`：创建时间, `1002`：最后更新时间, `1003`：创建人, `1004`：修改人
     property: UpdateBitableFieldRespFieldProperty = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "property"}
     )  # 字段属性, 具体参考: [Property说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/bitable/development-guide/bitable-structure#b286b4ee)
 
 
 @attr.s
 class UpdateBitableFieldResp(object):
     field: UpdateBitableFieldRespField = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "field"}
     )  # 字段
 
 

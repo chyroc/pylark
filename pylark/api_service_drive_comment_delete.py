@@ -14,16 +14,17 @@ class DeleteDriveCommentReqFileType(object):
 @attr.s
 class DeleteDriveCommentReq(object):
     file_type: DeleteDriveCommentReqFileType = attr.ib(
-        factory=lambda: DeleteDriveCommentReqFileType(), metadata={"req_type": "query"}
+        factory=lambda: DeleteDriveCommentReqFileType(),
+        metadata={"req_type": "query", "key": "file_type"},
     )  # 文档类型, 示例值："doc", 可选值有: `doc`：文档, `sheet`：表格, `file`：文件
     file_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "file_token"}
     )  # 文档token, 示例值："doccnHh7U87HOFpii5u5G*****"
     comment_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "comment_id"}
     )  # 评论ID, 示例值："6916106822734578184"
     reply_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "reply_id"}
     )  # 回复ID, 示例值："6916106822734594568"
 
 

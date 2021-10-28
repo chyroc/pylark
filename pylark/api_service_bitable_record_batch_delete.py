@@ -9,28 +9,30 @@ import io
 @attr.s
 class BatchDeleteBitableRecordReq(object):
     app_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "app_token"}
     )  # bitable app token, 示例值："appbcbWCzen6D8dezhoCH2RpMAh"
     table_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "table_id"}
     )  # table id, 示例值："tblsRc9GRRXKqhvW"
     records: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "records"}
     )  # 删除的多条记录id列表, 示例值：[,    "recIcJBbvC",,    "recvmiCORa",]
 
 
 @attr.s
 class BatchDeleteBitableRecordRespRecord(object):
     deleted: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "deleted"}
     )  # 是否成功删除
-    record_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 删除的记录 ID
+    record_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "record_id"}
+    )  # 删除的记录 ID
 
 
 @attr.s
 class BatchDeleteBitableRecordResp(object):
     records: typing.List[BatchDeleteBitableRecordRespRecord] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "records"}
     )  # 记录
 
 

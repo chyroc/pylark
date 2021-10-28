@@ -19,16 +19,16 @@ class CreatePublicMailboxMemberReqUserIDType(object):
 @attr.s
 class CreatePublicMailboxMemberReq(object):
     user_id_type: CreatePublicMailboxMemberReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     public_mailbox_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "public_mailbox_id"}
     )  # 公共邮箱唯一标识或公共邮箱地址, 示例值："xxxxxxxxxxxxxxx 或 test_public_mailbox@xxx.xx"
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "user_id"}
     )  # 租户内用户的唯一标识（当成员类型是USER时有值）, 示例值："xxxxxxxxxx"
     type: CreatePublicMailboxMemberReqType = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "type"}
     )  # 成员类型, 示例值："USER", 可选值有: `USER`：内部用户
 
 
@@ -39,13 +39,15 @@ class CreatePublicMailboxMemberRespType(object):
 
 @attr.s
 class CreatePublicMailboxMemberResp(object):
-    member_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 公共邮箱内成员唯一标识
+    member_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "member_id"}
+    )  # 公共邮箱内成员唯一标识
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "user_id"}
     )  # 租户内用户的唯一标识（当成员类型是USER时有值）
     type: CreatePublicMailboxMemberRespType = attr.ib(
         factory=lambda: CreatePublicMailboxMemberRespType(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "type"},
     )  # 成员类型, 可选值有: `USER`：内部用户
 
 

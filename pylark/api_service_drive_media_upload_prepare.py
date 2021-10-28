@@ -9,27 +9,33 @@ import io
 @attr.s
 class PrepareUploadDriveMediaReq(object):
     file_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "file_name"}
     )  # 文件名, 示例值："test.txt", 最大长度：`250` 字符
     parent_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "parent_type"}
     )  # 上传点类型, 示例值："doc_image", 可选值有: `doc_image`：docs图片, `sheet_image`：sheet图片, `doc_file`：doc文件, `sheet_file`：sheet文件, `vc_virtual_background`：vc虚拟背景(灰度中，暂未开放), `bitable_image`：bitable图片, `bitable_file`：bitable文件, `moments`：同事圈(灰度中，暂未开放), `ccm_import_open`：云文档导入文件
     parent_node: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "parent_node"}
     )  # 上传点的标识符, 示例值："doccn123456675"
     size: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "size"}
     )  # 文件大小, 示例值：1024, 最小值：`0`
     extra: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "extra"}
     )  # 扩展信息(可选), 示例值："{\"test\":\"test\"}"
 
 
 @attr.s
 class PrepareUploadDriveMediaResp(object):
-    upload_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 分片上传事务ID
-    block_size: int = attr.ib(default=0, metadata={"req_type": "json"})  # 分片大小策略
-    block_num: int = attr.ib(default=0, metadata={"req_type": "json"})  # 分片数量
+    upload_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "upload_id"}
+    )  # 分片上传事务ID
+    block_size: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "block_size"}
+    )  # 分片大小策略
+    block_num: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "block_num"}
+    )  # 分片数量
 
 
 def _gen_prepare_upload_drive_media_req(request, options) -> RawRequestReq:

@@ -9,7 +9,7 @@ import io
 @attr.s
 class BatchDeleteMessageReq(object):
     batch_message_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "batch_message_id"}
     )  # 待撤回的批量消息的ID, 示例值："bm-dc13264520392913993dd051dba21dcf"
 
 

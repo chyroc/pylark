@@ -14,9 +14,11 @@ class GetJssdkTicketReq(object):
 @attr.s
 class GetJssdkTicketResp(object):
     expire_in: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": " expire_in"}
     )  # `jsapi_ticket 的有效时间`
-    ticket: str = attr.ib(default="", metadata={"req_type": "json"})  # `jsapi_ticket`
+    ticket: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": " ticket"}
+    )  # `jsapi_ticket`
 
 
 def _gen_get_jssdk_ticket_req(request, options) -> RawRequestReq:

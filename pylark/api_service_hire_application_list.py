@@ -9,35 +9,35 @@ import io
 @attr.s
 class GetHireApplicationListReq(object):
     process_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "process_id"}
     )  # 按流程过滤, 示例值："212121"
     stage_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "stage_id"}
     )  # 按阶段过滤, 示例值："212121"
     talent_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "talent_id"}
     )  # 按人才过滤, 示例值："123321"
     active_status: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "active_status"}
     )  # 按活跃状态筛选 1=活跃投递, 2=非活跃投递, 3=全部,, 示例值："1"
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 查询游标, 由上一页结果返回, 第一页不传, 示例值："1"
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 每页限制, 每页最大不超过100, 示例值：100
 
 
 @attr.s
 class GetHireApplicationListResp(object):
     items: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 投递数据列表
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 游标, 翻下一页数据时使用
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有下一页数据
 
 

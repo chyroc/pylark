@@ -9,16 +9,16 @@ import io
 @attr.s
 class DeleteCalendarEventAttendeeReq(object):
     calendar_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "calendar_id"}
     )  # 日历 ID, 示例值："feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn"
     event_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "event_id"}
     )  # 日程 ID, 示例值："xxxxxxxxx_0"
     attendee_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "attendee_ids"}
     )  # 要移除的参与人 ID 列表
     need_notification: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "need_notification"}
     )  # 删除日程参与人时是否要给参与人发送bot通知，默认为true, 示例值：false
 
 

@@ -9,46 +9,54 @@ import io
 @attr.s
 class GetHireJobProcessListReq(object):
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 不能超过 100, 示例值：10
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："1"
 
 
 @attr.s
 class GetHireJobProcessListRespItemStage(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文名称
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 中文名称
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 英文名称
     type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "type"}
     )  # 1=筛选型, 2=评估型, 3=笔试型, 4=面试型, 5=Offer型, 6=待入职, 7=已入职, 8=其它类型, 255=系统默认，后端模型中并没有该字段，仅用于前端显示,, 可选值有: `1`：筛选型, `2`：评估型, `3`：笔试型, `4`：面试型, `5`：Offer型, `6`：待入职, `7`：已入职, `8`：其它类型, `255`：系统默认
 
 
 @attr.s
 class GetHireJobProcessListRespItem(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文名称
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 中文名称
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 英文名称
     type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "type"}
     )  # 类型 1=社招流程, 2=校招流程,, 可选值有: `1`：社招流程, `2`：校招流程
     stage_list: typing.List[GetHireJobProcessListRespItemStage] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "stage_list"}
     )  # 阶段列表, 内部按用户设置顺序排列
 
 
 @attr.s
 class GetHireJobProcessListResp(object):
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多项
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
     items: typing.List[GetHireJobProcessListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 列表
 
 

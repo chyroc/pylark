@@ -9,7 +9,7 @@ import io
 @attr.s
 class DownloadImageReq(object):
     image_key: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "image_key"}
     )  # 图片的key, 示例值："img_8d5181ca-0aed-40f0-b0d1-b1452132afbg"
 
 
@@ -21,16 +21,20 @@ class DownloadImageRespFile(object):
 @attr.s
 class DownloadImageResp(object):
     file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "file"}
     )
 
 
 @attr.s
 class DownloadImageResp(object):
-    is_file: bool = attr.ib(factory=lambda: bool(), metadata={"req_type": "json"})
-    code: int = attr.ib(default=0, metadata={"req_type": "json"})
-    msg: str = attr.ib(default="", metadata={"req_type": "json"})
-    data: DownloadImageResp = attr.ib(default=None, metadata={"req_type": "json"})
+    is_file: bool = attr.ib(
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_file"}
+    )
+    code: int = attr.ib(default=0, metadata={"req_type": "json", "key": "code"})
+    msg: str = attr.ib(default="", metadata={"req_type": "json", "key": "msg"})
+    data: DownloadImageResp = attr.ib(
+        default=None, metadata={"req_type": "json", "key": "data"}
+    )
 
 
 def _gen_download_image_req(request, options) -> RawRequestReq:

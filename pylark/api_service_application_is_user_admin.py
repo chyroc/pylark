@@ -9,17 +9,17 @@ import io
 @attr.s
 class IsApplicationUserAdminReq(object):
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "open_id"}
     )  # 用户 open_id，open_id 和 employee_id 两个参数必须包含其一，若同时传入取 open_id
     employee_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "employee_id"}
     )  # 用户 employee_id（同通讯录 v3 版本中的 user_id），open_id 和 employee_id 两个参数必须包含其一，若同时传入取 open_id
 
 
 @attr.s
 class IsApplicationUserAdminResp(object):
     is_app_admin: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_app_admin"}
     )  # 用户是否为管理员，true 为是，false 为否
 
 

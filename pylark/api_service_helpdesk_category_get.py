@@ -9,19 +9,25 @@ import io
 @attr.s
 class GetHelpdeskCategoryReq(object):
     id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "id"}
     )  # 知识库分类ID, 示例值："6948728206392295444"
 
 
 @attr.s
 class GetHelpdeskCategoryResp(object):
-    category_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 知识库分类ID
+    category_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "category_id"}
+    )  # 知识库分类ID
     id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "id"}
     )  # 知识库分类ID，（旧版，请使用category_id）
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 名称
-    helpdesk_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 服务台ID
-    language: str = attr.ib(default="", metadata={"req_type": "json"})  # 语言
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 名称
+    helpdesk_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "helpdesk_id"}
+    )  # 服务台ID
+    language: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "language"}
+    )  # 语言
 
 
 def _gen_get_helpdesk_category_req(request, options) -> RawRequestReq:

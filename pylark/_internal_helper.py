@@ -76,7 +76,7 @@ def _make_dataclass_from_dict(t: Type[T], kwargs: Any) -> T:
     attr_field = attr.fields(t)
     for att in getattr(t, "__attrs_attrs__", []):
         att_name = att.name
-        json_name = getattr(attr_field, att.name).metadata.get("json") or att_name
+        json_name = getattr(attr_field, att.name).metadata.get("key") or att_name
         att_default = att.default
         att_value = kwargs.get(json_name)
         if att_value:

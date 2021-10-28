@@ -9,7 +9,7 @@ import io
 @attr.s
 class DeleteVCReserveReq(object):
     reserve_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "reserve_id"}
     )  # 预约ID（预约的唯一标识）, 示例值："6911188411932033028"
 
 

@@ -9,27 +9,31 @@ import io
 @attr.s
 class GetContactGroupReq(object):
     group_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "group_id"}
     )  # 用户组ID, 示例值："g193821"
 
 
 @attr.s
 class GetContactGroupRespGroup(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户组ID
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户组名字
-    description: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户组描述
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 用户组ID
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 用户组名字
+    description: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "description"}
+    )  # 用户组描述
     member_user_count: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "member_user_count"}
     )  # 用户组成员中用户的数量
     member_department_count: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "member_department_count"}
     )  # 用户组成员中部门的数量
 
 
 @attr.s
 class GetContactGroupResp(object):
     group: GetContactGroupRespGroup = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "group"}
     )  # 用户组详情
 
 

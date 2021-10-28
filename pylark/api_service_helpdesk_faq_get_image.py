@@ -8,9 +8,11 @@ import io
 
 @attr.s
 class GetHelpdeskFAQImageReq(object):
-    id: str = attr.ib(default="", metadata={"req_type": "path"})  # 知识库ID, 示例值："12345"
+    id: str = attr.ib(
+        default="", metadata={"req_type": "path", "key": "id"}
+    )  # 知识库ID, 示例值："12345"
     image_key: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "image_key"}
     )  # 图像key, 示例值："img_b07ffac0-19c1-48a3-afca-599f8ea825fj"
 
 
@@ -22,16 +24,20 @@ class GetHelpdeskFAQImageRespFile(object):
 @attr.s
 class GetHelpdeskFAQImageResp(object):
     file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "file"}
     )
 
 
 @attr.s
 class GetHelpdeskFAQImageResp(object):
-    is_file: bool = attr.ib(factory=lambda: bool(), metadata={"req_type": "json"})
-    code: int = attr.ib(default=0, metadata={"req_type": "json"})
-    msg: str = attr.ib(default="", metadata={"req_type": "json"})
-    data: GetHelpdeskFAQImageResp = attr.ib(default=None, metadata={"req_type": "json"})
+    is_file: bool = attr.ib(
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_file"}
+    )
+    code: int = attr.ib(default=0, metadata={"req_type": "json", "key": "code"})
+    msg: str = attr.ib(default="", metadata={"req_type": "json", "key": "msg"})
+    data: GetHelpdeskFAQImageResp = attr.ib(
+        default=None, metadata={"req_type": "json", "key": "data"}
+    )
 
 
 def _gen_get_helpdesk_faq_image_req(request, options) -> RawRequestReq:

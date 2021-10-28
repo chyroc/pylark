@@ -9,64 +9,76 @@ import io
 @attr.s
 class GetHelpdeskAgentScheduleReq(object):
     agent_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "agent_id"}
     )  # 客服 id, 示例值："	客服 id"
 
 
 @attr.s
 class GetHelpdeskAgentScheduleRespAgentScheduleAgentSkill(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 客服技能 id
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 客服技能名
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 客服技能 id
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 客服技能名
     is_default: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_default"}
     )  # 是默认技能
 
 
 @attr.s
 class GetHelpdeskAgentScheduleRespAgentScheduleSchedule(object):
     start_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "start_time"}
     )  # 开始时间, format 00:00 - 23:59
     end_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "end_time"}
     )  # 结束时间, format 00:00 - 23:59
     weekday: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "weekday"}
     )  # 星期几, 1 - Monday, 2 - Tuesday, 3 - Wednesday, 4 - Thursday, 5 - Friday, 6 - Saturday, 7 - Sunday, 9 - Everday, 10 - Weekday, 11 - Weekend
 
 
 @attr.s
 class GetHelpdeskAgentScheduleRespAgentScheduleAgent(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 客服 id
-    avatar_url: str = attr.ib(default="", metadata={"req_type": "json"})  # avatar url
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 客服名字
-    email: str = attr.ib(default="", metadata={"req_type": "json"})  # email
-    department: str = attr.ib(default="", metadata={"req_type": "json"})  # 部门
-    company_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 公司名
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 客服 id
+    avatar_url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_url"}
+    )  # avatar url
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 客服名字
+    email: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "email"}
+    )  # email
+    department: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "department"}
+    )  # 部门
+    company_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "company_name"}
+    )  # 公司名
 
 
 @attr.s
 class GetHelpdeskAgentScheduleRespAgentSchedule(object):
     status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "status"}
     )  # 客服状态, 1 - online客服, 2 - offline(手动)客服, 3 - off duty(下班)自动处于非服务时间段
     agent: GetHelpdeskAgentScheduleRespAgentScheduleAgent = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "agent"}
     )  # 客服信息
     schedule: GetHelpdeskAgentScheduleRespAgentScheduleSchedule = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "schedule"}
     )  # 工作日程列表
     agent_skills: typing.List[
         GetHelpdeskAgentScheduleRespAgentScheduleAgentSkill
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "agent_skills"}
     )  # 客服技能
 
 
 @attr.s
 class GetHelpdeskAgentScheduleResp(object):
     agent_schedule: GetHelpdeskAgentScheduleRespAgentSchedule = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "agent_schedule"}
     )  # 客服日程
 
 

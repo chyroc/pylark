@@ -24,19 +24,20 @@ class UpdateACSUserFaceReqUserIDType(object):
 @attr.s
 class UpdateACSUserFaceReq(object):
     user_id_type: UpdateACSUserFaceReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "user_id"}
     )  # 用户 ID, 示例值："ou_7dab8a3d3cdcc9da365777c7ad535d62"
     files: typing.Union[str, bytes, io.BytesIO] = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "files"}
     )  # 人脸图片内容, 示例值：jpg图片
     file_type: UpdateACSUserFaceReqFileType = attr.ib(
-        factory=lambda: UpdateACSUserFaceReqFileType(), metadata={"req_type": "json"}
+        factory=lambda: UpdateACSUserFaceReqFileType(),
+        metadata={"req_type": "json", "key": "file_type"},
     )  # 文件类型,可选的类型有jpg,png, 示例值："jpg"
     file_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "file_name"}
     )  # 带后缀的文件名, 示例值："efeqz12f.jpg"
 
 

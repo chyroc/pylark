@@ -9,14 +9,14 @@ import io
 @attr.s
 class RecognizeBasicImageReq(object):
     image: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "image"}
     )  # base64 后的图片数据, 示例值："base64后的图片二进制数据"
 
 
 @attr.s
 class RecognizeBasicImageResp(object):
     text_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "text_list"}
     )  # 按区域识别，返回文本列表
 
 

@@ -9,16 +9,18 @@ import io
 @attr.s
 class GetDriveDocContentReq(object):
     doc_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "docToken"}
     )  # 获取方式详见 [云文档接口快速入门](https://open.feishu.cn/document/ukTMukTMukTM/uczNzUjL3czM14yN3MTN)
 
 
 @attr.s
 class GetDriveDocContentResp(object):
     content: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "content"}
     )  # 详情参考[文档数据结构](https://open.feishu.cn/document/ukTMukTMukTM/ukDM2YjL5AjN24SOwYjN)
-    revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # 文档当前版本号
+    revision: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "revision"}
+    )  # 文档当前版本号
 
 
 def _gen_get_drive_doc_content_req(request, options) -> RawRequestReq:

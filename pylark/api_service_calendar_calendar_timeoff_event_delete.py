@@ -9,7 +9,7 @@ import io
 @attr.s
 class DeleteCalendarTimeoffEventReq(object):
     timeoff_event_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "timeoff_event_id"}
     )  # 休假申请的唯一标识id, 示例值："timeoff:XXXXXX-XXXX-0917-1623-aa493d591a39"
 
 

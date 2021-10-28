@@ -9,43 +9,53 @@ import io
 @attr.s
 class GetMailGroupListReq(object):
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："xxx"
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 示例值：10, 最大值：`200`
 
 
 @attr.s
 class GetMailGroupListRespItem(object):
-    mailgroup_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 邮件组ID
-    email: str = attr.ib(default="", metadata={"req_type": "json"})  # 邮件组地址
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 邮件组名称
-    description: str = attr.ib(default="", metadata={"req_type": "json"})  # 邮件组描述
+    mailgroup_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "mailgroup_id"}
+    )  # 邮件组ID
+    email: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "email"}
+    )  # 邮件组地址
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 邮件组名称
+    description: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "description"}
+    )  # 邮件组描述
     direct_members_count: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "direct_members_count"}
     )  # 邮件组成员数量
     include_external_member: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(),
+        metadata={"req_type": "json", "key": "include_external_member"},
     )  # 是否包含外部成员
     include_all_company_member: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(),
+        metadata={"req_type": "json", "key": "include_all_company_member"},
     )  # 是否是全员邮件组
     who_can_send_mail: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "who_can_send_mail"}
     )  # 谁可发送邮件到此邮件组, 可选值有: `ANYONE`：任何人, `ALL_INTERNAL_USERS`：仅组织内部成员, `ALL_GROUP_MEMBERS`：仅邮件组成员, `CUSTOM_MEMBERS`：自定义成员
 
 
 @attr.s
 class GetMailGroupListResp(object):
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多项
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
     items: typing.List[GetMailGroupListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 邮件组列表
 
 

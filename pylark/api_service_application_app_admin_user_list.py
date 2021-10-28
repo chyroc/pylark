@@ -13,21 +13,25 @@ class GetApplicationAppAdminUserListReq(object):
 
 @attr.s
 class GetApplicationAppAdminUserListRespUserOpenID(object):
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 某管理员的user_id
-    union_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 某管理员的union_id
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 某管理员的user_id
+    union_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "union_id"}
+    )  # 某管理员的union_id
 
 
 @attr.s
 class GetApplicationAppAdminUserListRespUser(object):
     open_id: GetApplicationAppAdminUserListRespUserOpenID = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "open_id"}
     )  # 某管理员的open_id
 
 
 @attr.s
 class GetApplicationAppAdminUserListResp(object):
     user_list: typing.List[GetApplicationAppAdminUserListRespUser] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_list"}
     )  # 管理员列表
 
 

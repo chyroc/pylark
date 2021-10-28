@@ -9,37 +9,37 @@ import io
 @attr.s
 class RecognizeSpeechFileReqConfig(object):
     file_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "file_id"}
     )  # 仅包含字母数字和下划线的 16 位字符串作为文件的标识，用户生成, 示例值："qwe12dd34567890w"
     format: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "format"}
     )  # 语音格式，目前仅支持：pcm, 示例值："pcm"
     engine_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "engine_type"}
     )  # 引擎类型，目前仅支持：16k_auto 中英混合, 示例值："16k_auto"
 
 
 @attr.s
 class RecognizeSpeechFileReqSpeech(object):
     speech: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "speech"}
     )  # base64 后的音频文件进行, 示例值："base64 后的音频内容"
 
 
 @attr.s
 class RecognizeSpeechFileReq(object):
     speech: RecognizeSpeechFileReqSpeech = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "speech"}
     )  # 语音资源
     config: RecognizeSpeechFileReqConfig = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "config"}
     )  # 配置属性
 
 
 @attr.s
 class RecognizeSpeechFileResp(object):
     recognition_text: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "recognition_text"}
     )  # 语音识别后的文本信息
 
 

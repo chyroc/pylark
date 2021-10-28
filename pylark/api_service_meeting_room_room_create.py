@@ -8,21 +8,31 @@ import io
 
 @attr.s
 class CreateMeetingRoomRoomReq(object):
-    building_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 会议室所在的建筑ID
-    floor: str = attr.ib(default="", metadata={"req_type": "json"})  # 会议室所在的建筑楼层
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 会议室名称
-    capacity: int = attr.ib(default=0, metadata={"req_type": "json"})  # 容量
+    building_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "building_id"}
+    )  # 会议室所在的建筑ID
+    floor: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "floor"}
+    )  # 会议室所在的建筑楼层
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 会议室名称
+    capacity: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "capacity"}
+    )  # 容量
     is_disabled: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_disabled"}
     )  # 是否禁用
     custom_room_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "custom_room_id"}
     )  # 租户自定义会议室ID
 
 
 @attr.s
 class CreateMeetingRoomRoomResp(object):
-    room_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 成功创建的会议室ID
+    room_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "room_id"}
+    )  # 成功创建的会议室ID
 
 
 def _gen_create_meeting_room_room_req(request, options) -> RawRequestReq:

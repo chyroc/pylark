@@ -8,29 +8,35 @@ import io
 
 @attr.s
 class AddSheetDimensionRangeReqDimension(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # sheetId
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # sheetId
     major_dimension: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "majorDimension"}
     )  # 默认 ROWS ，可选 ROWS、COLUMNS
     length: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "length"}
     )  # 要增加的行/列数,0<length<5000
 
 
 @attr.s
 class AddSheetDimensionRangeReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token，详见 [在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     dimension: AddSheetDimensionRangeReqDimension = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "dimension"}
     )  # 需要增加行列的维度信息
 
 
 @attr.s
 class AddSheetDimensionRangeResp(object):
-    add_count: int = attr.ib(default=0, metadata={"req_type": "json"})  # 增加的行/列数
-    major_dimension: str = attr.ib(default="", metadata={"req_type": "json"})  # 插入维度
+    add_count: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "addCount"}
+    )  # 增加的行/列数
+    major_dimension: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "majorDimension"}
+    )  # 插入维度
 
 
 def _gen_add_sheet_dimension_range_req(request, options) -> RawRequestReq:

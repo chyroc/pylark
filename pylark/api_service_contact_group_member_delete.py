@@ -14,17 +14,17 @@ class DeleteContactGroupMemberReqMemberIDType(object):
 @attr.s
 class DeleteContactGroupMemberReq(object):
     group_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "group_id"}
     )  # 用户组ID, 示例值："g198123"
     member_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_type"}
     )  # 用户组成员的类型，取值为 user, 示例值："user", 可选值有: `user`：user, 默认值: `user`
     member_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_id"}
     )  # 操作移除的用户组成员ID, 示例值："xj82871k"
     member_id_type: DeleteContactGroupMemberReqMemberIDType = attr.ib(
         factory=lambda: DeleteContactGroupMemberReqMemberIDType(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "member_id_type"},
     )  # 当member_type =user时候，member_id_type表示user_id_type，枚举值为open_id, union_id, user_id, 示例值："open_id", 可选值有: `open_id`：member_type =user时候，表示用户的open_id, `union_id`：member_type =user时候，表示用户的union_id, `user_id`：member_type =user时候，表示用户的user_id, 默认值: `open_id`
 
 

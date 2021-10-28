@@ -9,27 +9,29 @@ import io
 @attr.s
 class UpdateDriveMemberPermissionOldReq(object):
     token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "token"}
     )  # 文件的 token，获取方式见 [对接前说明](https://open.feishu.cn/document/ukTMukTMukTM/uczNzUjL3czM14yN3MTN)的第 4 项
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 文档类型  "doc"  or  "sheet" or "file"
     member_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_type"}
     )  # 用户类型，可选 **"openid"、"openchat"、"userid"**
-    member_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户类型下的值
+    member_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "member_id"}
+    )  # 用户类型下的值
     perm: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "perm"}
     )  # 权限，"view" or "edit"
     notify_lark: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "notify_lark"}
     )  # 修改权限后是否飞书/lark通知对方<br>true 通知 or false 不通知
 
 
 @attr.s
 class UpdateDriveMemberPermissionOldResp(object):
     is_success: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_success"}
     )  # 是否操作成功
 
 

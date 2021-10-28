@@ -13,20 +13,20 @@ class GetHelpdeskAgentSkillListReq(object):
 
 @attr.s
 class GetHelpdeskAgentSkillListRespAgentSkill(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 技能id
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 技能名
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 技能id
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 技能名
     agent_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "agent_ids"}
     )  # 具有此技能的客服ids
     is_default: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_default"}
     )  # 默认技能
 
 
 @attr.s
 class GetHelpdeskAgentSkillListResp(object):
     agent_skills: typing.List[GetHelpdeskAgentSkillListRespAgentSkill] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "agent_skills"}
     )  # 客服技能列表
 
 

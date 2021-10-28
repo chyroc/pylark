@@ -9,13 +9,13 @@ import io
 @attr.s
 class DeleteCalendarEventReq(object):
     need_notification: bool = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "need_notification"}
     )  # 删除日程是否给日程参与人发送bot通知，默认为true, 示例值：false, 可选值有: `true`：true, `false`：false
     calendar_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "calendar_id"}
     )  # 日历ID, 示例值："feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn"
     event_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "event_id"}
     )  # 日程ID, 示例值："xxxxxxxxx_0"
 
 

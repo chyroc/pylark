@@ -13,20 +13,22 @@ class BatchCreateBitableRecordReqRecordFieldValue(object):
 
 @attr.s
 class BatchCreateBitableRecordReqRecordField(object):
-    key: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段名, 示例值："多行文本"
+    key: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "key"}
+    )  # 字段名, 示例值："多行文本"
     value: typing.Any = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "value"}
     )  # 内容, 示例值：文本
 
 
 @attr.s
 class BatchCreateBitableRecordReqRecord(object):
     record_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "record_id"}
     )  # 记录 id, 示例值："recqwIwhc6"
     fields: BatchCreateBitableRecordReqRecordField = attr.ib(
         factory=lambda: BatchCreateBitableRecordReqRecordField(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "fields"},
     )  # 记录字段
 
 
@@ -38,16 +40,16 @@ class BatchCreateBitableRecordReqUserIDType(object):
 @attr.s
 class BatchCreateBitableRecordReq(object):
     user_id_type: BatchCreateBitableRecordReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     app_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "app_token"}
     )  # bitable app token, 示例值："appbcbWCzen6D8dezhoCH2RpMAh"
     table_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "table_id"}
     )  # table id, 示例值："tblsRc9GRRXKqhvW"
     records: typing.List[BatchCreateBitableRecordReqRecord] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "records"}
     )  # 记录
 
 
@@ -58,23 +60,27 @@ class BatchCreateBitableRecordRespRecordFieldValue(object):
 
 @attr.s
 class BatchCreateBitableRecordRespRecordField(object):
-    key: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段名
-    value: typing.Any = attr.ib(default=None, metadata={"req_type": "json"})  # 内容
+    key: str = attr.ib(default="", metadata={"req_type": "json", "key": "key"})  # 字段名
+    value: typing.Any = attr.ib(
+        default=None, metadata={"req_type": "json", "key": "value"}
+    )  # 内容
 
 
 @attr.s
 class BatchCreateBitableRecordRespRecord(object):
-    record_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 记录 id
+    record_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "record_id"}
+    )  # 记录 id
     fields: BatchCreateBitableRecordRespRecordField = attr.ib(
         factory=lambda: BatchCreateBitableRecordRespRecordField(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "fields"},
     )  # 记录字段
 
 
 @attr.s
 class BatchCreateBitableRecordResp(object):
     records: typing.List[BatchCreateBitableRecordRespRecord] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "records"}
     )  # 记录
 
 

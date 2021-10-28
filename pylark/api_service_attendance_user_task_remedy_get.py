@@ -15,40 +15,48 @@ class GetAttendanceUserTaskRemedyReqEmployeeType(object):
 class GetAttendanceUserTaskRemedyReq(object):
     employee_type: GetAttendanceUserTaskRemedyReqEmployeeType = attr.ib(
         factory=lambda: GetAttendanceUserTaskRemedyReqEmployeeType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "employee_type"},
     )  # 请求体中的 user_id 的员工工号类型，可用值：【employee_id（员工的 employeeId），employee_no（员工工号）】，示例值：“employee_id”
     user_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_ids"}
     )  # employee_no 或 employee_id 列表
     check_time_from: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_time_from"}
     )  # 查询的起始时间，精确到秒的时间戳
     check_time_to: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_time_to"}
     )  # 查询的结束时间，精确到秒的时间戳
 
 
 @attr.s
 class GetAttendanceUserTaskRemedyRespUserRemedy(object):
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 员工工号
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 员工工号
     status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "status"}
     )  # 补卡状态，可用值：【0（pending），2（已通过），3（已取消），4（通过后撤销）】
-    reason: str = attr.ib(default="", metadata={"req_type": "json"})  # 补卡原因
-    time: str = attr.ib(default="", metadata={"req_type": "json"})  # 补卡时间，精确到秒的时间戳
-    time_zone: str = attr.ib(default="", metadata={"req_type": "json"})  # 补卡时的考勤组时区
+    reason: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "reason"}
+    )  # 补卡原因
+    time: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "time"}
+    )  # 补卡时间，精确到秒的时间戳
+    time_zone: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "time_zone"}
+    )  # 补卡时的考勤组时区
     create_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "create_time"}
     )  # 补卡发起时间，精确到秒的时间戳
     update_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "update_time"}
     )  # 补卡状态更新时间，精确到秒的时间戳
 
 
 @attr.s
 class GetAttendanceUserTaskRemedyResp(object):
     user_remedys: typing.List[GetAttendanceUserTaskRemedyRespUserRemedy] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_remedys"}
     )  # 补卡记录列表
 
 

@@ -8,19 +8,25 @@ import io
 
 @attr.s
 class GetMeetingRoomDistrictListReq(object):
-    country_id: int = attr.ib(default=0, metadata={"req_type": "query"})  # 国家地区ID
+    country_id: int = attr.ib(
+        default=0, metadata={"req_type": "query", "key": "country_id"}
+    )  # 国家地区ID
 
 
 @attr.s
 class GetMeetingRoomDistrictListRespDistricts(object):
-    district_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 城市ID
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 城市名称
+    district_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "district_id"}
+    )  # 城市ID
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 城市名称
 
 
 @attr.s
 class GetMeetingRoomDistrictListResp(object):
     districts: GetMeetingRoomDistrictListRespDistricts = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "districts"}
     )  # 城市列表
 
 

@@ -14,10 +14,10 @@ class GetChatReqUserIDType(object):
 @attr.s
 class GetChatReq(object):
     user_id_type: GetChatReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     chat_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "chat_id"}
     )  # 群 ID，详情参见[群ID 说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/chat-id-description), 示例值："oc_a0553eda9014c201e6969b478895c230"
 
 
@@ -73,64 +73,84 @@ class GetChatRespAddMemberPermission(object):
 
 @attr.s
 class GetChatRespI18nNames(object):
-    zh_cn: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文名
-    en_us: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名
-    ja_jp: str = attr.ib(default="", metadata={"req_type": "json"})  # 日文名
+    zh_cn: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_cn"}
+    )  # 中文名
+    en_us: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_us"}
+    )  # 英文名
+    ja_jp: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "ja_jp"}
+    )  # 日文名
 
 
 @attr.s
 class GetChatResp(object):
-    avatar: str = attr.ib(default="", metadata={"req_type": "json"})  # 群头像 URL
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 群名称
-    description: str = attr.ib(default="", metadata={"req_type": "json"})  # 群描述
+    avatar: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar"}
+    )  # 群头像 URL
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 群名称
+    description: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "description"}
+    )  # 群描述
     i18n_names: GetChatRespI18nNames = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "i18n_names"}
     )  # 群国际化名称
     add_member_permission: GetChatRespAddMemberPermission = attr.ib(
-        factory=lambda: GetChatRespAddMemberPermission(), metadata={"req_type": "json"}
+        factory=lambda: GetChatRespAddMemberPermission(),
+        metadata={"req_type": "json", "key": "add_member_permission"},
     )  # 群成员添加权限(all_members/only_owner)
     share_card_permission: GetChatRespShareCardPermission = attr.ib(
-        factory=lambda: GetChatRespShareCardPermission(), metadata={"req_type": "json"}
+        factory=lambda: GetChatRespShareCardPermission(),
+        metadata={"req_type": "json", "key": "share_card_permission"},
     )  # 群分享权限(allowed/not_allowed)
     at_all_permission: GetChatRespAtAllPermission = attr.ib(
-        factory=lambda: GetChatRespAtAllPermission(), metadata={"req_type": "json"}
+        factory=lambda: GetChatRespAtAllPermission(),
+        metadata={"req_type": "json", "key": "at_all_permission"},
     )  # at 所有人权限(all_members/only_owner)
     edit_permission: GetChatRespEditPermission = attr.ib(
-        factory=lambda: GetChatRespEditPermission(), metadata={"req_type": "json"}
+        factory=lambda: GetChatRespEditPermission(),
+        metadata={"req_type": "json", "key": "edit_permission"},
     )  # 群编辑权限(all_members/only_owner)
     owner_id_type: GetChatRespOwnerIDType = attr.ib(
-        factory=lambda: GetChatRespOwnerIDType(), metadata={"req_type": "json"}
+        factory=lambda: GetChatRespOwnerIDType(),
+        metadata={"req_type": "json", "key": "owner_id_type"},
     )  # 群主 ID 的类型(open_id/user_id/union_id)，群主是机器人时，不返回该字段。
     owner_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "owner_id"}
     )  # 群主 ID，群主是机器人时，不返回该字段。
     chat_mode: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "chat_mode"}
     )  # 群模式(group/topic/p2p)
     chat_type: GetChatRespChatType = attr.ib(
-        factory=lambda: GetChatRespChatType(), metadata={"req_type": "json"}
+        factory=lambda: GetChatRespChatType(),
+        metadata={"req_type": "json", "key": "chat_type"},
     )  # 群类型(private/public)
     chat_tag: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "chat_tag"}
     )  # 优先级最高的一个群tag(inner/tenant/department/edu/meeting/customer_service)
     join_message_visibility: GetChatRespJoinMessageVisibility = attr.ib(
         factory=lambda: GetChatRespJoinMessageVisibility(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "join_message_visibility"},
     )  # 入群消息可见性(only_owner/all_members/not_anyone)
     leave_message_visibility: GetChatRespLeaveMessageVisibility = attr.ib(
         factory=lambda: GetChatRespLeaveMessageVisibility(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "leave_message_visibility"},
     )  # 出群消息可见性(only_owner/all_members/not_anyone)
     membership_approval: GetChatRespMembershipApproval = attr.ib(
-        factory=lambda: GetChatRespMembershipApproval(), metadata={"req_type": "json"}
+        factory=lambda: GetChatRespMembershipApproval(),
+        metadata={"req_type": "json", "key": "membership_approval"},
     )  # 加群审批(no_approval_required/approval_required)
     moderation_permission: GetChatRespModerationPermission = attr.ib(
-        factory=lambda: GetChatRespModerationPermission(), metadata={"req_type": "json"}
+        factory=lambda: GetChatRespModerationPermission(),
+        metadata={"req_type": "json", "key": "moderation_permission"},
     )  # 发言权限(all_members/only_owner/moderator_list)
     external: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "external"}
     )  # 是否是外部群
-    tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # tenant key
+    tenant_key: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "tenant_key"}
+    )  # tenant key
 
 
 def _gen_get_chat_req(request, options) -> RawRequestReq:

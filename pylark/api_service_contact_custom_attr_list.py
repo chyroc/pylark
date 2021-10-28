@@ -9,67 +9,73 @@ import io
 @attr.s
 class GetContactCustomAttrListReq(object):
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 示例值：10, 最大值：`100`
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："AQD9/Rn9eij9Pm39ED40/RYU5lvOM4s6zgbeeNNaWd%2BVKwAsoreeRWk0J2noGvJy"
 
 
 @attr.s
 class GetContactCustomAttrListRespItemI18nName(object):
-    locale: str = attr.ib(default="", metadata={"req_type": "json"})  # 语言版本
-    value: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段名
+    locale: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "locale"}
+    )  # 语言版本
+    value: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "value"}
+    )  # 字段名
 
 
 @attr.s
 class GetContactCustomAttrListRespItemOptionsOption(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 枚举类型选项id
+    id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "id"}
+    )  # 枚举类型选项id
     value: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "value"}
     )  # 枚举选项值，当option_type为`TEXT`为文本值，当option_type为`PICTURE`时为图片链接
     name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "name"}
     )  # 名称，仅option_type为PICTURE时有效
 
 
 @attr.s
 class GetContactCustomAttrListRespItemOptions(object):
     default_option_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "default_option_id"}
     )  # 默认选项id
     option_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "option_type"}
     )  # 选项类型, 可选值有: `TEXT`：文本选项, `PICTURE`：图片选项
     options: typing.List[GetContactCustomAttrListRespItemOptionsOption] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "options"}
     )  # 选项列表
 
 
 @attr.s
 class GetContactCustomAttrListRespItem(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 自定义字段id
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 自定义字段id
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 自定义字段类型，可选值有:, `TEXT`：纯文本，用于纯文本描述人员，如备注, `HREF`：静态 URL，用于人员 Profile 跳转链接, `ENUMERATION`：枚举，用于结构化描述人员，如民族, `GENERIC_USER`：用户，用于描述人和人关系，如 HRBP, `PICTURE_ENUM`：枚举图片，以结构化的图片描述人员，如在人员 Profile 展示荣誉徽章
     options: GetContactCustomAttrListRespItemOptions = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "options"}
     )  # 选项定义，当type为`ENUMERATION`或者`PICTURE_ENUM`时此项有值，列举所有可选项
     i18n_name: GetContactCustomAttrListRespItemI18nName = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "i18n_name"}
     )  # 自定义字段的字段名称
 
 
 @attr.s
 class GetContactCustomAttrListResp(object):
     items: typing.List[GetContactCustomAttrListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 自定义字段定义
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多项
 
 

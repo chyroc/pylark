@@ -9,13 +9,13 @@ import io
 @attr.s
 class GetHireAttachmentPreviewReq(object):
     attachment_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "attachment_id"}
     )  # 附件id, 示例值："11111"
 
 
 @attr.s
 class GetHireAttachmentPreviewResp(object):
-    url: str = attr.ib(default="", metadata={"req_type": "json"})  # 预览链接
+    url: str = attr.ib(default="", metadata={"req_type": "json", "key": "url"})  # 预览链接
 
 
 def _gen_get_hire_attachment_preview_req(request, options) -> RawRequestReq:

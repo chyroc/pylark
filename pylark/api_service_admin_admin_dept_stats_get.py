@@ -15,85 +15,122 @@ class GetAdminDeptStatsReqDepartmentIDType(object):
 class GetAdminDeptStatsReq(object):
     department_id_type: GetAdminDeptStatsReqDepartmentIDType = attr.ib(
         factory=lambda: GetAdminDeptStatsReqDepartmentIDType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "department_id_type"},
     )  # 部门ID类型, 示例值："open_department_id", 可选值有: `department_id`：部门的 ID, `open_department_id`：部门的 Open ID
     start_date: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "start_date"}
     )  # 起始日期（包含），格式是YYYY-mm-dd, 示例值："2020-02-15"
     end_date: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "end_date"}
     )  # 终止日期（包含），格式是YYYY-mm-dd，起止日期之间相差不能超过91天（包含91天）, 示例值："2020-02-15"
     department_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "department_id"}
     )  # 部门的 ID，取决于department_id_type，仅支持根部门及其下前4级子部门, 示例值："od-382e2793cfc9471f892e8a672987654c"
     contains_child_dept: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "query"}
+        factory=lambda: bool(),
+        metadata={"req_type": "query", "key": "contains_child_dept"},
     )  # 是否包含子部门，如果该值为false，则只查出本部门直属用户活跃和功能使用数据；如果该值为true，则查出该部门以及其子部门（子部门层级最多不超过根部门下的前4级）的用户活跃和功能使用数据, 示例值：false
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小，默认是10, 示例值：10, 取值范围：`1` ～ `20`
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；当返回的has_more为true时，会返回新的page_token，再次调用接口，传入这个page_token，将获得下一页数据, 示例值："2"
 
 
 @attr.s
 class GetAdminDeptStatsRespItem(object):
-    date: str = attr.ib(default="", metadata={"req_type": "json"})  # 日期
+    date: str = attr.ib(default="", metadata={"req_type": "json", "key": "date"})  # 日期
     department_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "department_id"}
     )  # 部门的department_id 或者open_department_id
-    department_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 部门名字
-    department_path: str = attr.ib(default="", metadata={"req_type": "json"})  # 部门路径
-    total_user_num: int = attr.ib(default=0, metadata={"req_type": "json"})  # 部门总人数
-    active_user_num: int = attr.ib(default=0, metadata={"req_type": "json"})  # 激活人数
-    active_user_rate: str = attr.ib(default="", metadata={"req_type": "json"})  # 激活率
-    suite_dau: int = attr.ib(default=0, metadata={"req_type": "json"})  # 活跃人数
-    suite_active_rate: str = attr.ib(default="", metadata={"req_type": "json"})  # 活跃率
-    new_user_num: int = attr.ib(default=0, metadata={"req_type": "json"})  # 新用户数
-    new_active_num: int = attr.ib(default=0, metadata={"req_type": "json"})  # 新激活数
-    resign_user_num: int = attr.ib(default=0, metadata={"req_type": "json"})  # 离职人数
-    im_dau: int = attr.ib(default=0, metadata={"req_type": "json"})  # 消息活跃人数
+    department_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "department_name"}
+    )  # 部门名字
+    department_path: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "department_path"}
+    )  # 部门路径
+    total_user_num: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "total_user_num"}
+    )  # 部门总人数
+    active_user_num: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "active_user_num"}
+    )  # 激活人数
+    active_user_rate: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "active_user_rate"}
+    )  # 激活率
+    suite_dau: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "suite_dau"}
+    )  # 活跃人数
+    suite_active_rate: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "suite_active_rate"}
+    )  # 活跃率
+    new_user_num: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "new_user_num"}
+    )  # 新用户数
+    new_active_num: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "new_active_num"}
+    )  # 新激活数
+    resign_user_num: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "resign_user_num"}
+    )  # 离职人数
+    im_dau: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "im_dau"}
+    )  # 消息活跃人数
     send_messenger_user_num: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "send_messenger_user_num"}
     )  # 发送消息人数
-    send_messenger_num: int = attr.ib(default=0, metadata={"req_type": "json"})  # 发送消息数
+    send_messenger_num: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "send_messenger_num"}
+    )  # 发送消息数
     avg_send_messenger_num: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "avg_send_messenger_num"}
     )  # 人均发送消息数
-    docs_dau: int = attr.ib(default=0, metadata={"req_type": "json"})  # 云文档活跃人数
+    docs_dau: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "docs_dau"}
+    )  # 云文档活跃人数
     create_docs_user_num: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "create_docs_user_num"}
     )  # 创建文件人数
-    create_docs_num: int = attr.ib(default=0, metadata={"req_type": "json"})  # 创建文件数
+    create_docs_num: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "create_docs_num"}
+    )  # 创建文件数
     avg_create_docs_num: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "avg_create_docs_num"}
     )  # 人均创建文件数
-    cal_dau: int = attr.ib(default=0, metadata={"req_type": "json"})  # 日历活跃人数
+    cal_dau: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "cal_dau"}
+    )  # 日历活跃人数
     create_cal_user_num: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "create_cal_user_num"}
     )  # 创建日程人数
-    create_cal_num: int = attr.ib(default=0, metadata={"req_type": "json"})  # 创建日程数
+    create_cal_num: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "create_cal_num"}
+    )  # 创建日程数
     avg_create_cal_num: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "avg_create_cal_num"}
     )  # 人均创建日程数
-    vc_dau: int = attr.ib(default=0, metadata={"req_type": "json"})  # 音视频会议活跃人数
-    vc_duration: int = attr.ib(default=0, metadata={"req_type": "json"})  # 会议时长（分钟）
+    vc_dau: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "vc_dau"}
+    )  # 音视频会议活跃人数
+    vc_duration: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "vc_duration"}
+    )  # 会议时长（分钟）
     avg_vc_duration: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "avg_vc_duration"}
     )  # 人均会议时长（分钟）
 
 
 @attr.s
 class GetAdminDeptStatsResp(object):
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 分页查询时返回，代表是否还有更多数据
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，下一页分页的token
     items: typing.List[GetAdminDeptStatsRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 数据报表
 
 

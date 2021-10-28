@@ -13,21 +13,25 @@ class UploadAttendanceFileReqFile(object):
 
 @attr.s
 class UploadAttendanceFileReq(object):
-    file_name: str = attr.ib(default="", metadata={"req_type": "query"})  # 文件名
+    file_name: str = attr.ib(
+        default="", metadata={"req_type": "query", "key": "file_name"}
+    )  # 文件名
     file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "file"}
     )  # 文件
 
 
 @attr.s
 class UploadAttendanceFileRespFile(object):
-    file_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件 ID
+    file_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "file_id"}
+    )  # 文件 ID
 
 
 @attr.s
 class UploadAttendanceFileResp(object):
     file: UploadAttendanceFileRespFile = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "file"}
     )  # 文件
 
 

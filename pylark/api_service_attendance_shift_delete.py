@@ -9,7 +9,7 @@ import io
 @attr.s
 class DeleteAttendanceShiftReq(object):
     shift_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "shift_id"}
     )  # 班次 ID，示例值："6919358778597097404"
 
 

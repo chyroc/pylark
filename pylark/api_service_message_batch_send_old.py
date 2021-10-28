@@ -20,33 +20,36 @@ class BatchSendOldRawMessageReqMsgType(object):
 class BatchSendOldRawMessageReq(object):
     msg_type: BatchSendOldRawMessageReqMsgType = attr.ib(
         factory=lambda: BatchSendOldRawMessageReqMsgType(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "msg_type"},
     )  # 消息类型，支持多种消息类型，详见下表。
     content: typing.Any = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "content"}
     )  # 消息内容，支持多种消息内容，详见下表。
     department_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "department_ids"}
     )  # 支持[自定义部门ID](https://open.feishu.cn/document/ukTMukTMukTM/uYTM5UjL2ETO14iNxkTN/terminology#3c3e6267)，和open_department_id，列表长度小于等于 200  <br><br>**示例值：**["3dceba33a33226","d502aaa9514059", "od-5b91c9affb665451a16b90b4be367efa"]
     open_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "open_ids"}
     )  # 用户 open_id 列表，长度小于等于 200 <br><br>**示例值：**["ou_18eac85d35a26f989317ad4f02e8bbbb","ou_461cf042d9eedaa60d445f26dc747d5e"]
     user_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_ids"}
     )  # 用户 user_id 列表，长度小于等于 200 （对应 V3 接口的 employee_ids ）<br><br>**示例值：**["7cdcc7c2","ca51d83b"]
 
 
 @attr.s
 class BatchSendOldRawMessageResp(object):
-    message_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 消息 ID
+    message_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "message_id"}
+    )  # 消息 ID
     invalid_department_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [],
+        metadata={"req_type": "json", "key": "invalid_department_ids"},
     )  # 不合法的部门 ID 列表
     invalid_open_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "invalid_open_ids"}
     )  # 不合法的 open_id 列表
     invalid_user_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "invalid_user_ids"}
     )  # 不合法的 user_id 列表（对应V3接口的invalid_employee_ids）
 
 

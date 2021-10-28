@@ -9,29 +9,39 @@ import io
 @attr.s
 class GetDriveImportTaskReq(object):
     ticket: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "ticket"}
     )  # 导入任务ID, 示例值："6990281865xxxxxxxx7843"
 
 
 @attr.s
 class GetDriveImportTaskRespResult(object):
-    ticket: str = attr.ib(default="", metadata={"req_type": "json"})  # 任务ID
-    type: str = attr.ib(default="", metadata={"req_type": "json"})  # 导入目标云文档格式
+    ticket: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "ticket"}
+    )  # 任务ID
+    type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "type"}
+    )  # 导入目标云文档格式
     job_status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "job_status"}
     )  # 任务状态, 可选值有: `0`：成功, `1`：初始化, `2`：处理中, `100`：导入文档已加密, `101`：内部错误, `102`：内部错误, `103`：内部错误, `104`：租户容量不足, `105`：文件夹节点太多, `106`：内部错误, `107`：导出文档过大, `108`：处理超时, `109`：内部错误, `110`：无权限, `111`：导出文档已删除, `112`：格式不支持, `113`：office格式不支持, `114`：内部错误, `115`：导入文件过大, `116`：目录无权限, `117`：目录已删除, `118`：导入文件和任务指定后缀不匹配, `119`：目录不存在, `120`：导入文件和任务指定文件类型不匹配, `121`：导入文件已过期, `122`：创建副本中禁止导出, `123`：导出文档不存在, `5000`：内部错误, `6000`：导出文档图片太多, `7000`：docx block 数量超过系统上限, `7001`：docx block 层级超过系统上线, `7002`：docx block 大小超过系统上限
-    job_error_msg: str = attr.ib(default="", metadata={"req_type": "json"})  # 任务失败原因
-    token: str = attr.ib(default="", metadata={"req_type": "json"})  # 导入云文档Token
-    url: str = attr.ib(default="", metadata={"req_type": "json"})  # 导入云文档URL
+    job_error_msg: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "job_error_msg"}
+    )  # 任务失败原因
+    token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "token"}
+    )  # 导入云文档Token
+    url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "url"}
+    )  # 导入云文档URL
     extra: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "extra"}
     )  # 任务成功后的提示信息
 
 
 @attr.s
 class GetDriveImportTaskResp(object):
     result: GetDriveImportTaskRespResult = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "result"}
     )  # 导入结果
 
 

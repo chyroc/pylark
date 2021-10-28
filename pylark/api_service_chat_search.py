@@ -14,14 +14,16 @@ class SearchChatReqUserIDType(object):
 @attr.s
 class SearchChatReq(object):
     user_id_type: SearchChatReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
-    query: str = attr.ib(default="", metadata={"req_type": "query"})  # 关键词, 示例值："abc"
+    query: str = attr.ib(
+        default="", metadata={"req_type": "query", "key": "query"}
+    )  # 关键词, 示例值："abc"
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："dmJCRHhpd3JRbGV1VEVNRFFyTitRWDY5ZFkybmYrMEUwMUFYT0VMMWdENEtuYUhsNUxGMDIwemtvdE5ORjBNQQ=="
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 示例值：10, 最大值：`100`
 
 
@@ -33,31 +35,40 @@ class SearchChatRespItemOwnerIDType(object):
 @attr.s
 class SearchChatRespItem(object):
     chat_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "chat_id"}
     )  # 群组 ID，详情参见[群ID 说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/chat-id-description)
-    avatar: str = attr.ib(default="", metadata={"req_type": "json"})  # 群头像 URL
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 群名称
-    description: str = attr.ib(default="", metadata={"req_type": "json"})  # 群描述
-    owner_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 群主 ID
+    avatar: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar"}
+    )  # 群头像 URL
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 群名称
+    description: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "description"}
+    )  # 群描述
+    owner_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "owner_id"}
+    )  # 群主 ID
     owner_id_type: SearchChatRespItemOwnerIDType = attr.ib(
-        factory=lambda: SearchChatRespItemOwnerIDType(), metadata={"req_type": "json"}
+        factory=lambda: SearchChatRespItemOwnerIDType(),
+        metadata={"req_type": "json", "key": "owner_id_type"},
     )  # 群主 ID 类型
     external: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "external"}
     )  # 是否是外部群
-    tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # tenant key
+    tenant_key: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "tenant_key"}
+    )  # tenant key
 
 
 @attr.s
 class SearchChatResp(object):
     items: typing.List[SearchChatRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # chat 列表
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多项
 
 

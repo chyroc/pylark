@@ -8,26 +8,32 @@ import io
 
 @attr.s
 class CreateSheetReq(object):
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 表格标题, 示例值："title"
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 表格标题, 示例值："title"
     folder_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "folder_token"}
     )  # 文件夹token, 示例值："fldcnMsNb*****hIW9IjG1LVswg"
 
 
 @attr.s
 class CreateSheetRespSpreadsheet(object):
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 表格标题
-    folder_token: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件夹token
-    url: str = attr.ib(default="", metadata={"req_type": "json"})  # 文档url
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 表格标题
+    folder_token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "folder_token"}
+    )  # 文件夹token
+    url: str = attr.ib(default="", metadata={"req_type": "json", "key": "url"})  # 文档url
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "spreadsheet_token"}
     )  # 表格token
 
 
 @attr.s
 class CreateSheetResp(object):
     spreadsheet: CreateSheetRespSpreadsheet = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "spreadsheet"}
     )  # 表格
 
 

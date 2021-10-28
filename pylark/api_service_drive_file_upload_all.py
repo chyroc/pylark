@@ -14,28 +14,30 @@ class UploadDriveFileReqFile(object):
 @attr.s
 class UploadDriveFileReq(object):
     file_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "file_name"}
     )  # 文件名, 示例值："test.txt", 最大长度：`250` 字符
     parent_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "parent_type"}
     )  # 上传点类型, 示例值："explorer", 可选值有: `explorer`：云空间
     parent_node: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "parent_node"}
     )  # 文件夹token, 示例值："fldcn77hdDT5"
     size: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "size"}
     )  # 文件大小,全量上传最大20M, 示例值：1024, 最大值：`20971520`
     checksum: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "checksum"}
     )  # 文件adler32校验和(可选), 示例值："123423882374238957235"
     file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "file"}
     )  # 文件数据, 示例值：file binary
 
 
 @attr.s
 class UploadDriveFileResp(object):
-    file_token: str = attr.ib(default="", metadata={"req_type": "json"})  # 新创建文件的 token
+    file_token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "file_token"}
+    )  # 新创建文件的 token
 
 
 def _gen_upload_drive_file_req(request, options) -> RawRequestReq:

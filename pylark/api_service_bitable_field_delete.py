@@ -9,21 +9,23 @@ import io
 @attr.s
 class DeleteBitableFieldReq(object):
     app_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "app_token"}
     )  # bitable app token, 示例值："appbcbWCzen6D8dezhoCH2RpMAh"
     table_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "table_id"}
     )  # table id, 示例值："tblsRc9GRRXKqhvW"
     field_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "field_id"}
     )  # field id, 示例值："fldPTb0U2y"
 
 
 @attr.s
 class DeleteBitableFieldResp(object):
-    field_id: str = attr.ib(default="", metadata={"req_type": "json"})  # field id
+    field_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "field_id"}
+    )  # field id
     deleted: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "deleted"}
     )  # 删除标记
 
 

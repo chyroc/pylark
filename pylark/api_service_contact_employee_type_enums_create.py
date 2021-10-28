@@ -9,55 +9,65 @@ import io
 @attr.s
 class CreateEmployeeTypeEnumReqI18nContent(object):
     locale: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "locale"}
     )  # 语言版本, 示例值："zh_cn"
-    value: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段名, 示例值："专家"
+    value: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "value"}
+    )  # 字段名, 示例值："专家"
 
 
 @attr.s
 class CreateEmployeeTypeEnumReq(object):
     content: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "content"}
     )  # 枚举内容, 示例值："专家", 长度范围：`1` ～ `100` 字符
     enum_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "enum_type"}
     )  # 类型, 示例值：2, 可选值有: `1`：内置类型, `2`：自定义
     enum_status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "enum_status"}
     )  # 使用状态, 示例值：1, 可选值有: `1`：激活, `2`：未激活
     i18n_content: CreateEmployeeTypeEnumReqI18nContent = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "i18n_content"}
     )  # i18n定义
 
 
 @attr.s
 class CreateEmployeeTypeEnumRespEmployeeTypeEnumI18nContent(object):
-    locale: str = attr.ib(default="", metadata={"req_type": "json"})  # 语言版本
-    value: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段名
+    locale: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "locale"}
+    )  # 语言版本
+    value: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "value"}
+    )  # 字段名
 
 
 @attr.s
 class CreateEmployeeTypeEnumRespEmployeeTypeEnum(object):
-    enum_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 枚举值id
-    enum_value: str = attr.ib(default="", metadata={"req_type": "json"})  # 枚举值
+    enum_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "enum_id"}
+    )  # 枚举值id
+    enum_value: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "enum_value"}
+    )  # 枚举值
     content: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "content"}
     )  # 枚举内容, 长度范围：`1` ～ `100` 字符
     enum_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "enum_type"}
     )  # 类型, 可选值有: `1`：内置类型, `2`：自定义
     enum_status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "enum_status"}
     )  # 使用状态, 可选值有: `1`：激活, `2`：未激活
     i18n_content: CreateEmployeeTypeEnumRespEmployeeTypeEnumI18nContent = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "i18n_content"}
     )  # i18n定义
 
 
 @attr.s
 class CreateEmployeeTypeEnumResp(object):
     employee_type_enum: CreateEmployeeTypeEnumRespEmployeeTypeEnum = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "employee_type_enum"}
     )  # 新建的人员类型信息
 
 

@@ -9,15 +9,17 @@ import io
 @attr.s
 class DeleteDriveFileReq(object):
     doc_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "docToken"}
     )  # doc 的 token，获取方式见 [概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction)
 
 
 @attr.s
 class DeleteDriveFileResp(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # doc 的 id「字符串类型」
+    id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "id"}
+    )  # doc 的 id「字符串类型」
     result: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "result"}
     )  # 删除结果
 
 

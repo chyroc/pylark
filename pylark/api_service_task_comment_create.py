@@ -9,32 +9,36 @@ import io
 @attr.s
 class CreateTaskCommentReq(object):
     task_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "task_id"}
     )  # 任务 ID, 示例值："83912691-2e43-47fc-94a4-d512e03984fa"
     content: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "content"}
     )  # 评论内容, 示例值："举杯邀明月，对影成三人", 长度范围：`0` ～ `65536` 字符
     parent_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "parent_id"}
     )  # 评论的父ID，创建评论时若不为空则为某条评论的回复，若不为空则不是回复, 示例值："6937231762296684564"
     id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "id"}
     )  # 评论ID，由飞书服务器发号, 示例值："6937231762296684564"
 
 
 @attr.s
 class CreateTaskCommentRespComment(object):
-    content: str = attr.ib(default="", metadata={"req_type": "json"})  # 评论内容
+    content: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "content"}
+    )  # 评论内容
     parent_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "parent_id"}
     )  # 评论的父ID，创建评论时若不为空则为某条评论的回复，若不为空则不是回复
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 评论ID，由飞书服务器发号
+    id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "id"}
+    )  # 评论ID，由飞书服务器发号
 
 
 @attr.s
 class CreateTaskCommentResp(object):
     comment: CreateTaskCommentRespComment = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "comment"}
     )  # 返回创建好的任务评论
 
 

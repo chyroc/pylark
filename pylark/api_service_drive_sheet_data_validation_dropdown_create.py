@@ -9,39 +9,39 @@ import io
 @attr.s
 class CreateSheetDataValidationDropdownReqDataValidationOptions(object):
     multiple_values: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "multipleValues"}
     )  # 单选填false, 多选填true，不填默认为false
     highlight_valid_data: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "highlightValidData"}
     )  # 是否设置颜色和胶囊样式, 不填默认为false
     colors: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "colors"}
     )  # 当highlightValidData为true时，color需填颜色,与conditionValues中的值一一对应。需是RGB16进制格式,如"#fffd00"
 
 
 @attr.s
 class CreateSheetDataValidationDropdownReqDataValidation(object):
     condition_values: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "conditionValues"}
     )  # 下拉列表选项值, 需为字符串,不能包含","，选项值最长100字符,选项个数最多500个
     options: CreateSheetDataValidationDropdownReqDataValidationOptions = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "options"}
     )  # 可选属性
 
 
 @attr.s
 class CreateSheetDataValidationDropdownReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token，获取方式见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     range_: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "range"}
     )  # 查询范围，包含 sheetId 与单元格范围两部分，目前支持四种索引方式，详见 [在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     data_validation_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "dataValidationType"}
     )  # 下拉列表填"list"
     data_validation: CreateSheetDataValidationDropdownReqDataValidation = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "dataValidation"}
     )  # 下拉列表规则属性
 
 

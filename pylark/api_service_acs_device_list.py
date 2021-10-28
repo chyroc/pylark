@@ -13,15 +13,21 @@ class GetACSDeviceListReq(object):
 
 @attr.s
 class GetACSDeviceListRespItem(object):
-    device_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 门禁设备 ID
-    device_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 设备名称
-    device_sn: str = attr.ib(default="", metadata={"req_type": "json"})  # 设备 SN 码
+    device_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "device_id"}
+    )  # 门禁设备 ID
+    device_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "device_name"}
+    )  # 设备名称
+    device_sn: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "device_sn"}
+    )  # 设备 SN 码
 
 
 @attr.s
 class GetACSDeviceListResp(object):
     items: typing.List[GetACSDeviceListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # -
 
 

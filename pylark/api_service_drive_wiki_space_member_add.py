@@ -9,37 +9,39 @@ import io
 @attr.s
 class AddWikiSpaceMemberReq(object):
     need_notification: bool = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "need_notification"}
     )  # 添加权限后是否通知对方, 示例值：true/fasle
     space_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "space_id"}
     )  # 知识空间id, 示例值："1565676577122621"
     member_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_type"}
     )  # “openchat” - 群id ,“userid” - 用户id ,“departmentid” - 部门id,“openid” - 应用openid, 示例值："userid"
     member_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_id"}
     )  # 用户id, 示例值："1565676577122621"
     member_role: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_role"}
     )  # 角色:,“admin” - 管理员,“member” - 成员, 示例值："admin"
 
 
 @attr.s
 class AddWikiSpaceMemberRespMember(object):
     member_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_type"}
     )  # “openchat” - 群id ,“userid” - 用户id ,“departmentid” - 部门id,“openid” - 应用openid
-    member_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户id
+    member_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "member_id"}
+    )  # 用户id
     member_role: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_role"}
     )  # 角色:,“admin” - 管理员,“member” - 成员
 
 
 @attr.s
 class AddWikiSpaceMemberResp(object):
     member: AddWikiSpaceMemberRespMember = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "member"}
     )  # 知识空间成员
 
 

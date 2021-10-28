@@ -15,16 +15,16 @@ class UpdateDriveCommentPatchReqFileType(object):
 class UpdateDriveCommentPatchReq(object):
     file_type: UpdateDriveCommentPatchReqFileType = attr.ib(
         factory=lambda: UpdateDriveCommentPatchReqFileType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "file_type"},
     )  # 文档类型, 示例值："doc", 可选值有: `doc`：文档, `sheet`：表格, `file`：文件
     file_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "file_token"}
     )  # 文档token, 示例值："doccnGp4UK1UskrOEJwBXd3****"
     comment_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "comment_id"}
     )  # 评论ID, 示例值："6916106822734578184"
     is_solved: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_solved"}
     )  # 评论解决标志, 示例值：true
 
 

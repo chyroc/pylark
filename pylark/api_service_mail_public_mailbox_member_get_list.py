@@ -14,16 +14,16 @@ class GetPublicMailboxMemberListReqUserIDType(object):
 @attr.s
 class GetPublicMailboxMemberListReq(object):
     user_id_type: GetPublicMailboxMemberListReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："xxx"
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 示例值：10, 最大值：`200`
     public_mailbox_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "public_mailbox_id"}
     )  # The unique ID or email address of a public mailbox, 示例值："xxxxxxxxxxxxxxx or test_public_mailbox@xxx.xx"
 
 
@@ -34,26 +34,28 @@ class GetPublicMailboxMemberListRespItemType(object):
 
 @attr.s
 class GetPublicMailboxMemberListRespItem(object):
-    member_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 公共邮箱内成员唯一标识
+    member_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "member_id"}
+    )  # 公共邮箱内成员唯一标识
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "user_id"}
     )  # 租户内用户的唯一标识（当成员类型是USER时有值）
     type: GetPublicMailboxMemberListRespItemType = attr.ib(
         factory=lambda: GetPublicMailboxMemberListRespItemType(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "type"},
     )  # 成员类型, 可选值有: `USER`：内部用户
 
 
 @attr.s
 class GetPublicMailboxMemberListResp(object):
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多项
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
     items: typing.List[GetPublicMailboxMemberListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 公共邮箱成员列表
 
 

@@ -9,31 +9,39 @@ import io
 @attr.s
 class CopyDriveFileReq(object):
     file_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "fileToken"}
     )  # 需要复制的源文件或文档的 token, 获取方式见 [概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction)
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 需要创建文档的类型   "doc" 、"sheet" or "bitable"
     dst_folder_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "dstFolderToken"}
     )  # 目标文件夹的 token, 获取方式见 [概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction)
-    dst_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 复制的副本文件的新名称
+    dst_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "dstName"}
+    )  # 复制的副本文件的新名称
     comment_needed: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "commentNeeded"}
     )  # 是否复制评论
 
 
 @attr.s
 class CopyDriveFileResp(object):
     folder_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "folderToken"}
     )  # 目标文件夹的 token
-    revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # 新创建文档的版本号
-    token: str = attr.ib(default="", metadata={"req_type": "json"})  # 新创建文档的 token
+    revision: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "revision"}
+    )  # 新创建文档的版本号
+    token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "token"}
+    )  # 新创建文档的 token
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 新建文档的类型，"doc" or "sheet"
-    url: str = attr.ib(default="", metadata={"req_type": "json"})  # 新创建文档的 url
+    url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "url"}
+    )  # 新创建文档的 url
 
 
 def _gen_copy_drive_file_req(request, options) -> RawRequestReq:

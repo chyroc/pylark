@@ -9,31 +9,39 @@ import io
 @attr.s
 class UpdateSheetDimensionRangeReqDimensionProperties(object):
     visible: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "visible"}
     )  # true 为显示，false 为隐藏行列
-    fixed_size: int = attr.ib(default=0, metadata={"req_type": "json"})  # 行/列的大小
+    fixed_size: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "fixedSize"}
+    )  # 行/列的大小
 
 
 @attr.s
 class UpdateSheetDimensionRangeReqDimension(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # sheetId
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # sheetId
     major_dimension: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "majorDimension"}
     )  # 默认 ROWS ，可选 ROWS、COLUMNS
-    start_index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 开始的位置
-    end_index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 结束的位置
+    start_index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "startIndex"}
+    )  # 开始的位置
+    end_index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "endIndex"}
+    )  # 结束的位置
 
 
 @attr.s
 class UpdateSheetDimensionRangeReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token，获取方式见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     dimension: UpdateSheetDimensionRangeReqDimension = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "dimension"}
     )  # 需要更新行列的维度信息
     dimension_properties: UpdateSheetDimensionRangeReqDimensionProperties = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "dimensionProperties"}
     )  # 需要更新行列的属性
 
 

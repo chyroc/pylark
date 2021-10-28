@@ -14,20 +14,24 @@ class UploadApprovalFileReqContent(object):
 @attr.s
 class UploadApprovalFileReq(object):
     name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "name"}
     )  # 文件名（需包含文件扩展名，如“文件.doc”
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 文件类型（image 或 attachment）
     content: typing.Union[str, bytes, io.BytesIO] = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "content"}
     )  # 文件
 
 
 @attr.s
 class UploadApprovalFileResp(object):
-    code: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件标识码（用于创建审批实例）
-    url: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件 url
+    code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "code"}
+    )  # 文件标识码（用于创建审批实例）
+    url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "url"}
+    )  # 文件 url
 
 
 def _gen_upload_approval_file_req(request, options) -> RawRequestReq:

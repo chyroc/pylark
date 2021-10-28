@@ -13,9 +13,13 @@ class GetDriveRootFolderMetaReq(object):
 
 @attr.s
 class GetDriveRootFolderMetaResp(object):
-    token: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件夹的 token
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件夹的 id
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件夹的所有者 id
+    token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "token"}
+    )  # 文件夹的 token
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 文件夹的 id
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 文件夹的所有者 id
 
 
 def _gen_get_drive_root_folder_meta_req(request, options) -> RawRequestReq:

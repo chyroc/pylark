@@ -9,35 +9,39 @@ import io
 @attr.s
 class GetSheetFilterViewConditionReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheet_token"}
     )  # 表格 token, 示例值："shtcnmBA*****yGehy8"
     sheet_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "sheet_id"}
     )  # 子表 id, 示例值："0b**12"
     filter_view_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "filter_view_id"}
     )  # 筛选视图 id, 示例值："pH9hbVcCXA"
     condition_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "condition_id"}
     )  # 需要查询筛选条件的列字母号, 示例值："E"
 
 
 @attr.s
 class GetSheetFilterViewConditionRespCondition(object):
     condition_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "condition_id"}
     )  # 设置筛选条件的列，使用字母号
-    filter_type: str = attr.ib(default="", metadata={"req_type": "json"})  # 筛选类型
-    compare_type: str = attr.ib(default="", metadata={"req_type": "json"})  # 比较类型
+    filter_type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "filter_type"}
+    )  # 筛选类型
+    compare_type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "compare_type"}
+    )  # 比较类型
     expected: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "expected"}
     )  # 筛选参数
 
 
 @attr.s
 class GetSheetFilterViewConditionResp(object):
     condition: GetSheetFilterViewConditionRespCondition = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "condition"}
     )  # 筛选的条件
 
 

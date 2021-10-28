@@ -9,21 +9,23 @@ import io
 @attr.s
 class DeleteDriveMemberPermissionOldReq(object):
     token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "token"}
     )  # 文件的 token，获取方式见 [对接前说明](https://open.feishu.cn/document/ukTMukTMukTM/uczNzUjL3czM14yN3MTN)的第 4 项
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 文档类型 "doc"  or  "sheet" or "bitable"  or "file"
     member_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_type"}
     )  # 用户类型，可选 **"openid"、"openchat"、"userid"**
-    member_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户类型下的值
+    member_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "member_id"}
+    )  # 用户类型下的值
 
 
 @attr.s
 class DeleteDriveMemberPermissionOldResp(object):
     is_success: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_success"}
     )  # 是否操作成功
 
 

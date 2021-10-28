@@ -13,28 +13,42 @@ class GetUserInfoReq(object):
 
 @attr.s
 class GetUserInfoResp(object):
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户姓名
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户英文名称
-    avatar_url: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户头像
-    avatar_thumb: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户头像 72x72
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 用户姓名
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 用户英文名称
+    avatar_url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_url"}
+    )  # 用户头像
+    avatar_thumb: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_thumb"}
+    )  # 用户头像 72x72
     avatar_middle: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "avatar_middle"}
     )  # 用户头像 240x240
-    avatar_big: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户头像 640x640
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户在应用内的唯一标识
+    avatar_big: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_big"}
+    )  # 用户头像 640x640
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "open_id"}
+    )  # 用户在应用内的唯一标识
     union_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "union_id"}
     )  # 用户对ISV的唯一标识，对于同一个ISV，用户在其名下所有应用的union_id相同
     email: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "email"}
     )  # 用户邮箱, 字段权限要求:  获取用户邮箱信息
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "user_id"}
     )  # 用户 user_id, 字段权限要求:  获取用户 user ID
     mobile: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "mobile"}
     )  # 用户手机号, 字段权限要求:  获取用户手机号
-    tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # 当前企业标识
+    tenant_key: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "tenant_key"}
+    )  # 当前企业标识
 
 
 def _gen_get_user_info_req(request, options) -> RawRequestReq:

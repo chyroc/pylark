@@ -8,19 +8,27 @@ import io
 
 @attr.s
 class CreateApprovalCarbonCopyReq(object):
-    approval_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批定义 code
-    instance_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批实例 code
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 发起抄送的人的 user_id
+    approval_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "approval_code"}
+    )  # 审批定义 code
+    instance_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "instance_code"}
+    )  # 审批实例 code
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 发起抄送的人的 user_id
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "open_id"}
     )  # 发起抄送的人的 open_id，如果传了 user_id 则优先使用 user_id，二者不能同时为空
     cc_user_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "cc_user_ids"}
     )  # 被抄送人的 user_id 列表
     cc_open_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "cc_open_ids"}
     )  # 被抄送人的 open_id 列表，与 cc_user_ids 不可同时为空
-    comment: str = attr.ib(default="", metadata={"req_type": "json"})  # 抄送留言
+    comment: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "comment"}
+    )  # 抄送留言
 
 
 @attr.s

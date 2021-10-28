@@ -9,36 +9,36 @@ import io
 @attr.s
 class UpdateWikiSpaceSettingReq(object):
     space_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "space_id"}
     )  # 知识空间id, 示例值："1565676577122621"
     create_setting: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "create_setting"}
     )  # 谁可以创建空间的一级页面： "admin_and_member" = 管理员和成员 "admin"  - 仅管理员, 示例值："admin/admin_and_member"
     security_setting: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "security_setting"}
     )  # 可阅读用户可否创建副本/打印/导出/复制： "allow" - 允许 "not_allow" - 不允许, 示例值："allow/not_allow"
     comment_setting: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "comment_setting"}
     )  # 可阅读用户可否评论： "allow" - 允许 "not_allow" - 不允许, 示例值："allow/not_allow"
 
 
 @attr.s
 class UpdateWikiSpaceSettingRespSetting(object):
     create_setting: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "create_setting"}
     )  # 谁可以创建空间的一级页面： "admin_and_member" = 管理员和成员 "admin"  - 仅管理员
     security_setting: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "security_setting"}
     )  # 可阅读用户可否创建副本/打印/导出/复制： "allow" - 允许 "not_allow" - 不允许
     comment_setting: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "comment_setting"}
     )  # 可阅读用户可否评论： "allow" - 允许 "not_allow" - 不允许
 
 
 @attr.s
 class UpdateWikiSpaceSettingResp(object):
     setting: UpdateWikiSpaceSettingRespSetting = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "setting"}
     )  # 知识空间设置
 
 

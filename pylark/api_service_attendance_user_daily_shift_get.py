@@ -15,22 +15,34 @@ class GetAttendanceUserDailyShiftReqEmployeeType(object):
 class GetAttendanceUserDailyShiftReq(object):
     employee_type: GetAttendanceUserDailyShiftReqEmployeeType = attr.ib(
         factory=lambda: GetAttendanceUserDailyShiftReqEmployeeType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "employee_type"},
     )  # 请求体中的 user_ids 的员工工号类型，可用值：【employee_id（员工的 employeeId），employee_no（员工工号）】，示例值：“employee_id”
     user_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_ids"}
     )  # employee_no 或 employee_id 列表
-    check_date_from: int = attr.ib(default=0, metadata={"req_type": "json"})  # 查询的起始工作日
-    check_date_to: int = attr.ib(default=0, metadata={"req_type": "json"})  # 查询的结束工作日
+    check_date_from: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "check_date_from"}
+    )  # 查询的起始工作日
+    check_date_to: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "check_date_to"}
+    )  # 查询的结束工作日
 
 
 @attr.s
 class GetAttendanceUserDailyShiftRespUserDailyShift(object):
-    group_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 考勤组 ID
-    shift_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 班次 ID，休息为 0
-    month: int = attr.ib(default=0, metadata={"req_type": "json"})  # 月份
-    employee_no: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户
-    day_no: int = attr.ib(default=0, metadata={"req_type": "json"})  # 日期
+    group_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "group_id"}
+    )  # 考勤组 ID
+    shift_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "shift_id"}
+    )  # 班次 ID，休息为 0
+    month: int = attr.ib(default=0, metadata={"req_type": "json", "key": "month"})  # 月份
+    employee_no: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "employee_no"}
+    )  # 用户
+    day_no: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "day_no"}
+    )  # 日期
 
 
 @attr.s
@@ -38,7 +50,7 @@ class GetAttendanceUserDailyShiftResp(object):
     user_daily_shifts: typing.List[
         GetAttendanceUserDailyShiftRespUserDailyShift
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_daily_shifts"}
     )  # 班表信息列表
 
 

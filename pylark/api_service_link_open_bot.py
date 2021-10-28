@@ -8,7 +8,9 @@ import io
 
 @attr.s
 class OpenBotReq(object):
-    app_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 机器人的appId
+    app_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "appId"}
+    )  # 机器人的appId
 
 
 @attr.s

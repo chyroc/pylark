@@ -9,22 +9,24 @@ import io
 @attr.s
 class BatchGetMeetingRoomRoomIDReq(object):
     custom_room_ids: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "custom_room_ids"}
     )  # 用于查询指定会议室的租户自定义会议室ID
 
 
 @attr.s
 class BatchGetMeetingRoomRoomIDRespRoom(object):
-    room_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 会议室 ID
+    room_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "room_id"}
+    )  # 会议室 ID
     custom_room_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "custom_room_id"}
     )  # 租户自定义会议室 ID
 
 
 @attr.s
 class BatchGetMeetingRoomRoomIDResp(object):
     rooms: BatchGetMeetingRoomRoomIDRespRoom = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "rooms"}
     )  # 会议室列表
 
 

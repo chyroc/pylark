@@ -8,14 +8,20 @@ import io
 
 @attr.s
 class CancelApprovalInstanceReq(object):
-    approval_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批定义Code
-    instance_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批实例Code
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 操作用户
+    approval_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "approval_code"}
+    )  # 审批定义Code
+    instance_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "instance_code"}
+    )  # 审批实例Code
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 操作用户
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "open_id"}
     )  # 某个应用下用户的唯一标识，根据userID、openID、TenantId获得Lark用户。
     notify_starter: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "notifyStarter"}
     )  # 如果为true，撤回实例的时候会收到一条消息提醒。
 
 

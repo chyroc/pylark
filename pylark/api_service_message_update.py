@@ -9,10 +9,10 @@ import io
 @attr.s
 class UpdateMessageReq(object):
     message_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "message_id"}
     )  # 待更新的消息的ID, 示例值："om_dc13264520392913993dd051dba21dcf"
     content: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "content"}
     )  # 消息内容 json 格式，[发送消息 content 说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/create_json)，参考文档中的卡片格式|, 示例值："参考链接"
 
 

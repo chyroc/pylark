@@ -8,7 +8,9 @@ import io
 
 @attr.s
 class DeleteEphemeralMessageReq(object):
-    message_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 临时消息ID
+    message_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "message_id"}
+    )  # 临时消息ID
 
 
 @attr.s

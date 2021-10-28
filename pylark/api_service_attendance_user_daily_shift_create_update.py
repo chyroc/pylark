@@ -8,11 +8,19 @@ import io
 
 @attr.s
 class CreateUpdateAttendanceUserDailyShiftReqUserDailyShift(object):
-    group_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 考勤组 ID
-    shift_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 班次 ID，休息为 0
-    month: int = attr.ib(default=0, metadata={"req_type": "json"})  # 月份
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户
-    day_no: int = attr.ib(default=0, metadata={"req_type": "json"})  # 日期
+    group_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "group_id"}
+    )  # 考勤组 ID
+    shift_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "shift_id"}
+    )  # 班次 ID，休息为 0
+    month: int = attr.ib(default=0, metadata={"req_type": "json", "key": "month"})  # 月份
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 用户
+    day_no: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "day_no"}
+    )  # 日期
 
 
 @attr.s
@@ -24,22 +32,30 @@ class CreateUpdateAttendanceUserDailyShiftReqEmployeeType(object):
 class CreateUpdateAttendanceUserDailyShiftReq(object):
     employee_type: CreateUpdateAttendanceUserDailyShiftReqEmployeeType = attr.ib(
         factory=lambda: CreateUpdateAttendanceUserDailyShiftReqEmployeeType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "employee_type"},
     )  # 请求体中的 user_id 的员工工号类型可用值：【employee_id（员工的 employeeId），employee_no（员工工号）】，示例值："employee_id"
     user_daily_shifts: typing.List[
         CreateUpdateAttendanceUserDailyShiftReqUserDailyShift
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_daily_shifts"}
     )  # 班表信息列表
 
 
 @attr.s
 class CreateUpdateAttendanceUserDailyShiftRespUserDailyShift(object):
-    group_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 考勤组 ID
-    shift_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 班次 ID
-    month: int = attr.ib(default=0, metadata={"req_type": "json"})  # 月份
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户
-    day_no: int = attr.ib(default=0, metadata={"req_type": "json"})  # 日期
+    group_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "group_id"}
+    )  # 考勤组 ID
+    shift_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "shift_id"}
+    )  # 班次 ID
+    month: int = attr.ib(default=0, metadata={"req_type": "json", "key": "month"})  # 月份
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 用户
+    day_no: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "day_no"}
+    )  # 日期
 
 
 @attr.s
@@ -47,7 +63,7 @@ class CreateUpdateAttendanceUserDailyShiftResp(object):
     user_daily_shifts: typing.List[
         CreateUpdateAttendanceUserDailyShiftRespUserDailyShift
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_daily_shifts"}
     )  # 班表信息列表
 
 

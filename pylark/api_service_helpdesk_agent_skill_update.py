@@ -9,39 +9,39 @@ import io
 @attr.s
 class UpdateHelpdeskAgentSkillReqAgentSkillRules(object):
     id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "id"}
     )  # rule id, 看[获取客服技能rules](https://open.feishu.cn/document/ukTMukTMukTM/ucDOyYjL3gjM24yN4IjN/list-agent-skill-rules) 用于获取rules options, 示例值："test-skill-id"
     selected_operator: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "selected_operator"}
     )  # 运算符compare, 看[客服技能运算符options](https://open.feishu.cn/document/ukTMukTMukTM/ucDOyYjL3gjM24yN4IjN/operator-options), 示例值：3
     operator_options: typing.List[int] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "operator_options"}
     )  # rule操作数value，[客服技能及运算符](https://open.feishu.cn/document/ukTMukTMukTM/ucDOyYjL3gjM24yN4IjN/operator-options)
     operand: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "operand"}
     )  # rule操作数value, 示例值："    {,                    "selected": ["6883005079188668418"],,                    "options": [,                        {,                            "id": "6883005079188668418",,                            "name": {,                                "en_us": "小程序及应用",,                                "ja_jp": "小程序及应用",,                                "zh_cn": "小程序及应用",                            },                        },,                        {,                            "children": [,                                {,                                    "id": "6883005086914625538",,                                    "name": {,                                        "en_us": "消息提醒",,                                        "ja_jp": "消息提醒",,                                        "zh_cn": "消息提醒",                                    },                                },,                                {,                                    "id": "6883005092723802114",,                                    "name": {,                                        "en_us": "其他",,                                        "ja_jp": "其他",,                                        "zh_cn": "其他",                                    },                                },                            ],,                            "id": "6883005085605986306",,                            "name": {,                                "en_us": "聊天和群组",,                                "ja_jp": "聊天和群组",,                                "zh_cn": "聊天和群组",                            },                        },,                    ],,                }"
 
 
 @attr.s
 class UpdateHelpdeskAgentSkillReqAgentSkill(object):
     name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "name"}
     )  # 技能名, 示例值："skill-name"
     rules: UpdateHelpdeskAgentSkillReqAgentSkillRules = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "rules"}
     )  # 技能rules
     agent_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "agent_ids"}
     )  # 具有此技能的客服ids
 
 
 @attr.s
 class UpdateHelpdeskAgentSkillReq(object):
     agent_skill_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "agent_skill_id"}
     )  # agent skill id, 示例值："test-skill-id"
     agent_skill: UpdateHelpdeskAgentSkillReqAgentSkill = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "agent_skill"}
     )  # 更新技能
 
 

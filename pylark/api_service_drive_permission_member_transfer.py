@@ -9,51 +9,55 @@ import io
 @attr.s
 class TransferDriveMemberPermissionReqOwner(object):
     member_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_type"}
     )  # 用户类型，可选 **email、openid、userid**
     member_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_id"}
     )  # 用户类型下的值，获取方式见 [如何获得 User ID、Open ID 和 Union ID？](https://open.feishu.cn/document/home/user-identity-introduction/how-to-get)
 
 
 @attr.s
 class TransferDriveMemberPermissionReq(object):
     token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "token"}
     )  # 文件的 token，获取方式见 [概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction)
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 文档类型  "doc"  or  "sheet" or "bitable"  or "file"
     owner: TransferDriveMemberPermissionReqOwner = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "owner"}
     )  # 要转移到的新的文档所有者
     remove_old_owner: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "remove_old_owner"}
     )  # true 为转移后删除旧 owner 的权限，默认为false
     cancel_notify: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "cancel_notify"}
     )  # true为不通知新owner，默认为false
 
 
 @attr.s
 class TransferDriveMemberPermissionRespOwner(object):
     member_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_type"}
     )  # 用户类型，有 email 、openid、userid
-    member_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户类型下的值
+    member_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "member_id"}
+    )  # 用户类型下的值
 
 
 @attr.s
 class TransferDriveMemberPermissionResp(object):
     is_success: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_success"}
     )  # 请求是否成功
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 文档类型 "doc" or "sheet" or "file"
-    token: str = attr.ib(default="", metadata={"req_type": "json"})  # 文档的 token
+    token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "token"}
+    )  # 文档的 token
     owner: TransferDriveMemberPermissionRespOwner = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "owner"}
     )  # 文档当前所有者
 
 

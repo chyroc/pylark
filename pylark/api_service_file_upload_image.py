@@ -19,16 +19,19 @@ class UploadImageReqImageType(object):
 @attr.s
 class UploadImageReq(object):
     image_type: UploadImageReqImageType = attr.ib(
-        factory=lambda: UploadImageReqImageType(), metadata={"req_type": "json"}
+        factory=lambda: UploadImageReqImageType(),
+        metadata={"req_type": "json", "key": "image_type"},
     )  # 图片类型, 示例值："message", 可选值有: `message`：用于发送消息, `avatar`：用于设置头像
     image: typing.Union[str, bytes, io.BytesIO] = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "image"}
     )  # 图片内容, 示例值：二进制文件
 
 
 @attr.s
 class UploadImageResp(object):
-    image_key: str = attr.ib(default="", metadata={"req_type": "json"})  # 图片的key
+    image_key: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "image_key"}
+    )  # 图片的key
 
 
 def _gen_upload_image_req(request, options) -> RawRequestReq:

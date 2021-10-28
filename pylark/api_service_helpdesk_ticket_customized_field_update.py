@@ -13,48 +13,50 @@ class UpdateHelpdeskTicketCustomizedFieldReqDropdownOptionsChildrenTagChildren(o
 
 @attr.s
 class UpdateHelpdeskTicketCustomizedFieldReqDropdownOptionsChildrenTag(object):
-    display_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 展示名称
+    display_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "display_name"}
+    )  # 展示名称
     children: UpdateHelpdeskTicketCustomizedFieldReqDropdownOptionsChildrenTagChildren = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "children"}
     )  # 同上：选项列表，只适用于多层下拉列表（最多可以设置三级下拉列表）
 
 
 @attr.s
 class UpdateHelpdeskTicketCustomizedFieldReqDropdownOptionsChildren(object):
     tag: UpdateHelpdeskTicketCustomizedFieldReqDropdownOptionsChildrenTag = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "tag"}
     )  # 选项ID
 
 
 @attr.s
 class UpdateHelpdeskTicketCustomizedFieldReqDropdownOptions(object):
     children: UpdateHelpdeskTicketCustomizedFieldReqDropdownOptionsChildren = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "children"}
     )  # 选项列表
 
 
 @attr.s
 class UpdateHelpdeskTicketCustomizedFieldReq(object):
     ticket_customized_field_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "ticket_customized_field_id"}
     )  # 工单自定义字段ID, 示例值："6948728206392295444"
     display_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "display_name"}
     )  # 名称, 示例值："test dropdown"
     position: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "position"}
     )  # 字段在列表后台管理列表中的位置, 示例值："3"
     description: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "description"}
     )  # 描述, 示例值："下拉示例"
     visible: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "visible"}
     )  # 是否可见, 示例值：true
     required: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "required"}
     )  # 是否必填, 示例值：false
     dropdown_options: UpdateHelpdeskTicketCustomizedFieldReqDropdownOptions = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "dropdown_options"}
     )  # 下拉列表选项
 
 

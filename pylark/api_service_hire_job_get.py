@@ -14,203 +14,269 @@ class GetHireJobReqUserIDType(object):
 @attr.s
 class GetHireJobReq(object):
     user_id_type: GetHireJobReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, `people_admin_id`：以people_admin_id来识别用户, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     job_id: int = attr.ib(
-        default=0, metadata={"req_type": "path"}
+        default=0, metadata={"req_type": "path", "key": "job_id"}
     )  # 职位 ID，请求Path中, 示例值：6001
 
 
 @attr.s
 class GetHireJobRespJobCustomizedDataValueTimeRange(object):
-    start_time: str = attr.ib(default="", metadata={"req_type": "json"})  # 开始时间
-    end_time: str = attr.ib(default="", metadata={"req_type": "json"})  # 结束时间
+    start_time: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "start_time"}
+    )  # 开始时间
+    end_time: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "end_time"}
+    )  # 结束时间
 
 
 @attr.s
 class GetHireJobRespJobCustomizedDataValueOptionName(object):
-    zh_cn: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文
-    en_us: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文
+    zh_cn: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_cn"}
+    )  # 中文
+    en_us: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_us"}
+    )  # 英文
 
 
 @attr.s
 class GetHireJobRespJobCustomizedDataValueOption(object):
-    key: str = attr.ib(default="", metadata={"req_type": "json"})  # 选项 ID
+    key: str = attr.ib(default="", metadata={"req_type": "json", "key": "key"})  # 选项 ID
     name: GetHireJobRespJobCustomizedDataValueOptionName = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "name"}
     )  # 选项名称
 
 
 @attr.s
 class GetHireJobRespJobCustomizedDataValueOptionName(object):
-    zh_cn: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文
-    en_us: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文
+    zh_cn: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_cn"}
+    )  # 中文
+    en_us: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_us"}
+    )  # 英文
 
 
 @attr.s
 class GetHireJobRespJobCustomizedDataValueOption(object):
-    key: str = attr.ib(default="", metadata={"req_type": "json"})  # 选项 ID
+    key: str = attr.ib(default="", metadata={"req_type": "json", "key": "key"})  # 选项 ID
     name: GetHireJobRespJobCustomizedDataValueOptionName = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "name"}
     )  # 选项名称
 
 
 @attr.s
 class GetHireJobRespJobCustomizedDataValue(object):
     content: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "content"}
     )  # 当字段类型为单行文本、多行文本、模块、默认字段时，从此字段取值
     option: GetHireJobRespJobCustomizedDataValueOption = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "option"}
     )  # 当字段类型为单选时，从此字段取值
     option_list: typing.List[GetHireJobRespJobCustomizedDataValueOption] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "option_list"}
     )  # 当字段类型为多选时，从此字段取值
     time_range: GetHireJobRespJobCustomizedDataValueTimeRange = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "time_range"}
     )  # 当字段类型为时间段时，从此字段取值
     time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "time"}
     )  # 当字段类型为日期选择、月份选择、年份选择时，从此字段取值，该字段是毫秒级时间戳
-    number: str = attr.ib(default="", metadata={"req_type": "json"})  # 当字段类型为数字时，从此字段取值
+    number: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "number"}
+    )  # 当字段类型为数字时，从此字段取值
 
 
 @attr.s
 class GetHireJobRespJobCustomizedDataName(object):
-    zh_cn: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文
-    en_us: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文
+    zh_cn: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_cn"}
+    )  # 中文
+    en_us: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_us"}
+    )  # 英文
 
 
 @attr.s
 class GetHireJobRespJobCustomizedData(object):
-    object_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 自定义字段 ID
+    object_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "object_id"}
+    )  # 自定义字段 ID
     name: GetHireJobRespJobCustomizedDataName = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "name"}
     )  # 字段名称
     object_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "object_type"}
     )  # 字段类型, 可选值有: `1`：单行文本, `2`：多行文本, `3`：单选, `4`：多选, `5`：日期, `6`：月份选择, `7`：年份选择, `8`：时间段, `9`：数字, `10`：默认字段, `11`：模块
     value: GetHireJobRespJobCustomizedDataValue = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "value"}
     )  # 自定义字段值
 
 
 @attr.s
 class GetHireJobRespJobJobType(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位类别 ID
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位类别中文名称
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位类别英文名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 职位类别 ID
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 职位类别中文名称
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 职位类别英文名称
 
 
 @attr.s
 class GetHireJobRespJobJobCategory(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位序列 ID
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位序列中文名称
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位序列英文名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 职位序列 ID
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 职位序列中文名称
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 职位序列英文名称
     active_status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "active_status"}
     )  # 职位序列启用状态, 可选值有: `1`：启用, `2`：未启用
 
 
 @attr.s
 class GetHireJobRespJobHighlight(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位亮点 ID
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位亮点中文名称
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位亮点英文名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 职位亮点 ID
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 职位亮点中文名称
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 职位亮点英文名称
 
 
 @attr.s
 class GetHireJobRespJobMaxJobLevel(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 职级 ID
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 职级中文名称
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 职级英文名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 职级 ID
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 职级中文名称
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 职级英文名称
     active_status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "active_status"}
     )  # 职级启用状态, 可选值有: `1`：启用, `2`：未启用
 
 
 @attr.s
 class GetHireJobRespJobMinJobLevel(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 职级 ID
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 职级中文名称
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 职级英文名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 职级 ID
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 职级中文名称
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 职级英文名称
     active_status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "active_status"}
     )  # 职级启用状态, 可选值有: `1`：启用, `2`：未启用
 
 
 @attr.s
 class GetHireJobRespJobCity(object):
-    city_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 工作地点城市代码
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 工作地点中文名称
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 工作地点英文名称
+    city_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "city_code"}
+    )  # 工作地点城市代码
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 工作地点中文名称
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 工作地点英文名称
 
 
 @attr.s
 class GetHireJobRespJobDepartment(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 部门 ID
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 部门中文名称
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 部门英文名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 部门 ID
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 部门中文名称
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 部门英文名称
 
 
 @attr.s
 class GetHireJobRespJobRecruitmentType(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 雇佣类型 ID
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 雇佣类型中文名称
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 雇佣类型英文名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 雇佣类型 ID
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 雇佣类型中文名称
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 雇佣类型英文名称
     active_status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "active_status"}
     )  # 雇佣类型启用状态, 可选值有: `1`：启用, `2`：未启用
 
 
 @attr.s
 class GetHireJobRespJob(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位 ID
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位名称
-    description: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位描述
-    requirement: str = attr.ib(default="", metadata={"req_type": "json"})  # 职位要求
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 职位 ID
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 职位名称
+    description: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "description"}
+    )  # 职位描述
+    requirement: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "requirement"}
+    )  # 职位要求
     recruitment_type: GetHireJobRespJobRecruitmentType = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "recruitment_type"}
     )  # 雇佣类型
     department: GetHireJobRespJobDepartment = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "department"}
     )  # 部门
     city: GetHireJobRespJobCity = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "city"}
     )  # 工作地点
     min_job_level: GetHireJobRespJobMinJobLevel = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "min_job_level"}
     )  # 最低职级
     max_job_level: GetHireJobRespJobMaxJobLevel = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "max_job_level"}
     )  # 最高职级
     highlight_list: typing.List[GetHireJobRespJobHighlight] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "highlight_list"}
     )  # 职位亮点
     job_category: GetHireJobRespJobJobCategory = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "job_category"}
     )  # 职位序列
     job_type: GetHireJobRespJobJobType = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "job_type"}
     )  # 职位类别
     active_status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "active_status"}
     )  # 启用状态, 可选值有: `1`：启用, `2`：未启用
-    create_user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 创建人ID
-    create_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 创建时间
-    update_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 更新时间
+    create_user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "create_user_id"}
+    )  # 创建人ID
+    create_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "create_time"}
+    )  # 创建时间
+    update_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "update_time"}
+    )  # 更新时间
     process_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "process_type"}
     )  # 职位流程类型, 可选值有: `1`：社招流程, `2`：校招流程
     customized_data_list: typing.List[GetHireJobRespJobCustomizedData] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "customized_data_list"}
     )  # 自定义字段列表
 
 
 @attr.s
 class GetHireJobResp(object):
     job: GetHireJobRespJob = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "job"}
     )  # 职位数据
 
 

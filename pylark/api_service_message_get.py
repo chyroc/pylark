@@ -9,7 +9,7 @@ import io
 @attr.s
 class GetMessageReq(object):
     message_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "message_id"}
     )  # 待获取消息内容的消息的ID, 示例值："om_dc13264520392913993dd051dba21dcf"
 
 
@@ -21,19 +21,24 @@ class GetMessageRespItemMentionIDType(object):
 @attr.s
 class GetMessageRespItemMention(object):
     key: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "key"}
     )  # 被@的用户或机器人的序号。例如，第3个被@到的成员，值为“@_user_3”
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 被@的用户或者机器人的open_id
+    id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "id"}
+    )  # 被@的用户或者机器人的open_id
     id_type: GetMessageRespItemMentionIDType = attr.ib(
-        factory=lambda: GetMessageRespItemMentionIDType(), metadata={"req_type": "json"}
+        factory=lambda: GetMessageRespItemMentionIDType(),
+        metadata={"req_type": "json", "key": "id_type"},
     )  # 被@的用户或机器人 id 类型，目前仅支持 `open_id` ([什么是 Open ID？](https://open.feishu.cn/document/home/user-identity-introduction/open-id))
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 被@的用户或机器人的姓名
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 被@的用户或机器人的姓名
 
 
 @attr.s
 class GetMessageRespItemBody(object):
     content: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "content"}
     )  # 消息类型 包括：text、post、image、file、audio、media、sticker、interactive、share_chat、share_user等，类型定义请参考：[发送消息content说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/create_json)
 
 
@@ -44,11 +49,16 @@ class GetMessageRespItemSenderIDType(object):
 
 @attr.s
 class GetMessageRespItemSender(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 该字段标识发送者的id
+    id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "id"}
+    )  # 该字段标识发送者的id
     id_type: GetMessageRespItemSenderIDType = attr.ib(
-        factory=lambda: GetMessageRespItemSenderIDType(), metadata={"req_type": "json"}
+        factory=lambda: GetMessageRespItemSenderIDType(),
+        metadata={"req_type": "json", "key": "id_type"},
     )  # 该字段标识发送者的id类型
-    sender_type: str = attr.ib(default="", metadata={"req_type": "json"})  # 该字段标识发送者的类型
+    sender_type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sender_type"}
+    )  # 该字段标识发送者的类型
 
 
 @attr.s
@@ -59,48 +69,51 @@ class GetMessageRespItemMsgType(object):
 @attr.s
 class GetMessageRespItem(object):
     message_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "message_id"}
     )  # 消息id，说明参见：[消息ID说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/intro#ac79c1c2)
     root_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "root_id"}
     )  # 根消息id，说明参见：[消息ID说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/intro#ac79c1c2)
     parent_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "parent_id"}
     )  # 父消息的id，说明参见：[消息ID说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/intro#ac79c1c2)
     msg_type: GetMessageRespItemMsgType = attr.ib(
-        factory=lambda: GetMessageRespItemMsgType(), metadata={"req_type": "json"}
+        factory=lambda: GetMessageRespItemMsgType(),
+        metadata={"req_type": "json", "key": "msg_type"},
     )  # 消息类型 包括：text、post、image、file、audio、media、sticker、interactive、share_chat、share_user等，类型定义请参考[发送消息content说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/create_json)
     create_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "create_time"}
     )  # 消息生成的时间戳（毫秒）
     update_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "update_time"}
     )  # 消息更新的时间戳（毫秒）
     deleted: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "deleted"}
     )  # 消息是否被撤回
     updated: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "updated"}
     )  # 消息是否被更新
-    chat_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 所属的群
+    chat_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "chat_id"}
+    )  # 所属的群
     sender: GetMessageRespItemSender = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "sender"}
     )  # 发送者，可以是用户或应用
     body: GetMessageRespItemBody = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "body"}
     )  # 消息内容
     mentions: typing.List[GetMessageRespItemMention] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "mentions"}
     )  # 被@的用户或机器人的id列表
     upper_message_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "upper_message_id"}
     )  # 合并转发消息中，上一层级的消息id message_id，说明参见：[消息ID说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/intro#ac79c1c2)
 
 
 @attr.s
 class GetMessageResp(object):
     items: typing.List[GetMessageRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # -
 
 

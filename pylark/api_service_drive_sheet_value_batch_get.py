@@ -14,19 +14,19 @@ class BatchGetSheetValueReqUserIDType(object):
 @attr.s
 class BatchGetSheetValueReq(object):
     ranges: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "query"}
+        factory=lambda: [], metadata={"req_type": "query", "key": "ranges"}
     )  # 多个查询范围 如 url?ranges=range1,range2 ，⁣其中 range 包含 sheetId 与单元格范围两部分，目前支持四种索引方式，详见 [在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     value_render_option: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "valueRenderOption"}
     )  # valueRenderOption=ToString 可返回纯文本的值；valueRenderOption=FormattedValue 计算并格式化单元格；valueRenderOption=Formula单元格中含有公式时返回公式本身；valueRenderOption=UnformattedValue计算但不对单元格进行格式化
     date_time_render_option: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "dateTimeRenderOption"}
     )  # dateTimeRenderOption=FormattedString 计算并将时间日期按照其格式进行格式化，但不会对数字进行格式化，返回格式化后的字符串。
     user_id_type: BatchGetSheetValueReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 返回的用户id类型，可选open_id,union_id
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token，获取方式见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
 
 
@@ -37,25 +37,33 @@ class BatchGetSheetValueRespValueRangeValue(object):
 
 @attr.s
 class BatchGetSheetValueRespValueRange(object):
-    major_dimension: str = attr.ib(default="", metadata={"req_type": "json"})  # 插入维度
+    major_dimension: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "majorDimension"}
+    )  # 插入维度
     range_: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "range"}
     )  # 返回数据的范围，为空时表示查询范围没有数据
-    revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # sheet 的版本号
+    revision: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "revision"}
+    )  # sheet 的版本号
     values: typing.List[BatchGetSheetValueRespValueRangeValue] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "values"}
     )  # 查询得到的值
 
 
 @attr.s
 class BatchGetSheetValueResp(object):
-    revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # sheet 的版本号
+    revision: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "revision"}
+    )  # sheet 的版本号
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token，详见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
-    total_cells: int = attr.ib(default=0, metadata={"req_type": "json"})  # 读取的单元格总数
+    total_cells: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "totalCells"}
+    )  # 读取的单元格总数
     value_ranges: typing.List[BatchGetSheetValueRespValueRange] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "valueRanges"}
     )  # 值与范围
 
 

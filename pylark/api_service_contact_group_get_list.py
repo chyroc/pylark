@@ -9,39 +9,43 @@ import io
 @attr.s
 class GetContactGroupListReq(object):
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 示例值：50, 最大值：`100`
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："AQD9/Rn9eij9Pm39ED40/dk53s4Ebp882DYfFaPFbz00L4CMZJrqGdzNyc8BcZtDbwVUvRmQTvyMYicnGWrde9X56TgdBuS+JKiSIkdexPw="
     type: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "type"}
     )  # 用户组类型, 示例值：1, 可选值有: `1`：普通用户组, 默认值: `1`
 
 
 @attr.s
 class GetContactGroupListRespGroup(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户组ID
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户组名字
-    description: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户组描述
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 用户组ID
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 用户组名字
+    description: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "description"}
+    )  # 用户组描述
     member_user_count: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "member_user_count"}
     )  # 用户组成员中用户的数量
     member_department_count: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "member_department_count"}
     )  # 用户组成员中部门的数量
 
 
 @attr.s
 class GetContactGroupListResp(object):
     grouplist: typing.List[GetContactGroupListRespGroup] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "grouplist"}
     )  # 用户组列表
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多项
 
 

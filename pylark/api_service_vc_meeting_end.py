@@ -9,7 +9,7 @@ import io
 @attr.s
 class EndVCMeetingReq(object):
     meeting_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "meeting_id"}
     )  # 会议ID（视频会议的唯一标识，视频会议开始后才会产生）, 示例值："6911188411932033028"
 
 

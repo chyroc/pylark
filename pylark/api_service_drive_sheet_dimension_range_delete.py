@@ -8,28 +8,38 @@ import io
 
 @attr.s
 class DeleteSheetDimensionRangeReqDimension(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # sheetId
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # sheetId
     major_dimension: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "majorDimension"}
     )  # 默认 ROWS ，可选 ROWS、COLUMNS
-    start_index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 开始的位置
-    end_index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 结束的位置
+    start_index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "startIndex"}
+    )  # 开始的位置
+    end_index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "endIndex"}
+    )  # 结束的位置
 
 
 @attr.s
 class DeleteSheetDimensionRangeReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet的token，详见 [在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     dimension: DeleteSheetDimensionRangeReqDimension = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "dimension"}
     )  # 需要删除行列的维度信息
 
 
 @attr.s
 class DeleteSheetDimensionRangeResp(object):
-    del_count: int = attr.ib(default=0, metadata={"req_type": "json"})  # 删除的行/列数
-    major_dimension: str = attr.ib(default="", metadata={"req_type": "json"})  # 插入维度
+    del_count: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "delCount"}
+    )  # 删除的行/列数
+    major_dimension: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "majorDimension"}
+    )  # 插入维度
 
 
 def _gen_delete_sheet_dimension_range_req(request, options) -> RawRequestReq:

@@ -9,13 +9,13 @@ import io
 @attr.s
 class OpenCalenderEventCreateReq(object):
     start_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "startTime"}
     )  # 开始日期，{unixTime}格式
     end_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "endTime"}
     )  # 结束日期，{unixTime}格式
     summary: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "summary"}
     )  # 日程主题，中文可使用encodeURIComponent方法生成
 
 

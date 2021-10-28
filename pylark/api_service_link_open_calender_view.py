@@ -9,9 +9,11 @@ import io
 @attr.s
 class OpenCalenderViewReq(object):
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 视图类型，枚举值包括：<br> `day`：日视图 <br>`three_day`：三日视图，仅移动端支持<br> `week`：周视图，仅PC端支持 <br>  `month`：月视图<br> `meeting`：会议室视图，仅PC端支持 <br> `list`：列表视图，仅移动端支持
-    date: str = attr.ib(default="", metadata={"req_type": "json"})  # 日期，{unixTime}格式
+    date: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "date"}
+    )  # 日期，{unixTime}格式
 
 
 @attr.s

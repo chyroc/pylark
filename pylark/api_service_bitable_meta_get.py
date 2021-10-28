@@ -9,23 +9,27 @@ import io
 @attr.s
 class GetBitableMetaReq(object):
     app_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "app_token"}
     )  # bitable app token, 示例值："appbcbWCzen6D8dezhoCH2RpMAh"
 
 
 @attr.s
 class GetBitableMetaRespApp(object):
     app_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "app_token"}
     )  # 多维表格的 app_token
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 多维表格的名字
-    revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # 多维表格的版本号
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 多维表格的名字
+    revision: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "revision"}
+    )  # 多维表格的版本号
 
 
 @attr.s
 class GetBitableMetaResp(object):
     app: GetBitableMetaRespApp = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "app"}
     )  # 多维表格元数据
 
 

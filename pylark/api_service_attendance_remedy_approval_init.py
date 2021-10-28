@@ -15,45 +15,57 @@ class InitAttendanceRemedyApprovalReqEmployeeType(object):
 class InitAttendanceRemedyApprovalReq(object):
     employee_type: InitAttendanceRemedyApprovalReqEmployeeType = attr.ib(
         factory=lambda: InitAttendanceRemedyApprovalReqEmployeeType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "employee_type"},
     )  # 请求体中的 user_id 的员工工号类型，必选字段，可用值：【employee_id（员工employeeId），employee_no（员工工号）】，示例值："employee_id"
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户 ID
-    remedy_date: int = attr.ib(default=0, metadata={"req_type": "json"})  # 补卡日期
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 用户 ID
+    remedy_date: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "remedy_date"}
+    )  # 补卡日期
     punch_no: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "punch_no"}
     )  # 第几次上下班，可用值【0（第 1 次上下班），1（第 2 次上下班），2（第 3 次上下班）】，自由班次时填 0
     work_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "work_type"}
     )  # 上班/下班，1：上班，2：下班，自由班次时填 0
     remedy_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "remedy_time"}
     )  # 补卡时间，时间格式为 yyyy-MM-dd HH:mm
-    reason: str = attr.ib(default="", metadata={"req_type": "json"})  # 补卡原因
+    reason: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "reason"}
+    )  # 补卡原因
 
 
 @attr.s
 class InitAttendanceRemedyApprovalRespUserRemedy(object):
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户 ID
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 用户 ID
     approval_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "approval_id"}
     )  # 审批实例 ID，可用于通知审批状态更新
-    remedy_date: int = attr.ib(default=0, metadata={"req_type": "json"})  # 补卡日期
+    remedy_date: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "remedy_date"}
+    )  # 补卡日期
     punch_no: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "punch_no"}
     )  # 第几次上下班，可用值【0（第 1 次上下班），1（第2次上下班），2（第3次上下班）】，自由班次时填 0
     work_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "work_type"}
     )  # 上班/下班，1：上班，2：下班
     remedy_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "remedy_time"}
     )  # 补卡时间，时间格式为 yyyy-MM-dd HH:mm
-    reason: str = attr.ib(default="", metadata={"req_type": "json"})  # 补卡原因
+    reason: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "reason"}
+    )  # 补卡原因
 
 
 @attr.s
 class InitAttendanceRemedyApprovalResp(object):
     user_remedy: InitAttendanceRemedyApprovalRespUserRemedy = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "user_remedy"}
     )
 
 

@@ -9,44 +9,52 @@ import io
 @attr.s
 class CreateDriveMemberPermissionOldReqMembers(object):
     member_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_type"}
     )  # 用户类型，可选 **email 、openid、openchat、userid**
-    member_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户类型下的值
+    member_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "member_id"}
+    )  # 用户类型下的值
     perm: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "perm"}
     )  # 需要增加的权限，权限值："view"，"edit"
 
 
 @attr.s
 class CreateDriveMemberPermissionOldReq(object):
     token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "token"}
     )  # 文件的 token，获取方式见 [对接前说明](https://open.feishu.cn/document/ukTMukTMukTM/uczNzUjL3czM14yN3MTN)的第 4 项
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 文档类型  "doc" 、"sheet" 、 "bitable" or "file"
     members: CreateDriveMemberPermissionOldReqMembers = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "members"}
     )  # 用户
     notify_lark: bool = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "notify_lark"}
     )  # 添加权限后是否飞书/lark通知对方<br>true 通知 or false 不通知
 
 
 @attr.s
 class CreateDriveMemberPermissionOldRespFailMembers(object):
-    member_type: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户类型
-    member_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户类型下的值
-    perm: str = attr.ib(default="", metadata={"req_type": "json"})  # 需要增加的权限
+    member_type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "member_type"}
+    )  # 用户类型
+    member_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "member_id"}
+    )  # 用户类型下的值
+    perm: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "perm"}
+    )  # 需要增加的权限
 
 
 @attr.s
 class CreateDriveMemberPermissionOldResp(object):
     is_all_success: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_all_success"}
     )  # 是否全部成功
     fail_members: CreateDriveMemberPermissionOldRespFailMembers = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "fail_members"}
     )  # 添加权限失败的用户信息
 
 

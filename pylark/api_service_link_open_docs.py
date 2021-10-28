@@ -8,7 +8,9 @@ import io
 
 @attr.s
 class OpenDocsReq(object):
-    url: str = attr.ib(default="", metadata={"req_type": "json"})  # 要打开的云文档URL
+    url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "URL"}
+    )  # 要打开的云文档URL
 
 
 @attr.s

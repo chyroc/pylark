@@ -8,24 +8,30 @@ import io
 
 @attr.s
 class InsertSheetDimensionRangeReqDimension(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # sheet 的 Id
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # sheet 的 Id
     major_dimension: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "majorDimension"}
     )  # 默认 ROWS ，可选 ROWS、COLUMNS
-    start_index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 开始的位置
-    end_index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 结束的位置
+    start_index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "startIndex"}
+    )  # 开始的位置
+    end_index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "endIndex"}
+    )  # 结束的位置
 
 
 @attr.s
 class InsertSheetDimensionRangeReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token，获取方式见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     dimension: InsertSheetDimensionRangeReqDimension = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "dimension"}
     )  # 需要插入行列的维度信息
     inherit_style: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "inheritStyle"}
     )  # BEFORE 或 AFTER，不填为不继承 style
 
 

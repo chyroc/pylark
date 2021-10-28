@@ -9,16 +9,16 @@ import io
 @attr.s
 class DeleteSheetFilterViewConditionReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheet_token"}
     )  # 表格 token, 示例值："shtcnmBA*****yGehy8"
     sheet_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "sheet_id"}
     )  # 子表 id, 示例值："0b**12"
     filter_view_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "filter_view_id"}
     )  # 筛选视图 id, 示例值："pH9hbVcCXA"
     condition_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "condition_id"}
     )  # 筛选范围内的某列字母号, 示例值："E"
 
 

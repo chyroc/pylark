@@ -8,11 +8,17 @@ import io
 
 @attr.s
 class UpdateMeetingRoomRoomReq(object):
-    room_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 要更新的会议室ID
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 会议室名称
-    capacity: int = attr.ib(default=0, metadata={"req_type": "json"})  # 容量
+    room_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "room_id"}
+    )  # 要更新的会议室ID
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 会议室名称
+    capacity: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "capacity"}
+    )  # 容量
     custom_room_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "custom_room_id"}
     )  # 租户自定义会议室ID
 
 

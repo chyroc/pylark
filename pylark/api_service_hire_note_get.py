@@ -14,31 +14,43 @@ class GetHireNoteReqUserIDType(object):
 @attr.s
 class GetHireNoteReq(object):
     user_id_type: GetHireNoteReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     note_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "note_id"}
     )  # Note ID, 示例值："6950620009265891614"
 
 
 @attr.s
 class GetHireNoteRespNote(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID备注
-    talent_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 人才ID
-    application_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 投递ID
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID备注
+    talent_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "talent_id"}
+    )  # 人才ID
+    application_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "application_id"}
+    )  # 投递ID
     is_private: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_private"}
     )  # 是否私密
-    create_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 创建时间
-    modify_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 更新时间
-    creator_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 创建人ID
-    content: str = attr.ib(default="", metadata={"req_type": "json"})  # 内容
+    create_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "create_time"}
+    )  # 创建时间
+    modify_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "modify_time"}
+    )  # 更新时间
+    creator_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "creator_id"}
+    )  # 创建人ID
+    content: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "content"}
+    )  # 内容
 
 
 @attr.s
 class GetHireNoteResp(object):
     note: GetHireNoteRespNote = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "note"}
     )  # 备注数据
 
 

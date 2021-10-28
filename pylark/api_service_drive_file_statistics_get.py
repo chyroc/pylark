@@ -15,25 +15,27 @@ class GetDriveFileStatisticsReqFileType(object):
 class GetDriveFileStatisticsReq(object):
     file_type: GetDriveFileStatisticsReqFileType = attr.ib(
         factory=lambda: GetDriveFileStatisticsReqFileType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "file_type"},
     )  # 文档类型, 示例值："doc", 可选值有: `doc`：文档, `sheet`：表格, `mindnote`：思维笔记, `bitable`：多维表格, `wiki`：知识库, `file`：文件
     file_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "file_token"}
     )  # 文件 token, 示例值："doccnRs*******"
 
 
 @attr.s
 class GetDriveFileStatisticsRespStatistics(object):
     uv: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "uv"}
     )  # 文件历史访问人数，同一用户（user_id）多次访问按一次计算。
     pv: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "pv"}
     )  # 文件历史访问次数，同一用户（user_id）多次访问按多次计算。（注：同一用户相邻两次访问间隔在半小时内视为一次访问）
     like_count: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "like_count"}
     )  # 文件历史点赞总数，若对应的文档类型不支持点赞，返回 -1
-    timestamp: int = attr.ib(default=0, metadata={"req_type": "json"})  # 时间戳（秒）
+    timestamp: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "timestamp"}
+    )  # 时间戳（秒）
 
 
 @attr.s
@@ -43,13 +45,15 @@ class GetDriveFileStatisticsRespFileType(object):
 
 @attr.s
 class GetDriveFileStatisticsResp(object):
-    file_token: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件 token
+    file_token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "file_token"}
+    )  # 文件 token
     file_type: GetDriveFileStatisticsRespFileType = attr.ib(
         factory=lambda: GetDriveFileStatisticsRespFileType(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "file_type"},
     )  # 文件类型
     statistics: GetDriveFileStatisticsRespStatistics = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "statistics"}
     )  # 文件统计信息
 
 

@@ -14,14 +14,14 @@ class CropFaceVerifyImageReqRawImage(object):
 @attr.s
 class CropFaceVerifyImageReq(object):
     raw_image: typing.Union[str, bytes, io.BytesIO] = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "raw_image"}
     )  # 带有头像的人脸照片文件名称
 
 
 @attr.s
 class CropFaceVerifyImageResp(object):
     face_image: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "face_image"}
     )  # BASE64(裁剪后的人脸基准图片)，code为0时返回
 
 

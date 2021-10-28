@@ -9,40 +9,48 @@ import io
 @attr.s
 class GetHireApplicationReq(object):
     application_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "application_id"}
     )  # 投递ID, 示例值："212121"
 
 
 @attr.s
 class GetHireApplicationRespApplicationStage(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 阶段id
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 阶段中文名字
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 阶段id
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 阶段中文名字
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 英文名
     type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "type"}
     )  # 阶段类型, 可选值有: `1`：筛选型, `2`：评估型, `3`：笔试型, `4`：面试型, `5`：Offer型, `6`：待入职, `7`：已入职, `8`：其它类型, `255`：系统默认
 
 
 @attr.s
 class GetHireApplicationRespApplication(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 投递id
-    job_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 投递的职位id
-    talent_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 候选人id
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 投递id
+    job_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "job_id"}
+    )  # 投递的职位id
+    talent_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "talent_id"}
+    )  # 候选人id
     resume_resource_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "resume_resource_id"}
     )  # 简历来源id
     stage: GetHireApplicationRespApplicationStage = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "stage"}
     )  # 投递处于的阶段
     active_status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "active_status"}
     )  # 活跃状态, 可选值有: `1`：活跃, `2`：非活跃, `3`：全部
 
 
 @attr.s
 class GetHireApplicationResp(object):
     application: GetHireApplicationRespApplication = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "application"}
     )  # 投递数据
 
 

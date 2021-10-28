@@ -9,24 +9,30 @@ import io
 @attr.s
 class QuerySheetFilterViewReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheet_token"}
     )  # 表格 token, 示例值："shtcnmBA*****yGehy8"
     sheet_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "sheet_id"}
     )  # 子表 id, 示例值："0b**12"
 
 
 @attr.s
 class QuerySheetFilterViewRespItem(object):
-    filter_view_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 筛选视图 id
-    filter_view_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 筛选视图名字
-    range_: str = attr.ib(default="", metadata={"req_type": "json"})  # 筛选视图的筛选范围
+    filter_view_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "filter_view_id"}
+    )  # 筛选视图 id
+    filter_view_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "filter_view_name"}
+    )  # 筛选视图名字
+    range_: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "range"}
+    )  # 筛选视图的筛选范围
 
 
 @attr.s
 class QuerySheetFilterViewResp(object):
     items: typing.List[QuerySheetFilterViewRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 子表的所有筛选视图信息，id、name、range
 
 

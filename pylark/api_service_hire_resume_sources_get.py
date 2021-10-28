@@ -9,36 +9,40 @@ import io
 @attr.s
 class GetHireResumeSourceReq(object):
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 示例值：10, 最大值：`100`
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："1"
 
 
 @attr.s
 class GetHireResumeSourceRespItem(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 来源 ID
-    zh_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 中文名
-    en_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 英文名
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 来源 ID
+    zh_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "zh_name"}
+    )  # 中文名
+    en_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "en_name"}
+    )  # 英文名
     active_status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "active_status"}
     )  # 启用状态, 可选值有: `1`：已启用, `2`：已禁用
     resume_source_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "resume_source_type"}
     )  # 来源类型, 可选值有: `10000`：内推, `10001`：猎头, `10002`：内部来源, `10003`：第三方招聘网站, `10004`：社交媒体, `10005`：线下来源, `10006`：其他, `10007`：外部推荐
 
 
 @attr.s
 class GetHireResumeSourceResp(object):
     items: typing.List[GetHireResumeSourceRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 数据
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多项
 
 

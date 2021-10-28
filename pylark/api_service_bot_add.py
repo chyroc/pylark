@@ -8,7 +8,9 @@ import io
 
 @attr.s
 class AddBotToChatReq(object):
-    chat_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 群的id
+    chat_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "chat_id"}
+    )  # 群的id
 
 
 @attr.s

@@ -9,7 +9,7 @@ import io
 @attr.s
 class DeleteHelpdeskAgentSkillReq(object):
     agent_skill_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "agent_skill_id"}
     )  # agent group id, 示例值："test-skill-id"
 
 

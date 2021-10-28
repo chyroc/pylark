@@ -9,33 +9,33 @@ import io
 @attr.s
 class GetDriveMemberPermissionListReq(object):
     token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "token"}
     )  # 文件的 token，获取方式见 [概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction)
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 文档类型   "doc"  or  "sheet" or "bitable"  or "file"
 
 
 @attr.s
 class GetDriveMemberPermissionListRespMember(object):
     member_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_type"}
     )  # 协作者类型 "user" or "chat"
     member_open_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_open_id"}
     )  # 协作者openid
     member_user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "member_user_id"}
     )  # 协作者userid(仅当member_type="user"时有效)
     perm: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "perm"}
     )  # 协作者权限 (注意: **有"edit"权限的协作者一定有"view"权限**)
 
 
 @attr.s
 class GetDriveMemberPermissionListResp(object):
     members: typing.List[GetDriveMemberPermissionListRespMember] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "members"}
     )  # 协作者列表
 
 

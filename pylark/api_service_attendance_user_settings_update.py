@@ -8,9 +8,11 @@ import io
 
 @attr.s
 class UpdateAttendanceUserSettingsReqUserSetting(object):
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户 ID
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 用户 ID
     face_key: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "face_key"}
     )  # 人脸照片 key（通过文件上传接口得到）
 
 
@@ -23,23 +25,27 @@ class UpdateAttendanceUserSettingsReqEmployeeType(object):
 class UpdateAttendanceUserSettingsReq(object):
     employee_type: UpdateAttendanceUserSettingsReqEmployeeType = attr.ib(
         factory=lambda: UpdateAttendanceUserSettingsReqEmployeeType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "employee_type"},
     )  # 用户类型,      , 可选值有: `employee_id`： 员工 ID, `employee_no`： 员工工号
     user_setting: UpdateAttendanceUserSettingsReqUserSetting = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "user_setting"}
     )  # 用户信息
 
 
 @attr.s
 class UpdateAttendanceUserSettingsRespUserSetting(object):
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户 ID
-    face_key: str = attr.ib(default="", metadata={"req_type": "json"})  # 人脸照片 key
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 用户 ID
+    face_key: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "face_key"}
+    )  # 人脸照片 key
 
 
 @attr.s
 class UpdateAttendanceUserSettingsResp(object):
     user_setting: UpdateAttendanceUserSettingsRespUserSetting = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "user_setting"}
     )  # 用户设置
 
 

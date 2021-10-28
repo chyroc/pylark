@@ -9,26 +9,34 @@ import io
 @attr.s
 class GetDriveFolderChildrenReq(object):
     types: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "query"}
+        factory=lambda: [], metadata={"req_type": "query", "key": "types"}
     )  # 需要查询的文件类型，默认返回所有 children；types 可多选，可选类型有 doc、sheet、file、folder 。如 url?types=folder&types=sheet
     folder_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "folderToken"}
     )  # 文件夹的 token，获取方式见 [概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction)
 
 
 @attr.s
 class GetDriveFolderChildrenRespChildren(object):
-    token: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件的 token
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件的标题
-    type: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件的类型
+    token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "token"}
+    )  # 文件的 token
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 文件的标题
+    type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "type"}
+    )  # 文件的类型
 
 
 @attr.s
 class GetDriveFolderChildrenResp(object):
-    parent_token: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件夹的 token
+    parent_token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "parentToken"}
+    )  # 文件夹的 token
     children: GetDriveFolderChildrenRespChildren = attr.ib(
         factory=lambda: GetDriveFolderChildrenRespChildren(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "children"},
     )  # 文件夹的下的文件
 
 

@@ -14,21 +14,23 @@ class SetSheetValueImageReqImage(object):
 @attr.s
 class SetSheetValueImageReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet的token，获取方式见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     range_: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "range"}
     )  # 查询范围  range=<sheetId>!<开始格子>:<结束格子> 如：xxxx!A1:D5，详见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)。此处限定为一个格子，如: xxxx!A1:A1
     image: typing.List[SetSheetValueImageReqImage] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "image"}
     )  # 需要写入的图片二进制流，支持  "PNG", "JPEG", "JPG", "GIF", "BMP", "JFIF", "EXIF", "TIFF", "BPG", "WEBP", "HEIC" 等图片格式
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 写入的图片名字
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 写入的图片名字
 
 
 @attr.s
 class SetSheetValueImageResp(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token
 
 

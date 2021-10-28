@@ -14,47 +14,61 @@ class AppendSheetValueReqValueRangeValues(object):
 @attr.s
 class AppendSheetValueReqValueRange(object):
     range_: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "range"}
     )  # ⁣查询范围，包含 sheetId 与单元格范围两部分，目前支持四种索引方式，详见 [在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     values: typing.List[typing.List[AppendSheetValueReqValueRangeValues]] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "values"}
     )  # 需要写入的值，如要写入公式、超链接、email、@人等，可详看附录[sheet 支持写入数据类型](https://open.feishu.cn/document/ukTMukTMukTM/ugjN1UjL4YTN14CO2UTN)
 
 
 @attr.s
 class AppendSheetValueReq(object):
     insert_data_option: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "insertDataOption"}
     )  # 遇到空行追加，默认 OVERWRITE, 若空行的数量小于追加数据的行数 则覆盖数据 append；可选 INSERT_ROWS ，会在插入足够数量的行后再 append
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token，获取方式见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     value_range: AppendSheetValueReqValueRange = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "valueRange"}
     )  # 值与范围
 
 
 @attr.s
 class AppendSheetValueRespUpdates(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token
-    updated_range: str = attr.ib(default="", metadata={"req_type": "json"})  # 写入的范围
-    updated_rows: int = attr.ib(default=0, metadata={"req_type": "json"})  # 写入的行数
-    updated_columns: int = attr.ib(default=0, metadata={"req_type": "json"})  # 写入的列数
-    updated_cells: int = attr.ib(default=0, metadata={"req_type": "json"})  # 写入的单元格总数
-    revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # sheet 的版本号
+    updated_range: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "updatedRange"}
+    )  # 写入的范围
+    updated_rows: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "updatedRows"}
+    )  # 写入的行数
+    updated_columns: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "updatedColumns"}
+    )  # 写入的列数
+    updated_cells: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "updatedCells"}
+    )  # 写入的单元格总数
+    revision: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "revision"}
+    )  # sheet 的版本号
 
 
 @attr.s
 class AppendSheetValueResp(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token
-    table_range: str = attr.ib(default="", metadata={"req_type": "json"})  # 写入的范围
-    revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # sheet 的版本号
+    table_range: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "tableRange"}
+    )  # 写入的范围
+    revision: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "revision"}
+    )  # sheet 的版本号
     updates: AppendSheetValueRespUpdates = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "updates"}
     )  # 插入数据的范围、行列数等
 
 

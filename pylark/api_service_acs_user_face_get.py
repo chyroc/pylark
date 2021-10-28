@@ -14,13 +14,13 @@ class GetACSUserFaceReqUserIDType(object):
 @attr.s
 class GetACSUserFaceReq(object):
     is_cropped: bool = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "is_cropped"}
     )  # 裁剪图, 示例值：true
     user_id_type: GetACSUserFaceReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "user_id"}
     )  # 用户 ID, 示例值："ou_7dab8a3d3cdcc9da365777c7ad535d62"
 
 
@@ -32,16 +32,20 @@ class GetACSUserFaceRespFile(object):
 @attr.s
 class GetACSUserFaceResp(object):
     file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "file"}
     )
 
 
 @attr.s
 class GetACSUserFaceResp(object):
-    is_file: bool = attr.ib(factory=lambda: bool(), metadata={"req_type": "json"})
-    code: int = attr.ib(default=0, metadata={"req_type": "json"})
-    msg: str = attr.ib(default="", metadata={"req_type": "json"})
-    data: GetACSUserFaceResp = attr.ib(default=None, metadata={"req_type": "json"})
+    is_file: bool = attr.ib(
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_file"}
+    )
+    code: int = attr.ib(default=0, metadata={"req_type": "json", "key": "code"})
+    msg: str = attr.ib(default="", metadata={"req_type": "json", "key": "msg"})
+    data: GetACSUserFaceResp = attr.ib(
+        default=None, metadata={"req_type": "json", "key": "data"}
+    )
 
 
 def _gen_get_acs_user_face_req(request, options) -> RawRequestReq:

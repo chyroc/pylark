@@ -19,28 +19,31 @@ class SendEphemeralMessageReqMsgType(object):
 @attr.s
 class SendEphemeralMessageReq(object):
     chat_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "chat_id"}
     )  # 发送临时消息的群ID（可通过[获取群列表接口](https://open.feishu.cn/document/ukTMukTMukTM/uITO5QjLykTO04iM5kDN)获取）以及事件推送获取
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "open_id"}
     )  # 指定发送临时消息卡片的用户，其他人将无法看到临时消息卡片，只需要填 open_id、email、user_id（id介绍详见[用户相关的 ID 概念](https://open.feishu.cn/document/home/user-identity-introduction/introduction)） 中的一个即可。服务端依次读取字段的顺序为 **open_id** > **user_id** > **email**
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "user_id"}
     )  # 指定发送临时消息卡片的用户，其他人将无法看到临时消息卡片，只需要填 open_id、email、user_id（id介绍详见[用户相关的 ID 概念](https://open.feishu.cn/document/home/user-identity-introduction/introduction)） 中的一个即可。服务端依次读取字段的顺序为 **open_id** > **user_id** > **email**
     email: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "email"}
     )  # 指定发送临时消息卡片的用户，其他人将无法看到临时消息卡片，只需要填 open_id、email、user_id（id介绍详见[用户相关的 ID 概念](https://open.feishu.cn/document/home/user-identity-introduction/introduction)） 中的一个即可。服务端依次读取字段的顺序为 **open_id** > **user_id** > **email**
     msg_type: SendEphemeralMessageReqMsgType = attr.ib(
-        factory=lambda: SendEphemeralMessageReqMsgType(), metadata={"req_type": "json"}
+        factory=lambda: SendEphemeralMessageReqMsgType(),
+        metadata={"req_type": "json", "key": "msg_type"},
     )  # 消息的类型，此处固定填 "interactive"
     card: SendEphemeralMessageReqCard = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "card"}
     )  # 消息卡片的描述内容，具体参考[卡片结构](https://open.feishu.cn/document/ukTMukTMukTM/uEjNwUjLxYDM14SM2ATN)
 
 
 @attr.s
 class SendEphemeralMessageResp(object):
-    message_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 消息 ID
+    message_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "message_id"}
+    )  # 消息 ID
 
 
 def _gen_send_ephemeral_message_req(request, options) -> RawRequestReq:

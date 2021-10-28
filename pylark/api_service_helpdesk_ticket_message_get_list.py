@@ -9,17 +9,19 @@ import io
 @attr.s
 class GetHelpdeskTicketMessageListReq(object):
     time_start: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "time_start"}
     )  # 起始时间, 示例值：1617960686000
     time_end: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "time_end"}
     )  # 结束时间, 示例值：1617960687000
-    page: int = attr.ib(default=0, metadata={"req_type": "query"})  # 页数ID, 示例值：1
+    page: int = attr.ib(
+        default=0, metadata={"req_type": "query", "key": "page"}
+    )  # 页数ID, 示例值：1
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 消息数量，最大200，默认20, 示例值：10
     ticket_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "ticket_id"}
     )  # 工单ID, 示例值："6948728206392295444"
 
 
@@ -30,25 +32,39 @@ class GetHelpdeskTicketMessageListRespMessageMessageType(object):
 
 @attr.s
 class GetHelpdeskTicketMessageListRespMessage(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 工单消息ID
-    message_id: str = attr.ib(default="", metadata={"req_type": "json"})  # chat消息ID
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 工单消息ID
+    message_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "message_id"}
+    )  # chat消息ID
     message_type: GetHelpdeskTicketMessageListRespMessageMessageType = attr.ib(
         factory=lambda: GetHelpdeskTicketMessageListRespMessageMessageType(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "message_type"},
     )  # 消息类型；text：纯文本；post：富文本
-    created_at: int = attr.ib(default=0, metadata={"req_type": "json"})  # 创建时间
-    content: str = attr.ib(default="", metadata={"req_type": "json"})  # 内容
-    user_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户名
-    avatar_url: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户图片url
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户open ID
+    created_at: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "created_at"}
+    )  # 创建时间
+    content: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "content"}
+    )  # 内容
+    user_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_name"}
+    )  # 用户名
+    avatar_url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_url"}
+    )  # 用户图片url
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 用户open ID
 
 
 @attr.s
 class GetHelpdeskTicketMessageListResp(object):
     messages: typing.List[GetHelpdeskTicketMessageListRespMessage] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "messages"}
     )  # 工单消息列表
-    total: int = attr.ib(default=0, metadata={"req_type": "json"})  # 消息总数
+    total: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "total"}
+    )  # 消息总数
 
 
 def _gen_get_helpdesk_ticket_message_list_req(request, options) -> RawRequestReq:

@@ -9,17 +9,17 @@ import io
 @attr.s
 class UpdateApprovalMessageReq(object):
     message_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "message_id"}
     )  # 卡片 id，发送卡片时会拿到
     status: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "status"}
     )  # 状态类型，用于更新第一个action文字内容，枚举：<br> APPROVED:-已同意<br>REJECTED:-已拒绝<br>CANCELLED:-已撤回<br>FORWARDED:-已转交<br>ROLLBACK:-已回退<br>ADD:-已加签<br>DELETED:-已删除<br>PROCESSED:-已处理
 
 
 @attr.s
 class UpdateApprovalMessageResp(object):
     message_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "message_id"}
     )  # 消息 id ，用于卡片更新、撤回
 
 

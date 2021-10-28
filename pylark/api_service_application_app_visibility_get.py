@@ -8,44 +8,50 @@ import io
 
 @attr.s
 class GetApplicationAppVisibilityReq(object):
-    app_id: str = attr.ib(default="", metadata={"req_type": "query"})  # 目标应用的 ID
+    app_id: str = attr.ib(
+        default="", metadata={"req_type": "query", "key": "app_id"}
+    )  # 目标应用的 ID
     user_page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "user_page_token"}
     )  # 分页拉取用户列表起始位置标示，不填表示从头开始
     user_page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "user_page_size"}
     )  # 本次拉取用户列表最大个数(最大值 1000 ，0 自动最大个数 )
 
 
 @attr.s
 class GetApplicationAppVisibilityRespUser(object):
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "user_id"}
     )  # 用户的 user_id，只返回给申请了 user_id 权限的企业自建应用
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户的 open_id
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "open_id"}
+    )  # 用户的 open_id
 
 
 @attr.s
 class GetApplicationAppVisibilityRespDepartment(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 自定义 department_id
+    id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "id"}
+    )  # 自定义 department_id
 
 
 @attr.s
 class GetApplicationAppVisibilityResp(object):
     departments: typing.List[GetApplicationAppVisibilityRespDepartment] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "departments"}
     )  # 可用部门列表
     users: typing.List[GetApplicationAppVisibilityRespUser] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "users"}
     )  # 可用用户列表（仅包含单独设置的用户，可用部门、用户组中的用户未展开）
     is_visible_to_all: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "is_visible_to_all"}
     )  # 是否全员可见，1：是，0：否
     has_more_users: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "has_more_users"}
     )  # 是否还有更多可见用户，1：是，0：否
     user_page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "user_page_token"}
     )  # 拉取下一页用户列表时使用的 user_page_token
 
 

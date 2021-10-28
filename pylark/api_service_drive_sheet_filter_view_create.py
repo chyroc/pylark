@@ -9,33 +9,39 @@ import io
 @attr.s
 class CreateSheetFilterViewReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheet_token"}
     )  # 表格 token, 示例值："shtcnmBA*****yGehy8"
     sheet_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "sheet_id"}
     )  # 子表 id, 示例值："0b**12"
     filter_view_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "filter_view_id"}
     )  # 筛选视图 id, 示例值："pH9hbVcCXA"
     filter_view_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "filter_view_name"}
     )  # 筛选视图名字, 示例值："筛选视图 1"
     range_: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "range"}
     )  # 筛选视图的筛选范围, 示例值："0b**12!C1:H14"
 
 
 @attr.s
 class CreateSheetFilterViewRespFilterView(object):
-    filter_view_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 筛选视图 id
-    filter_view_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 筛选视图名字
-    range_: str = attr.ib(default="", metadata={"req_type": "json"})  # 筛选视图的筛选范围
+    filter_view_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "filter_view_id"}
+    )  # 筛选视图 id
+    filter_view_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "filter_view_name"}
+    )  # 筛选视图名字
+    range_: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "range"}
+    )  # 筛选视图的筛选范围
 
 
 @attr.s
 class CreateSheetFilterViewResp(object):
     filter_view: CreateSheetFilterViewRespFilterView = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "filter_view"}
     )  # 创建的筛选视图的 id 、name、range
 
 

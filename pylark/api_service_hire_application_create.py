@@ -9,16 +9,16 @@ import io
 @attr.s
 class CreateHireApplicationReq(object):
     talent_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "talent_id"}
     )  # 人才ID, 示例值："12312312312"
     job_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "job_id"}
     )  # 职位ID, 示例值："12312312312"
 
 
 @attr.s
 class CreateHireApplicationResp(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 投递ID
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 投递ID
 
 
 def _gen_create_hire_application_req(request, options) -> RawRequestReq:

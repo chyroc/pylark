@@ -9,7 +9,7 @@ import io
 @attr.s
 class DeleteEmployeeTypeEnumReq(object):
     enum_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "enum_id"}
     )  # 枚举值id, 示例值："exGeIjow7zIqWMy+ONkFxA=="
 
 

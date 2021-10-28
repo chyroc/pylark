@@ -172,14 +172,15 @@ class Request(object):
         else:
             for field in attr.fields(type(req.body)):
                 req_type = field.metadata["req_type"]
+                field_key = field.metadata.get("key", "") or ""
                 if req_type == "json":
                     field_val = getattr(req.body, field.name, None)
                     if field_val:
-                        body[field.name] = getattr(req.body, field.name)
+                        body[field_key] = field_val
                 elif req_type == "query":
                     field_val = getattr(req.body, field.name, None)
                     if field_val:
-                        query[field.name] = getattr(req.body, field.name)
+                        query[field_key] = field_val
                 elif req_type == "header":
                     if field.metadata["header"] == "range":
                         pass
@@ -197,9 +198,9 @@ class Request(object):
                     field_val = getattr(req.body, field.name, None)
                     if field_val:
                         if isinstance(field_val, str):
-                            uri = uri.replace(":" + field.name, field_val)
+                            uri = uri.replace(":" + field_key, field_val)
                         elif isinstance(field_val, int):
-                            uri = uri.replace(":" + field.name, f"{field_val}")
+                            uri = uri.replace(":" + field_key, f"{field_val}")
                         else:
                             raise ValueError(
                                 f"{field_val}({type(field_val)}) not valid for path params"

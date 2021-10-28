@@ -9,49 +9,49 @@ import io
 @attr.s
 class RecognizeSpeechStreamReqConfig(object):
     stream_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "stream_id"}
     )  # 仅包含字母数字和下划线的 16 位字符串作为同一数据流的标识，用户生成, 示例值："asd1234567890ddd"
     sequence_id: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "sequence_id"}
     )  # 数据流分片的序号，序号从 0 开始，每次请求递增 1, 示例值：1
     action: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "action"}
     )  # 数据流标记：1 首包，2 正常结束，等待结果返回，3 中断数据流不返回最终结果, 示例值：1
     format: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "format"}
     )  # 语音格式，目前仅支持：pcm, 示例值："pcm"
     engine_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "engine_type"}
     )  # 引擎类型，目前仅支持：16k_auto 中英混合, 示例值："16k_auto"
 
 
 @attr.s
 class RecognizeSpeechStreamReqSpeech(object):
     speech: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "speech"}
     )  # base64 后的音频文件进行, 示例值："base64 后的音频内容"
 
 
 @attr.s
 class RecognizeSpeechStreamReq(object):
     speech: RecognizeSpeechStreamReqSpeech = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "speech"}
     )  # 语音资源
     config: RecognizeSpeechStreamReqConfig = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "config"}
     )  # 配置属性
 
 
 @attr.s
 class RecognizeSpeechStreamResp(object):
     stream_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "stream_id"}
     )  # 16 位 String 随机串作为同一数据流的标识
     sequence_id: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "sequence_id"}
     )  # 数据流分片的序号，序号从 0 开始，每次请求递增 1
     recognition_text: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "recognition_text"}
     )  # 语音流识别后的文本信息
 
 

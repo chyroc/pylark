@@ -9,10 +9,10 @@ import io
 @attr.s
 class OpenSSOLoginReq(object):
     sso_domain: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "sso_domain"}
     )  # 租户的域名，填写的是租户在admin后台配置的租户域名信息。当在admin后台改动租户的域名时，需要同步修改applink该参数值
     tenant_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "tenant_name"}
     )  # 租户名，用于在切换租户时，客户端展示即将登录到的租户名称，一般填写公司名即可
 
 

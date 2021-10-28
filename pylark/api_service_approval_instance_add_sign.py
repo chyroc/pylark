@@ -8,19 +8,29 @@ import io
 
 @attr.s
 class AddApprovalInstanceSignReq(object):
-    approval_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批定义 Code
-    instance_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批实例 Code
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 操作用户
-    task_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 任务 ID
-    comment: str = attr.ib(default="", metadata={"req_type": "json"})  # 意见
+    approval_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "approval_code"}
+    )  # 审批定义 Code
+    instance_code: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "instance_code"}
+    )  # 审批实例 Code
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 操作用户
+    task_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "task_id"}
+    )  # 任务 ID
+    comment: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "comment"}
+    )  # 意见
     add_sign_user_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "add_sign_user_ids"}
     )  # 被加签人id
     add_sign_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "add_sign_type"}
     )  # 1/2/3分别代表前加签/后加签/并加签
     approval_method: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "approval_method"}
     )  # 仅在前加签、后加签时需要填写，1/2 分别代表或签/会签
 
 

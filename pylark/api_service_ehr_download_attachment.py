@@ -9,7 +9,7 @@ import io
 @attr.s
 class DownloadEHRAttachmentsReq(object):
     token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "token"}
     )  # 文件 token, 示例值："09bf7b924f9a4a69875788891b5970d8"
 
 
@@ -21,17 +21,19 @@ class DownloadEHRAttachmentsRespFile(object):
 @attr.s
 class DownloadEHRAttachmentsResp(object):
     file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "file"}
     )
 
 
 @attr.s
 class DownloadEHRAttachmentsResp(object):
-    is_file: bool = attr.ib(factory=lambda: bool(), metadata={"req_type": "json"})
-    code: int = attr.ib(default=0, metadata={"req_type": "json"})
-    msg: str = attr.ib(default="", metadata={"req_type": "json"})
+    is_file: bool = attr.ib(
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_file"}
+    )
+    code: int = attr.ib(default=0, metadata={"req_type": "json", "key": "code"})
+    msg: str = attr.ib(default="", metadata={"req_type": "json", "key": "msg"})
     data: DownloadEHRAttachmentsResp = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "data"}
     )
 
 

@@ -9,13 +9,13 @@ import io
 @attr.s
 class UpdateChatAnnouncementReq(object):
     chat_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "chat_id"}
     )  # 待修改公告的群 ID，详情参见[群ID 说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/chat-id-description), 示例值："oc_5ad11d72b830411d72b836c20"
     revision: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "revision"}
     )  # 文档当前版本号 int64 类型，get 接口会返回, 示例值："12"
     requests: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "requests"}
     )  # 修改文档请求的序列化字段, 示例值：xxx
 
 

@@ -8,32 +8,38 @@ import io
 
 @attr.s
 class GetApplicationMessageDetailReq(object):
-    app_id: str = attr.ib(default="", metadata={"req_type": "query"})  # 目标应用的 ID
+    app_id: str = attr.ib(
+        default="", metadata={"req_type": "query", "key": "app_id"}
+    )  # 目标应用的 ID
     message_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "message_id"}
     )  # open_message_id
     time_start: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "time_start"}
     )  # 起始时间戳（秒），时间跨度最长支持180天
     time_end: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "time_end"}
     )  # 截止时间戳（秒），时间跨度最长支持180天
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，首次传空，非首次使用返回中的page_token
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小，默认为512，取值区间[1,1000]
 
 
 @attr.s
 class GetApplicationMessageDetailRespUsersRead(object):
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # open_id
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "open_id"}
+    )  # open_id
 
 
 @attr.s
 class GetApplicationMessageDetailRespTarget(object):
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # open_id
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "open_id"}
+    )  # open_id
 
 
 @attr.s
@@ -49,29 +55,33 @@ class GetApplicationMessageDetailRespChatType(object):
 @attr.s
 class GetApplicationMessageDetailResp(object):
     message_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "message_id"}
     )  # open_message_id
     chat_type: GetApplicationMessageDetailRespChatType = attr.ib(
         factory=lambda: GetApplicationMessageDetailRespChatType(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "chat_type"},
     )  # 聊天类型
     message_type: GetApplicationMessageDetailRespMessageType = attr.ib(
         factory=lambda: GetApplicationMessageDetailRespMessageType(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "message_type"},
     )  # 消息类型
-    nsent: int = attr.ib(default=0, metadata={"req_type": "json"})  # 总发送数
+    nsent: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "nsent"}
+    )  # 总发送数
     target: GetApplicationMessageDetailRespTarget = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "target"}
     )  # 发送目标用户列表，群聊为空
-    nread: int = attr.ib(default=0, metadata={"req_type": "json"})  # 总阅读数
+    nread: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "nread"}
+    )  # 总阅读数
     users_read: GetApplicationMessageDetailRespUsersRead = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "users_read"}
     )  # 已读用户列表
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多分页，当 has_more 为 true 时，会同时返回新的 page_token
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
 
 

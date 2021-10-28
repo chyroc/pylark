@@ -9,7 +9,7 @@ import io
 @attr.s
 class DetectFaceAttributesReq(object):
     image: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "image"}
     )  # 图片 base64 数据, 示例值："图片 base64 后的字符串"
 
 
@@ -51,25 +51,25 @@ class DetectFaceAttributesRespFaceInfoQualityOccludeEyebrow(object):
 @attr.s
 class DetectFaceAttributesRespFaceInfoQualityOcclude(object):
     eyebrow: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "eyebrow"}
     )  # 眉毛被遮挡情况：[0, 1] 值越大被遮挡的概率越高
     nose: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "nose"}
     )  # 鼻子被遮挡情况：[0, 1] 值越大被遮挡的概率越高
     cheek: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "cheek"}
     )  # 脸颊被遮挡情况：[0, 1] 值越大被遮挡的概率越高
     mouth: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "mouth"}
     )  # 嘴被遮挡情况：[0, 1] 值越大被遮挡的概率越高
     chin: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "chin"}
     )  # 下巴被遮挡情况：[0, 1] 值越大被遮挡的概率越高
     left_eye: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "left_eye"}
     )  # 左眼睛被遮挡情况：[0, 1] 值越大被遮挡的概率越高
     right_eye: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "right_eye"}
     )  # 右眼睛被遮挡情况：[0, 1] 值越大被遮挡的概率越高
 
 
@@ -86,11 +86,13 @@ class DetectFaceAttributesRespFaceInfoQualitySharpness(object):
 @attr.s
 class DetectFaceAttributesRespFaceInfoQuality(object):
     sharpness: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "sharpness"}
     )  # 清晰度，值越高越清晰
-    brightness: float = attr.ib(default=None, metadata={"req_type": "json"})  # 亮度
+    brightness: float = attr.ib(
+        default=None, metadata={"req_type": "json", "key": "brightness"}
+    )  # 亮度
     occlude: DetectFaceAttributesRespFaceInfoQualityOcclude = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "occlude"}
     )  # 面部遮挡属性
 
 
@@ -101,9 +103,9 @@ class DetectFaceAttributesRespFaceInfoAttributeMaskProbability(object):
 
 @attr.s
 class DetectFaceAttributesRespFaceInfoAttributeMask(object):
-    type: int = attr.ib(default=0, metadata={"req_type": "json"})  # 属性
+    type: int = attr.ib(default=0, metadata={"req_type": "json", "key": "type"})  # 属性
     probability: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "probability"}
     )  # 识别置信度，[0, 1]，代表判断正确的概率
 
 
@@ -114,9 +116,9 @@ class DetectFaceAttributesRespFaceInfoAttributeGlassProbability(object):
 
 @attr.s
 class DetectFaceAttributesRespFaceInfoAttributeGlass(object):
-    type: int = attr.ib(default=0, metadata={"req_type": "json"})  # 属性
+    type: int = attr.ib(default=0, metadata={"req_type": "json", "key": "type"})  # 属性
     probability: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "probability"}
     )  # 识别置信度，[0, 1]，代表判断正确的概率
 
 
@@ -127,17 +129,23 @@ class DetectFaceAttributesRespFaceInfoAttributeHatProbability(object):
 
 @attr.s
 class DetectFaceAttributesRespFaceInfoAttributeHat(object):
-    type: int = attr.ib(default=0, metadata={"req_type": "json"})  # 属性
+    type: int = attr.ib(default=0, metadata={"req_type": "json", "key": "type"})  # 属性
     probability: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "probability"}
     )  # 识别置信度，[0, 1]，代表判断正确的概率
 
 
 @attr.s
 class DetectFaceAttributesRespFaceInfoAttributePose(object):
-    pitch: int = attr.ib(default=0, metadata={"req_type": "json"})  # 脸部上下偏移 [-90, 90]
-    yaw: int = attr.ib(default=0, metadata={"req_type": "json"})  # 脸部左右偏移 [-90, 90]
-    roll: int = attr.ib(default=0, metadata={"req_type": "json"})  # 平面旋转 [-90, 90]
+    pitch: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "pitch"}
+    )  # 脸部上下偏移 [-90, 90]
+    yaw: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "yaw"}
+    )  # 脸部左右偏移 [-90, 90]
+    roll: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "roll"}
+    )  # 平面旋转 [-90, 90]
 
 
 @attr.s
@@ -147,9 +155,9 @@ class DetectFaceAttributesRespFaceInfoAttributeEmotionProbability(object):
 
 @attr.s
 class DetectFaceAttributesRespFaceInfoAttributeEmotion(object):
-    type: int = attr.ib(default=0, metadata={"req_type": "json"})  # 属性
+    type: int = attr.ib(default=0, metadata={"req_type": "json", "key": "type"})  # 属性
     probability: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "probability"}
     )  # 识别置信度，[0, 1]，代表判断正确的概率
 
 
@@ -160,33 +168,35 @@ class DetectFaceAttributesRespFaceInfoAttributeGenderProbability(object):
 
 @attr.s
 class DetectFaceAttributesRespFaceInfoAttributeGender(object):
-    type: int = attr.ib(default=0, metadata={"req_type": "json"})  # 属性
+    type: int = attr.ib(default=0, metadata={"req_type": "json", "key": "type"})  # 属性
     probability: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "probability"}
     )  # 识别置信度，[0, 1]，代表判断正确的概率
 
 
 @attr.s
 class DetectFaceAttributesRespFaceInfoAttribute(object):
     gender: DetectFaceAttributesRespFaceInfoAttributeGender = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "gender"}
     )  # 性别信息：0 男性，1 女性
-    age: int = attr.ib(default=0, metadata={"req_type": "json"})  # 年龄大小
+    age: int = attr.ib(default=0, metadata={"req_type": "json", "key": "age"})  # 年龄大小
     emotion: DetectFaceAttributesRespFaceInfoAttributeEmotion = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "emotion"}
     )  # 情绪：0 自然, 1 高兴，2 惊讶，3 害怕，4 悲伤，5 生气, 6 厌恶
-    beauty: int = attr.ib(default=0, metadata={"req_type": "json"})  # 颜值打分：[0, 100]
+    beauty: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "beauty"}
+    )  # 颜值打分：[0, 100]
     pose: DetectFaceAttributesRespFaceInfoAttributePose = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "pose"}
     )  # 人脸姿态
     hat: DetectFaceAttributesRespFaceInfoAttributeHat = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "hat"}
     )  # 帽子：0 未戴帽子，1 戴帽子
     glass: DetectFaceAttributesRespFaceInfoAttributeGlass = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "glass"}
     )  # 眼镜：0 未戴眼镜，1 戴眼镜
     mask: DetectFaceAttributesRespFaceInfoAttributeMask = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "mask"}
     )  # 口罩：0 未戴口罩，1 戴口罩
 
 
@@ -202,8 +212,8 @@ class DetectFaceAttributesRespFaceInfoPositionLowerRightX(object):
 
 @attr.s
 class DetectFaceAttributesRespFaceInfoPositionLowerRight(object):
-    x: float = attr.ib(default=None, metadata={"req_type": "json"})  # 横轴坐标
-    y: float = attr.ib(default=None, metadata={"req_type": "json"})  # 纵轴坐标
+    x: float = attr.ib(default=None, metadata={"req_type": "json", "key": "x"})  # 横轴坐标
+    y: float = attr.ib(default=None, metadata={"req_type": "json", "key": "y"})  # 纵轴坐标
 
 
 @attr.s
@@ -218,46 +228,50 @@ class DetectFaceAttributesRespFaceInfoPositionUpperLeftX(object):
 
 @attr.s
 class DetectFaceAttributesRespFaceInfoPositionUpperLeft(object):
-    x: float = attr.ib(default=None, metadata={"req_type": "json"})  # 横轴坐标
-    y: float = attr.ib(default=None, metadata={"req_type": "json"})  # 纵轴坐标
+    x: float = attr.ib(default=None, metadata={"req_type": "json", "key": "x"})  # 横轴坐标
+    y: float = attr.ib(default=None, metadata={"req_type": "json", "key": "y"})  # 纵轴坐标
 
 
 @attr.s
 class DetectFaceAttributesRespFaceInfoPosition(object):
     upper_left: DetectFaceAttributesRespFaceInfoPositionUpperLeft = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "upper_left"}
     )  # 人脸框的左上角坐标
     lower_right: DetectFaceAttributesRespFaceInfoPositionLowerRight = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "lower_right"}
     )  # 人脸框的右下角坐标
 
 
 @attr.s
 class DetectFaceAttributesRespFaceInfo(object):
     position: DetectFaceAttributesRespFaceInfoPosition = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "position"}
     )  # 人脸位置信息
     attribute: DetectFaceAttributesRespFaceInfoAttribute = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "attribute"}
     )  # 人脸属性信息
     quality: DetectFaceAttributesRespFaceInfoQuality = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "quality"}
     )  # 人脸质量信息
 
 
 @attr.s
 class DetectFaceAttributesRespImageInfo(object):
-    width: int = attr.ib(default=0, metadata={"req_type": "json"})  # 图片的宽度
-    height: int = attr.ib(default=0, metadata={"req_type": "json"})  # 图片的高度
+    width: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "width"}
+    )  # 图片的宽度
+    height: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "height"}
+    )  # 图片的高度
 
 
 @attr.s
 class DetectFaceAttributesResp(object):
     image_info: DetectFaceAttributesRespImageInfo = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "image_info"}
     )  # 图片信息
     face_infos: typing.List[DetectFaceAttributesRespFaceInfo] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "face_infos"}
     )  # 人脸信息列表
 
 

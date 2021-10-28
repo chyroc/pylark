@@ -14,15 +14,19 @@ class PartUploadDriveFileReqFile(object):
 @attr.s
 class PartUploadDriveFileReq(object):
     upload_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "upload_id"}
     )  # 分片上传事务ID, 示例值："123456"
-    seq: int = attr.ib(default=0, metadata={"req_type": "json"})  # 块号，从0开始计数, 示例值：0
-    size: int = attr.ib(default=0, metadata={"req_type": "json"})  # 块大小, 示例值：4194304
+    seq: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "seq"}
+    )  # 块号，从0开始计数, 示例值：0
+    size: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "size"}
+    )  # 块大小, 示例值：4194304
     checksum: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "checksum"}
     )  # 文件分块adler32校验和(可选), 示例值："12342388237783294798"
     file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "file"}
     )  # 文件分片内容, 示例值：file binary
 
 

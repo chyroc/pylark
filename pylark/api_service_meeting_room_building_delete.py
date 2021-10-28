@@ -8,7 +8,9 @@ import io
 
 @attr.s
 class DeleteMeetingRoomBuildingReq(object):
-    building_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 要删除的建筑ID
+    building_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "building_id"}
+    )  # 要删除的建筑ID
 
 
 @attr.s

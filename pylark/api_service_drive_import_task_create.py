@@ -9,35 +9,37 @@ import io
 @attr.s
 class CreateDriveImportTaskReqPoint(object):
     mount_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "mount_type"}
     )  # 挂载类型, 示例值：1, 可选值有: `1`：挂载到云空间
     mount_key: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "mount_key"}
     )  # 挂载位置,对于mount_type=1, 云空间目录token，空表示根目录, 示例值：""fldxxxxxxxx""
 
 
 @attr.s
 class CreateDriveImportTaskReq(object):
     file_extension: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "file_extension"}
     )  # 导入文件格式后缀, 示例值："xlsx"
     file_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "file_token"}
     )  # 导入文件Drive FileToken, 示例值："boxcnxe5OxxxxxxxSNdsJviENsk"
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 导入目标云文档格式, 示例值："sheet"
     file_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "file_name"}
     )  # 导入目标云文档文件名 ，若为空使用Drive文件名, 示例值："test"
     point: CreateDriveImportTaskReqPoint = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "point"}
     )  # 挂载点
 
 
 @attr.s
 class CreateDriveImportTaskResp(object):
-    ticket: str = attr.ib(default="", metadata={"req_type": "json"})  # 导入任务ID
+    ticket: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "ticket"}
+    )  # 导入任务ID
 
 
 def _gen_create_drive_import_task_req(request, options) -> RawRequestReq:

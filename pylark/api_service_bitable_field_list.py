@@ -9,70 +9,86 @@ import io
 @attr.s
 class GetBitableFieldListReq(object):
     view_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "view_id"}
     )  # 视图 ID, 示例值："vewOVMEXPF"
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："fldwJ4YrtB"
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 示例值：10, 最大值：`100`
     app_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "app_token"}
     )  # bitable app token, 示例值："appbcbWCzen6D8dezhoCH2RpMAh"
     table_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "table_id"}
     )  # table id, 示例值："tblsRc9GRRXKqhvW"
 
 
 @attr.s
 class GetBitableFieldListRespItemPropertyOption(object):
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 选项名
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 选项id
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 选项名
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 选项id
 
 
 @attr.s
 class GetBitableFieldListRespItemProperty(object):
     options: typing.List[GetBitableFieldListRespItemPropertyOption] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "options"}
     )  # 单选/多选字段的选项信息
-    formatter: str = attr.ib(default="", metadata={"req_type": "json"})  # 数字字段的数字显示格式
-    date_format: str = attr.ib(default="", metadata={"req_type": "json"})  # 日期格式
-    time_format: str = attr.ib(default="", metadata={"req_type": "json"})  # 时间格式
+    formatter: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "formatter"}
+    )  # 数字字段的数字显示格式
+    date_format: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "date_format"}
+    )  # 日期格式
+    time_format: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "time_format"}
+    )  # 时间格式
     auto_fill: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "auto_fill"}
     )  # 是否自动填入创建时间
     multiple: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "multiple"}
     )  # 多选标记
-    table_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 关联字段中关联表的id
-    view_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 关联字段中关联表的视图id
+    table_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "table_id"}
+    )  # 关联字段中关联表的id
+    view_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "view_id"}
+    )  # 关联字段中关联表的视图id
     fields: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "fields"}
     )  # 关联字段要展示的字段
 
 
 @attr.s
 class GetBitableFieldListRespItem(object):
-    field_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 多维表格字段 id
-    field_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 多维表格字段名
-    type: int = attr.ib(default=0, metadata={"req_type": "json"})  # 多维表格字段类型
+    field_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "field_id"}
+    )  # 多维表格字段 id
+    field_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "field_name"}
+    )  # 多维表格字段名
+    type: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "type"}
+    )  # 多维表格字段类型
     property: GetBitableFieldListRespItemProperty = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "property"}
     )  # 字段属性, 具体参考: [Property说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/bitable/development-guide/bitable-structure#b286b4ee)
 
 
 @attr.s
 class GetBitableFieldListResp(object):
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多项
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
-    total: int = attr.ib(default=0, metadata={"req_type": "json"})  # 总数
+    total: int = attr.ib(default=0, metadata={"req_type": "json", "key": "total"})  # 总数
     items: typing.List[GetBitableFieldListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 字段信息
 
 

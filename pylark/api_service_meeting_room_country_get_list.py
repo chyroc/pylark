@@ -13,14 +13,18 @@ class GetMeetingRoomCountryListReq(object):
 
 @attr.s
 class GetMeetingRoomCountryListRespCountries(object):
-    country_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 国家地区ID
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 国家地区名称
+    country_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "country_id"}
+    )  # 国家地区ID
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 国家地区名称
 
 
 @attr.s
 class GetMeetingRoomCountryListResp(object):
     countries: GetMeetingRoomCountryListRespCountries = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "countries"}
     )  # 国家地区列表
 
 

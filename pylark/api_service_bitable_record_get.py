@@ -14,19 +14,19 @@ class GetBitableRecordReqUserIDType(object):
 @attr.s
 class GetBitableRecordReq(object):
     text_field_as_array: bool = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "text_field_as_array"}
     )  # 控制多行文本字段数据的返回格式, true 表示以数组形式返回, 示例值：true
     user_id_type: GetBitableRecordReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     app_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "app_token"}
     )  # bitable app token, 示例值："bascnCMII2ORej2RItqpZZUNMIe"
     table_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "table_id"}
     )  # table id, 示例值："tblxI2tWaxP5dG7p"
     record_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "record_id"}
     )  # 单条记录的 id, 示例值："recn0hoyXL"
 
 
@@ -37,23 +37,27 @@ class GetBitableRecordRespRecordFieldsValue(object):
 
 @attr.s
 class GetBitableRecordRespRecordFields(object):
-    key: str = attr.ib(default="", metadata={"req_type": "json"})  # 字段名
-    value: typing.Any = attr.ib(default=None, metadata={"req_type": "json"})  # 内容
+    key: str = attr.ib(default="", metadata={"req_type": "json", "key": "key"})  # 字段名
+    value: typing.Any = attr.ib(
+        default=None, metadata={"req_type": "json", "key": "value"}
+    )  # 内容
 
 
 @attr.s
 class GetBitableRecordRespRecord(object):
-    record_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 记录 id
+    record_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "record_id"}
+    )  # 记录 id
     fields: GetBitableRecordRespRecordFields = attr.ib(
         factory=lambda: GetBitableRecordRespRecordFields(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "fields"},
     )  # 记录字段
 
 
 @attr.s
 class GetBitableRecordResp(object):
     record: GetBitableRecordRespRecord = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "record"}
     )  # 记录
 
 

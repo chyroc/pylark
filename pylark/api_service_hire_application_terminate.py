@@ -9,16 +9,17 @@ import io
 @attr.s
 class TerminateHireApplicationReq(object):
     application_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "application_id"}
     )  # 投递ID, 示例值："12312312312"
     termination_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "termination_type"}
     )  # 终止原因的类型, 示例值：1, 可选值有: `1`：我们拒绝了候选人, `22`：候选人拒绝了我们, `27`：其他
     termination_reason_list: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [],
+        metadata={"req_type": "json", "key": "termination_reason_list"},
     )  # 终止的具体原因的id列表
     termination_reason_note: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "termination_reason_note"}
     )  # 终止备注, 示例值："不符合期望"
 
 

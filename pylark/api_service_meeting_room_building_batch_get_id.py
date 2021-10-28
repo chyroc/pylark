@@ -9,22 +9,24 @@ import io
 @attr.s
 class BatchGetMeetingRoomBuildingIDReq(object):
     custom_building_ids: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "custom_building_ids"}
     )  # 用于查询指定建筑物的租户自定义建筑ID
 
 
 @attr.s
 class BatchGetMeetingRoomBuildingIDRespBuilding(object):
-    building_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 建筑物ID
+    building_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "building_id"}
+    )  # 建筑物ID
     custom_building_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "custom_building_id"}
     )  # 租户自定义建筑物ID
 
 
 @attr.s
 class BatchGetMeetingRoomBuildingIDResp(object):
     buildings: BatchGetMeetingRoomBuildingIDRespBuilding = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "buildings"}
     )  # 建筑列表
 
 

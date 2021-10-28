@@ -9,7 +9,7 @@ import io
 @attr.s
 class BatchCreateBitableTableReqTable(object):
     name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "name"}
     )  # 数据表 名字, 示例值："table1"
 
 
@@ -21,20 +21,20 @@ class BatchCreateBitableTableReqUserIDType(object):
 @attr.s
 class BatchCreateBitableTableReq(object):
     user_id_type: BatchCreateBitableTableReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     app_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "app_token"}
     )  # bitable app token, 示例值："appbcbWCzen6D8dezhoCH2RpMAh"
     tables: typing.List[BatchCreateBitableTableReqTable] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "tables"}
     )  # tables
 
 
 @attr.s
 class BatchCreateBitableTableResp(object):
     table_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "table_ids"}
     )  # table ids
 
 

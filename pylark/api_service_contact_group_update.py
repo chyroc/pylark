@@ -9,13 +9,13 @@ import io
 @attr.s
 class UpdateContactGroupReq(object):
     group_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "group_id"}
     )  # 用户组ID, 示例值："g187131"
     name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "name"}
     )  # 用户组的名字，企业内唯一，最大长度：100 字符, 示例值："外包 IT 用户组"
     description: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "description"}
     )  # 用户组描述信息,最大长度：500 字, 示例值："IT 外包用户组，需要进行细粒度权限管控"
 
 

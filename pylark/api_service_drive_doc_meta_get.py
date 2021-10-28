@@ -9,40 +9,64 @@ import io
 @attr.s
 class GetDriveDocMetaReq(object):
     doc_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "docToken"}
     )  # doc 的 token，获取方式见[准备接入文档 API](https://open.feishu.cn/document/ukTMukTMukTM/ugzNzUjL4czM14CO3MTN/guide/getting-start)
 
 
 @attr.s
 class GetDriveDocMetaResp(object):
-    create_date: str = attr.ib(default="", metadata={"req_type": "json"})  # 创建日期
-    create_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 创建时间戳
-    creator: str = attr.ib(default="", metadata={"req_type": "json"})  # 创建者open_id
-    create_user_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 创建者用户名
+    create_date: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "create_date"}
+    )  # 创建日期
+    create_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "create_time"}
+    )  # 创建时间戳
+    creator: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "creator"}
+    )  # 创建者open_id
+    create_user_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "create_user_name"}
+    )  # 创建者用户名
     delete_flag: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "delete_flag"}
     )  # 删除标志，0表示正常访问未删除，1表示在回收站，2表示已经彻底删除
-    edit_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 最后编辑时间戳
-    edit_user_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 最后编辑者用户名
+    edit_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "edit_time"}
+    )  # 最后编辑时间戳
+    edit_user_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "edit_user_name"}
+    )  # 最后编辑者用户名
     is_external: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_external"}
     )  # 是否外部文档
     is_pined: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_pined"}
     )  # 是否在接口调用者目录里快速访问
     is_stared: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_stared"}
     )  # 是否在接口调用者目录里收藏
-    obj_type: str = attr.ib(default="", metadata={"req_type": "json"})  # 文档类型，固定是doc
-    owner: str = attr.ib(default="", metadata={"req_type": "json"})  # 当前所有者open_id
+    obj_type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "obj_type"}
+    )  # 文档类型，固定是doc
+    owner: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "owner"}
+    )  # 当前所有者open_id
     owner_user_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "owner_user_name"}
     )  # 当前所有者用户名
-    server_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 处理请求时的服务器时间戳
-    tenant_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 文档所在租户id
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 文档名称
-    type: int = attr.ib(default=0, metadata={"req_type": "json"})  # 文档类型，固定是2
-    url: str = attr.ib(default="", metadata={"req_type": "json"})  # 文档url
+    server_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "server_time"}
+    )  # 处理请求时的服务器时间戳
+    tenant_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "tenant_id"}
+    )  # 文档所在租户id
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 文档名称
+    type: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "type"}
+    )  # 文档类型，固定是2
+    url: str = attr.ib(default="", metadata={"req_type": "json", "key": "url"})  # 文档url
 
 
 def _gen_get_drive_doc_meta_req(request, options) -> RawRequestReq:

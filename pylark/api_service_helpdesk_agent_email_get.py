@@ -13,7 +13,9 @@ class GetHelpdeskAgentEmailReq(object):
 
 @attr.s
 class GetHelpdeskAgentEmailResp(object):
-    agents: str = attr.ib(default="", metadata={"req_type": "json"})  # agent emails
+    agents: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "agents"}
+    )  # agent emails
 
 
 def _gen_get_helpdesk_agent_email_req(request, options) -> RawRequestReq:

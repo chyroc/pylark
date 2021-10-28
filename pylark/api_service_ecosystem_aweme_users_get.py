@@ -14,26 +14,30 @@ class GetEcosystemBindAwemeUserReqUserIDType(object):
 @attr.s
 class GetEcosystemBindAwemeUserReq(object):
     user_id_type: GetEcosystemBindAwemeUserReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     user_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "user_id"}
     )  # 飞书用户id，由user_id_type决定类型, 示例值："ou_7d8a6e6df7621556ce0d21922b676706ccs"
 
 
 @attr.s
 class GetEcosystemBindAwemeUserRespAwemeUser(object):
-    aweme_user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 抖音用户id
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 绑定的飞书用户id
+    aweme_user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "aweme_user_id"}
+    )  # 抖音用户id
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 绑定的飞书用户id
     is_binded: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_binded"}
     )  # 飞书-抖音账号是否绑定
 
 
 @attr.s
 class GetEcosystemBindAwemeUserResp(object):
     aweme_user: GetEcosystemBindAwemeUserRespAwemeUser = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "aweme_user"}
     )  # 用户绑定信息
 
 

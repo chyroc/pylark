@@ -9,13 +9,13 @@ import io
 @attr.s
 class DownloadHelpdeskTicketImageReq(object):
     ticket_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "ticket_id"}
     )  # 工单ID, 示例值："12345"
     msg_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "msg_id"}
     )  # 消息ID, 示例值："12345"
     index: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "index"}
     )  # index，当消息类型为post时，需指定图片index，index从0开始。当消息类型为img时，无需index, 示例值：0
 
 
@@ -27,17 +27,19 @@ class DownloadHelpdeskTicketImageRespFile(object):
 @attr.s
 class DownloadHelpdeskTicketImageResp(object):
     file: typing.Union[str, bytes, io.BytesIO] = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "file"}
     )
 
 
 @attr.s
 class DownloadHelpdeskTicketImageResp(object):
-    is_file: bool = attr.ib(factory=lambda: bool(), metadata={"req_type": "json"})
-    code: int = attr.ib(default=0, metadata={"req_type": "json"})
-    msg: str = attr.ib(default="", metadata={"req_type": "json"})
+    is_file: bool = attr.ib(
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_file"}
+    )
+    code: int = attr.ib(default=0, metadata={"req_type": "json", "key": "code"})
+    msg: str = attr.ib(default="", metadata={"req_type": "json", "key": "msg"})
     data: DownloadHelpdeskTicketImageResp = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "data"}
     )
 
 

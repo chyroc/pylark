@@ -9,13 +9,17 @@ import io
 @attr.s
 class OpenWebURLReq(object):
     url: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "url"}
     )  # 指定需要在客户端内打开的具体链接，需要执行encodeURIComponent，4.2+版本支持lark协议
     mode: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "mode"}
     )  # 打开的容器模式，枚举值包括：<br>`sidebar-semi` 在侧边栏打开；<br>`window` 在独立窗口打开
-    height: str = attr.ib(default="", metadata={"req_type": "json"})  # 自定义独立窗口高度
-    width: str = attr.ib(default="", metadata={"req_type": "json"})  # 自定义独立窗口宽度
+    height: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "height"}
+    )  # 自定义独立窗口高度
+    width: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "width"}
+    )  # 自定义独立窗口宽度
 
 
 @attr.s

@@ -9,7 +9,7 @@ import io
 @attr.s
 class GetHelpdeskTicketReq(object):
     ticket_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "ticket_id"}
     )  # ticket id, 示例值："123456"
 
 
@@ -20,115 +20,157 @@ class GetHelpdeskTicketRespTicketAgentServiceDuration(object):
 
 @attr.s
 class GetHelpdeskTicketRespTicketCustomizedField(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 自定义字段ID
-    value: str = attr.ib(default="", metadata={"req_type": "json"})  # 自定义字段值
-    key_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 键名
-    display_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 展示名称
-    position: int = attr.ib(default=0, metadata={"req_type": "json"})  # 展示位置
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 自定义字段ID
+    value: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "value"}
+    )  # 自定义字段值
+    key_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "key_name"}
+    )  # 键名
+    display_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "display_name"}
+    )  # 展示名称
+    position: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "position"}
+    )  # 展示位置
     required: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "required"}
     )  # 是否必填
     editable: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "editable"}
     )  # 是否可修改
 
 
 @attr.s
 class GetHelpdeskTicketRespTicketCollaborator(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户ID
-    avatar_url: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户头像url
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户名
-    email: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户邮箱
-    department: str = attr.ib(default="", metadata={"req_type": "json"})  # 所在部门名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 用户ID
+    avatar_url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_url"}
+    )  # 用户头像url
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 用户名
+    email: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "email"}
+    )  # 用户邮箱
+    department: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "department"}
+    )  # 所在部门名称
 
 
 @attr.s
 class GetHelpdeskTicketRespTicketClosedBy(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户ID
-    avatar_url: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户头像url
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户名
-    email: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户邮箱
-    department: str = attr.ib(default="", metadata={"req_type": "json"})  # 所在部门名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 用户ID
+    avatar_url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_url"}
+    )  # 用户头像url
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 用户名
+    email: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "email"}
+    )  # 用户邮箱
+    department: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "department"}
+    )  # 所在部门名称
 
 
 @attr.s
 class GetHelpdeskTicketRespTicketAgent(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户ID
-    avatar_url: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户头像url
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户名
-    email: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户邮箱
-    department: str = attr.ib(default="", metadata={"req_type": "json"})  # 所在部门名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 用户ID
+    avatar_url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_url"}
+    )  # 用户头像url
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 用户名
+    email: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "email"}
+    )  # 用户邮箱
+    department: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "department"}
+    )  # 所在部门名称
 
 
 @attr.s
 class GetHelpdeskTicketRespTicketGuest(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户ID
-    avatar_url: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户头像url
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户名
-    email: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户邮箱
-    department: str = attr.ib(default="", metadata={"req_type": "json"})  # 所在部门名称
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # 用户ID
+    avatar_url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_url"}
+    )  # 用户头像url
+    name: str = attr.ib(default="", metadata={"req_type": "json", "key": "name"})  # 用户名
+    email: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "email"}
+    )  # 用户邮箱
+    department: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "department"}
+    )  # 所在部门名称
 
 
 @attr.s
 class GetHelpdeskTicketRespTicket(object):
     ticket_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "ticket_id"}
     )  # 工单ID,[可以从工单列表里面取](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/helpdesk-v1/ticket/list),[也可以订阅工单创建事件获取](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/helpdesk-v1/ticket/events/created)
-    helpdesk_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 服务台ID
+    helpdesk_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "helpdesk_id"}
+    )  # 服务台ID
     guest: GetHelpdeskTicketRespTicketGuest = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "guest"}
     )  # 工单创建用户
     ticket_type: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "ticket_type"}
     )  # 工单阶段：1. 机器人 2. 人工
     status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "status"}
     )  # 工单状态，1：已创建 2: 处理中 3: 排队中 4：待定 5：待用户响应 50: 被机器人关闭 51: 被人工关闭
     score: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "score"}
     )  # 工单评分，1：不满意，2:一般，3:满意
-    created_at: int = attr.ib(default=0, metadata={"req_type": "json"})  # 工单创建时间
+    created_at: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "created_at"}
+    )  # 工单创建时间
     updated_at: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "updated_at"}
     )  # 工单更新时间，没有值时为-1
-    closed_at: int = attr.ib(default=0, metadata={"req_type": "json"})  # 工单结束时间
+    closed_at: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "closed_at"}
+    )  # 工单结束时间
     agents: typing.List[GetHelpdeskTicketRespTicketAgent] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "agents"}
     )  # 工单客服
-    channel: int = attr.ib(default=0, metadata={"req_type": "json"})  # 工单渠道
-    solve: int = attr.ib(default=0, metadata={"req_type": "json"})  # 工单是否解决 1:没解决 2:已解决
+    channel: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "channel"}
+    )  # 工单渠道
+    solve: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "solve"}
+    )  # 工单是否解决 1:没解决 2:已解决
     closed_by: GetHelpdeskTicketRespTicketClosedBy = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "closed_by"}
     )  # 关单用户ID
     collaborators: typing.List[GetHelpdeskTicketRespTicketCollaborator] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "collaborators"}
     )  # 工单协作者
     customized_fields: typing.List[
         GetHelpdeskTicketRespTicketCustomizedField
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "customized_fields"}
     )  # 自定义字段列表，没有值时不设置
     agent_service_duration: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "agent_service_duration"}
     )  # 客服服务时长minutes
     agent_first_response_duration: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "agent_first_response_duration"}
     )  # 客服第一反应时间 seconds
     bot_service_duration: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "bot_service_duration"}
     )  # 机器人服务时长 seconds
     agent_resolution_time: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "agent_resolution_time"}
     )  # 解决时长(秒)
     actual_processing_time: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "actual_processing_time"}
     )  # 处理时长(秒)
 
 
 @attr.s
 class GetHelpdeskTicketResp(object):
     ticket: GetHelpdeskTicketRespTicket = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "ticket"}
     )  # 工单详情
 
 

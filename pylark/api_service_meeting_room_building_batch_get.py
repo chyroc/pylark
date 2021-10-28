@@ -9,27 +9,33 @@ import io
 @attr.s
 class BatchGetMeetingRoomBuildingReq(object):
     building_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "query"}
+        factory=lambda: [], metadata={"req_type": "query", "key": "building_ids"}
     )  # 用于查询指定建筑物的 ID
     fields: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "fields"}
     )  # 用于指定返回的字段名，每个字段名之间用逗号 "," 分隔，如：“id,name”，"*" 表示返回全部字段，可选字段有："id,name,description,floors"，默认返回所有字段
 
 
 @attr.s
 class BatchGetMeetingRoomBuildingRespBuilding(object):
-    building_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 建筑物 ID
-    description: str = attr.ib(default="", metadata={"req_type": "json"})  # 建筑物的相关描述
+    building_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "building_id"}
+    )  # 建筑物 ID
+    description: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "description"}
+    )  # 建筑物的相关描述
     floors: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "floors"}
     )  # 属于当前建筑物的所有楼层列表
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 建筑物名称
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 建筑物名称
 
 
 @attr.s
 class BatchGetMeetingRoomBuildingResp(object):
     buildings: BatchGetMeetingRoomBuildingRespBuilding = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "buildings"}
     )  # 建筑列表
 
 

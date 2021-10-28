@@ -9,27 +9,29 @@ import io
 @attr.s
 class MoveSheetDimensionReqSource(object):
     major_dimension: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "major_dimension"}
     )  # 操作行还是列，取值：ROWS、COLUMNS, 示例值："ROWS"
     start_index: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "start_index"}
     )  # 起始行或者列号, 示例值：0
-    end_index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 结束行或者列号, 示例值：1
+    end_index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "end_index"}
+    )  # 结束行或者列号, 示例值：1
 
 
 @attr.s
 class MoveSheetDimensionReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheet_token"}
     )  # 表格 token, 示例值："shtcnmBA\*****yGehy8"
     sheet_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "sheet_id"}
     )  # 子表 id, 示例值："0b\**12"
     source: MoveSheetDimensionReqSource = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "source"}
     )  # 移动源位置参数
     destination_index: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "destination_index"}
     )  # 移动的目标位置行或者列号, 示例值：4
 
 

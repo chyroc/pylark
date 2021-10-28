@@ -9,18 +9,20 @@ import io
 @attr.s
 class BatchGetDriveMediaTmpDownloadURLReq(object):
     file_tokens: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "query"}
+        factory=lambda: [], metadata={"req_type": "query", "key": "file_tokens"}
     )  # 文件标识符列表, 示例值：boxcnabcdefg
     extra: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "extra"}
     )  # 拓展信息(可选), 示例值："[请参考-上传点类型及对应Extra说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/media/introduction)"
 
 
 @attr.s
 class BatchGetDriveMediaTmpDownloadURLRespTmpDownloadURL(object):
-    file_token: str = attr.ib(default="", metadata={"req_type": "json"})  # 文件标识符
+    file_token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "file_token"}
+    )  # 文件标识符
     tmp_download_url: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "tmp_download_url"}
     )  # 文件临时下载链接
 
 
@@ -29,7 +31,7 @@ class BatchGetDriveMediaTmpDownloadURLResp(object):
     tmp_download_urls: typing.List[
         BatchGetDriveMediaTmpDownloadURLRespTmpDownloadURL
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "tmp_download_urls"}
     )  # 临时下载列表
 
 

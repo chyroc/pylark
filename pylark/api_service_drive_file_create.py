@@ -9,20 +9,24 @@ import io
 @attr.s
 class CreateDriveFileReq(object):
     folder_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "folderToken"}
     )  # 文件夹 token，用于在此文件夹下新建文档，获取方式见[概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction)
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 需要创建文档的类型  "doc" 、 "sheet"  or  "bitable"
     title: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "title"}
     )  # 创建文档的标题。注：type 为 "doc" 时不可用（非必填，请求会被过滤），有创建带标题doc文档需求可用 [创建文档](https://open.feishu.cn/document/ukTMukTMukTM/ugDM2YjL4AjN24COwYjN) 接口
 
 
 @attr.s
 class CreateDriveFileResp(object):
-    url: str = attr.ib(default="", metadata={"req_type": "json"})  # 新创建文档的 url
-    revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # 新创建文档的版本号
+    url: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "url"}
+    )  # 新创建文档的 url
+    revision: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "revision"}
+    )  # 新创建文档的版本号
 
 
 def _gen_create_drive_file_req(request, options) -> RawRequestReq:

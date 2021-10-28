@@ -8,48 +8,64 @@ import io
 
 @attr.s
 class GetMeetingRoomRoomListReq(object):
-    building_id: str = attr.ib(default="", metadata={"req_type": "query"})  # 被查询的建筑物 ID
+    building_id: str = attr.ib(
+        default="", metadata={"req_type": "query", "key": "building_id"}
+    )  # 被查询的建筑物 ID
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 请求期望返回的会议室数量，不足则返回全部，该值默认为 100，最大为 1000
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 用于标记当前请求的分页标记，将返回以当前分页标记开始，往后 page_size 个元素
     order_by: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "order_by"}
     )  # 提供用于对名称/楼层进行升序/降序排序的方式查询，可选项有："name-asc,name-desc,floor_name-asc,floor_name-desc"，传入其他字符串不做处理，默认无序
     fields: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "fields"}
     )  # 用于指定返回的字段名，每个字段名之间用逗号 "," 分隔，如：“id,name”，"*" 表示返回全部字段，可选字段有："id,name,description,capacity,building_id,building_name,floor_name,is_disabled,display_id"，默认返回所有字段
 
 
 @attr.s
 class GetMeetingRoomRoomListRespRooms(object):
-    room_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 会议室 ID
-    building_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 会议室所属建筑物 ID
+    room_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "room_id"}
+    )  # 会议室 ID
+    building_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "building_id"}
+    )  # 会议室所属建筑物 ID
     building_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "building_name"}
     )  # 会议室所属建筑物名称
-    capacity: int = attr.ib(default=0, metadata={"req_type": "json"})  # 会议室能容纳的人数
-    description: str = attr.ib(default="", metadata={"req_type": "json"})  # 会议室的相关描述
-    display_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 会议室的展示 ID
-    floor_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 会议室所在楼层名称
+    capacity: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "capacity"}
+    )  # 会议室能容纳的人数
+    description: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "description"}
+    )  # 会议室的相关描述
+    display_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "display_id"}
+    )  # 会议室的展示 ID
+    floor_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "floor_name"}
+    )  # 会议室所在楼层名称
     is_disabled: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_disabled"}
     )  # 会议室是否不可用，若会议室不可用，则该值为 true，否则为 false
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 会议室名称
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 会议室名称
 
 
 @attr.s
 class GetMeetingRoomRoomListResp(object):
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，存在下一页时返回
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 存在下一页时，该值为 true，否则为 false
     rooms: GetMeetingRoomRoomListRespRooms = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "rooms"}
     )  # 会议室列表
 
 

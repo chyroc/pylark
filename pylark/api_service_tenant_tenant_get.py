@@ -13,29 +13,43 @@ class GetTenantReq(object):
 
 @attr.s
 class GetTenantRespTenantAvatar(object):
-    avatar_origin: str = attr.ib(default="", metadata={"req_type": "json"})  # 企业头像
-    avatar_72: str = attr.ib(default="", metadata={"req_type": "json"})  # 企业头像 72x72
-    avatar_240: str = attr.ib(default="", metadata={"req_type": "json"})  # 企业头像 240x240
-    avatar_640: str = attr.ib(default="", metadata={"req_type": "json"})  # 企业头像 640x640
+    avatar_origin: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_origin"}
+    )  # 企业头像
+    avatar_72: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_72"}
+    )  # 企业头像 72x72
+    avatar_240: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_240"}
+    )  # 企业头像 240x240
+    avatar_640: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "avatar_640"}
+    )  # 企业头像 640x640
 
 
 @attr.s
 class GetTenantRespTenant(object):
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 企业名称
-    display_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 企业编号，平台内唯一
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 企业名称
+    display_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "display_id"}
+    )  # 企业编号，平台内唯一
     tenant_tag: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "tenant_tag"}
     )  # 个人版/团队版标志, 可选值有: `0`：团队版, `2`：个人版
-    tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # 企业标识
+    tenant_key: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "tenant_key"}
+    )  # 企业标识
     avatar: GetTenantRespTenantAvatar = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "avatar"}
     )  # 企业头像
 
 
 @attr.s
 class GetTenantResp(object):
     tenant: GetTenantRespTenant = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "tenant"}
     )  # 企业信息
 
 

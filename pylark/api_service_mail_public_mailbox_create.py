@@ -9,20 +9,24 @@ import io
 @attr.s
 class CreatePublicMailboxReq(object):
     email: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "email"}
     )  # 公共邮箱地址, 示例值："test_public_mailbox@xxx.xx"
     name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "name"}
     )  # 公共邮箱名称, 示例值："test public mailbox"
 
 
 @attr.s
 class CreatePublicMailboxResp(object):
     public_mailbox_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "public_mailbox_id"}
     )  # 公共邮箱唯一标识
-    email: str = attr.ib(default="", metadata={"req_type": "json"})  # 公共邮箱地址
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 公共邮箱名称
+    email: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "email"}
+    )  # 公共邮箱地址
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 公共邮箱名称
 
 
 def _gen_create_public_mailbox_req(request, options) -> RawRequestReq:

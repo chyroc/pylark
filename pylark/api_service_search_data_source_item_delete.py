@@ -9,10 +9,10 @@ import io
 @attr.s
 class DeleteSearchDataSourceItemReq(object):
     data_source_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "data_source_id"}
     )  # 数据源的ID, 示例值："service_ticket"
     item_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "item_id"}
     )  # 数据记录的ID, 示例值："01010111"
 
 

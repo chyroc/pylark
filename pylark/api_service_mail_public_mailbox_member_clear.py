@@ -9,7 +9,7 @@ import io
 @attr.s
 class ClearPublicMailboxMemberReq(object):
     public_mailbox_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "public_mailbox_id"}
     )  # 公共邮箱唯一标识或公共邮箱地址, 示例值："xxxxxxxxxxxxxxx 或 test_public_mailbox@xxx.xx"
 
 

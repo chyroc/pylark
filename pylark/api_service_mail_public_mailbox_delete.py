@@ -9,7 +9,7 @@ import io
 @attr.s
 class DeletePublicMailboxReq(object):
     public_mailbox_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "public_mailbox_id"}
     )  # 要释放的公共邮箱地址, 示例值："xxxxxx@abc.com"
 
 

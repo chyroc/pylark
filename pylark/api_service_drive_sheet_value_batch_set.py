@@ -14,42 +14,52 @@ class BatchSetSheetValueReqValueRangeValue(object):
 @attr.s
 class BatchSetSheetValueReqValueRange(object):
     range_: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "range"}
     )  # 更新范围，包含 sheetId 与单元格范围两部分，目前支持四种索引方式，详见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     values: typing.List[typing.List[BatchSetSheetValueReqValueRangeValue]] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "values"}
     )  # 需要写入的值，如要写入公式、超链接、email、@人等，可详看附录[sheet 支持写入数据类型](https://open.feishu.cn/document/ukTMukTMukTM/ugjN1UjL4YTN14CO2UTN)
 
 
 @attr.s
 class BatchSetSheetValueReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token，获取方式见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     value_ranges: typing.List[BatchSetSheetValueReqValueRange] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "valueRanges"}
     )  # 需要更新的多个范围
 
 
 @attr.s
 class BatchSetSheetValueRespResponse(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token
-    updated_range: str = attr.ib(default="", metadata={"req_type": "json"})  # 写入的范围
-    updated_rows: int = attr.ib(default=0, metadata={"req_type": "json"})  # 写入的行数
-    updated_columns: int = attr.ib(default=0, metadata={"req_type": "json"})  # 写入的列数
-    updated_cells: int = attr.ib(default=0, metadata={"req_type": "json"})  # 写入的单元格总数
+    updated_range: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "updatedRange"}
+    )  # 写入的范围
+    updated_rows: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "updatedRows"}
+    )  # 写入的行数
+    updated_columns: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "updatedColumns"}
+    )  # 写入的列数
+    updated_cells: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "updatedCells"}
+    )  # 写入的单元格总数
 
 
 @attr.s
 class BatchSetSheetValueResp(object):
     responses: typing.List[BatchSetSheetValueRespResponse] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "responses"}
     )  # 响应
-    revision: int = attr.ib(default=0, metadata={"req_type": "json"})  # sheet 的版本号
+    revision: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "revision"}
+    )  # sheet 的版本号
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token
 
 

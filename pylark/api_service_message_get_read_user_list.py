@@ -15,16 +15,16 @@ class GetMessageReadUserListReqUserIDType(object):
 class GetMessageReadUserListReq(object):
     user_id_type: GetMessageReadUserListReqUserIDType = attr.ib(
         factory=lambda: GetMessageReadUserListReqUserIDType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "user_id_type"},
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 此次调用中使用的分页的大小, 示例值：20, 取值范围：`1` ～ `100`
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 下一页分页的token, 示例值："GxmvlNRvP0NdQZpa7yIqf_Lv_QuBwTQ8tXkX7w-irAghVD_TvuYd1aoJ1LQph86O-XImC4X9j9FhUPhXQDvtrQ=="
     message_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "message_id"}
     )  # 待查询的消息的ID, 示例值："om_dc13264520392913993dd051dba21dcf"
 
 
@@ -37,22 +37,30 @@ class GetMessageReadUserListRespItemUserIDType(object):
 class GetMessageReadUserListRespItem(object):
     user_id_type: GetMessageReadUserListRespItemUserIDType = attr.ib(
         factory=lambda: GetMessageReadUserListRespItemUserIDType(),
-        metadata={"req_type": "json"},
+        metadata={"req_type": "json", "key": "user_id_type"},
     )  # 用户id类型
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户id
-    timestamp: str = attr.ib(default="", metadata={"req_type": "json"})  # 阅读时间
-    tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # tenant key
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 用户id
+    timestamp: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "timestamp"}
+    )  # 阅读时间
+    tenant_key: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "tenant_key"}
+    )  # tenant key
 
 
 @attr.s
 class GetMessageReadUserListResp(object):
     items: typing.List[GetMessageReadUserListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # -
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有下一页
-    page_token: str = attr.ib(default="", metadata={"req_type": "json"})  # 下一页分页的token
+    page_token: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "page_token"}
+    )  # 下一页分页的token
 
 
 def _gen_get_message_read_user_list_req(request, options) -> RawRequestReq:

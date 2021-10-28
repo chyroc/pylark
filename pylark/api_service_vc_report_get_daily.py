@@ -9,43 +9,49 @@ import io
 @attr.s
 class GetVCDailyReportReq(object):
     start_time: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "start_time"}
     )  # 开始时间（unix时间，单位sec）, 示例值："1608888867"
     end_time: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "end_time"}
     )  # 结束时间（unix时间，单位sec）, 示例值："1608888966"
 
 
 @attr.s
 class GetVCDailyReportRespMeetingReportDailyReport(object):
-    date: str = attr.ib(default="", metadata={"req_type": "json"})  # 日期（unix时间，单位sec）
-    meeting_count: str = attr.ib(default="", metadata={"req_type": "json"})  # 会议数量
+    date: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "date"}
+    )  # 日期（unix时间，单位sec）
+    meeting_count: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "meeting_count"}
+    )  # 会议数量
     meeting_duration: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "meeting_duration"}
     )  # 会议时长（单位sec）
-    participant_count: str = attr.ib(default="", metadata={"req_type": "json"})  # 参会人数
+    participant_count: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "participant_count"}
+    )  # 参会人数
 
 
 @attr.s
 class GetVCDailyReportRespMeetingReport(object):
     total_meeting_count: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "total_meeting_count"}
     )  # 总会议数量
     total_meeting_duration: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "total_meeting_duration"}
     )  # 总会议时长（单位sec）
     total_participant_count: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "total_participant_count"}
     )  # 总参会人数
     daily_report: GetVCDailyReportRespMeetingReportDailyReport = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "daily_report"}
     )  # 每日会议报告列表
 
 
 @attr.s
 class GetVCDailyReportResp(object):
     meeting_report: GetVCDailyReportRespMeetingReport = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "meeting_report"}
     )  # 会议报告
 
 

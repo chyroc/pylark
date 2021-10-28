@@ -8,13 +8,21 @@ import io
 
 @attr.s
 class BatchCreateAttendanceUserFlowReqFlowRecord(object):
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 员工工号
-    creator_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡记录创建者的工号
-    location_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡位置名称信息
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 员工工号
+    creator_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "creator_id"}
+    )  # 打卡记录创建者的工号
+    location_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "location_name"}
+    )  # 打卡位置名称信息
     check_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_time"}
     )  # 打卡时间，精确到秒的时间戳
-    comment: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡备注
+    comment: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "comment"}
+    )  # 打卡备注
 
 
 @attr.s
@@ -26,30 +34,36 @@ class BatchCreateAttendanceUserFlowReqEmployeeType(object):
 class BatchCreateAttendanceUserFlowReq(object):
     employee_type: BatchCreateAttendanceUserFlowReqEmployeeType = attr.ib(
         factory=lambda: BatchCreateAttendanceUserFlowReqEmployeeType(),
-        metadata={"req_type": "query"},
+        metadata={"req_type": "query", "key": "employee_type"},
     )  # 请求体中的 user_id 和 creator_id 的员工工号类型，可用值：【employee_id（员工的 employeeId），employee_no（员工工号）】，示例值："employee_id"
     flow_records: typing.List[BatchCreateAttendanceUserFlowReqFlowRecord] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "flow_records"}
     )  # 打卡流水记录列表
 
 
 @attr.s
 class BatchCreateAttendanceUserFlowRespFlowRecord(object):
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 员工工号
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 员工工号
     creator_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "creator_id"}
     )  # 打卡记录创建者的 employee_no
-    location_name: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡位置名称信息
+    location_name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "location_name"}
+    )  # 打卡位置名称信息
     check_time: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "check_time"}
     )  # 打卡时间，精确到秒的时间戳
-    comment: str = attr.ib(default="", metadata={"req_type": "json"})  # 打卡备注
+    comment: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "comment"}
+    )  # 打卡备注
 
 
 @attr.s
 class BatchCreateAttendanceUserFlowResp(object):
     flow_records: typing.List[BatchCreateAttendanceUserFlowRespFlowRecord] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "flow_records"}
     )  # 打卡流水记录列表
 
 

@@ -9,36 +9,46 @@ import io
 @attr.s
 class UpdateMailGroupReq(object):
     mailgroup_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "mailgroup_id"}
     )  # 邮件组ID或者邮件组地址, 示例值："xxxxxxxxxxxxxxx 或 test_mail_group@xxx.xx"
     name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "name"}
     )  # 邮件组名称, 示例值："test mail group"
     description: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "description"}
     )  # 邮件组描述, 示例值："mail group for testing"
     who_can_send_mail: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "who_can_send_mail"}
     )  # 谁可发送邮件到此邮件组, 示例值："ALL_INTERNAL_USERS", 可选值有: `ANYONE`：任何人, `ALL_INTERNAL_USERS`：仅组织内部成员, `ALL_GROUP_MEMBERS`：仅邮件组成员, `CUSTOM_MEMBERS`：自定义成员
 
 
 @attr.s
 class UpdateMailGroupResp(object):
-    mailgroup_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 邮件组ID
-    email: str = attr.ib(default="", metadata={"req_type": "json"})  # 邮件组地址
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 邮件组名称
-    description: str = attr.ib(default="", metadata={"req_type": "json"})  # 邮件组描述
+    mailgroup_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "mailgroup_id"}
+    )  # 邮件组ID
+    email: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "email"}
+    )  # 邮件组地址
+    name: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "name"}
+    )  # 邮件组名称
+    description: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "description"}
+    )  # 邮件组描述
     direct_members_count: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "direct_members_count"}
     )  # 邮件组成员数量
     include_external_member: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(),
+        metadata={"req_type": "json", "key": "include_external_member"},
     )  # 是否包含外部成员
     include_all_company_member: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(),
+        metadata={"req_type": "json", "key": "include_all_company_member"},
     )  # 是否是全员邮件组
     who_can_send_mail: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "who_can_send_mail"}
     )  # 谁可发送邮件到此邮件组, 可选值有: `ANYONE`：任何人, `ALL_INTERNAL_USERS`：仅组织内部成员, `ALL_GROUP_MEMBERS`：仅邮件组成员, `CUSTOM_MEMBERS`：自定义成员
 
 

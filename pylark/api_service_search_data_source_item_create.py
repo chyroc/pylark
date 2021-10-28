@@ -9,61 +9,61 @@ import io
 @attr.s
 class CreateSearchDataSourceItemReqContent(object):
     format: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "format"}
     )  # 内容的格式, 示例值："html", 可选值有: `html`：html格式, `plaintext`：纯文本格式
     content_data: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "content_data"}
     )  # 全文数据, 示例值："这是一个很长的文本"
 
 
 @attr.s
 class CreateSearchDataSourceItemReqMetadata(object):
     title: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "title"}
     )  # 该条数据记录对应的标题, 示例值："工单：无法创建文章"
     source_url: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "source_url"}
     )  # 该条数据记录对应的跳转url, 示例值："http://www.abc.com.cn"
     create_time: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "create_time"}
     )  # 数据项的创建时间。Unix 时间，单位为秒, 示例值：1618831236
     update_time: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "update_time"}
     )  # 数据项的更新时间。Unix 时间，单位为秒, 示例值：1618831236
 
 
 @attr.s
 class CreateSearchDataSourceItemReqACL(object):
     access: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "access"}
     )  # 权限类型，优先级：Deny > Allow。默认为全员不可见，即 deny。, 示例值："allow", 可选值有: `allow`：允许访问, `deny`：禁止访问
     value: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "value"}
     )  # 设置的权限值，例如 userID 、groupID，依赖 type 描述。,**注**：在 type 为 user 且 access 为 allow 时，可填 "everyone" 来表示该数据项对全员可见。, 示例值："6629468020840333501"
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 权限值类型, 示例值："user", 可选值有: `user`：访问权限控制中指定用户可以访问或拒绝访问该条数据, `group`：访问权限控制中指定用户组可以访问或拒绝访问该条数据
 
 
 @attr.s
 class CreateSearchDataSourceItemReq(object):
     data_source_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "data_source_id"}
     )  # 数据源的ID, 示例值："service_ticket"
     id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "id"}
     )  # item 在 datasource 中的唯一标识, 示例值："01010111"
     acl: CreateSearchDataSourceItemReqACL = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "acl"}
     )  # item 的访问权限控制
     metadata: CreateSearchDataSourceItemReqMetadata = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "metadata"}
     )  # item 的元信息
     structured_data: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "structured_data"}
     )  # 结构化数据（以 json 字符串传递），这些字段是搜索结果的展示字段（title字段无须在此另外指定）；目前支持的key为：, summary：搜索结果的摘要；, icon_url：搜索结果的icon地址；, footer：搜索结果的脚注, 示例值："{\"key\":\"value\"}"
     content: CreateSearchDataSourceItemReqContent = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "content"}
     )  # 非结构化数据，如文档文本，飞书搜索会用来做召回
 
 

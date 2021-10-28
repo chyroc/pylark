@@ -14,25 +14,27 @@ class GetCalendarACLListReqUserIDType(object):
 @attr.s
 class GetCalendarACLListReq(object):
     user_id_type: GetCalendarACLListReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："xxx"
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 示例值：10，小于10取10, 最大值：`50`
     calendar_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "calendar_id"}
     )  # 日历ID, 示例值："feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn"
 
 
 @attr.s
 class GetCalendarACLListRespACLScope(object):
     type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "type"}
     )  # 权限类型，当type为User时，值为open_id/user_id/union_id, 可选值有: `user`：用户
-    user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户ID
+    user_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "user_id"}
+    )  # 用户ID
 
 
 @attr.s
@@ -42,25 +44,28 @@ class GetCalendarACLListRespACLRole(object):
 
 @attr.s
 class GetCalendarACLListRespACL(object):
-    acl_id: str = attr.ib(default="", metadata={"req_type": "json"})  # acl资源ID
+    acl_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "acl_id"}
+    )  # acl资源ID
     role: GetCalendarACLListRespACLRole = attr.ib(
-        factory=lambda: GetCalendarACLListRespACLRole(), metadata={"req_type": "json"}
+        factory=lambda: GetCalendarACLListRespACLRole(),
+        metadata={"req_type": "json", "key": "role"},
     )  # 对日历的访问权限, 可选值有: `unknown`：未知权限, `free_busy_reader`：游客，只能看到忙碌/空闲信息, `reader`：订阅者，查看所有日程详情, `writer`：编辑者，创建及修改日程, `owner`：管理员，管理日历及共享设置
     scope: GetCalendarACLListRespACLScope = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "scope"}
     )  # 权限范围
 
 
 @attr.s
 class GetCalendarACLListResp(object):
     acls: typing.List[GetCalendarACLListRespACL] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "acls"}
     )  # 入参日历对应的acl列表
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有更多项
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
 
 

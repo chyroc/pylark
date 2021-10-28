@@ -14,7 +14,7 @@ class DownloadDriveFileReqRange(object):
 @attr.s
 class DownloadDriveFileReq(object):
     file_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "file_token"}
     )  # 文件的 token，获取方式见 [概述](https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/files/guide/introduction), 示例值："boxcnabCdefg12345"
     range: DownloadDriveFileReqRange = attr.ib(
         factory=lambda: DownloadDriveFileReqRange(),

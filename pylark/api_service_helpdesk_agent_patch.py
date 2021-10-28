@@ -9,10 +9,10 @@ import io
 @attr.s
 class UpdateHelpdeskAgentReq(object):
     agent_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "agent_id"}
     )  # 客服id, 示例值："ou_14777d82ffef0f707de5a8c7ff2c5ebe"
     status: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "status"}
     )  # agent status, 示例值：1：在线；2：离线
 
 

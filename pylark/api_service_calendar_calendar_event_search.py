@@ -9,45 +9,45 @@ import io
 @attr.s
 class SearchCalendarEventReqFilterEndTime(object):
     date: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "date"}
     )  # 仅全天日程使用该字段，如2018-09-01。需满足 RFC3339 格式。不能与 timestamp 同时指定, 示例值："2018-09-01"
     timestamp: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "timestamp"}
     )  # 秒级时间戳，如1602504000(表示2020/10/12 20:0:00 +8时区), 示例值："1605024000"
     timezone: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "timezone"}
     )  # 时区名称，使用IANA Time Zone Database标准，如Asia/Shanghai；全天日程时区固定为UTC，非全天日程时区默认为Asia/Shanghai, 示例值："Asia/Shanghai"
 
 
 @attr.s
 class SearchCalendarEventReqFilterStartTime(object):
     date: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "date"}
     )  # 仅全天日程使用该字段，如2018-09-01。需满足 RFC3339 格式。不能与 timestamp 同时指定, 示例值："2018-09-01"
     timestamp: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "timestamp"}
     )  # 秒级时间戳，如1602504000(表示2020/10/12 20:0:00 +8时区), 示例值："1605024000"
     timezone: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "timezone"}
     )  # 时区名称，使用IANA Time Zone Database标准，如Asia/Shanghai；全天日程时区固定为UTC，非全天日程时区默认为Asia/Shanghai, 示例值："Asia/Shanghai"
 
 
 @attr.s
 class SearchCalendarEventReqFilter(object):
     start_time: SearchCalendarEventReqFilterStartTime = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "start_time"}
     )  # 搜索过滤项，日程搜索区间的开始时间，被搜索日程的事件必须与搜索区间有交集
     end_time: SearchCalendarEventReqFilterEndTime = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "end_time"}
     )  # 搜索过滤项，日程搜索区间的结束时间，被搜索日程的事件必须与搜索区间有交集
     user_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "user_ids"}
     )  # 搜索过滤项，参与人的用户ID列表，被搜索日程中必须包含至少一个其中的参与人, 示例值：xxxxx
     room_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "room_ids"}
     )  # 搜索过滤项，会议室ID列表，被搜索日程中必须包含至少一个其中的会议室, 示例值：xxxxx
     chat_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "chat_ids"}
     )  # 搜索过滤项，群ID列表，被搜索日程的参与人中必须包含至少一个其中的群, 示例值：xxxxx
 
 
@@ -59,42 +59,42 @@ class SearchCalendarEventReqUserIDType(object):
 @attr.s
 class SearchCalendarEventReq(object):
     user_id_type: SearchCalendarEventReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`,, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果, 示例值："xxxxx"
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 分页大小, 示例值：10, 最大值：`100`
     calendar_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "calendar_id"}
     )  # 日历ID, 示例值："feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn"
     query: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "query"}
     )  # 搜索关键字, 示例值："query words", 长度范围：`1` ～ `200` 字符
     filter: SearchCalendarEventReqFilter = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "filter"}
     )  # 搜索过滤器
 
 
 @attr.s
 class SearchCalendarEventRespItemSchema(object):
     ui_name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "ui_name"}
     )  # UI名称。取值范围如下： \,ForwardIcon: 日程转发按钮 \,MeetingChatIcon: 会议群聊按钮 \,MeetingMinutesIcon: 会议纪要按钮 \,MeetingVideo: 视频会议区域 \,RSVP: 接受/拒绝/待定区域 \,Attendee: 参与者区域 \,OrganizerOrCreator: 组织者/创建者区域
     ui_status: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "ui_status"}
     )  # UI项自定义状态。目前只支持hide, 可选值有: `hide`：隐藏显示, `readonly`：只读, `editable`：可编辑, `unknown`：未知UI项自定义状态，仅用于读取时兼容
     app_link: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "app_link"}
     )  # 按钮点击后跳转的链接, 最大长度：`2000` 字符
 
 
 @attr.s
 class SearchCalendarEventRespItemReminder(object):
     minutes: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "minutes"}
     )  # 日程提醒时间的偏移量，正数时表示在日程开始前X分钟提醒，负数时表示在日程开始后X分钟提醒,新建或更新日程时传入该字段，仅对当前身份生效, 取值范围：`-20160` ～ `20160`
 
 
@@ -111,124 +111,127 @@ class SearchCalendarEventRespItemLocationLatitude(object):
 @attr.s
 class SearchCalendarEventRespItemLocation(object):
     name: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "name"}
     )  # 地点名称, 长度范围：`1` ～ `512` 字符
     address: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "address"}
     )  # 地点地址, 长度范围：`1` ～ `255` 字符
     latitude: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "latitude"}
     )  # 地点坐标纬度信息，对于国内的地点，采用GCJ-02标准，海外地点采用WGS84标准
     longitude: float = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "longitude"}
     )  # 地点坐标经度信息，对于国内的地点，采用GCJ-02标准，海外地点采用WGS84标准
 
 
 @attr.s
 class SearchCalendarEventRespItemVchat(object):
     vc_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "vc_type"}
     )  # 视频会议类型, 可选值有: `vc`：飞书视频会议，取该类型时，其他字段无效。, `third_party`：第三方链接视频会议，取该类型时，icon_type、description、meeting_url字段生效。, `no_meeting`：无视频会议，取该类型时，其他字段无效。, `lark_live`：Lark直播，内部类型，只读。, `unknown`：未知类型，做兼容使用，只读。
     icon_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "icon_type"}
     )  # 第三方视频会议icon类型；可以为空，为空展示默认icon。, 可选值有: `vc`：飞书视频会议icon, `live`：直播视频会议icon, `default`：默认icon
     description: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "description"}
     )  # 第三方视频会议文案，可以为空，为空展示默认文案, 长度范围：`0` ～ `500` 字符
     meeting_url: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "meeting_url"}
     )  # 视频会议URL, 长度范围：`1` ～ `2000` 字符
 
 
 @attr.s
 class SearchCalendarEventRespItemEndTime(object):
     date: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "date"}
     )  # 仅全天日程使用该字段，如2018-09-01。需满足 RFC3339 格式。不能与 timestamp 同时指定
     timestamp: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "timestamp"}
     )  # 秒级时间戳，如1602504000(表示2020/10/12 20:0:00 +8时区)
     timezone: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "timezone"}
     )  # 时区名称，使用IANA Time Zone Database标准，如Asia/Shanghai；全天日程时区固定为UTC，非全天日程时区默认为Asia/Shanghai
 
 
 @attr.s
 class SearchCalendarEventRespItemStartTime(object):
     date: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "date"}
     )  # 仅全天日程使用该字段，如2018-09-01。需满足 RFC3339 格式。不能与 timestamp 同时指定
     timestamp: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "timestamp"}
     )  # 秒级时间戳，如1602504000(表示2020/10/12 20:0:00 +8时区)
     timezone: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "timezone"}
     )  # 时区名称，使用IANA Time Zone Database标准，如Asia/Shanghai；全天日程时区固定为UTC，非全天日程时区默认为Asia/Shanghai
 
 
 @attr.s
 class SearchCalendarEventRespItem(object):
-    event_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 日程ID
+    event_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "event_id"}
+    )  # 日程ID
     summary: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "summary"}
     )  # 日程标题, 最大长度：`1000` 字符
     description: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "description"}
     )  # 日程描述, 最大长度：`8192` 字符
     need_notification: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(),
+        metadata={"req_type": "json", "key": "need_notification"},
     )  # 更新日程是否给日程参与人发送bot通知，默认为true
     start_time: SearchCalendarEventRespItemStartTime = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "start_time"}
     )  # 日程开始时间
     end_time: SearchCalendarEventRespItemEndTime = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "end_time"}
     )  # 日程结束时间
     vchat: SearchCalendarEventRespItemVchat = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "vchat"}
     )  # 视频会议信息。
     visibility: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "visibility"}
     )  # 日程公开范围，新建日程默认为Default；仅新建日程时对所有参与人生效，之后修改该属性仅对当前身份生效, 可选值有: `default`：默认权限，跟随日历权限，默认仅向他人显示是否“忙碌”, `public`：公开，显示日程详情, `private`：私密，仅自己可见详情
     attendee_ability: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "attendee_ability"}
     )  # 参与人权限, 可选值有: `none`：无法编辑日程、无法邀请其它参与人、无法查看参与人列表, `can_see_others`：无法编辑日程、无法邀请其它参与人、可以查看参与人列表, `can_invite_others`：无法编辑日程、可以邀请其它参与人、可以查看参与人列表, `can_modify_event`：可以编辑日程、可以邀请其它参与人、可以查看参与人列表
     free_busy_status: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "free_busy_status"}
     )  # 日程占用的忙闲状态，新建日程默认为Busy；仅新建日程时对所有参与人生效，之后修改该属性仅对当前身份生效, 可选值有: `busy`：忙碌, `free`：空闲
     location: SearchCalendarEventRespItemLocation = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "location"}
     )  # 日程地点
     color: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "color"}
     )  # 日程颜色，颜色RGB值的int32表示。仅对当前身份生效；客户端展示时会映射到色板上最接近的一种颜色；值为0或-1时默认跟随日历颜色。
     reminders: typing.List[SearchCalendarEventRespItemReminder] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "reminders"}
     )  # 日程提醒列表
     recurrence: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "recurrence"}
     )  # 重复日程的重复性规则；参考[rfc5545](https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10)；, 不支持COUNT和UNTIL同时出现；, 预定会议室重复日程长度不得超过两年。, 最大长度：`2000` 字符
     status: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "status"}
     )  # 日程状态, 可选值有: `tentative`：未回应, `confirmed`：已确认, `cancelled`：日程已取消
     is_exception: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_exception"}
     )  # 日程是否是一个重复日程的例外日程
     recurring_event_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "recurring_event_id"}
     )  # 例外日程的原重复日程的event_id
     schemas: typing.List[SearchCalendarEventRespItemSchema] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "schemas"}
     )  # 日程自定义信息
 
 
 @attr.s
 class SearchCalendarEventResp(object):
     items: typing.List[SearchCalendarEventRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 搜索命中的日程列表
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
 
 

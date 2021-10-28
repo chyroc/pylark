@@ -9,7 +9,7 @@ import io
 @attr.s
 class CompleteTaskReq(object):
     task_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "task_id"}
     )  # 任务 ID, 示例值："bb54ab99-d360-434f-bcaa-a4cc4c05840e"
 
 

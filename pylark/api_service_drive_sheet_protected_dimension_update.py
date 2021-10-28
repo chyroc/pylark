@@ -9,77 +9,93 @@ import io
 @attr.s
 class UpdateSheetProtectedDimensionReqRequestsEditorsDelEditors(object):
     member_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "memberType"}
     )  # 用户类型，支持userId,openId,unionId
-    member_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户类型对应的用户ID
+    member_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "memberId"}
+    )  # 用户类型对应的用户ID
 
 
 @attr.s
 class UpdateSheetProtectedDimensionReqRequestsEditorsAddEditors(object):
     member_type: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "memberType"}
     )  # 用户类型，支持userId,openId,unionId
-    member_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户类型对应的用户ID
+    member_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "memberId"}
+    )  # 用户类型对应的用户ID
 
 
 @attr.s
 class UpdateSheetProtectedDimensionReqRequestsEditors(object):
     add_editors: UpdateSheetProtectedDimensionReqRequestsEditorsAddEditors = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "addEditors"}
     )  # 需要增加的用户的列表，用户需要有文档的编辑权限
     del_editors: UpdateSheetProtectedDimensionReqRequestsEditorsDelEditors = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "delEditors"}
     )  # 需要删除的用户的列表
 
 
 @attr.s
 class UpdateSheetProtectedDimensionReqRequestsDimension(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # sheetId
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # sheetId
     start_index: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "startIndex"}
     )  # 保护行列起始下标，下标从1开始
     end_index: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "endIndex"}
     )  # 保护行列终止下标，下标从1开始
     major_dimension: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "majorDimension"}
     )  # 保护范围ID对应的保护范围的维度，COLUMNS为保护列，ROWS为保护行
 
 
 @attr.s
 class UpdateSheetProtectedDimensionReqRequests(object):
     protect_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "protectId"}
     )  # 保护范围ID，可以通过[获取表格元数据](https://open.feishu.cn/document/ukTMukTMukTM/uETMzUjLxEzM14SMxMTN) 接口获取
     dimension: UpdateSheetProtectedDimensionReqRequestsDimension = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "dimension"}
     )  # 行列保护信息
     editors: UpdateSheetProtectedDimensionReqRequestsEditors = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "editors"}
     )  # 可编辑保护范围的用户
-    lock_info: str = attr.ib(default="", metadata={"req_type": "json"})  # 保护说明
+    lock_info: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "lockInfo"}
+    )  # 保护说明
 
 
 @attr.s
 class UpdateSheetProtectedDimensionReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # sheet 的 token，获取方式见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     requests: UpdateSheetProtectedDimensionReqRequests = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "requests"}
     )  # 请求
 
 
 @attr.s
 class UpdateSheetProtectedDimensionRespReplyEditorsDelEditor(object):
-    member_type: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户类型
-    member_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户类型对应的用户ID
+    member_type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "memberType"}
+    )  # 用户类型
+    member_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "memberId"}
+    )  # 用户类型对应的用户ID
 
 
 @attr.s
 class UpdateSheetProtectedDimensionRespReplyEditorsAddEditor(object):
-    member_type: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户类型
-    member_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户类型对应的用户ID
+    member_type: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "memberType"}
+    )  # 用户类型
+    member_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "memberId"}
+    )  # 用户类型对应的用户ID
 
 
 @attr.s
@@ -87,43 +103,51 @@ class UpdateSheetProtectedDimensionRespReplyEditors(object):
     add_editors: typing.List[
         UpdateSheetProtectedDimensionRespReplyEditorsAddEditor
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "addEditors"}
     )  # 成功增加的用户的列表
     del_editors: typing.List[
         UpdateSheetProtectedDimensionRespReplyEditorsDelEditor
     ] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "delEditors"}
     )  # 成功删除的用户的列表
 
 
 @attr.s
 class UpdateSheetProtectedDimensionRespReplyDimension(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # sheetId
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # sheetId
     start_index: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "startIndex"}
     )  # 保护行列起始下标，下标从1开始
     end_index: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "endIndex"}
     )  # 保护行列终止下标，下标从1开始
-    major_dimension: str = attr.ib(default="", metadata={"req_type": "json"})  # 保护范围的维度
+    major_dimension: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "majorDimension"}
+    )  # 保护范围的维度
 
 
 @attr.s
 class UpdateSheetProtectedDimensionRespReply(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # sheet的id
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # sheet的id
     dimension: UpdateSheetProtectedDimensionRespReplyDimension = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "dimension"}
     )  # 成功修改的保护行列信息
     editors: UpdateSheetProtectedDimensionRespReplyEditors = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "editors"}
     )  # 可编辑保护范围的用户
-    lock_info: str = attr.ib(default="", metadata={"req_type": "json"})  # 成功修改的保护说明
+    lock_info: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "lockInfo"}
+    )  # 成功修改的保护说明
 
 
 @attr.s
 class UpdateSheetProtectedDimensionResp(object):
     replies: typing.List[UpdateSheetProtectedDimensionRespReply] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "replies"}
     )  # 响应
 
 

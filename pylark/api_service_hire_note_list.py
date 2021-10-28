@@ -14,43 +14,55 @@ class GetHireNoteListReqUserIDType(object):
 @attr.s
 class GetHireNoteListReq(object):
     page_size: int = attr.ib(
-        default=0, metadata={"req_type": "query"}
+        default=0, metadata={"req_type": "query", "key": "page_size"}
     )  # 每页限制, 每页最大不超过100, 示例值：10
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "page_token"}
     )  # 查询游标, 由上一页结果返回, 第一页不传, 示例值："1"
     talent_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "talent_id"}
     )  # 人才ID, 示例值："6916472453069883661"
     user_id_type: GetHireNoteListReqUserIDType = attr.ib(
-        default=None, metadata={"req_type": "query"}
+        default=None, metadata={"req_type": "query", "key": "user_id_type"}
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
 
 
 @attr.s
 class GetHireNoteListRespItem(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID备注
-    talent_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 人才ID
-    application_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 投递ID
+    id: str = attr.ib(default="", metadata={"req_type": "json", "key": "id"})  # ID备注
+    talent_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "talent_id"}
+    )  # 人才ID
+    application_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "application_id"}
+    )  # 投递ID
     is_private: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "is_private"}
     )  # 是否私密
-    create_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 创建时间
-    modify_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 更新时间
-    creator_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 创建人ID
-    content: str = attr.ib(default="", metadata={"req_type": "json"})  # 内容
+    create_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "create_time"}
+    )  # 创建时间
+    modify_time: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "modify_time"}
+    )  # 更新时间
+    creator_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "creator_id"}
+    )  # 创建人ID
+    content: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "content"}
+    )  # 内容
 
 
 @attr.s
 class GetHireNoteListResp(object):
     items: typing.List[GetHireNoteListRespItem] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "items"}
     )  # 备注数据列表
     has_more: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "has_more"}
     )  # 是否还有下一页数据
     page_token: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "page_token"}
     )  # 游标, 翻下一页数据时使用
 
 

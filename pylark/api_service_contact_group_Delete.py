@@ -9,7 +9,7 @@ import io
 @attr.s
 class DeleteContactGroupReq(object):
     group_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "group_id"}
     )  # 需删除的用户组ID, 示例值："g1837191"
 
 

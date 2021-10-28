@@ -9,7 +9,7 @@ import io
 @attr.s
 class DeleteSearchDataSourceReq(object):
     data_source_id: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "data_source_id"}
     )  # 数据源的唯一标识, 示例值："6953903108179099667"
 
 

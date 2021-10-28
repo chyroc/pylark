@@ -8,194 +8,238 @@ import io
 
 @attr.s
 class BatchUpdateSheetReqRequestDeleteSheet(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # sheetId
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # sheetId
 
 
 @attr.s
 class BatchUpdateSheetReqRequestCopySheetDestination(object):
     title: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "title"}
     )  # 目标工作表名称。不填为 old_title(副本_0)
 
 
 @attr.s
 class BatchUpdateSheetReqRequestCopySheetSource(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 源 sheetId
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # 源 sheetId
 
 
 @attr.s
 class BatchUpdateSheetReqRequestCopySheet(object):
     source: BatchUpdateSheetReqRequestCopySheetSource = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "source"}
     )  # 需要复制的工作表资源
     destination: BatchUpdateSheetReqRequestCopySheetDestination = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "destination"}
     )  # 工作表 的属性
 
 
 @attr.s
 class BatchUpdateSheetReqRequestAddSheetProperties(object):
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 工作表标题
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 工作表标题
     index: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "index"}
     )  # 新增工作表的位置，不填默认往前增加工作表
 
 
 @attr.s
 class BatchUpdateSheetReqRequestAddSheet(object):
     properties: BatchUpdateSheetReqRequestAddSheetProperties = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "properties"}
     )  # 工作表属性
 
 
 @attr.s
 class BatchUpdateSheetReqRequestUpdateSheetPropertiesProtect(object):
-    lock: str = attr.ib(default="", metadata={"req_type": "json"})  # LOCK 、UNLOCK 上锁/解锁
-    lock_info: str = attr.ib(default="", metadata={"req_type": "json"})  # 锁定信息
+    lock: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "lock"}
+    )  # LOCK 、UNLOCK 上锁/解锁
+    lock_info: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "lockInfo"}
+    )  # 锁定信息
     user_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "userIDs"}
     )  # 除了本人与所有者外，添加其他的可编辑人员,user_id_type不为空时使用该字段
 
 
 @attr.s
 class BatchUpdateSheetReqRequestUpdateSheetProperties(object):
     sheet_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+        default="", metadata={"req_type": "json", "key": "sheetId"}
     )  # read-only ,作为表格唯一识别参数
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 更改工作表标题
-    index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 移动工作表的位置
-    hidden: bool = attr.ib(default=None, metadata={"req_type": "json"})  # 隐藏表格，默认 false
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 更改工作表标题
+    index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "index"}
+    )  # 移动工作表的位置
+    hidden: bool = attr.ib(
+        default=None, metadata={"req_type": "json", "key": "hidden"}
+    )  # 隐藏表格，默认 false
     frozen_row_count: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "frozenRowCount"}
     )  # 冻结行数，小于等于工作表的最大行数，0表示取消冻结行
     frozen_col_count: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "frozenColCount"}
     )  # 该 sheet 的冻结列数，小于等于工作表的最大列数，0表示取消冻结列
     protect: BatchUpdateSheetReqRequestUpdateSheetPropertiesProtect = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "protect"}
     )  # 锁定表格
 
 
 @attr.s
 class BatchUpdateSheetReqRequestUpdateSheet(object):
     properties: BatchUpdateSheetReqRequestUpdateSheetProperties = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "properties"}
     )  # 工作表属性
 
 
 @attr.s
 class BatchUpdateSheetReqRequest(object):
     update_sheet: BatchUpdateSheetReqRequestUpdateSheet = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "updateSheet"}
     )
     add_sheet: BatchUpdateSheetReqRequestAddSheet = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "addSheet"}
     )  # 增加工作表
     copy_sheet: BatchUpdateSheetReqRequestCopySheet = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "copySheet"}
     )  # 复制工作表
     delete_sheet: BatchUpdateSheetReqRequestDeleteSheet = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "deleteSheet"}
     )  # 删除 sheet
 
 
 @attr.s
 class BatchUpdateSheetReq(object):
     spreadsheet_token: str = attr.ib(
-        default="", metadata={"req_type": "path"}
+        default="", metadata={"req_type": "path", "key": "spreadsheetToken"}
     )  # spreadsheet 的 token，获取方式见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
     requests: typing.List[BatchUpdateSheetReqRequest] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "requests"}
     )  # 请求操作，支持增、删、复制工作表 ，三个操作选一个
 
 
 @attr.s
 class BatchUpdateSheetRespReplyDeleteSheet(object):
     result: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "result"}
     )  # 删除工作表是否成功
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # sheetId
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # sheetId
 
 
 @attr.s
 class BatchUpdateSheetRespReplyUpdateSheetPropertiesProtect(object):
-    lock: str = attr.ib(default="", metadata={"req_type": "json"})  # LOCK 、UNLOCK 上锁/解锁
-    lock_info: str = attr.ib(default="", metadata={"req_type": "json"})  # 锁定信息
+    lock: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "lock"}
+    )  # LOCK 、UNLOCK 上锁/解锁
+    lock_info: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "lockInfo"}
+    )  # 锁定信息
     user_ids: typing.List[str] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "userIDs"}
     )  # 除了本人与所有者外，添加其他的可编辑人员,user_id_type不为空时使用该字段
 
 
 @attr.s
 class BatchUpdateSheetRespReplyUpdateSheetProperties(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 表格的 sheetId
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 更新的工作表标题
-    index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 移动工作表的位置
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # 表格的 sheetId
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 更新的工作表标题
+    index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "index"}
+    )  # 移动工作表的位置
     hidden: bool = attr.ib(
-        factory=lambda: bool(), metadata={"req_type": "json"}
+        factory=lambda: bool(), metadata={"req_type": "json", "key": "hidden"}
     )  # 是否隐藏表格
-    frozen_row_count: int = attr.ib(default=0, metadata={"req_type": "json"})  # 冻结行数
-    frozen_col_count: int = attr.ib(default=0, metadata={"req_type": "json"})  # 冻结列数
+    frozen_row_count: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "frozenRowCount"}
+    )  # 冻结行数
+    frozen_col_count: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "frozenColCount"}
+    )  # 冻结列数
     protect: BatchUpdateSheetRespReplyUpdateSheetPropertiesProtect = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "protect"}
     )  # 保护工作表
 
 
 @attr.s
 class BatchUpdateSheetRespReplyUpdateSheet(object):
     properties: BatchUpdateSheetRespReplyUpdateSheetProperties = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "properties"}
     )  # 工作表属性
 
 
 @attr.s
 class BatchUpdateSheetRespReplyCopySheetProperties(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # sheetId
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 工作表标题
-    index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 工作表位置
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # sheetId
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 工作表标题
+    index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "index"}
+    )  # 工作表位置
 
 
 @attr.s
 class BatchUpdateSheetRespReplyCopySheet(object):
     properties: BatchUpdateSheetRespReplyCopySheetProperties = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "properties"}
     )  # 表格属性
 
 
 @attr.s
 class BatchUpdateSheetRespReplyAddSheetProperties(object):
-    sheet_id: str = attr.ib(default="", metadata={"req_type": "json"})  # sheetId
-    title: str = attr.ib(default="", metadata={"req_type": "json"})  # 工作表标题
-    index: int = attr.ib(default=0, metadata={"req_type": "json"})  # 工作表位置
+    sheet_id: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "sheetId"}
+    )  # sheetId
+    title: str = attr.ib(
+        default="", metadata={"req_type": "json", "key": "title"}
+    )  # 工作表标题
+    index: int = attr.ib(
+        default=0, metadata={"req_type": "json", "key": "index"}
+    )  # 工作表位置
 
 
 @attr.s
 class BatchUpdateSheetRespReplyAddSheet(object):
     properties: BatchUpdateSheetRespReplyAddSheetProperties = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "properties"}
     )  # 表格属性
 
 
 @attr.s
 class BatchUpdateSheetRespReply(object):
     add_sheet: BatchUpdateSheetRespReplyAddSheet = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "addSheet"}
     )  # 增加/复制工作表的属性
     copy_sheet: BatchUpdateSheetRespReplyCopySheet = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "copySheet"}
     )  # 增加/复制工作表的属性
     update_sheet: BatchUpdateSheetRespReplyUpdateSheet = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "updateSheet"}
     )
     delete_sheet: BatchUpdateSheetRespReplyDeleteSheet = attr.ib(
-        default=None, metadata={"req_type": "json"}
+        default=None, metadata={"req_type": "json", "key": "deleteSheet"}
     )  # 删除工作表
 
 
 @attr.s
 class BatchUpdateSheetResp(object):
     replies: typing.List[BatchUpdateSheetRespReply] = attr.ib(
-        factory=lambda: [], metadata={"req_type": "json"}
+        factory=lambda: [], metadata={"req_type": "json", "key": "replies"}
     )  # 返回本次相关操作工作表的结果
 
 

@@ -9,23 +9,23 @@ import io
 @attr.s
 class GetFaceVerifyAuthResultReq(object):
     req_order_no: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "req_order_no"}
     )  # 人脸识别单次唯一标识，由`tt.startFaceVerify`接口返回
     open_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "open_id"}
     )  # 用户应用标识, 与employee_id二选其一
     employee_id: str = attr.ib(
-        default="", metadata={"req_type": "query"}
+        default="", metadata={"req_type": "query", "key": "employee_id"}
     )  # 用户租户标识, 与open_id二选其一
 
 
 @attr.s
 class GetFaceVerifyAuthResultResp(object):
     auth_state: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "auth_state"}
     )  # 认证结果, 0: 认证中, 1: 认证成功, -1: 认证失败
     auth_timpstamp: int = attr.ib(
-        default=0, metadata={"req_type": "json"}
+        default=0, metadata={"req_type": "json", "key": "auth_timpstamp"}
     )  # 认证时间，unix 时间戳
 
 
