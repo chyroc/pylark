@@ -153,6 +153,46 @@ from pylark.api_service_contact_custom_attr_list import (
     GetContactCustomAttrListResp,
     _gen_get_contact_custom_attr_list_req,
 )
+from pylark.api_service_contact_unit_create import (
+    CreateContactUnitReq,
+    CreateContactUnitResp,
+    _gen_create_contact_unit_req,
+)
+from pylark.api_service_contact_unit_update import (
+    UpdateContactUnitReq,
+    UpdateContactUnitResp,
+    _gen_update_contact_unit_req,
+)
+from pylark.api_service_contact_unit_delete import (
+    DeleteContactUnitReq,
+    DeleteContactUnitResp,
+    _gen_delete_contact_unit_req,
+)
+from pylark.api_service_contact_unit_get import (
+    GetContactUnitReq,
+    GetContactUnitResp,
+    _gen_get_contact_unit_req,
+)
+from pylark.api_service_contact_unit_list import (
+    GetContactUnitListReq,
+    GetContactUnitListResp,
+    _gen_get_contact_unit_list_req,
+)
+from pylark.api_service_contact_unit_bind_department import (
+    BindContactUnitDepartmentReq,
+    BindContactUnitDepartmentResp,
+    _gen_bind_contact_unit_department_req,
+)
+from pylark.api_service_contact_unit_unbind_department import (
+    UnbindContactUnitDepartmentReq,
+    UnbindContactUnitDepartmentResp,
+    _gen_unbind_contact_unit_department_req,
+)
+from pylark.api_service_contact_unit_list_department import (
+    GetContactUnitDepartmentListReq,
+    GetContactUnitDepartmentListResp,
+    _gen_get_contact_unit_department_list_req,
+)
 
 
 if typing.TYPE_CHECKING:
@@ -325,4 +365,50 @@ class LarkContactService(object):
     ) -> typing.Tuple[GetContactCustomAttrListResp, Response]:
         return self.cli.raw_request(
             _gen_get_contact_custom_attr_list_req(request, options)
+        )
+
+    def create_contact_unit(
+        self, request: CreateContactUnitReq, options: typing.List[str] = None
+    ) -> typing.Tuple[CreateContactUnitResp, Response]:
+        return self.cli.raw_request(_gen_create_contact_unit_req(request, options))
+
+    def update_contact_unit(
+        self, request: UpdateContactUnitReq, options: typing.List[str] = None
+    ) -> typing.Tuple[UpdateContactUnitResp, Response]:
+        return self.cli.raw_request(_gen_update_contact_unit_req(request, options))
+
+    def delete_contact_unit(
+        self, request: DeleteContactUnitReq, options: typing.List[str] = None
+    ) -> typing.Tuple[DeleteContactUnitResp, Response]:
+        return self.cli.raw_request(_gen_delete_contact_unit_req(request, options))
+
+    def get_contact_unit(
+        self, request: GetContactUnitReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetContactUnitResp, Response]:
+        return self.cli.raw_request(_gen_get_contact_unit_req(request, options))
+
+    def get_contact_unit_list(
+        self, request: GetContactUnitListReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetContactUnitListResp, Response]:
+        return self.cli.raw_request(_gen_get_contact_unit_list_req(request, options))
+
+    def bind_contact_unit_department(
+        self, request: BindContactUnitDepartmentReq, options: typing.List[str] = None
+    ) -> typing.Tuple[BindContactUnitDepartmentResp, Response]:
+        return self.cli.raw_request(
+            _gen_bind_contact_unit_department_req(request, options)
+        )
+
+    def unbind_contact_unit_department(
+        self, request: UnbindContactUnitDepartmentReq, options: typing.List[str] = None
+    ) -> typing.Tuple[UnbindContactUnitDepartmentResp, Response]:
+        return self.cli.raw_request(
+            _gen_unbind_contact_unit_department_req(request, options)
+        )
+
+    def get_contact_unit_department_list(
+        self, request: GetContactUnitDepartmentListReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetContactUnitDepartmentListResp, Response]:
+        return self.cli.raw_request(
+            _gen_get_contact_unit_department_list_req(request, options)
         )

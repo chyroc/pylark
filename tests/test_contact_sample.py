@@ -206,6 +206,60 @@ class TestContactSampleMockGetTokenFailed(unittest.TestCase):
 
         assert "msg=failed" in f"{e}"
 
+    def test_mock_get_token_create_contact_unit(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_contact_unit(pylark.CreateContactUnitReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_update_contact_unit(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_contact_unit(pylark.UpdateContactUnitReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_delete_contact_unit(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_contact_unit(pylark.DeleteContactUnitReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_get_contact_unit(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_unit(pylark.GetContactUnitReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_get_contact_unit_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_unit_list(pylark.GetContactUnitListReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_bind_contact_unit_department(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.bind_contact_unit_department(
+                pylark.BindContactUnitDepartmentReq()
+            )
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_unbind_contact_unit_department(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.unbind_contact_unit_department(
+                pylark.UnbindContactUnitDepartmentReq()
+            )
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_get_contact_unit_department_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_unit_department_list(
+                pylark.GetContactUnitDepartmentListReq()
+            )
+
+        assert "msg=failed" in f"{e}"
+
 
 # mock mock self func
 class TestContactSampleMockSelfFuncFailed(unittest.TestCase):
@@ -505,6 +559,92 @@ class TestContactSampleMockSelfFuncFailed(unittest.TestCase):
 
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.get_contact_custom_attr_list = origin_func
+
+    def test_mock_self_func_create_contact_unit(self):
+        origin_func = self.module_cli.create_contact_unit
+        self.module_cli.create_contact_unit = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_contact_unit(pylark.CreateContactUnitReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.create_contact_unit = origin_func
+
+    def test_mock_self_func_update_contact_unit(self):
+        origin_func = self.module_cli.update_contact_unit
+        self.module_cli.update_contact_unit = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_contact_unit(pylark.UpdateContactUnitReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.update_contact_unit = origin_func
+
+    def test_mock_self_func_delete_contact_unit(self):
+        origin_func = self.module_cli.delete_contact_unit
+        self.module_cli.delete_contact_unit = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_contact_unit(pylark.DeleteContactUnitReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.delete_contact_unit = origin_func
+
+    def test_mock_self_func_get_contact_unit(self):
+        origin_func = self.module_cli.get_contact_unit
+        self.module_cli.get_contact_unit = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_unit(pylark.GetContactUnitReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_contact_unit = origin_func
+
+    def test_mock_self_func_get_contact_unit_list(self):
+        origin_func = self.module_cli.get_contact_unit_list
+        self.module_cli.get_contact_unit_list = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_unit_list(pylark.GetContactUnitListReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_contact_unit_list = origin_func
+
+    def test_mock_self_func_bind_contact_unit_department(self):
+        origin_func = self.module_cli.bind_contact_unit_department
+        self.module_cli.bind_contact_unit_department = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.bind_contact_unit_department(
+                pylark.BindContactUnitDepartmentReq()
+            )
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.bind_contact_unit_department = origin_func
+
+    def test_mock_self_func_unbind_contact_unit_department(self):
+        origin_func = self.module_cli.unbind_contact_unit_department
+        self.module_cli.unbind_contact_unit_department = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.unbind_contact_unit_department(
+                pylark.UnbindContactUnitDepartmentReq()
+            )
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.unbind_contact_unit_department = origin_func
+
+    def test_mock_self_func_get_contact_unit_department_list(self):
+        origin_func = self.module_cli.get_contact_unit_department_list
+        self.module_cli.get_contact_unit_department_list = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_unit_department_list(
+                pylark.GetContactUnitDepartmentListReq()
+            )
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_contact_unit_department_list = origin_func
 
 
 # mock raw request
@@ -809,6 +949,88 @@ class TestContactSampleMockRawRequestFailed(unittest.TestCase):
         assert e.value.code > 0
         assert "mock-raw-request-failed" in e.value.msg
 
+    def test_mock_raw_request_create_contact_unit(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_contact_unit(pylark.CreateContactUnitReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_update_contact_unit(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_contact_unit(
+                pylark.UpdateContactUnitReq(
+                    unit_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_delete_contact_unit(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_contact_unit(
+                pylark.DeleteContactUnitReq(
+                    unit_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_get_contact_unit(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_unit(
+                pylark.GetContactUnitReq(
+                    unit_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_get_contact_unit_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_unit_list(pylark.GetContactUnitListReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_bind_contact_unit_department(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.bind_contact_unit_department(
+                pylark.BindContactUnitDepartmentReq()
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_unbind_contact_unit_department(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.unbind_contact_unit_department(
+                pylark.UnbindContactUnitDepartmentReq()
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_get_contact_unit_department_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_unit_department_list(
+                pylark.GetContactUnitDepartmentListReq()
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
 
 # real request
 class TestContactSampleRealRequestFailed(unittest.TestCase):
@@ -1078,6 +1300,80 @@ class TestContactSampleRealRequestFailed(unittest.TestCase):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.get_contact_custom_attr_list(
                 pylark.GetContactCustomAttrListReq()
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_create_contact_unit(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_contact_unit(pylark.CreateContactUnitReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_update_contact_unit(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_contact_unit(
+                pylark.UpdateContactUnitReq(
+                    unit_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_delete_contact_unit(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_contact_unit(
+                pylark.DeleteContactUnitReq(
+                    unit_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_contact_unit(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_unit(
+                pylark.GetContactUnitReq(
+                    unit_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_contact_unit_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_unit_list(pylark.GetContactUnitListReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_bind_contact_unit_department(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.bind_contact_unit_department(
+                pylark.BindContactUnitDepartmentReq()
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_unbind_contact_unit_department(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.unbind_contact_unit_department(
+                pylark.UnbindContactUnitDepartmentReq()
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_contact_unit_department_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_contact_unit_department_list(
+                pylark.GetContactUnitDepartmentListReq()
             )
 
         assert e.type is pylark.PyLarkError

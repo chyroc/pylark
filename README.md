@@ -37,7 +37,7 @@ http://lark-sdk.github.io/
 
 ## Support APIs
 
-API Count: 486, Event Count: 76
+API Count: 494, Event Count: 76
 
 <details>
   <summary>
@@ -80,6 +80,14 @@ API Count: 486, Event Count: 76
   - DeleteEmployeeTypeEnum
   - CreateEmployeeTypeEnum
   - GetContactCustomAttrList
+  - CreateContactUnit
+  - UpdateContactUnit
+  - DeleteContactUnit
+  - GetContactUnit
+  - GetContactUnitList
+  - BindContactUnitDepartment
+  - UnbindContactUnitDepartment
+  - GetContactUnitDepartmentList
 - Message
   - SendEphemeralMessage
   - SendUrgentAppMessage

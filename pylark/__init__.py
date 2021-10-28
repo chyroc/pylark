@@ -1223,6 +1223,44 @@ from pylark.api_service_contact_group_update import (
     UpdateContactGroupReq,
     UpdateContactGroupResp,
 )
+from pylark.api_service_contact_unit_bind_department import (
+    BindContactUnitDepartmentReqDepartmentIDType,
+    BindContactUnitDepartmentReq,
+    BindContactUnitDepartmentResp,
+)
+from pylark.api_service_contact_unit_create import (
+    CreateContactUnitReq,
+    CreateContactUnitResp,
+)
+from pylark.api_service_contact_unit_delete import (
+    DeleteContactUnitReq,
+    DeleteContactUnitResp,
+)
+from pylark.api_service_contact_unit_get import (
+    GetContactUnitReq,
+    GetContactUnitRespUnit,
+    GetContactUnitResp,
+)
+from pylark.api_service_contact_unit_list import (
+    GetContactUnitListReq,
+    GetContactUnitListRespUnit,
+    GetContactUnitListResp,
+)
+from pylark.api_service_contact_unit_list_department import (
+    GetContactUnitDepartmentListReqDepartmentIDType,
+    GetContactUnitDepartmentListReq,
+    GetContactUnitDepartmentListRespDepartment,
+    GetContactUnitDepartmentListResp,
+)
+from pylark.api_service_contact_unit_unbind_department import (
+    UnbindContactUnitDepartmentReqDepartmentIDType,
+    UnbindContactUnitDepartmentReq,
+    UnbindContactUnitDepartmentResp,
+)
+from pylark.api_service_contact_unit_update import (
+    UpdateContactUnitReq,
+    UpdateContactUnitResp,
+)
 from pylark.api_service_contact_user_create import (
     CreateUserReqNotificationOption,
     CreateUserReqCustomAttrValueGenericUser,
@@ -3168,12 +3206,34 @@ from pylark.api_service_vc_room_config_set import (
 from pylark.lark import Lark
 from pylark.lark_exception import PyLarkError
 from pylark.lark_request import Response, MethodOption, RawRequestReq, Request
-from pylark.lark_type_enum import DepartmentIDType
+from pylark.lark_type_enum import (
+    MsgType,
+    ContainerIDType,
+    IDType,
+    DepartmentIDType,
+    MailUserType,
+    EmployeeType,
+    ChatType,
+    ImageType,
+    FileType,
+    CalendarRole,
+    CalendarEventAttendeeType,
+    CalendarType,
+    CalendarPermission,
+    AddMemberPermission,
+    MessageVisibility,
+    MembershipApproval,
+    ModerationPermission,
+    ShareCardPermission,
+    AtAllPermission,
+    EditPermission,
+)
 from pylark.lark_type_message_post import (
     MessageContentPostItem,
     MessageContentPost,
     MessageContentPostAll,
 )
+from pylark.lark_type_sheet import SheetContent, SheetRuleAttr
 from pylark._internal_log import logger
 
 
@@ -4086,6 +4146,28 @@ __all__ = [
     GetContactGroupMemberResp,
     UpdateContactGroupReq,
     UpdateContactGroupResp,
+    BindContactUnitDepartmentReqDepartmentIDType,
+    BindContactUnitDepartmentReq,
+    BindContactUnitDepartmentResp,
+    CreateContactUnitReq,
+    CreateContactUnitResp,
+    DeleteContactUnitReq,
+    DeleteContactUnitResp,
+    GetContactUnitReq,
+    GetContactUnitRespUnit,
+    GetContactUnitResp,
+    GetContactUnitListReq,
+    GetContactUnitListRespUnit,
+    GetContactUnitListResp,
+    GetContactUnitDepartmentListReqDepartmentIDType,
+    GetContactUnitDepartmentListReq,
+    GetContactUnitDepartmentListRespDepartment,
+    GetContactUnitDepartmentListResp,
+    UnbindContactUnitDepartmentReqDepartmentIDType,
+    UnbindContactUnitDepartmentReq,
+    UnbindContactUnitDepartmentResp,
+    UpdateContactUnitReq,
+    UpdateContactUnitResp,
     CreateUserReqNotificationOption,
     CreateUserReqCustomAttrValueGenericUser,
     CreateUserReqCustomAttrValue,
@@ -5466,9 +5548,30 @@ __all__ = [
     MethodOption,
     RawRequestReq,
     Request,
+    MsgType,
+    ContainerIDType,
+    IDType,
     DepartmentIDType,
+    MailUserType,
+    EmployeeType,
+    ChatType,
+    ImageType,
+    FileType,
+    CalendarRole,
+    CalendarEventAttendeeType,
+    CalendarType,
+    CalendarPermission,
+    AddMemberPermission,
+    MessageVisibility,
+    MembershipApproval,
+    ModerationPermission,
+    ShareCardPermission,
+    AtAllPermission,
+    EditPermission,
     MessageContentPostItem,
     MessageContentPost,
     MessageContentPostAll,
+    SheetContent,
+    SheetRuleAttr,
     logger,
 ]
