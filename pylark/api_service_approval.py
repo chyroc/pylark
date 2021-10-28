@@ -84,8 +84,8 @@ from pylark.api_service_approval_instance_preview import (
     _gen_preview_approval_instance_req,
 )
 from pylark.api_service_approval_message_update import (
-    updateApprovalMessageReq,
-    updateApprovalMessageResp,
+    UpdateApprovalMessageReq,
+    UpdateApprovalMessageResp,
     _gen_update_approval_message_req,
 )
 
@@ -197,6 +197,6 @@ class LarkApprovalService(object):
         )
 
     def update_approval_message(
-        self, request: updateApprovalMessageReq, options: typing.List[str] = None
-    ) -> typing.Tuple[updateApprovalMessageResp, Response]:
+        self, request: UpdateApprovalMessageReq, options: typing.List[str] = None
+    ) -> typing.Tuple[UpdateApprovalMessageResp, Response]:
         return self.cli.raw_request(_gen_update_approval_message_req(request, options))
