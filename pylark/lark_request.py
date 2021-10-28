@@ -32,7 +32,9 @@ class MethodOption(object):
 
 
 def _new_method_option(options=None) -> MethodOption:
-    return MethodOption(options)
+    if options:
+        return MethodOption(options)
+    return MethodOption()
 
 
 @attr.s
