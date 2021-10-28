@@ -152,6 +152,12 @@ class TestMailSampleMockGetTokenFailed(unittest.TestCase):
 
         assert "msg=failed" in f"{e}"
 
+    def test_mock_get_token_delete_public_mailbox(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_public_mailbox(pylark.DeletePublicMailboxReq())
+
+        assert "msg=failed" in f"{e}"
+
     def test_mock_get_token_create_public_mailbox_member(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.create_public_mailbox_member(
@@ -401,6 +407,16 @@ class TestMailSampleMockSelfFuncFailed(unittest.TestCase):
 
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.update_public_mailbox = origin_func
+
+    def test_mock_self_func_delete_public_mailbox(self):
+        origin_func = self.module_cli.delete_public_mailbox
+        self.module_cli.delete_public_mailbox = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_public_mailbox(pylark.DeletePublicMailboxReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.delete_public_mailbox = origin_func
 
     def test_mock_self_func_create_public_mailbox_member(self):
         origin_func = self.module_cli.create_public_mailbox_member
@@ -687,6 +703,18 @@ class TestMailSampleMockRawRequestFailed(unittest.TestCase):
         assert e.value.code > 0
         assert "mock-raw-request-failed" in e.value.msg
 
+    def test_mock_raw_request_delete_public_mailbox(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_public_mailbox(
+                pylark.DeletePublicMailboxReq(
+                    public_mailbox_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
     def test_mock_raw_request_create_public_mailbox_member(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.create_public_mailbox_member(
@@ -947,6 +975,17 @@ class TestMailSampleRealRequestFailed(unittest.TestCase):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.update_public_mailbox(
                 pylark.UpdatePublicMailboxReq(
+                    public_mailbox_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_delete_public_mailbox(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.delete_public_mailbox(
+                pylark.DeletePublicMailboxReq(
                     public_mailbox_id="x",
                 )
             )

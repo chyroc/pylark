@@ -710,6 +710,56 @@ class TestDriveSampleMockGetTokenFailed(unittest.TestCase):
 
         assert "msg=failed" in f"{e}"
 
+    def test_mock_get_token_get_wiki_space_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_space_list(pylark.GetWikiSpaceListReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_get_wiki_space(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_space(pylark.GetWikiSpaceReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_update_wiki_space_setting(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_wiki_space_setting(
+                pylark.UpdateWikiSpaceSettingReq()
+            )
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_add_wiki_space_member(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.add_wiki_space_member(pylark.AddWikiSpaceMemberReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_create_wiki_node(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_wiki_node(pylark.CreateWikiNodeReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_get_wiki_node_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_node_list(pylark.GetWikiNodeListReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_get_wiki_node(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_node(pylark.GetWikiNodeReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_move_docs_to_wiki(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.move_docs_to_wiki(pylark.MoveDocsToWikiReq())
+
+        assert "msg=failed" in f"{e}"
+
 
 # mock mock self func
 class TestDriveSampleMockSelfFuncFailed(unittest.TestCase):
@@ -1801,6 +1851,88 @@ class TestDriveSampleMockSelfFuncFailed(unittest.TestCase):
 
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.query_sheet_float_image = origin_func
+
+    def test_mock_self_func_get_wiki_space_list(self):
+        origin_func = self.module_cli.get_wiki_space_list
+        self.module_cli.get_wiki_space_list = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_space_list(pylark.GetWikiSpaceListReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_wiki_space_list = origin_func
+
+    def test_mock_self_func_get_wiki_space(self):
+        origin_func = self.module_cli.get_wiki_space
+        self.module_cli.get_wiki_space = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_space(pylark.GetWikiSpaceReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_wiki_space = origin_func
+
+    def test_mock_self_func_update_wiki_space_setting(self):
+        origin_func = self.module_cli.update_wiki_space_setting
+        self.module_cli.update_wiki_space_setting = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_wiki_space_setting(
+                pylark.UpdateWikiSpaceSettingReq()
+            )
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.update_wiki_space_setting = origin_func
+
+    def test_mock_self_func_add_wiki_space_member(self):
+        origin_func = self.module_cli.add_wiki_space_member
+        self.module_cli.add_wiki_space_member = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.add_wiki_space_member(pylark.AddWikiSpaceMemberReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.add_wiki_space_member = origin_func
+
+    def test_mock_self_func_create_wiki_node(self):
+        origin_func = self.module_cli.create_wiki_node
+        self.module_cli.create_wiki_node = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_wiki_node(pylark.CreateWikiNodeReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.create_wiki_node = origin_func
+
+    def test_mock_self_func_get_wiki_node_list(self):
+        origin_func = self.module_cli.get_wiki_node_list
+        self.module_cli.get_wiki_node_list = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_node_list(pylark.GetWikiNodeListReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_wiki_node_list = origin_func
+
+    def test_mock_self_func_get_wiki_node(self):
+        origin_func = self.module_cli.get_wiki_node
+        self.module_cli.get_wiki_node = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_node(pylark.GetWikiNodeReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_wiki_node = origin_func
+
+    def test_mock_self_func_move_docs_to_wiki(self):
+        origin_func = self.module_cli.move_docs_to_wiki
+        self.module_cli.move_docs_to_wiki = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.move_docs_to_wiki(pylark.MoveDocsToWikiReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.move_docs_to_wiki = origin_func
 
 
 # mock raw request
@@ -2990,6 +3122,94 @@ class TestDriveSampleMockRawRequestFailed(unittest.TestCase):
         assert e.value.code > 0
         assert "mock-raw-request-failed" in e.value.msg
 
+    def test_mock_raw_request_get_wiki_space_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_space_list(pylark.GetWikiSpaceListReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_get_wiki_space(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_space(
+                pylark.GetWikiSpaceReq(
+                    space_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_update_wiki_space_setting(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_wiki_space_setting(
+                pylark.UpdateWikiSpaceSettingReq(
+                    space_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_add_wiki_space_member(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.add_wiki_space_member(
+                pylark.AddWikiSpaceMemberReq(
+                    space_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_create_wiki_node(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_wiki_node(
+                pylark.CreateWikiNodeReq(
+                    space_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_get_wiki_node_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_node_list(
+                pylark.GetWikiNodeListReq(
+                    space_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_get_wiki_node(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_node(pylark.GetWikiNodeReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_move_docs_to_wiki(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.move_docs_to_wiki(
+                pylark.MoveDocsToWikiReq(
+                    space_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
 
 # real request
 class TestDriveSampleRealRequestFailed(unittest.TestCase):
@@ -4071,6 +4291,86 @@ class TestDriveSampleRealRequestFailed(unittest.TestCase):
                 pylark.QuerySheetFloatImageReq(
                     spreadsheet_token="x",
                     sheet_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_wiki_space_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_space_list(pylark.GetWikiSpaceListReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_wiki_space(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_space(
+                pylark.GetWikiSpaceReq(
+                    space_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_update_wiki_space_setting(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_wiki_space_setting(
+                pylark.UpdateWikiSpaceSettingReq(
+                    space_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_add_wiki_space_member(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.add_wiki_space_member(
+                pylark.AddWikiSpaceMemberReq(
+                    space_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_create_wiki_node(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.create_wiki_node(
+                pylark.CreateWikiNodeReq(
+                    space_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_wiki_node_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_node_list(
+                pylark.GetWikiNodeListReq(
+                    space_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_wiki_node(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_wiki_node(pylark.GetWikiNodeReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_move_docs_to_wiki(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.move_docs_to_wiki(
+                pylark.MoveDocsToWikiReq(
+                    space_id="x",
                 )
             )
 

@@ -98,6 +98,11 @@ from pylark.api_service_mail_public_mailbox_update import (
     UpdatePublicMailboxResp,
     _gen_update_public_mailbox_req,
 )
+from pylark.api_service_mail_public_mailbox_delete import (
+    DeletePublicMailboxReq,
+    DeletePublicMailboxResp,
+    _gen_delete_public_mailbox_req,
+)
 from pylark.api_service_mail_public_mailbox_member_create import (
     CreatePublicMailboxMemberReq,
     CreatePublicMailboxMemberResp,
@@ -247,6 +252,11 @@ class LarkMailService(object):
         self, request: UpdatePublicMailboxReq, options: typing.List[str] = None
     ) -> typing.Tuple[UpdatePublicMailboxResp, Response]:
         return self.cli.raw_request(_gen_update_public_mailbox_req(request, options))
+
+    def delete_public_mailbox(
+        self, request: DeletePublicMailboxReq, options: typing.List[str] = None
+    ) -> typing.Tuple[DeletePublicMailboxResp, Response]:
+        return self.cli.raw_request(_gen_delete_public_mailbox_req(request, options))
 
     def create_public_mailbox_member(
         self, request: CreatePublicMailboxMemberReq, options: typing.List[str] = None

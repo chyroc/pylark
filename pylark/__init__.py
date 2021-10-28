@@ -1946,6 +1946,50 @@ from pylark.api_service_drive_sheet_value_set import (
     SetSheetValueReq,
     SetSheetValueResp,
 )
+from pylark.api_service_drive_wiki_move_docs_to_wiki import (
+    MoveDocsToWikiReq,
+    MoveDocsToWikiResp,
+)
+from pylark.api_service_drive_wiki_node_create import (
+    CreateWikiNodeReq,
+    CreateWikiNodeRespNode,
+    CreateWikiNodeResp,
+)
+from pylark.api_service_drive_wiki_node_get import (
+    GetWikiNodeReq,
+    GetWikiNodeRespNode,
+    GetWikiNodeResp,
+)
+from pylark.api_service_drive_wiki_node_list import (
+    GetWikiNodeListReq,
+    GetWikiNodeListRespItem,
+    GetWikiNodeListResp,
+)
+from pylark.api_service_drive_wiki_space_create import (
+    CreateWikiSpaceReq,
+    CreateWikiSpaceRespSpace,
+    CreateWikiSpaceResp,
+)
+from pylark.api_service_drive_wiki_space_get import (
+    GetWikiSpaceReq,
+    GetWikiSpaceRespSpace,
+    GetWikiSpaceResp,
+)
+from pylark.api_service_drive_wiki_space_get_list import (
+    GetWikiSpaceListReq,
+    GetWikiSpaceListRespItem,
+    GetWikiSpaceListResp,
+)
+from pylark.api_service_drive_wiki_space_member_add import (
+    AddWikiSpaceMemberReq,
+    AddWikiSpaceMemberRespMember,
+    AddWikiSpaceMemberResp,
+)
+from pylark.api_service_drive_wiki_space_setting_update import (
+    UpdateWikiSpaceSettingReq,
+    UpdateWikiSpaceSettingRespSetting,
+    UpdateWikiSpaceSettingResp,
+)
 from pylark.api_service_ecosystem import LarkEcosystemService
 from pylark.api_service_ecosystem_aweme_users_get import (
     GetEcosystemBindAwemeUserReqUserIDType,
@@ -2563,6 +2607,10 @@ from pylark.api_service_mail_mail_group_update import (
 from pylark.api_service_mail_public_mailbox_create import (
     CreatePublicMailboxReq,
     CreatePublicMailboxResp,
+)
+from pylark.api_service_mail_public_mailbox_delete import (
+    DeletePublicMailboxReq,
+    DeletePublicMailboxResp,
 )
 from pylark.api_service_mail_public_mailbox_get import (
     GetPublicMailboxReq,
@@ -4553,6 +4601,32 @@ __all__ = [
     SetSheetValueReqValueRange,
     SetSheetValueReq,
     SetSheetValueResp,
+    MoveDocsToWikiReq,
+    MoveDocsToWikiResp,
+    CreateWikiNodeReq,
+    CreateWikiNodeRespNode,
+    CreateWikiNodeResp,
+    GetWikiNodeReq,
+    GetWikiNodeRespNode,
+    GetWikiNodeResp,
+    GetWikiNodeListReq,
+    GetWikiNodeListRespItem,
+    GetWikiNodeListResp,
+    CreateWikiSpaceReq,
+    CreateWikiSpaceRespSpace,
+    CreateWikiSpaceResp,
+    GetWikiSpaceReq,
+    GetWikiSpaceRespSpace,
+    GetWikiSpaceResp,
+    GetWikiSpaceListReq,
+    GetWikiSpaceListRespItem,
+    GetWikiSpaceListResp,
+    AddWikiSpaceMemberReq,
+    AddWikiSpaceMemberRespMember,
+    AddWikiSpaceMemberResp,
+    UpdateWikiSpaceSettingReq,
+    UpdateWikiSpaceSettingRespSetting,
+    UpdateWikiSpaceSettingResp,
     LarkEcosystemService,
     GetEcosystemBindAwemeUserReqUserIDType,
     GetEcosystemBindAwemeUserReq,
@@ -4997,6 +5071,8 @@ __all__ = [
     UpdateMailGroupResp,
     CreatePublicMailboxReq,
     CreatePublicMailboxResp,
+    DeletePublicMailboxReq,
+    DeletePublicMailboxResp,
     GetPublicMailboxReq,
     GetPublicMailboxResp,
     GetPublicMailboxListReq,

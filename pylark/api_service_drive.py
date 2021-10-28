@@ -508,6 +508,51 @@ from pylark.api_service_drive_sheet_float_image_query import (
     QuerySheetFloatImageResp,
     _gen_query_sheet_float_image_req,
 )
+from pylark.api_service_drive_wiki_space_create import (
+    CreateWikiSpaceReq,
+    CreateWikiSpaceResp,
+    _gen_create_wiki_space_req,
+)
+from pylark.api_service_drive_wiki_space_get_list import (
+    GetWikiSpaceListReq,
+    GetWikiSpaceListResp,
+    _gen_get_wiki_space_list_req,
+)
+from pylark.api_service_drive_wiki_space_get import (
+    GetWikiSpaceReq,
+    GetWikiSpaceResp,
+    _gen_get_wiki_space_req,
+)
+from pylark.api_service_drive_wiki_space_setting_update import (
+    UpdateWikiSpaceSettingReq,
+    UpdateWikiSpaceSettingResp,
+    _gen_update_wiki_space_setting_req,
+)
+from pylark.api_service_drive_wiki_space_member_add import (
+    AddWikiSpaceMemberReq,
+    AddWikiSpaceMemberResp,
+    _gen_add_wiki_space_member_req,
+)
+from pylark.api_service_drive_wiki_node_create import (
+    CreateWikiNodeReq,
+    CreateWikiNodeResp,
+    _gen_create_wiki_node_req,
+)
+from pylark.api_service_drive_wiki_node_list import (
+    GetWikiNodeListReq,
+    GetWikiNodeListResp,
+    _gen_get_wiki_node_list_req,
+)
+from pylark.api_service_drive_wiki_node_get import (
+    GetWikiNodeReq,
+    GetWikiNodeResp,
+    _gen_get_wiki_node_req,
+)
+from pylark.api_service_drive_wiki_move_docs_to_wiki import (
+    MoveDocsToWikiReq,
+    MoveDocsToWikiResp,
+    _gen_move_docs_to_wiki_req,
+)
 
 
 if typing.TYPE_CHECKING:
@@ -1146,3 +1191,50 @@ class LarkDriveService(object):
         self, request: QuerySheetFloatImageReq, options: typing.List[str] = None
     ) -> typing.Tuple[QuerySheetFloatImageResp, Response]:
         return self.cli.raw_request(_gen_query_sheet_float_image_req(request, options))
+
+    def create_wiki_space(
+        self, request: CreateWikiSpaceReq, options: typing.List[str] = None
+    ) -> typing.Tuple[CreateWikiSpaceResp, Response]:
+        return self.cli.raw_request(_gen_create_wiki_space_req(request, options))
+
+    def get_wiki_space_list(
+        self, request: GetWikiSpaceListReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetWikiSpaceListResp, Response]:
+        return self.cli.raw_request(_gen_get_wiki_space_list_req(request, options))
+
+    def get_wiki_space(
+        self, request: GetWikiSpaceReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetWikiSpaceResp, Response]:
+        return self.cli.raw_request(_gen_get_wiki_space_req(request, options))
+
+    def update_wiki_space_setting(
+        self, request: UpdateWikiSpaceSettingReq, options: typing.List[str] = None
+    ) -> typing.Tuple[UpdateWikiSpaceSettingResp, Response]:
+        return self.cli.raw_request(
+            _gen_update_wiki_space_setting_req(request, options)
+        )
+
+    def add_wiki_space_member(
+        self, request: AddWikiSpaceMemberReq, options: typing.List[str] = None
+    ) -> typing.Tuple[AddWikiSpaceMemberResp, Response]:
+        return self.cli.raw_request(_gen_add_wiki_space_member_req(request, options))
+
+    def create_wiki_node(
+        self, request: CreateWikiNodeReq, options: typing.List[str] = None
+    ) -> typing.Tuple[CreateWikiNodeResp, Response]:
+        return self.cli.raw_request(_gen_create_wiki_node_req(request, options))
+
+    def get_wiki_node_list(
+        self, request: GetWikiNodeListReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetWikiNodeListResp, Response]:
+        return self.cli.raw_request(_gen_get_wiki_node_list_req(request, options))
+
+    def get_wiki_node(
+        self, request: GetWikiNodeReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetWikiNodeResp, Response]:
+        return self.cli.raw_request(_gen_get_wiki_node_req(request, options))
+
+    def move_docs_to_wiki(
+        self, request: MoveDocsToWikiReq, options: typing.List[str] = None
+    ) -> typing.Tuple[MoveDocsToWikiResp, Response]:
+        return self.cli.raw_request(_gen_move_docs_to_wiki_req(request, options))
