@@ -3177,7 +3177,7 @@ from pylark.lark_type_message_post import (
 from pylark._internal_log import logger
 
 
-__version__ = "0.0.12"
+__version__ = "0.0.13"
 
 __all__ = [
     LarkACSService,
