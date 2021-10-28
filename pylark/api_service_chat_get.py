@@ -18,7 +18,7 @@ class GetChatReq(object):
     )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     chat_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
-    )  # 群 ID, 示例值："oc_a0553eda9014c201e6969b478895c230"
+    )  # 群 ID，详情参见[群ID 说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/chat-id-description), 示例值："oc_a0553eda9014c201e6969b478895c230"
 
 
 @attr.s

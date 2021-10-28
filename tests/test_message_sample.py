@@ -64,6 +64,14 @@ class TestMessageSampleMockGetTokenFailed(unittest.TestCase):
 
         assert "msg=failed" in f"{e}"
 
+    def test_mock_get_token_batch_send_old_raw_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.batch_send_old_raw_message(
+                pylark.BatchSendOldRawMessageReq()
+            )
+
+        assert "msg=failed" in f"{e}"
+
     def test_mock_get_token_reply_raw_message(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.reply_raw_message(pylark.ReplyRawMessageReq())
@@ -73,6 +81,12 @@ class TestMessageSampleMockGetTokenFailed(unittest.TestCase):
     def test_mock_get_token_delete_message(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.delete_message(pylark.DeleteMessageReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_batch_delete_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.batch_delete_message(pylark.BatchDeleteMessageReq())
 
         assert "msg=failed" in f"{e}"
 
@@ -86,6 +100,14 @@ class TestMessageSampleMockGetTokenFailed(unittest.TestCase):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.get_message_read_user_list(
                 pylark.GetMessageReadUserListReq()
+            )
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_get_batch_sent_message_read_user(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_batch_sent_message_read_user(
+                pylark.GetBatchSentMessageReadUserReq()
             )
 
         assert "msg=failed" in f"{e}"
@@ -184,6 +206,18 @@ class TestMessageSampleMockSelfFuncFailed(unittest.TestCase):
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.send_raw_message_old = origin_func
 
+    def test_mock_self_func_batch_send_old_raw_message(self):
+        origin_func = self.module_cli.batch_send_old_raw_message
+        self.module_cli.batch_send_old_raw_message = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.batch_send_old_raw_message(
+                pylark.BatchSendOldRawMessageReq()
+            )
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.batch_send_old_raw_message = origin_func
+
     def test_mock_self_func_reply_raw_message(self):
         origin_func = self.module_cli.reply_raw_message
         self.module_cli.reply_raw_message = mock
@@ -203,6 +237,16 @@ class TestMessageSampleMockSelfFuncFailed(unittest.TestCase):
 
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.delete_message = origin_func
+
+    def test_mock_self_func_batch_delete_message(self):
+        origin_func = self.module_cli.batch_delete_message
+        self.module_cli.batch_delete_message = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.batch_delete_message(pylark.BatchDeleteMessageReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.batch_delete_message = origin_func
 
     def test_mock_self_func_update_message(self):
         origin_func = self.module_cli.update_message
@@ -225,6 +269,18 @@ class TestMessageSampleMockSelfFuncFailed(unittest.TestCase):
 
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.get_message_read_user_list = origin_func
+
+    def test_mock_self_func_get_batch_sent_message_read_user(self):
+        origin_func = self.module_cli.get_batch_sent_message_read_user
+        self.module_cli.get_batch_sent_message_read_user = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_batch_sent_message_read_user(
+                pylark.GetBatchSentMessageReadUserReq()
+            )
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_batch_sent_message_read_user = origin_func
 
     def test_mock_self_func_get_message_list(self):
         origin_func = self.module_cli.get_message_list
@@ -335,6 +391,16 @@ class TestMessageSampleMockRawRequestFailed(unittest.TestCase):
         assert e.value.code > 0
         assert "mock-raw-request-failed" in e.value.msg
 
+    def test_mock_raw_request_batch_send_old_raw_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.batch_send_old_raw_message(
+                pylark.BatchSendOldRawMessageReq()
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
     def test_mock_raw_request_reply_raw_message(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.reply_raw_message(
@@ -359,6 +425,18 @@ class TestMessageSampleMockRawRequestFailed(unittest.TestCase):
         assert e.value.code > 0
         assert "mock-raw-request-failed" in e.value.msg
 
+    def test_mock_raw_request_batch_delete_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.batch_delete_message(
+                pylark.BatchDeleteMessageReq(
+                    batch_message_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
     def test_mock_raw_request_update_message(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.update_message(
@@ -376,6 +454,18 @@ class TestMessageSampleMockRawRequestFailed(unittest.TestCase):
             self.module_cli.get_message_read_user_list(
                 pylark.GetMessageReadUserListReq(
                     message_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_get_batch_sent_message_read_user(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_batch_sent_message_read_user(
+                pylark.GetBatchSentMessageReadUserReq(
+                    batch_message_id="x",
                 )
             )
 
@@ -486,6 +576,15 @@ class TestMessageSampleRealRequestFailed(unittest.TestCase):
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0
 
+    def test_real_request_batch_send_old_raw_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.batch_send_old_raw_message(
+                pylark.BatchSendOldRawMessageReq()
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
     def test_real_request_reply_raw_message(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.reply_raw_message(
@@ -508,6 +607,17 @@ class TestMessageSampleRealRequestFailed(unittest.TestCase):
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0
 
+    def test_real_request_batch_delete_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.batch_delete_message(
+                pylark.BatchDeleteMessageReq(
+                    batch_message_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
     def test_real_request_update_message(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.update_message(
@@ -524,6 +634,17 @@ class TestMessageSampleRealRequestFailed(unittest.TestCase):
             self.module_cli.get_message_read_user_list(
                 pylark.GetMessageReadUserListReq(
                     message_id="x",
+                )
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_batch_sent_message_read_user(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_batch_sent_message_read_user(
+                pylark.GetBatchSentMessageReadUserReq(
+                    batch_message_id="x",
                 )
             )
 

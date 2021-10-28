@@ -59,6 +59,9 @@ class UpdateTaskReqTask(object):
     can_edit: bool = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 此字段用于控制该任务在飞书任务中心是否可编辑，默认为false，若为true则第三方需考虑是否需要接入事件来接收任务在任务中心的变更信息, 示例值：true, 默认值: `false`
+    custom: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 此字段用于存储第三方需透传到端上的自定义数据，Json格式。取值举例中custom_complete字段存储「完成」按钮的跳转链接（href）或提示信息（tip），pc、ios、android三端均可自定义，其中tip字段的key为语言类型，value为提示信息，可自行增加或减少语言类型，支持的各地区语言名：it_it, th_th, ko_kr, es_es, ja_jp, zh_cn, id_id, zh_hk, pt_br, de_de, fr_fr, zh_tw, ru_ru, en_us, hi_in, vi_vn。href的优先级高于tip，href和tip同时不为空时只跳转不提示。链接和提示信息可自定义，其余的key需按举例中的结构传递, 示例值："{\"custom_complete\":{\"android\":{\"href\":\"https://www.google.com.hk/\",\"tip\":{\"zh_cn\":\"你好\",\"en_us\":\"hello\"}},\"ios\":{\"href\":\"https://www.google.com.hk/\",\"tip\":{\"zh_cn\":\"你好\",\"en_us\":\"hello\"}},\"pc\":{\"href\":\"https://www.google.com.hk/\",\"tip\":{\"zh_cn\":\"你好\",\"en_us\":\"hello\"}}}}", 长度范围：`0` ～ `65536` 字符
 
 
 @attr.s
@@ -140,6 +143,9 @@ class UpdateTaskRespTask(object):
     can_edit: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 此字段用于控制该任务在飞书任务中心是否可编辑，默认为false，若为true则第三方需考虑是否需要接入事件来接收任务在任务中心的变更信息
+    custom: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 此字段用于存储第三方需透传到端上的自定义数据，Json格式。取值举例中custom_complete字段存储「完成」按钮的跳转链接（href）或提示信息（tip），pc、ios、android三端均可自定义，其中tip字段的key为语言类型，value为提示信息，可自行增加或减少语言类型，支持的各地区语言名：it_it, th_th, ko_kr, es_es, ja_jp, zh_cn, id_id, zh_hk, pt_br, de_de, fr_fr, zh_tw, ru_ru, en_us, hi_in, vi_vn。href的优先级高于tip，href和tip同时不为空时只跳转不提示。链接和提示信息可自定义，其余的key需按举例中的结构传递
 
 
 @attr.s

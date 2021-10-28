@@ -99,7 +99,7 @@ class CreateDriveCommentReq(object):
     )  # 文档token, 示例值："doccnGp4UK1UskrOEJwBXd3****"
     comment_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 评论ID, 示例值："6916106822734578184"
+    )  # 评论ID（创建新评论可不填；如填写，则视为回复已有评论）, 示例值："6916106822734578184"
     user_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 用户ID, 示例值："ou_cc19b2bfb93f8a44db4b4d6eab*****"
@@ -181,7 +181,9 @@ class CreateDriveCommentRespReplyList(object):
 
 @attr.s
 class CreateDriveCommentResp(object):
-    comment_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 评论ID
+    comment_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 评论ID（创建新评论可不填；如填写，则视为回复已有评论）
     user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户ID
     create_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 创建时间
     update_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 更新时间

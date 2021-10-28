@@ -33,6 +33,11 @@ from pylark.api_service_message_send_old import (
     SendRawMessageOldResp,
     _gen_send_raw_message_old_req,
 )
+from pylark.api_service_message_batch_send_old import (
+    BatchSendOldRawMessageReq,
+    BatchSendOldRawMessageResp,
+    _gen_batch_send_old_raw_message_req,
+)
 from pylark.api_service_message_reply import (
     ReplyRawMessageReq,
     ReplyRawMessageResp,
@@ -43,6 +48,11 @@ from pylark.api_service_message_delete import (
     DeleteMessageResp,
     _gen_delete_message_req,
 )
+from pylark.api_service_message_batch_delete import (
+    BatchDeleteMessageReq,
+    BatchDeleteMessageResp,
+    _gen_batch_delete_message_req,
+)
 from pylark.api_service_message_update import (
     UpdateMessageReq,
     UpdateMessageResp,
@@ -52,6 +62,11 @@ from pylark.api_service_message_get_read_user_list import (
     GetMessageReadUserListReq,
     GetMessageReadUserListResp,
     _gen_get_message_read_user_list_req,
+)
+from pylark.api_service_message_get_batch_msg_read_user import (
+    GetBatchSentMessageReadUserReq,
+    GetBatchSentMessageReadUserResp,
+    _gen_get_batch_sent_message_read_user_req,
 )
 from pylark.api_service_message_list import (
     GetMessageListReq,
@@ -117,6 +132,13 @@ class LarkMessageService(object):
     ) -> typing.Tuple[SendRawMessageOldResp, Response]:
         return self.cli.raw_request(_gen_send_raw_message_old_req(request, options))
 
+    def batch_send_old_raw_message(
+        self, request: BatchSendOldRawMessageReq, options: typing.List[str] = None
+    ) -> typing.Tuple[BatchSendOldRawMessageResp, Response]:
+        return self.cli.raw_request(
+            _gen_batch_send_old_raw_message_req(request, options)
+        )
+
     def reply_raw_message(
         self, request: ReplyRawMessageReq, options: typing.List[str] = None
     ) -> typing.Tuple[ReplyRawMessageResp, Response]:
@@ -126,6 +148,11 @@ class LarkMessageService(object):
         self, request: DeleteMessageReq, options: typing.List[str] = None
     ) -> typing.Tuple[DeleteMessageResp, Response]:
         return self.cli.raw_request(_gen_delete_message_req(request, options))
+
+    def batch_delete_message(
+        self, request: BatchDeleteMessageReq, options: typing.List[str] = None
+    ) -> typing.Tuple[BatchDeleteMessageResp, Response]:
+        return self.cli.raw_request(_gen_batch_delete_message_req(request, options))
 
     def update_message(
         self, request: UpdateMessageReq, options: typing.List[str] = None
@@ -137,6 +164,13 @@ class LarkMessageService(object):
     ) -> typing.Tuple[GetMessageReadUserListResp, Response]:
         return self.cli.raw_request(
             _gen_get_message_read_user_list_req(request, options)
+        )
+
+    def get_batch_sent_message_read_user(
+        self, request: GetBatchSentMessageReadUserReq, options: typing.List[str] = None
+    ) -> typing.Tuple[GetBatchSentMessageReadUserResp, Response]:
+        return self.cli.raw_request(
+            _gen_get_batch_sent_message_read_user_req(request, options)
         )
 
     def get_message_list(

@@ -22,7 +22,7 @@ class GetTenantRespTenantAvatar(object):
 @attr.s
 class GetTenantRespTenant(object):
     name: str = attr.ib(default="", metadata={"req_type": "json"})  # 企业名称
-    display_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 企业编号
+    display_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 企业编号，平台内唯一
     tenant_tag: int = attr.ib(
         default=0, metadata={"req_type": "json"}
     )  # 个人版/团队版标志, 可选值有: `0`：团队版, `2`：个人版

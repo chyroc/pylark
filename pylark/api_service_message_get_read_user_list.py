@@ -16,7 +16,7 @@ class GetMessageReadUserListReq(object):
     user_id_type: GetMessageReadUserListReqUserIDType = attr.ib(
         factory=lambda: GetMessageReadUserListReqUserIDType(),
         metadata={"req_type": "query"},
-    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求: 获取用户 user ID
+    )  # 用户 ID 类型, 示例值："open_id", 可选值有: `open_id`：用户的 open id, `union_id`：用户的 union id, `user_id`：用户的 user id, 默认值: `open_id`, 当值为 `user_id`, 字段权限要求:  获取用户 user ID
     page_size: int = attr.ib(
         default=0, metadata={"req_type": "query"}
     )  # 此次调用中使用的分页的大小, 示例值：20, 取值范围：`1` ～ `100`
@@ -41,6 +41,7 @@ class GetMessageReadUserListRespItem(object):
     )  # 用户id类型
     user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户id
     timestamp: str = attr.ib(default="", metadata={"req_type": "json"})  # 阅读时间
+    tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # tenant key
 
 
 @attr.s

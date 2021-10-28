@@ -43,8 +43,10 @@ class CreateSheetProtectedDimensionReq(object):
     spreadsheet_token: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # spreadsheet 的 token，获取方式见 [在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
-    add_protected_dimension: CreateSheetProtectedDimensionReqAddProtectedDimension = (
-        attr.ib(default=None, metadata={"req_type": "json"})
+    add_protected_dimension: typing.List[
+        CreateSheetProtectedDimensionReqAddProtectedDimension
+    ] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "json"}
     )  # 需要增加保护范围的维度信息，可多个范围
 
 
@@ -77,8 +79,10 @@ class CreateSheetProtectedDimensionRespAddProtectedDimension(object):
 
 @attr.s
 class CreateSheetProtectedDimensionResp(object):
-    add_protected_dimension: CreateSheetProtectedDimensionRespAddProtectedDimension = (
-        attr.ib(default=None, metadata={"req_type": "json"})
+    add_protected_dimension: typing.List[
+        CreateSheetProtectedDimensionRespAddProtectedDimension
+    ] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "json"}
     )  # 需要增加保护范围的维度信息，可多个范围
 
 

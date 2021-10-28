@@ -26,8 +26,8 @@ class BatchSetSheetValueReq(object):
     spreadsheet_token: str = attr.ib(
         default="", metadata={"req_type": "path"}
     )  # spreadsheet 的 token，获取方式见[在线表格开发指南](https://open.feishu.cn/document/ukTMukTMukTM/uATMzUjLwEzM14CMxMTN/overview)
-    value_ranges: BatchSetSheetValueReqValueRange = attr.ib(
-        default=None, metadata={"req_type": "json"}
+    value_ranges: typing.List[BatchSetSheetValueReqValueRange] = attr.ib(
+        factory=lambda: [], metadata={"req_type": "json"}
     )  # 需要更新的多个范围
 
 

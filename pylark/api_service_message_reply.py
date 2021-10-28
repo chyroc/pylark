@@ -31,19 +31,25 @@ class ReplyRawMessageRespMentionIDType(object):
 
 @attr.s
 class ReplyRawMessageRespMention(object):
-    key: str = attr.ib(default="", metadata={"req_type": "json"})  # mention key
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户open id
+    key: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 被@的用户或机器人的序号。例如，第3个被@到的成员，值为“@_user_3”
+    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 被@的用户或者机器人的open_id
     id_type: ReplyRawMessageRespMentionIDType = attr.ib(
         factory=lambda: ReplyRawMessageRespMentionIDType(),
         metadata={"req_type": "json"},
-    )  # id 可以是open_id，user_id或者union_id
-    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 被at用户的姓名
-    tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # tenant key
+    )  # 被@的用户或机器人 id 类型，目前仅支持 `open_id` ([什么是 Open ID？](https://open.feishu.cn/document/home/user-identity-introduction/open-id))
+    name: str = attr.ib(default="", metadata={"req_type": "json"})  # 被@的用户或机器人的姓名
+    tenant_key: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 为租户在飞书上的唯一标识，用来换取对应的tenant_access_token，也可以用作租户在应用里面的唯一标识
 
 
 @attr.s
 class ReplyRawMessageRespBody(object):
-    content: str = attr.ib(default="", metadata={"req_type": "json"})  # 消息jsonContent
+    content: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 消息类型 包括：text、post、image、file、audio、media、sticker、interactive、share_chat、share_user等，类型定义请参考：[发送消息content说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/create_json)
 
 
 @attr.s
@@ -58,7 +64,9 @@ class ReplyRawMessageRespSender(object):
         factory=lambda: ReplyRawMessageRespSenderIDType(), metadata={"req_type": "json"}
     )  # 该字段标识发送者的id类型
     sender_type: str = attr.ib(default="", metadata={"req_type": "json"})  # 该字段标识发送者的类型
-    tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # tenant key
+    tenant_key: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 为租户在飞书上的唯一标识，用来换取对应的tenant_access_token，也可以用作租户在应用里面的唯一标识
 
 
 @attr.s
@@ -70,16 +78,16 @@ class ReplyRawMessageRespMsgType(object):
 class ReplyRawMessageResp(object):
     message_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 消息id open_message_id
+    )  # 消息id，说明参见：[消息ID说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/intro#ac79c1c2)
     root_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 根消息id open_message_id
+    )  # 根消息id，说明参见：[消息ID说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/intro#ac79c1c2)
     parent_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 父消息的id open_message_id
+    )  # 父消息的id，说明参见：[消息ID说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/intro#ac79c1c2)
     msg_type: ReplyRawMessageRespMsgType = attr.ib(
         factory=lambda: ReplyRawMessageRespMsgType(), metadata={"req_type": "json"}
-    )  # 消息类型 text post card image等等
+    )  # 消息类型 包括：text、post、image、file、audio、media、sticker、interactive、share_chat、share_user等，类型定义请参考[发送消息content说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/create_json)
     create_time: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 消息生成的时间戳（毫秒）
@@ -98,13 +106,13 @@ class ReplyRawMessageResp(object):
     )  # 发送者，可以是用户或应用
     body: ReplyRawMessageRespBody = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # 消息内容，json结构，格式说明参考： [消息content说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/events/message_content)
+    )  # 消息内容
     mentions: typing.List[ReplyRawMessageRespMention] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
-    )  # 被艾特的人或应用的id
+    )  # 被@的用户或机器人的id列表
     upper_message_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 上一层级的消息id open_message_id
+    )  # 合并转发消息中，上一层级的消息id message_id，说明参见：[消息ID说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/intro#ac79c1c2)
 
 
 def _gen_reply_raw_message_req(request, options) -> RawRequestReq:

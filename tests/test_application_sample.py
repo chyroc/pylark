@@ -454,7 +454,9 @@ class TestApplicationSampleMockRawRequestFailed(unittest.TestCase):
     def test_mock_raw_request_get_application_usage_overview(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.get_application_usage_overview(
-                pylark.GetApplicationUsageOverviewReq()
+                pylark.GetApplicationUsageOverviewReq(
+                    app_id="x",
+                )
             )
 
         assert e.type is pylark.PyLarkError
@@ -608,7 +610,9 @@ class TestApplicationSampleRealRequestFailed(unittest.TestCase):
     def test_real_request_get_application_usage_overview(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.get_application_usage_overview(
-                pylark.GetApplicationUsageOverviewReq()
+                pylark.GetApplicationUsageOverviewReq(
+                    app_id="x",
+                )
             )
 
         assert e.type is pylark.PyLarkError

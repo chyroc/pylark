@@ -222,7 +222,7 @@ from pylark.api_service_application_usage_detail import (
     GetApplicationUsageDetailResp,
 )
 from pylark.api_service_application_usage_overview import (
-    GetApplicationUsageOverviewReqFilter,
+    GetApplicationUsageOverviewReqDepartmentIDType,
     GetApplicationUsageOverviewReq,
     GetApplicationUsageOverviewRespItem,
     GetApplicationUsageOverviewResp,
@@ -271,6 +271,14 @@ from pylark.api_service_approval_file_upload import (
     UploadApprovalFileReqContent,
     UploadApprovalFileReq,
     UploadApprovalFileResp,
+)
+from pylark.api_service_approval_get_user_task_list import (
+    GetApprovalUserTaskListReqUserIDType,
+    GetApprovalUserTaskListReq,
+    GetApprovalUserTaskListRespCount,
+    GetApprovalUserTaskListRespTaskURLs,
+    GetApprovalUserTaskListRespTask,
+    GetApprovalUserTaskListResp,
 )
 from pylark.api_service_approval_instance_add_sign import (
     AddApprovalInstanceSignReq,
@@ -330,6 +338,10 @@ from pylark.api_service_approval_instance_search import (
 from pylark.api_service_approval_instance_transfer import (
     TransferApprovalInstanceReq,
     TransferApprovalInstanceResp,
+)
+from pylark.api_service_approval_message_update import (
+    UpdateApprovalMessageReq,
+    UpdateApprovalMessageResp,
 )
 from pylark.api_service_approval_task_search import (
     SearchApprovalTaskReq,
@@ -599,7 +611,6 @@ from pylark.api_service_bitable import LarkBitableService
 from pylark.api_service_bitable_field_create import (
     CreateBitableFieldReqPropertyOption,
     CreateBitableFieldReqProperty,
-    CreateBitableFieldReqUserIDType,
     CreateBitableFieldReq,
     CreateBitableFieldRespFieldPropertyOption,
     CreateBitableFieldRespFieldProperty,
@@ -673,6 +684,7 @@ from pylark.api_service_bitable_record_delete import (
     DeleteBitableRecordResp,
 )
 from pylark.api_service_bitable_record_get import (
+    GetBitableRecordReqUserIDType,
     GetBitableRecordReq,
     GetBitableRecordRespRecordFieldsValue,
     GetBitableRecordRespRecordFields,
@@ -1570,10 +1582,18 @@ from pylark.api_service_drive_sheet_batch_update import (
     BatchUpdateSheetReqRequestCopySheet,
     BatchUpdateSheetReqRequestAddSheetProperties,
     BatchUpdateSheetReqRequestAddSheet,
+    BatchUpdateSheetReqRequestUpdateSheetPropertiesProtect,
+    BatchUpdateSheetReqRequestUpdateSheetProperties,
+    BatchUpdateSheetReqRequestUpdateSheet,
     BatchUpdateSheetReqRequest,
     BatchUpdateSheetReq,
     BatchUpdateSheetRespReplyDeleteSheet,
+    BatchUpdateSheetRespReplyUpdateSheetPropertiesProtect,
+    BatchUpdateSheetRespReplyUpdateSheetProperties,
+    BatchUpdateSheetRespReplyUpdateSheet,
+    BatchUpdateSheetRespReplyCopySheetProperties,
     BatchUpdateSheetRespReplyCopySheet,
+    BatchUpdateSheetRespReplyAddSheetProperties,
     BatchUpdateSheetRespReplyAddSheet,
     BatchUpdateSheetRespReply,
     BatchUpdateSheetResp,
@@ -1589,7 +1609,7 @@ from pylark.api_service_drive_sheet_cell_unmerge import (
 from pylark.api_service_drive_sheet_condition_format_create import (
     CreateSheetConditionFormatReqSheetConditionFormatConditionFormatStyleFont,
     CreateSheetConditionFormatReqSheetConditionFormatConditionFormatStyle,
-    CreateSheetConditionFormatReqSheetConditionFormatConditionFormatAttrs,
+    CreateSheetConditionFormatReqSheetConditionFormatConditionFormatAttr,
     CreateSheetConditionFormatReqSheetConditionFormatConditionFormat,
     CreateSheetConditionFormatReqSheetConditionFormat,
     CreateSheetConditionFormatReq,
@@ -1606,7 +1626,7 @@ from pylark.api_service_drive_sheet_condition_format_get import (
     GetSheetConditionFormatReq,
     GetSheetConditionFormatRespSheetConditionFormatConditionFormatStyleFont,
     GetSheetConditionFormatRespSheetConditionFormatConditionFormatStyle,
-    GetSheetConditionFormatRespSheetConditionFormatConditionFormatAttrs,
+    GetSheetConditionFormatRespSheetConditionFormatConditionFormatAttr,
     GetSheetConditionFormatRespSheetConditionFormatConditionFormat,
     GetSheetConditionFormatRespSheetConditionFormat,
     GetSheetConditionFormatResp,
@@ -1614,7 +1634,7 @@ from pylark.api_service_drive_sheet_condition_format_get import (
 from pylark.api_service_drive_sheet_condition_format_update import (
     UpdateSheetConditionFormatReqSheetConditionFormatsConditionFormatStyleFont,
     UpdateSheetConditionFormatReqSheetConditionFormatsConditionFormatStyle,
-    UpdateSheetConditionFormatReqSheetConditionFormatsConditionFormatAttrs,
+    UpdateSheetConditionFormatReqSheetConditionFormatsConditionFormatAttr,
     UpdateSheetConditionFormatReqSheetConditionFormatsConditionFormat,
     UpdateSheetConditionFormatReqSheetConditionFormats,
     UpdateSheetConditionFormatReq,
@@ -2437,6 +2457,8 @@ from pylark.api_service_human_auth_identity import (
     CreateIdentityReq,
     CreateIdentityResp,
 )
+from pylark.api_service_jssdk import LarkJssdkService
+from pylark.api_service_jssdk_ticket_get import GetJssdkTicketReq, GetJssdkTicketResp
 from pylark.api_service_link_open_bot import OpenBotReq, OpenBotResp
 from pylark.api_service_link_open_calender import OpenCalenderReq, OpenCalenderResp
 from pylark.api_service_link_open_calender_account import (
@@ -2671,6 +2693,16 @@ from pylark.api_service_meeting_room_summary_batch_get import (
     BatchGetMeetingRoomSummaryResp,
 )
 from pylark.api_service_message import LarkMessageService
+from pylark.api_service_message_batch_delete import (
+    BatchDeleteMessageReq,
+    BatchDeleteMessageResp,
+)
+from pylark.api_service_message_batch_send_old import (
+    BatchSendOldRawMessageReqContent,
+    BatchSendOldRawMessageReqMsgType,
+    BatchSendOldRawMessageReq,
+    BatchSendOldRawMessageResp,
+)
 from pylark.api_service_message_delete import DeleteMessageReq, DeleteMessageResp
 from pylark.api_service_message_ephemeral_delete import (
     DeleteEphemeralMessageReq,
@@ -2686,6 +2718,11 @@ from pylark.api_service_message_get import (
     GetMessageRespItemMsgType,
     GetMessageRespItem,
     GetMessageResp,
+)
+from pylark.api_service_message_get_batch_msg_read_user import (
+    GetBatchSentMessageReadUserReq,
+    GetBatchSentMessageReadUserRespReadUser,
+    GetBatchSentMessageReadUserResp,
 )
 from pylark.api_service_message_get_file import (
     GetMessageFileReq,
@@ -3092,7 +3129,7 @@ from pylark.lark_type_message_post import (
 from pylark._internal_log import logger
 
 
-__version__ = "0.0.11"
+__version__ = "0.0.12"
 
 __all__ = [
     LarkACSService,
@@ -3259,7 +3296,7 @@ __all__ = [
     GetApplicationUsageDetailReq,
     GetApplicationUsageDetailRespUser,
     GetApplicationUsageDetailResp,
-    GetApplicationUsageOverviewReqFilter,
+    GetApplicationUsageOverviewReqDepartmentIDType,
     GetApplicationUsageOverviewReq,
     GetApplicationUsageOverviewRespItem,
     GetApplicationUsageOverviewResp,
@@ -3294,6 +3331,12 @@ __all__ = [
     UploadApprovalFileReqContent,
     UploadApprovalFileReq,
     UploadApprovalFileResp,
+    GetApprovalUserTaskListReqUserIDType,
+    GetApprovalUserTaskListReq,
+    GetApprovalUserTaskListRespCount,
+    GetApprovalUserTaskListRespTaskURLs,
+    GetApprovalUserTaskListRespTask,
+    GetApprovalUserTaskListResp,
     AddApprovalInstanceSignReq,
     AddApprovalInstanceSignResp,
     ApproveApprovalInstanceReq,
@@ -3333,6 +3376,8 @@ __all__ = [
     SearchApprovalInstanceResp,
     TransferApprovalInstanceReq,
     TransferApprovalInstanceResp,
+    UpdateApprovalMessageReq,
+    UpdateApprovalMessageResp,
     SearchApprovalTaskReq,
     SearchApprovalTaskRespTaskTaskLink,
     SearchApprovalTaskRespTaskTask,
@@ -3537,7 +3582,6 @@ __all__ = [
     LarkBitableService,
     CreateBitableFieldReqPropertyOption,
     CreateBitableFieldReqProperty,
-    CreateBitableFieldReqUserIDType,
     CreateBitableFieldReq,
     CreateBitableFieldRespFieldPropertyOption,
     CreateBitableFieldRespFieldProperty,
@@ -3591,6 +3635,7 @@ __all__ = [
     CreateBitableRecordResp,
     DeleteBitableRecordReq,
     DeleteBitableRecordResp,
+    GetBitableRecordReqUserIDType,
     GetBitableRecordReq,
     GetBitableRecordRespRecordFieldsValue,
     GetBitableRecordRespRecordFields,
@@ -4251,10 +4296,18 @@ __all__ = [
     BatchUpdateSheetReqRequestCopySheet,
     BatchUpdateSheetReqRequestAddSheetProperties,
     BatchUpdateSheetReqRequestAddSheet,
+    BatchUpdateSheetReqRequestUpdateSheetPropertiesProtect,
+    BatchUpdateSheetReqRequestUpdateSheetProperties,
+    BatchUpdateSheetReqRequestUpdateSheet,
     BatchUpdateSheetReqRequest,
     BatchUpdateSheetReq,
     BatchUpdateSheetRespReplyDeleteSheet,
+    BatchUpdateSheetRespReplyUpdateSheetPropertiesProtect,
+    BatchUpdateSheetRespReplyUpdateSheetProperties,
+    BatchUpdateSheetRespReplyUpdateSheet,
+    BatchUpdateSheetRespReplyCopySheetProperties,
     BatchUpdateSheetRespReplyCopySheet,
+    BatchUpdateSheetRespReplyAddSheetProperties,
     BatchUpdateSheetRespReplyAddSheet,
     BatchUpdateSheetRespReply,
     BatchUpdateSheetResp,
@@ -4264,7 +4317,7 @@ __all__ = [
     UnmergeSheetCellResp,
     CreateSheetConditionFormatReqSheetConditionFormatConditionFormatStyleFont,
     CreateSheetConditionFormatReqSheetConditionFormatConditionFormatStyle,
-    CreateSheetConditionFormatReqSheetConditionFormatConditionFormatAttrs,
+    CreateSheetConditionFormatReqSheetConditionFormatConditionFormatAttr,
     CreateSheetConditionFormatReqSheetConditionFormatConditionFormat,
     CreateSheetConditionFormatReqSheetConditionFormat,
     CreateSheetConditionFormatReq,
@@ -4277,13 +4330,13 @@ __all__ = [
     GetSheetConditionFormatReq,
     GetSheetConditionFormatRespSheetConditionFormatConditionFormatStyleFont,
     GetSheetConditionFormatRespSheetConditionFormatConditionFormatStyle,
-    GetSheetConditionFormatRespSheetConditionFormatConditionFormatAttrs,
+    GetSheetConditionFormatRespSheetConditionFormatConditionFormatAttr,
     GetSheetConditionFormatRespSheetConditionFormatConditionFormat,
     GetSheetConditionFormatRespSheetConditionFormat,
     GetSheetConditionFormatResp,
     UpdateSheetConditionFormatReqSheetConditionFormatsConditionFormatStyleFont,
     UpdateSheetConditionFormatReqSheetConditionFormatsConditionFormatStyle,
-    UpdateSheetConditionFormatReqSheetConditionFormatsConditionFormatAttrs,
+    UpdateSheetConditionFormatReqSheetConditionFormatsConditionFormatAttr,
     UpdateSheetConditionFormatReqSheetConditionFormatsConditionFormat,
     UpdateSheetConditionFormatReqSheetConditionFormats,
     UpdateSheetConditionFormatReq,
@@ -4863,6 +4916,9 @@ __all__ = [
     CreateIdentityReqUserIDType,
     CreateIdentityReq,
     CreateIdentityResp,
+    LarkJssdkService,
+    GetJssdkTicketReq,
+    GetJssdkTicketResp,
     OpenBotReq,
     OpenBotResp,
     OpenCalenderReq,
@@ -5018,6 +5074,12 @@ __all__ = [
     BatchGetMeetingRoomSummaryRespEventInfo,
     BatchGetMeetingRoomSummaryResp,
     LarkMessageService,
+    BatchDeleteMessageReq,
+    BatchDeleteMessageResp,
+    BatchSendOldRawMessageReqContent,
+    BatchSendOldRawMessageReqMsgType,
+    BatchSendOldRawMessageReq,
+    BatchSendOldRawMessageResp,
     DeleteMessageReq,
     DeleteMessageResp,
     DeleteEphemeralMessageReq,
@@ -5031,6 +5093,9 @@ __all__ = [
     GetMessageRespItemMsgType,
     GetMessageRespItem,
     GetMessageResp,
+    GetBatchSentMessageReadUserReq,
+    GetBatchSentMessageReadUserRespReadUser,
+    GetBatchSentMessageReadUserResp,
     GetMessageFileReq,
     GetMessageFileRespFile,
     GetMessageFileResp,

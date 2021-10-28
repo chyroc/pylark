@@ -18,18 +18,12 @@ class BatchGetUserByIDReq(object):
 
 @attr.s
 class BatchGetUserByIDRespEmailUser(object):
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户的 open_id。
+    open_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 用户的 open_id。[open_id描述](https://open.feishu.cn/document/home/user-identity-introduction/open-id)
     user_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 用户的 user_id。<br>只有已申请 `获取用户UserID` 权限的企业自建应用返回此字段。
-
-
-@attr.s
-class BatchGetUserByIDRespEmailUser(object):
-    open_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户的 open_id。
-    user_id: str = attr.ib(
-        default="", metadata={"req_type": "json"}
-    )  # 用户的 user_id。<br>只有已申请 `获取用户UserID` 权限的企业自建应用返回此字段。
+    )  # 用户的 user_id。<br>只有已申请 `获取用户UserID` 权限的企业自建应用返回此字段。[user_id描述](https://open.feishu.cn/document/home/user-identity-introduction/user-id)
 
 
 @attr.s

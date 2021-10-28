@@ -45,7 +45,7 @@ class CreateApprovalInstanceReq(object):
     )  # 发起审批用户 open id, 如果传了 user_id 则优先使用 user_id
     department_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 发起审批用户部门，如果用户只属于一个部门，可以不填，如果属于多个部门，默认会选择一个部门
+    )  # 发起审批用户部门id，如果用户只属于一个部门，可以不填。如果属于多个部门，默认会选择部门列表第一个部门
     form: CreateApprovalInstanceReqForm = attr.ib(
         factory=lambda: CreateApprovalInstanceReqForm(), metadata={"req_type": "json"}
     )  # json 数组，**控件值**

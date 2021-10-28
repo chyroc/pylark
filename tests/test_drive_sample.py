@@ -26,6 +26,12 @@ class TestDriveSampleMockGetTokenFailed(unittest.TestCase):
         self.cli.auth.get_app_access_token = mock_get_tenant_access_token_failed
         self.module_cli = self.cli.drive
 
+    def test_mock_get_token_get_drive_file_meta(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_drive_file_meta(pylark.GetDriveFileMetaReq())
+
+        assert "msg=failed" in f"{e}"
+
     def test_mock_get_token_create_drive_file(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.create_drive_file(pylark.CreateDriveFileReq())
@@ -711,6 +717,16 @@ class TestDriveSampleMockSelfFuncFailed(unittest.TestCase):
         super(TestDriveSampleMockSelfFuncFailed, self).__init__(*args, **kwargs)
         self.cli = app_all_permission.ins()
         self.module_cli = self.cli.drive
+
+    def test_mock_self_func_get_drive_file_meta(self):
+        origin_func = self.module_cli.get_drive_file_meta
+        self.module_cli.get_drive_file_meta = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_drive_file_meta(pylark.GetDriveFileMetaReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_drive_file_meta = origin_func
 
     def test_mock_self_func_create_drive_file(self):
         origin_func = self.module_cli.create_drive_file
@@ -1794,6 +1810,14 @@ class TestDriveSampleMockRawRequestFailed(unittest.TestCase):
         self.cli = app_all_permission.ins()
         self.module_cli = self.cli.drive
         self.cli.raw_request = mock_raw_request
+
+    def test_mock_raw_request_get_drive_file_meta(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_drive_file_meta(pylark.GetDriveFileMetaReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
 
     def test_mock_raw_request_create_drive_file(self):
         with pytest.raises(pylark.PyLarkError) as e:
@@ -2973,6 +2997,13 @@ class TestDriveSampleRealRequestFailed(unittest.TestCase):
         super(TestDriveSampleRealRequestFailed, self).__init__(*args, **kwargs)
         self.cli = app_no_permission.ins()
         self.module_cli = self.cli.drive
+
+    def test_real_request_get_drive_file_meta(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_drive_file_meta(pylark.GetDriveFileMetaReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
 
     def test_real_request_create_drive_file(self):
         with pytest.raises(pylark.PyLarkError) as e:

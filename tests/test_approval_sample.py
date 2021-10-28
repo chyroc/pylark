@@ -80,21 +80,37 @@ class TestApprovalSampleMockGetTokenFailed(unittest.TestCase):
 
         assert "msg=failed" in f"{e}"
 
-    def test_mock_get_token_upload_approval_file(self):
-        with pytest.raises(pylark.PyLarkError) as e:
-            self.module_cli.upload_approval_file(pylark.UploadApprovalFileReq())
-
-        assert "msg=failed" in f"{e}"
-
     def test_mock_get_token_search_approval_instance(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.search_approval_instance(pylark.SearchApprovalInstanceReq())
 
         assert "msg=failed" in f"{e}"
 
+    def test_mock_get_token_add_approval_instance_sign(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.add_approval_instance_sign(
+                pylark.AddApprovalInstanceSignReq()
+            )
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_upload_approval_file(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.upload_approval_file(pylark.UploadApprovalFileReq())
+
+        assert "msg=failed" in f"{e}"
+
     def test_mock_get_token_search_approval_task(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.search_approval_task(pylark.SearchApprovalTaskReq())
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_get_approval_user_task_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_approval_user_task_list(
+                pylark.GetApprovalUserTaskListReq()
+            )
 
         assert "msg=failed" in f"{e}"
 
@@ -114,19 +130,17 @@ class TestApprovalSampleMockGetTokenFailed(unittest.TestCase):
 
         assert "msg=failed" in f"{e}"
 
-    def test_mock_get_token_add_approval_instance_sign(self):
-        with pytest.raises(pylark.PyLarkError) as e:
-            self.module_cli.add_approval_instance_sign(
-                pylark.AddApprovalInstanceSignReq()
-            )
-
-        assert "msg=failed" in f"{e}"
-
     def test_mock_get_token_preview_approval_instance(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.preview_approval_instance(
                 pylark.PreviewApprovalInstanceReq()
             )
+
+        assert "msg=failed" in f"{e}"
+
+    def test_mock_get_token_update_approval_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_approval_message(pylark.UpdateApprovalMessageReq())
 
         assert "msg=failed" in f"{e}"
 
@@ -224,16 +238,6 @@ class TestApprovalSampleMockSelfFuncFailed(unittest.TestCase):
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.cancel_approval_instance = origin_func
 
-    def test_mock_self_func_upload_approval_file(self):
-        origin_func = self.module_cli.upload_approval_file
-        self.module_cli.upload_approval_file = mock
-
-        with pytest.raises(pylark.PyLarkError) as e:
-            self.module_cli.upload_approval_file(pylark.UploadApprovalFileReq())
-
-        assert "msg=mock-failed" in f"{e}"
-        self.module_cli.upload_approval_file = origin_func
-
     def test_mock_self_func_search_approval_instance(self):
         origin_func = self.module_cli.search_approval_instance
         self.module_cli.search_approval_instance = mock
@@ -244,6 +248,28 @@ class TestApprovalSampleMockSelfFuncFailed(unittest.TestCase):
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.search_approval_instance = origin_func
 
+    def test_mock_self_func_add_approval_instance_sign(self):
+        origin_func = self.module_cli.add_approval_instance_sign
+        self.module_cli.add_approval_instance_sign = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.add_approval_instance_sign(
+                pylark.AddApprovalInstanceSignReq()
+            )
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.add_approval_instance_sign = origin_func
+
+    def test_mock_self_func_upload_approval_file(self):
+        origin_func = self.module_cli.upload_approval_file
+        self.module_cli.upload_approval_file = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.upload_approval_file(pylark.UploadApprovalFileReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.upload_approval_file = origin_func
+
     def test_mock_self_func_search_approval_task(self):
         origin_func = self.module_cli.search_approval_task
         self.module_cli.search_approval_task = mock
@@ -253,6 +279,18 @@ class TestApprovalSampleMockSelfFuncFailed(unittest.TestCase):
 
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.search_approval_task = origin_func
+
+    def test_mock_self_func_get_approval_user_task_list(self):
+        origin_func = self.module_cli.get_approval_user_task_list
+        self.module_cli.get_approval_user_task_list = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_approval_user_task_list(
+                pylark.GetApprovalUserTaskListReq()
+            )
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.get_approval_user_task_list = origin_func
 
     def test_mock_self_func_search_approval_carbon_copy(self):
         origin_func = self.module_cli.search_approval_carbon_copy
@@ -278,18 +316,6 @@ class TestApprovalSampleMockSelfFuncFailed(unittest.TestCase):
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.create_approval_carbon_copy = origin_func
 
-    def test_mock_self_func_add_approval_instance_sign(self):
-        origin_func = self.module_cli.add_approval_instance_sign
-        self.module_cli.add_approval_instance_sign = mock
-
-        with pytest.raises(pylark.PyLarkError) as e:
-            self.module_cli.add_approval_instance_sign(
-                pylark.AddApprovalInstanceSignReq()
-            )
-
-        assert "msg=mock-failed" in f"{e}"
-        self.module_cli.add_approval_instance_sign = origin_func
-
     def test_mock_self_func_preview_approval_instance(self):
         origin_func = self.module_cli.preview_approval_instance
         self.module_cli.preview_approval_instance = mock
@@ -301,6 +327,16 @@ class TestApprovalSampleMockSelfFuncFailed(unittest.TestCase):
 
         assert "msg=mock-failed" in f"{e}"
         self.module_cli.preview_approval_instance = origin_func
+
+    def test_mock_self_func_update_approval_message(self):
+        origin_func = self.module_cli.update_approval_message
+        self.module_cli.update_approval_message = mock
+
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_approval_message(pylark.UpdateApprovalMessageReq())
+
+        assert "msg=mock-failed" in f"{e}"
+        self.module_cli.update_approval_message = origin_func
 
 
 # mock raw request
@@ -381,14 +417,6 @@ class TestApprovalSampleMockRawRequestFailed(unittest.TestCase):
         assert e.value.code > 0
         assert "mock-raw-request-failed" in e.value.msg
 
-    def test_mock_raw_request_upload_approval_file(self):
-        with pytest.raises(pylark.PyLarkError) as e:
-            self.module_cli.upload_approval_file(pylark.UploadApprovalFileReq())
-
-        assert e.type is pylark.PyLarkError
-        assert e.value.code > 0
-        assert "mock-raw-request-failed" in e.value.msg
-
     def test_mock_raw_request_search_approval_instance(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.search_approval_instance(pylark.SearchApprovalInstanceReq())
@@ -397,9 +425,37 @@ class TestApprovalSampleMockRawRequestFailed(unittest.TestCase):
         assert e.value.code > 0
         assert "mock-raw-request-failed" in e.value.msg
 
+    def test_mock_raw_request_add_approval_instance_sign(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.add_approval_instance_sign(
+                pylark.AddApprovalInstanceSignReq()
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_upload_approval_file(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.upload_approval_file(pylark.UploadApprovalFileReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
     def test_mock_raw_request_search_approval_task(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.search_approval_task(pylark.SearchApprovalTaskReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+        assert "mock-raw-request-failed" in e.value.msg
+
+    def test_mock_raw_request_get_approval_user_task_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_approval_user_task_list(
+                pylark.GetApprovalUserTaskListReq()
+            )
 
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0
@@ -425,21 +481,19 @@ class TestApprovalSampleMockRawRequestFailed(unittest.TestCase):
         assert e.value.code > 0
         assert "mock-raw-request-failed" in e.value.msg
 
-    def test_mock_raw_request_add_approval_instance_sign(self):
+    def test_mock_raw_request_preview_approval_instance(self):
         with pytest.raises(pylark.PyLarkError) as e:
-            self.module_cli.add_approval_instance_sign(
-                pylark.AddApprovalInstanceSignReq()
+            self.module_cli.preview_approval_instance(
+                pylark.PreviewApprovalInstanceReq()
             )
 
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0
         assert "mock-raw-request-failed" in e.value.msg
 
-    def test_mock_raw_request_preview_approval_instance(self):
+    def test_mock_raw_request_update_approval_message(self):
         with pytest.raises(pylark.PyLarkError) as e:
-            self.module_cli.preview_approval_instance(
-                pylark.PreviewApprovalInstanceReq()
-            )
+            self.module_cli.update_approval_message(pylark.UpdateApprovalMessageReq())
 
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0
@@ -515,13 +569,6 @@ class TestApprovalSampleRealRequestFailed(unittest.TestCase):
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0
 
-    def test_real_request_upload_approval_file(self):
-        with pytest.raises(pylark.PyLarkError) as e:
-            self.module_cli.upload_approval_file(pylark.UploadApprovalFileReq())
-
-        assert e.type is pylark.PyLarkError
-        assert e.value.code > 0
-
     def test_real_request_search_approval_instance(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.search_approval_instance(pylark.SearchApprovalInstanceReq())
@@ -529,9 +576,34 @@ class TestApprovalSampleRealRequestFailed(unittest.TestCase):
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0
 
+    def test_real_request_add_approval_instance_sign(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.add_approval_instance_sign(
+                pylark.AddApprovalInstanceSignReq()
+            )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_upload_approval_file(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.upload_approval_file(pylark.UploadApprovalFileReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
     def test_real_request_search_approval_task(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.search_approval_task(pylark.SearchApprovalTaskReq())
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_get_approval_user_task_list(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.get_approval_user_task_list(
+                pylark.GetApprovalUserTaskListReq()
+            )
 
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0
@@ -554,20 +626,18 @@ class TestApprovalSampleRealRequestFailed(unittest.TestCase):
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0
 
-    def test_real_request_add_approval_instance_sign(self):
-        with pytest.raises(pylark.PyLarkError) as e:
-            self.module_cli.add_approval_instance_sign(
-                pylark.AddApprovalInstanceSignReq()
-            )
-
-        assert e.type is pylark.PyLarkError
-        assert e.value.code > 0
-
     def test_real_request_preview_approval_instance(self):
         with pytest.raises(pylark.PyLarkError) as e:
             self.module_cli.preview_approval_instance(
                 pylark.PreviewApprovalInstanceReq()
             )
+
+        assert e.type is pylark.PyLarkError
+        assert e.value.code > 0
+
+    def test_real_request_update_approval_message(self):
+        with pytest.raises(pylark.PyLarkError) as e:
+            self.module_cli.update_approval_message(pylark.UpdateApprovalMessageReq())
 
         assert e.type is pylark.PyLarkError
         assert e.value.code > 0

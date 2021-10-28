@@ -90,7 +90,9 @@ class GetDriveCommentRespReplyList(object):
 
 @attr.s
 class GetDriveCommentResp(object):
-    comment_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 评论ID
+    comment_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 评论ID（创建新评论可不填；如填写，则视为回复已有评论）
     user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 用户ID
     create_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 创建时间
     update_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # 更新时间

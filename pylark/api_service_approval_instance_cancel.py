@@ -11,12 +11,11 @@ class CancelApprovalInstanceReq(object):
     approval_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批定义Code
     instance_code: str = attr.ib(default="", metadata={"req_type": "json"})  # 审批实例Code
     user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 操作用户
-    comment: str = attr.ib(default="", metadata={"req_type": "json"})  # 撤回的实例的时候可以添加评论
     open_id: str = attr.ib(
         default="", metadata={"req_type": "json"}
     )  # 某个应用下用户的唯一标识，根据userID、openID、TenantId获得Lark用户。
-    notify_starter: str = attr.ib(
-        default="", metadata={"req_type": "json"}
+    notify_starter: bool = attr.ib(
+        default=None, metadata={"req_type": "json"}
     )  # 如果为true，撤回实例的时候会收到一条消息提醒。
 
 

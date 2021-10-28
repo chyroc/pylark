@@ -208,8 +208,10 @@ class GetHireOfferByApplicationRespOfferBasicInfo(object):
     )  # Offer类型 1=Social, 2=Campus, 3=Intern, 4=InternTransfer, 可选值有: `1`：Social, `2`：Campus, `3`：Intern, `4`：InternTransfer
     remark: str = attr.ib(default="", metadata={"req_type": "json"})  # 备注
     expire_time: int = attr.ib(default=0, metadata={"req_type": "json"})  # Offer过期时间
-    owner_user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # string
-    leader_user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # string
+    owner_user_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # offer 负责人 ID
+    leader_user_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 直属上级 ID
     onboard_date: str = attr.ib(default="", metadata={"req_type": "json"})  # 入职日期
     department_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 入职部门
     probation_month: int = attr.ib(

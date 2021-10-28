@@ -37,7 +37,7 @@ http://lark-sdk.github.io/
 
 ## Support APIs
 
-API Count: 470, Event Count: 51
+API Count: 476, Event Count: 76
 
 <details>
   <summary>
@@ -87,10 +87,13 @@ API Count: 470, Event Count: 51
   - SendUrgentPhoneMessage
   - SendRawMessage
   - SendRawMessageOld
+  - BatchSendOldRawMessage
   - ReplyRawMessage
   - DeleteMessage
+  - BatchDeleteMessage
   - UpdateMessage
   - GetMessageReadUserList
+  - GetBatchSentMessageReadUser
   - GetMessageList
   - GetMessageFile
   - GetMessage
@@ -284,6 +287,8 @@ API Count: 470, Event Count: 51
   - BatchGetMeetingRoomRoomID
   - GetMeetingRoomCountryList
   - GetMeetingRoomDistrictList
+- Jssdk
+  - GetJssdkTicket
 - VC
   - ApplyVCReserve
   - UpdateVCReserve
@@ -354,13 +359,15 @@ API Count: 470, Event Count: 51
   - RejectApprovalInstance
   - TransferApprovalInstance
   - CancelApprovalInstance
-  - UploadApprovalFile
   - SearchApprovalInstance
+  - AddApprovalInstanceSign
+  - UploadApprovalFile
   - SearchApprovalTask
+  - GetApprovalUserTaskList
   - SearchApprovalCarbonCopy
   - CreateApprovalCarbonCopy
-  - AddApprovalInstanceSign
   - PreviewApprovalInstance
+  - UpdateApprovalMessage
 - Helpdesk
   - StartHelpdeskService
   - GetHelpdeskTicket
@@ -524,6 +531,31 @@ API Count: 470, Event Count: 51
 - Ecosystem
   - GetEcosystemBindAwemeUser
 - EventCallback
+  - EventV2DriveFileTitleUpdatedV1
+  - EventV2DriveFileReadV1
+  - EventV2DriveFileEditV1
+  - EventV1AppOpen
+  - EventV1ShiftApproval
+  - EventV1LeaveApprovalV2
+  - EventV1OutApproval
+  - EventV1WorkApproval
+  - EventV2DriveFilePermissionMemberAddedV1
+  - EventV2DriveFileTrashedV1
+  - EventV2DriveFileDeletedV1
+  - EventV2DriveFilePermissionMemberRemovedV1
+  - EventV2ApprovalApprovalUpdatedV4
+  - EventV1TripApproval
+  - EventV1RemedyApproval
+  - EventV2MeetingRoomMeetingRoomUpdatedV1
+  - EventV2MeetingRoomMeetingRoomStatusChangedV1
+  - EventV2MeetingRoomMeetingRoomDeletedV1
+  - EventV2MeetingRoomMeetingRoomCreatedV1
+  - EventV1OrderPaid
+  - EventV1AppTicket
+  - EventV1AppUninstalled
+  - EventV1AppStatusChange
+  - EventV2ApplicationApplicationVisibilityAddedV6
+  - EventV2AttendanceUserTaskUpdatedV1
   - EventV2AttendanceUserFlowCreatedV1
   - EventV2AwemeEcosystemAwemeUserBindedAccountV1
   - EventV2TaskTaskUpdatedV1

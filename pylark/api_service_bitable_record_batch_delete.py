@@ -16,7 +16,7 @@ class BatchDeleteBitableRecordReq(object):
     )  # table id, 示例值："tblsRc9GRRXKqhvW"
     records: typing.List[str] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json"}
-    )  # 删除的多条记录id列表
+    )  # 删除的多条记录id列表, 示例值：[,    "recIcJBbvC",,    "recvmiCORa",]
 
 
 @attr.s

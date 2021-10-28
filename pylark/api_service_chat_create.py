@@ -62,22 +62,22 @@ class CreateChatReq(object):
     )  # 创建群时指定的群主，不填时指定建群的机器人为群主, 示例值："4d7a3c6g"
     chat_mode: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 群模式(group), 示例值："group"
+    )  # 群模式, 可选值有: `group`：群组, 示例值："group"
     chat_type: CreateChatReqChatType = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # 群类型(private/public), 示例值："private"
+    )  # 群类型, 可选值有: `private`：私有群, `public`：公开群, 示例值："private"
     external: bool = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 是否是外部群, 示例值：false
     join_message_visibility: CreateChatReqJoinMessageVisibility = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # 入群消息可见性(only_owner/all_members/not_anyone), 示例值："all_members"
+    )  # 入群消息可见性, 可选值有: `only_owner`：仅群主和管理员可见, `all_members`：所有成员可见, `not_anyone`：任何人均不可见, 示例值："all_members"
     leave_message_visibility: CreateChatReqLeaveMessageVisibility = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # 出群消息可见性(only_owner/all_members/not_anyone), 示例值："all_members"
+    )  # 出群消息可见性, 可选值有: `only_owner`：仅群主和管理员可见, `all_members`：所有成员可见, `not_anyone`：任何人均不可见, 示例值："all_members"
     membership_approval: CreateChatReqMembershipApproval = attr.ib(
         default=None, metadata={"req_type": "json"}
-    )  # 加群审批(no_approval_required/approval_required), 示例值："no_approval_required"
+    )  # 加群审批, 可选值有: `no_approval_required`：无需审批, `approval_required`：需要审批, 示例值："no_approval_required"
 
 
 @attr.s
@@ -139,58 +139,66 @@ class CreateChatRespI18nNames(object):
 
 @attr.s
 class CreateChatResp(object):
-    chat_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 群 ID
+    chat_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 群 ID，详情参见：[群ID 说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/chat-id-description)
     avatar: str = attr.ib(default="", metadata={"req_type": "json"})  # 群头像 URL
     name: str = attr.ib(default="", metadata={"req_type": "json"})  # 群名称
     description: str = attr.ib(default="", metadata={"req_type": "json"})  # 群描述
     i18n_names: CreateChatRespI18nNames = attr.ib(
         default=None, metadata={"req_type": "json"}
     )  # 群国际化名称
-    owner_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 群主 ID
+    owner_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 群主 ID，ID值与查询参数中的 user_id_type 对应。,不同 ID 的说明参见 [用户相关的 ID 概念](https://open.feishu.cn/document/home/user-identity-introduction/introduction),当群主是机器人时，该字段不返回
     owner_id_type: CreateChatRespOwnerIDType = attr.ib(
         factory=lambda: CreateChatRespOwnerIDType(), metadata={"req_type": "json"}
-    )  # 群主 ID 类型
+    )  # 群主 ID 对应的ID类型，与查询参数中的 user_id_type 相同。取值为：`open_id`、`user_id`、`union_id`其中之一。,当群主是机器人时，该字段不返回
     add_member_permission: CreateChatRespAddMemberPermission = attr.ib(
         factory=lambda: CreateChatRespAddMemberPermission(),
         metadata={"req_type": "json"},
-    )  # 加 user/bot 入群权限(all_members/only_owner)
+    )  # 拉 用户或机器人 入群权限, 可选值有: `only_owner`：仅群主和管理员, `all_members`：所有成员
     share_card_permission: CreateChatRespShareCardPermission = attr.ib(
         factory=lambda: CreateChatRespShareCardPermission(),
         metadata={"req_type": "json"},
-    )  # 群分享权限(allowed/not_allowed)
+    )  # 群分享权限, 可选值有: `allowed`：允许, `not_allowed`：不允许
     at_all_permission: CreateChatRespAtAllPermission = attr.ib(
         factory=lambda: CreateChatRespAtAllPermission(), metadata={"req_type": "json"}
-    )  # at 所有人权限(all_members/only_owner)
+    )  # at 所有人权限, 可选值有: `only_owner`：仅群主和管理员, `all_members`：所有成员
     edit_permission: CreateChatRespEditPermission = attr.ib(
         factory=lambda: CreateChatRespEditPermission(), metadata={"req_type": "json"}
-    )  # 群编辑权限(all_members/only_owner)
-    chat_mode: str = attr.ib(default="", metadata={"req_type": "json"})  # 群模式(group)
+    )  # 群编辑权限, 可选值有: `only_owner`：仅群主和管理员, `all_members`：所有成员
+    chat_mode: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 群模式, 可选值有: `group`：群组
     chat_type: CreateChatRespChatType = attr.ib(
         factory=lambda: CreateChatRespChatType(), metadata={"req_type": "json"}
-    )  # 群类型(private/public)
+    )  # 群类型, 可选值有: `private`：私有群, `public`：公开群
     chat_tag: str = attr.ib(
         default="", metadata={"req_type": "json"}
-    )  # 优先级最高的一个群 tag（inner/tenant/department/edu/meeting/customer_service）
+    )  # 群标签，如有多个，则按照下列顺序返回第一个, 可选值有: `inner`：内部群, `tenant`：公司群, `department`：部门群, `edu`：教育群, `meeting`：会议群, `customer_service`：客服群
     external: bool = attr.ib(
         factory=lambda: bool(), metadata={"req_type": "json"}
     )  # 是否是外部群
-    tenant_key: str = attr.ib(default="", metadata={"req_type": "json"})  # tenant key
+    tenant_key: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 租户在飞书上的唯一标识，用来换取对应的tenant_access_token，也可以用作租户在应用里面的唯一标识
     join_message_visibility: CreateChatRespJoinMessageVisibility = attr.ib(
         factory=lambda: CreateChatRespJoinMessageVisibility(),
         metadata={"req_type": "json"},
-    )  # 入群消息可见性(only_owner/all_members/not_anyone)
+    )  # 入群消息可见性, 可选值有: `only_owner`：仅群主和管理员可见, `all_members`：所有成员可见, `not_anyone`：任何人均不可见
     leave_message_visibility: CreateChatRespLeaveMessageVisibility = attr.ib(
         factory=lambda: CreateChatRespLeaveMessageVisibility(),
         metadata={"req_type": "json"},
-    )  # 出群消息可见性(only_owner/all_members/not_anyone)
+    )  # 出群消息可见性, 可选值有: `only_owner`：仅群主和管理员可见, `all_members`：所有成员可见, `not_anyone`：任何人均不可见
     membership_approval: CreateChatRespMembershipApproval = attr.ib(
         factory=lambda: CreateChatRespMembershipApproval(),
         metadata={"req_type": "json"},
-    )  # 加群审批(no_approval_required/approval_required)
+    )  # 加群审批, 可选值有: `no_approval_required`：无需审批, `approval_required`：需要审批
     moderation_permission: CreateChatRespModerationPermission = attr.ib(
         factory=lambda: CreateChatRespModerationPermission(),
         metadata={"req_type": "json"},
-    )  # 发言权限(all_members/only_owner/moderator_list)
+    )  # 发言权限, 可选值有: `only_owner`：仅群主和管理员, `all_members`：所有成员, `moderator_list`：指定群成员
 
 
 def _gen_create_chat_req(request, options) -> RawRequestReq:

@@ -31,7 +31,9 @@ class GetChatListOfSelfRespItemOwnerIDType(object):
 
 @attr.s
 class GetChatListOfSelfRespItem(object):
-    chat_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 群组 ID
+    chat_id: str = attr.ib(
+        default="", metadata={"req_type": "json"}
+    )  # 群组 ID，详情参见[群ID 说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/chat-id-description)
     avatar: str = attr.ib(default="", metadata={"req_type": "json"})  # 群头像 URL
     name: str = attr.ib(default="", metadata={"req_type": "json"})  # 群名称
     description: str = attr.ib(default="", metadata={"req_type": "json"})  # 群描述

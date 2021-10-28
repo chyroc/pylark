@@ -33,7 +33,7 @@ class CreateHireNoteReq(object):
 
 @attr.s
 class CreateHireNoteRespNote(object):
-    id: str = attr.ib(default="", metadata={"req_type": "json"})  # ID备注
+    id: str = attr.ib(default="", metadata={"req_type": "json"})  # 备注ID
     talent_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 人才ID
     application_id: str = attr.ib(default="", metadata={"req_type": "json"})  # 投递ID
     is_private: bool = attr.ib(

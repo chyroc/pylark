@@ -22,7 +22,7 @@ class GetCalendarEventAttendeeChatMemberListReq(object):
     )  # 日程 ID, 示例值："xxxxxxxxx_0"
     attendee_id: str = attr.ib(
         default="", metadata={"req_type": "path"}
-    )  # 参与人 ID, 示例值："oc_xxxxxxxx"
+    )  # 参与人 ID, 示例值："user_xxxxxx"
 
 
 @attr.s
