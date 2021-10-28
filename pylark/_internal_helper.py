@@ -86,3 +86,17 @@ def _make_dataclass_from_dict(t: Type[T], kwargs: Any) -> T:
             d[att_name] = None
 
     return t(**d)
+
+
+def _to_dict(req: attr.ib):
+    if not getattr(req, "__attrs_attrs__", None):
+        return req
+
+    request_dict = {}
+    for field in attr.fields(type(req)):
+        field_key = field.metadata.get("key", "") or ""
+        field_val = getattr(req, field.name, None)
+        if field_val:
+            request_dict[field_key] = _to_dict(field_val)
+
+    return request_dict

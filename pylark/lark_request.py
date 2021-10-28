@@ -3,7 +3,7 @@ from typing import TypeVar, Type, TYPE_CHECKING, Tuple
 import attr
 import requests
 
-from pylark._internal_helper import _make_dataclass_from_dict, _to_attr_dict
+from pylark._internal_helper import _make_dataclass_from_dict, _to_attr_dict, _to_dict
 from pylark.lark_exception import PyLarkError
 from pylark._internal_log import logger
 
@@ -176,7 +176,7 @@ class Request(object):
                 if req_type == "json":
                     field_val = getattr(req.body, field.name, None)
                     if field_val:
-                        body[field_key] = field_val
+                        body[field_key] = _to_dict(field_val)
                 elif req_type == "query":
                     field_val = getattr(req.body, field.name, None)
                     if field_val:
