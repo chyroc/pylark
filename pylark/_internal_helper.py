@@ -29,7 +29,7 @@ def _to_attr_dict(data):
     if isinstance(data, list):
         return [_to_attr_dict(v) for v in data]
     if attr.has(data):
-        return attr.asdict(data)
+        return _to_dict(data)
     return data
 
 
