@@ -174,3 +174,27 @@ class HelpdeskDropdownOption(object):
     children: typing.List["HelpdeskDropdownOption"] = attr.ib(
         factory=list, metadata={"req_type": "json", "key": "children"}
     )  # 同上：选项列表，只适用于多层下拉列表（最多可以设置三级下拉列表）
+
+@attr.s
+class I18nNames:
+    pass
+
+@attr.s
+class HelpdeskCategory:
+    pass
+
+@attr.s
+class MessageContentCard:
+    pass
+
+@attr.s
+class Sender:
+    pass
+
+@attr.s
+class MessageBody:
+    pass
+
+@attr.s
+class Mention:
+    pass

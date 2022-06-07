@@ -35,8 +35,8 @@ class GetDriveFolderChildrenResp(object):
     parent_token: str = attr.ib(
         default="", metadata={"req_type": "json", "key": "parentToken"}
     )  # 文件夹的 token
-    children: map[string] * GetDriveFolderChildrenRespChildren = attr.ib(
-        factory=lambda: map[string] * GetDriveFolderChildrenRespChildren(),
+    children: typing.Dict[str, GetDriveFolderChildrenRespChildren] = attr.ib(
+        factory=lambda: dict(),
         metadata={"req_type": "json", "key": "children"},
     )  # 文件夹的下的文件
 

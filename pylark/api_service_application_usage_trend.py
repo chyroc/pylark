@@ -60,8 +60,8 @@ class GetApplicationUsageTrendRespItem(object):
 
 @attr.s
 class GetApplicationUsageTrendResp(object):
-    item: map[string] * GetApplicationUsageTrendRespItem = attr.ib(
-        factory=lambda: map[string] * GetApplicationUsageTrendRespItem(),
+    item: typing.Dict[str, GetApplicationUsageTrendRespItem] = attr.ib(
+        factory=lambda: dict(),
         metadata={"req_type": "json", "key": "item"},
     )  # 返回项
 

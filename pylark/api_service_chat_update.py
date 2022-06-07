@@ -24,7 +24,7 @@ class UpdateChatReq(object):
     description: str = attr.ib(
         default="", metadata={"req_type": "json", "key": "description"}
     )  # 群描述, 示例值："测试群描述"
-    i18n_names: I18nNames = attr.ib(
+    i18n_names: lark_type.I18nNames = attr.ib(
         default=None, metadata={"req_type": "json", "key": "i18n_names"}
     )  # 群国际化名称
     add_member_permission: lark_type.AddMemberPermission = attr.ib(

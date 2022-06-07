@@ -25,7 +25,7 @@ class SendEphemeralMessageReq(object):
         factory=lambda: lark_type.MsgType(),
         metadata={"req_type": "json", "key": "msg_type"},
     )  # 消息的类型，此处固定填 "interactive"
-    card: MessageContentCard = attr.ib(
+    card: lark_type.MessageContentCard = attr.ib(
         default=None, metadata={"req_type": "json", "key": "card"}
     )  # 消息卡片的描述内容，具体参考[卡片结构](https://open.feishu.cn/document/ukTMukTMukTM/uEjNwUjLxYDM14SM2ATN)
 
