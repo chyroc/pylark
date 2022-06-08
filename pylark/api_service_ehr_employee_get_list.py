@@ -6,6 +6,10 @@ import attr
 import typing
 import io
 
+EHREmergencyContact = str
+EHREducation = str
+EHRWorkExperience = str
+EHRAttachment = str
 
 @attr.s
 class GetEHREmployeeListReq(object):

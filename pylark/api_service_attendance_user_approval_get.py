@@ -79,7 +79,7 @@ class GetAttendanceUserApprovalRespUserApprovalLeave(object):
     end_time: str = attr.ib(
         default="", metadata={"req_type": "json", "key": "end_time"}
     )  # 结束时间，时间格式为 yyyy-MM-dd HH:mm:ss
-    i18n_names: I18nNames = attr.ib(
+    i18n_names: lark_type.I18nNames = attr.ib(
         default=None, metadata={"req_type": "json", "key": "i18n_names"}
     )  # 假期多语言展示，格式为 map，key 为["ch"、"en"、"ja"]，其中 ch 代表中文，en 代表英文、ja 代表日文
     default_locale: str = attr.ib(
@@ -113,7 +113,7 @@ class GetAttendanceUserApprovalRespUserApprovalOut(object):
     end_time: str = attr.ib(
         default="", metadata={"req_type": "json", "key": "end_time"}
     )  # 结束时间，时间格式为 yyyy-MM-dd HH:mm:ss
-    i18n_names: I18nNames = attr.ib(
+    i18n_names: lark_type.I18nNames = attr.ib(
         default=None, metadata={"req_type": "json", "key": "i18n_names"}
     )  # 外出多语言展示，格式为 map，key 为["ch"、"en"、"ja"]，其中 ch 代表中文，en 代表英文、ja 代表日文
     default_locale: str = attr.ib(

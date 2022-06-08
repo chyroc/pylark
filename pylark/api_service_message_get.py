@@ -44,13 +44,13 @@ class GetMessageRespItem(object):
     chat_id: str = attr.ib(
         default="", metadata={"req_type": "json", "key": "chat_id"}
     )  # 所属的群
-    sender: Sender = attr.ib(
+    sender: lark_type.Sender = attr.ib(
         default=None, metadata={"req_type": "json", "key": "sender"}
     )  # 发送者，可以是用户或应用
-    body: MessageBody = attr.ib(
+    body: lark_type.MessageBody = attr.ib(
         default=None, metadata={"req_type": "json", "key": "body"}
     )  # 消息内容
-    mentions: typing.List[Mention] = attr.ib(
+    mentions: typing.List[lark_type.Mention] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json", "key": "mentions"}
     )  # 被@的用户或机器人的id列表
     upper_message_id: str = attr.ib(

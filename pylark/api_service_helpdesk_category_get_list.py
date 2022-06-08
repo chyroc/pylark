@@ -22,7 +22,7 @@ class GetHelpdeskCategoryListReq(object):
 
 @attr.s
 class GetHelpdeskCategoryListResp(object):
-    categories: typing.List[HelpdeskCategory] = attr.ib(
+    categories: typing.List[lark_type.HelpdeskCategory] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json", "key": "categories"}
     )  # 知识库分类列表
 

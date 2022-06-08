@@ -58,7 +58,7 @@ class GetHelpdeskFAQRespFAQ(object):
     update_time: int = attr.ib(
         default=0, metadata={"req_type": "json", "key": "update_time"}
     )  # 修改时间
-    categories: typing.List[HelpdeskCategory] = attr.ib(
+    categories: typing.List[lark_type.HelpdeskCategory] = attr.ib(
         factory=lambda: [], metadata={"req_type": "json", "key": "categories"}
     )  # 分类
     tags: typing.List[str] = attr.ib(
