@@ -3,11 +3,20 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 import typing
-from enum import Enum
+from enum import EnumMeta, Enum
 import attr
 
 
-class MsgType(Enum):
+class DefaultEnumMeta(EnumMeta):
+    default = object()
+
+    def __call__(cls, value=default, *args, **kwargs):
+        if value is DefaultEnumMeta.default:
+            return next(iter(cls)) # type: ignore
+        return super().__call__(value, *args, **kwargs) # type: ignore
+
+
+class MsgType(Enum, metaclass=DefaultEnumMeta):
     """MsgType 消息类型"""
 
     text = "text"  # 文本
@@ -22,13 +31,13 @@ class MsgType(Enum):
     share_user = "share_user"  # 分享个人卡片
 
 
-class ContainerIDType(Enum):
+class ContainerIDType(Enum, metaclass=DefaultEnumMeta):
     """容器类型"""
 
     chat = "chat"
 
 
-class IDType(Enum):
+class IDType(Enum, metaclass=DefaultEnumMeta):
     """ID类型"""
 
     user_id = "user_id"  # 以 user_id 来识别成员
@@ -39,14 +48,14 @@ class IDType(Enum):
     email = "email"  # 以 email 来识别成员
 
 
-class DepartmentIDType(Enum):
+class DepartmentIDType(Enum, metaclass=DefaultEnumMeta):
     """ID类型"""
 
     department_id = "department_id"  # 以 department_id 来识别
     open_department_id = "open_department_id"  # open_department_id
 
 
-class MailUserType(Enum):
+class MailUserType(Enum, metaclass=DefaultEnumMeta):
     user = "USER"  # 内部用户
     department = "DEPARTMENT"  # 部门
     company = "COMPANY"  # 全员
@@ -55,22 +64,22 @@ class MailUserType(Enum):
     other_member = "OTHER_MEMBER"  # 内部成员
 
 
-class EmployeeType(Enum):
+class EmployeeType(Enum, metaclass=DefaultEnumMeta):
     employee_id = "employee_id"  # 员工id
     employee_no = "employee_no"  # 员工工号
 
 
-class ChatType(Enum):
+class ChatType(Enum, metaclass=DefaultEnumMeta):
     private = "private"
     public = "public"
 
 
-class ImageType(Enum):
+class ImageType(Enum, metaclass=DefaultEnumMeta):
     message = "message"  # 用于发送消息
     avatar = "avatar"  # 用于设置头像
 
 
-class FileType(Enum):
+class FileType(Enum, metaclass=DefaultEnumMeta):
     opus = "opus"  # 上传opus音频文件；其他格式的音频文件，请转为opus格式后上传，转换方式可参考：ffmpeg -i SourceFile.mp3 -acodec libopus -ac 1 -ar 16000 TargetFile.opus
     mp4 = "mp4"  # 上传mp4视频文件
     pdf = "pdf"  # 上传pdf格式文件
@@ -80,7 +89,7 @@ class FileType(Enum):
     stream = "stream"  # 上传stream格式文件
 
 
-class CalendarRole(Enum):
+class CalendarRole(Enum, metaclass=DefaultEnumMeta):
     """CalendarRole 对日历的访问权限"""
 
     free_busy_reader = "free_busy_reader"  # 游客，只能看到忙碌/空闲信息
@@ -89,7 +98,7 @@ class CalendarRole(Enum):
     owner = "owner"  # 管理员，管理日历及共享设置
 
 
-class CalendarEventAttendeeType(Enum):
+class CalendarEventAttendeeType(Enum, metaclass=DefaultEnumMeta):
     """参与人类型"""
 
     user = "user"  # 用户
@@ -97,7 +106,7 @@ class CalendarEventAttendeeType(Enum):
     # user = "user"  # 会议室
 
 
-class CalendarType(Enum):
+class CalendarType(Enum, metaclass=DefaultEnumMeta):
     unknown = "unknown"  # 未知类型
     primary = "primary"  # 用户或应用的主日历
     shared = "shared"  # 由用户或应用创建的共享日历
@@ -106,20 +115,20 @@ class CalendarType(Enum):
     exchange = "exchange"  # 用户绑定的Exchange日历
 
 
-class CalendarPermission(Enum):
+class CalendarPermission(Enum, metaclass=DefaultEnumMeta):
     private = "private"  # 私密
     show_only_free_busy = "show_only_free_busy"  # 仅展示忙闲信息
     public = "public"  # 他人可查看日程详情
 
 
-class AddMemberPermission(Enum):
+class AddMemberPermission(Enum, metaclass=DefaultEnumMeta):
     """加 user/bot 入群权限"""
 
     all_members = "all_members"
     only_owner = "only_owner"
 
 
-class MessageVisibility(Enum):
+class MessageVisibility(Enum, metaclass=DefaultEnumMeta):
     """入群消息可见性"""
 
     only_owner = "only_owner"
@@ -127,14 +136,14 @@ class MessageVisibility(Enum):
     not_anyone = "not_anyone"
 
 
-class MembershipApproval(Enum):
+class MembershipApproval(Enum, metaclass=DefaultEnumMeta):
     """加群审批"""
 
     no_approval_required = "no_approval_required"
     approval_required = "approval_required"
 
 
-class ModerationPermission(Enum):
+class ModerationPermission(Enum, metaclass=DefaultEnumMeta):
     """发言权限"""
 
     all_members = "all_members"
@@ -142,21 +151,21 @@ class ModerationPermission(Enum):
     moderator_list = "moderator_list"
 
 
-class ShareCardPermission(Enum):
+class ShareCardPermission(Enum, metaclass=DefaultEnumMeta):
     """群分享权限"""
 
     allowed = "allowed"
     not_allowed = "not_allowed"
 
 
-class AtAllPermission(Enum):
+class AtAllPermission(Enum, metaclass=DefaultEnumMeta):
     """at 所有人权限"""
 
     all_members = "all_members"
     only_owner = "only_owner"
 
 
-class EditPermission(Enum):
+class EditPermission(Enum, metaclass=DefaultEnumMeta):
     """群编辑权限"""
 
     all_members = "all_members"
@@ -177,24 +186,30 @@ class HelpdeskDropdownOption(object):
 
 @attr.s
 class I18nNames:
+    # FIXME: inaccurate type name placeholder
     pass
 
 @attr.s
 class HelpdeskCategory:
+    # FIXME: inaccurate type name placeholder
     pass
 
 @attr.s
 class MessageContentCard:
+    # FIXME: inaccurate type name placeholder
     pass
 
 @attr.s
 class Sender:
+    # FIXME: inaccurate type name placeholder
     pass
 
 @attr.s
 class MessageBody:
+    # FIXME: inaccurate type name placeholder
     pass
 
 @attr.s
 class Mention:
+    # FIXME: inaccurate type name placeholder
     pass
