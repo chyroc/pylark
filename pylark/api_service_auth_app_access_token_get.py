@@ -1,4 +1,5 @@
 from pylark.api_service_auth_tenant_access_token_get import TokenExpire
+from pylark.lark_cache import get_access_token_cache, set_access_token_cache
 from pylark.lark_request import RawRequestReq, _new_method_option, Request, Response
 from typing import TYPE_CHECKING, Tuple
 import attr
@@ -16,6 +17,14 @@ def _get_app_access_token(
     # mock
 
     # cache
+    token_expire, response = get_access_token_cache(
+        cli.last_get_app_access_token_time,
+        cli.last_app_access_token_expire_time,
+        cli.current_app_access_token,
+    )
+
+    if token_expire.token != "":
+        return token_expire, response
 
     uri = "https://open.feishu.cn/open-apis/auth/v3/app_access_token/internal/"
     app_ticket = ""
@@ -43,6 +52,7 @@ def _get_app_access_token(
     data, response = Request.raw_request(cli, req)
 
     # set cache
+    cli.last_get_app_access_token_time, cli.last_app_access_token_expire_time, cli.current_app_access_token = set_access_token_cache(data)
 
     return (
         TokenExpire(

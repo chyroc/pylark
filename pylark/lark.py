@@ -90,6 +90,13 @@ class Lark(object):
         self.custom_secret = custom_secret
         self.custom_url = custom_url
 
+        self.last_get_tenant_access_token_time = 0
+        self.last_get_app_access_token_time = 0
+        self.last_tenant_access_token_expire_time = 0
+        self.last_app_access_token_time = 0
+        self.current_tenant_access_token = None
+        self.current_app_access_token = None
+
     def with_tenant(self, tenant_key: str):
         pass
 

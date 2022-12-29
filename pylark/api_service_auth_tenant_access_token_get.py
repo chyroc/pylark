@@ -1,3 +1,4 @@
+from pylark.lark_cache import get_access_token_cache, set_access_token_cache
 from pylark.lark_request import RawRequestReq, _new_method_option, Request, Response
 from typing import TYPE_CHECKING, Tuple
 import attr
@@ -19,15 +20,23 @@ class TokenExpire(object):
 
 
 def _get_tenant_access_token(
-    cli: "Lark",
-    is_isv: bool,
-    app_id: str,
-    app_secret: str,
-    tenant_key: str,
+        cli: "Lark",
+        is_isv: bool,
+        app_id: str,
+        app_secret: str,
+        tenant_key: str,
 ) -> Tuple[TokenExpire, Response]:
     # mock
 
     # cache
+    token_expire, response = get_access_token_cache(
+        cli.last_get_tenant_access_token_time,
+        cli.last_tenant_access_token_expire_time,
+        cli.current_tenant_access_token,
+    )
+
+    if token_expire.token != "":
+        return token_expire, response
 
     uri = "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal/"
     body = {
@@ -56,6 +65,7 @@ def _get_tenant_access_token(
     data, response = Request.raw_request(cli, req)
 
     # set cache
+    cli.last_get_tenant_access_token_time, cli.last_tenant_access_token_expire_time, cli.current_tenant_access_token = set_access_token_cache(data)
 
     return (
         TokenExpire(
