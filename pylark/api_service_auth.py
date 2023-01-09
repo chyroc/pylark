@@ -77,10 +77,12 @@ class LarkAuthService(object):
             tenant_key="",
         )
 
-    def get_app_access_token(self) -> typing.Tuple[TokenExpire, Response]:
+    def get_app_access_token(
+            self,
+            use_cache=True
+    ) -> typing.Tuple[TokenExpire, Response]:
         return _get_app_access_token(
             cli=self.cli,
             is_isv=False,
-            app_id=self.cli.app_id,
-            app_secret=self.cli.app_secret,
+            use_cache=use_cache,
         )
